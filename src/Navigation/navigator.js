@@ -1,0 +1,327 @@
+// import React, { Component } from "react";
+// import { AppRegistry } from "react-native";
+import React from 'react';
+import { Container, Header, Content, Item, Input, Icon, Label, Form, Body } from 'native-base';
+import {Avatar, Button} from 'react-native-elements'
+import {View, Text, TouchableOpacity,} from 'react-native'
+
+import ProLogin from '../components/Authentication/proLogin'
+import ProSignUp from '../components/Authentication/proSignup'
+import ForgotPassword from '../components/Authentication/forgotPassword'
+import ProHome from '../components/Pro/proHome'
+import ServiceList from '../components/Pro/serviceList'
+import BookingReq from '../components/Pro/bookingReq'
+import BookingDetail from '../components/Pro/bookingDetail'
+import DrawerMenu from '../Navigation/prodrawerMenu'
+import Notification from '../components/Pro/notification'
+import ProProfile from '../components/Pro/profile'
+import EditProProfile from '../components/Pro/editProfile'
+import AddService from '../components/Pro/addService'
+import ViewBooking from '../components/Pro/viewBooking'
+
+import { createStackNavigator, createDrawerNavigator, createAppContainer, DrawerItems } from "react-navigation";
+import PassChange from '../components/Pro/passChange'
+import ServingHistory from '../components/Pro/servingHistory'
+import About from '../components/Pro/about'
+import Term from  '../components/Pro/termCondition'
+import BookingHistory from '../components/Pro/bookingHIstory'
+
+const Drawer = createDrawerNavigator(
+    {
+
+
+        Main: { 
+            screen: ProHome,
+            navigationOptions: () => ({
+                title:"HOME",
+                headerTitleStyle: {
+                    fontFamily:"MrEavesXLModNarOT-Reg",
+                    fontSize:30
+                },
+                header:null
+        }),
+         },
+
+         ServiceList: { 
+            screen: ServiceList,
+            navigationOptions: () => ({
+                title:"Service List",
+                headerTitleStyle: {
+                    fontFamily:"MrEavesXLModNarOT-Reg",
+                    fontSize:30
+                },
+                headerMode: 'none',
+                headerVisible: false,
+                header: null,
+        }),
+         },
+
+
+         BookingReq: { 
+            screen: BookingReq,
+            navigationOptions: () => ({
+                title:"Booking Request",
+                headerTitleStyle: {
+                    fontFamily:"MrEavesXLModNarOT-Reg",
+                    fontSize:30
+                },
+                headerMode: 'none',
+                headerVisible: false,
+                header: null,
+        }),
+         },
+
+         BookingDetail: { 
+            screen: BookingDetail,
+            navigationOptions: () => ({
+                title:"Booking Request",
+                headerTitleStyle: {
+                    fontFamily:"MrEavesXLModNarOT-Reg",
+                    fontSize:30
+                },
+                headerMode: 'none',
+                headerVisible: false,
+                header: null,
+        }),
+         },
+
+         Notification: { 
+            screen: Notification,
+            navigationOptions: () => ({
+                title:"Booking Request",
+                headerTitleStyle: {
+                    fontFamily:"MrEavesXLModNarOT-Reg",
+                    fontSize:30
+                },
+                headerMode: 'none',
+                headerVisible: false,
+                header: null,
+        }),
+         },
+
+
+         ProProfile: { 
+            screen: ProProfile,
+            navigationOptions: () => ({
+                title:"Booking Request",
+                headerTitleStyle: {
+                    fontFamily:"MrEavesXLModNarOT-Reg",
+                    fontSize:30
+                },
+                headerMode: 'none',
+                headerVisible: false,
+                header: null,
+        }),
+         },
+
+
+         EditProProfile: { 
+            screen: EditProProfile,
+            navigationOptions: () => ({
+                title:"Booking Request",
+                headerTitleStyle: {
+                    fontFamily:"MrEavesXLModNarOT-Reg",
+                    fontSize:30
+                },
+                headerMode: 'none',
+                headerVisible: false,
+                header: null,
+        }),
+         },
+
+
+         AddService: { 
+            screen: AddService,
+            navigationOptions: () => ({
+                title:"Booking Request",
+                headerTitleStyle: {
+                    fontFamily:"MrEavesXLModNarOT-Reg",
+                    fontSize:30
+                },
+                headerMode: 'none',
+                headerVisible: false,
+                header: null,
+        }),
+         },
+
+
+         ViewBooking: { 
+            screen: ViewBooking,
+            navigationOptions: () => ({
+                title:"Booking Request",
+                headerTitleStyle: {
+                    fontFamily:"MrEavesXLModNarOT-Reg",
+                    fontSize:30
+                },
+                headerMode: 'none',
+                headerVisible: false,
+                header: null,
+        }),
+         },
+
+
+         PassChange: { 
+            screen: PassChange,
+            navigationOptions: () => ({
+                title:"Booking Request",
+                headerTitleStyle: {
+                    fontFamily:"MrEavesXLModNarOT-Reg",
+                    fontSize:30
+                },
+                headerMode: 'none',
+                headerVisible: false,
+                header: null,
+        }),
+         },
+
+
+         ServingHistory: { 
+            screen: ServingHistory,
+            navigationOptions: () => ({
+                title:"Booking Request",
+                headerTitleStyle: {
+                    fontFamily:"MrEavesXLModNarOT-Reg",
+                    fontSize:30
+                },
+                headerMode: 'none',
+                headerVisible: false,
+                header: null,
+        }),
+         },
+
+
+         About: { 
+            screen: About,
+            navigationOptions: () => ({
+                title:"About",
+                headerTitleStyle: {
+                    fontFamily:"MrEavesXLModNarOT-Reg",
+                    fontSize:30
+                },
+                headerMode: 'none',
+                headerVisible: false,
+                header: null,
+        }),
+         },
+
+
+         Term: { 
+            screen: Term,
+            navigationOptions: () => ({
+                title:"About",
+                headerTitleStyle: {
+                    fontFamily:"MrEavesXLModNarOT-Reg",
+                    fontSize:30
+                },
+                headerMode: 'none',
+                headerVisible: false,
+                header: null,
+        }),
+         },
+
+        
+         BookingHistory: { 
+            screen: BookingHistory,
+            navigationOptions: () => ({
+                title:"Booking History",
+                headerTitleStyle: {
+                    fontFamily:"MrEavesXLModNarOT-Reg",
+                    fontSize:30
+                },
+                headerMode: 'none',
+                headerVisible: false,
+                header: null,
+        }),
+         },
+
+    },
+    {
+        // initialRouteName: 'Main',
+        contentComponent: DrawerMenu,
+        drawerBackgroundColor: '#f5f5dc',
+        contentOptions: {
+            activeBackgroundColor: 'lightgray',
+            activeTintColor: 'black',
+            style: {
+                borderRightColor: 'orange'
+            },
+            inactiveTintColor: 'black'
+        },
+        // resetOnBlur:true,
+        drawerType:"slide",
+        overlayColor:"transparent",
+        // minSwipeDistance: 0,
+        drawerPosition: 'left',
+        drawerLockMode: "unlocked"
+        
+    }
+);
+
+const MainScreenNavigator = createStackNavigator({
+  
+
+    ProLogin: {
+        screen: ProLogin,
+        // navigationOptions: () => ({
+        //     headerBackTitle: null,
+        //     headerStyle: {
+        //         backgroundColor: "#f55f2a"
+        //     },
+        // }),
+        headerMode: 'none',
+    navigationOptions: {
+        headerVisible: false,
+    }
+    },
+
+
+    ProSignUp: {
+        screen: ProSignUp,
+        // navigationOptions: () => ({
+        //     headerBackTitle: null,
+        //     headerStyle: {
+        //         backgroundColor: "#f55f2a"
+        //     },
+        // }),
+        headerMode: 'none',
+    navigationOptions: {
+        headerVisible: false,
+    }
+    },
+
+    ForgotPassword: {
+        screen: ForgotPassword,
+        headerMode: 'none',
+    navigationOptions: {
+        headerVisible: false,
+    }
+    },
+
+    Main: {
+        screen: Drawer,
+        headerMode: 'none',
+    navigationOptions: {
+        headerMode: 'none',
+        headerVisible: false,
+        header: null,
+    }
+    },
+
+    // ServiceList: {
+    //     screen: ServiceList,
+    //     headerMode: 'none',
+    // navigationOptions: {
+    //     headerVisible: false,
+    //     headerTitle:"Service"
+    // }
+    // },
+
+   
+}, {headerLayoutPreset: 'center'});
+
+
+
+const Navigator = createAppContainer(MainScreenNavigator);
+export default Navigator;
+
+
