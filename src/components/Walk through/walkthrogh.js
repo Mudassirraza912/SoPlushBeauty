@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Text, View , StyleSheet} from 'react-native'
 import AppIntroSlider from 'react-native-app-intro-slider';
-import Navigator from '../../Navigation/navigator'
-import Home from '../Home/home'
+// import Navigator from '../../Navigation/navigator'
+// import Home from '../Home/home'
 // import console = require('console');
-
+import Navigator from '../../Navigation/navigator'
 
 const styles = StyleSheet.create({
     MainContainer: { 
@@ -72,7 +72,8 @@ export default class Walkthrogh extends Component {
         super(props);
         this.state = {
             show_Main_App: false,
-            role:""
+            role:"",
+            profileData: ''
         };
         this.usertype = this.usertype.bind(this)
     }
@@ -84,6 +85,12 @@ export default class Walkthrogh extends Component {
       })
 
     }
+
+    fetchProfileData = (data) =>{
+      this.setState({
+          profileData: data
+      })
+  }
 
     on_Done_all_slides = () => {
         this.setState({ show_Main_App: true });
@@ -98,7 +105,7 @@ export default class Walkthrogh extends Component {
         if (this.state.show_Main_App) {
           return (
             <View style={{flex: 1}}>
-              <Home />
+              <Navigator screenProps={{fetchProfileData:this.fetchProfileData, profileData: this.state.profileData}} />
               </View>
                   
           );

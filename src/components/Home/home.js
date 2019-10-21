@@ -11,7 +11,8 @@ export default class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            role:""
+            role:"",
+            profileData: ''
         }
     }
 
@@ -32,6 +33,8 @@ export default class Home extends Component {
         //     // alignSelf:"cneter"
         // },
     })
+
+   
 
     
     render() {
@@ -57,7 +60,7 @@ export default class Home extends Component {
 
                     <View style={{display:"flex", flexDirection:"row", padding: 10, width:"100%", justifyContent:"space-around", marginTop:"3%"}}>
 
-                        <TouchableOpacity onPress={() => {this.setState({role:"user"})}}>
+                        <TouchableOpacity onPress={() => {this.props.navigation.navigate("UserNavigator")}}>
                         <View style={{alignContent:"center",alignItems:"center",alignSelf:"center",backgroundColor:"transparent",width:143, height:139, borderRadius: 5, borderColor:"#000", borderWidth: 1, justifyContent:"space-evenly" }}>
 
                             <Image source={require('../../../assets/userIcon.png')} style={{height:60, width:55, marginTop:"10%"}}/>
@@ -66,7 +69,7 @@ export default class Home extends Component {
                         </View>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={() => {this.setState({role:"pro"})}}>
+                        <TouchableOpacity onPress={() => {this.props.navigation.navigate("ProNavigator")}}>
                         <View style={{ width:"40%",borderRadius:10}}>
                             <Image source={require('../../../assets/Button.png')} />
                         </View>
@@ -82,8 +85,8 @@ export default class Home extends Component {
     }else {
         return(
         <View style={{flex: 1}}>
-                {role === "pro"  && <Navigator />}
-                {role === "user"  && <UserNavigator />}
+                {role === "pro"  && <Navigator screenProps={{ fetchProfileData: this.fetchProfileData, profileData: this.state.profileData}} />}
+                {role === "user"  && <UserNavigator screenProps={{ fetchProfileData: this.fetchProfileData, profileData: this.state.profileData}} />}
 
         </View>
         )

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button } from 'native-base';
 import {Avatar, Header, Icon} from 'react-native-elements'
@@ -42,10 +42,54 @@ export default class ServiceList extends Component {
                 },
                 
                
-            ]
+            ],
+            profileData : this.props.screenProps.profileData,
         }
     }
 
+
+    componentWillMount() {
+        this.setState({
+            profileData: this.props.screenProps.profileData
+        })
+    }
+
+    componentDidMount() {
+        const {profileData} = this.state
+        console.log("user_id", profileData.user_id)
+        const formData = new FormData();
+        formData.append("id", profileData.user_id),
+       
+
+        // console.log("email, password, address, name, phoneNo, profilePic", email, password)
+
+
+        fetch("http://192.168.1.125/SoPlush/beautician/beautician_service.php?action=select_service", {
+            method: 'POST',
+            // dataType: "json",
+            headers: {
+                'Accept' : 'application/json',
+                'Content-Type': 'multipart/form-data'
+            },
+            body: formData
+        }).then(res => res.json())
+        .then(resp =>{
+          console.log(JSON.stringify(resp))
+          var successData =  resp
+  
+          if(successData.status === true){
+              // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
+              
+                  console.log("SUCCESS PRO", successData, successData.status, successData.data)
+                  Alert.alert("Login successful")
+            // this.props.navigation.navigate("Main")
+       
+          }else {
+            Alert.alert(successData.message)
+          }
+        })
+        .catch(err => console.log("err err err",err));
+    }
 //    static navigationOptions = () => ({
 //         // headerBackTitle: null,
 //         title:"SERVICES LIST",

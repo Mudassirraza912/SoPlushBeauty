@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Picker, PickerItem } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button, Item, Input, Label, Form, Icon } from 'native-base';
 import { Avatar, Header, Card, Divider } from 'react-native-elements'
@@ -11,23 +11,97 @@ export default class AddService extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            profileData:
-            {
-                name: "So plush",
-                email: "SoPlush@gmail.com",
-                mobile: "+1 23456789",
-                gender: "Female",
-                abour: "Inspect the React component hierarchy"
-            },
+            profileData:  this.props.screenProps.profileData,
             add: true,
-
+            category:[],
+            selectedCategory:"",
+            name: "",
+            cost: ""
         }
     }
 
 
-    componentWillUnmount() {
-        console.log("componentWillUnmount componentWillUnmount componentWillUnmount")
+    componentDidMount() {
+        const {profileData} = this.state
+        
+       
+
+        // console.log("email, password, address, name, phoneNo, profilePic", email, password)
+
+
+        fetch("http://192.168.1.125/SoPlush/category/category.php?action=select_category", {
+            method: 'GET',
+            // dataType: "json",
+            // headers: {
+            //     'Accept' : 'application/json',
+            //     'Content-Type': 'multipart/form-data'
+            // },
+            // body: ""
+        }).then(res => res.json())
+        .then(resp =>{
+          console.log(JSON.stringify(resp))
+          var successData =  resp
+  
+          if(successData.status === true){
+              // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
+                this.setState({
+                    category: successData.data
+                })
+                //   console.log("Category PRO", successData)
+            // this.props.navigation.navigate("Main")
+       
+          }else {
+            Alert.alert(successData.message)
+          }
+        })
+        .catch(err => console.log("Category err err",err));
     }
+
+
+
+  addCategory = () => {
+        const {name, cost, selectedCategory, category, profileData} = this.state
+        console.log(selectedCategory, profileData.user_id)
+
+    var formData = new FormData()
+    formData.append("name", name)
+    formData.append("cost", cost)
+    formData.append("category_id", selectedCategory)
+    formData.append("user_id", profileData.user_id)
+
+    // category.map((val) => {
+    //     if (val.category_name === selectedCategory) {
+    //         formData.append("category_id", val.category_id)
+    //     }
+// })
+    fetch("http://192.168.1.125/SoPlush/beautician/beautician_service.php?action=add_beautician_service", {
+        method: 'POST',
+        dataType: "json",
+        headers: {
+            'Accept' : 'application/json',
+            'Content-Type': 'multipart/form-data'
+        },
+        body: formData
+    }).then(res => res.json())
+    .then(resp =>{
+      console.log(JSON.stringify(resp))
+      var successData =  resp
+
+      if(successData.status === true){
+          // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
+            // this.setState({
+            //     category: successData.data
+            // })
+            //   console.log("Category PRO", successData)
+        this.props.navigation.navigate("ServiceList")
+   
+      }else {
+        Alert.alert(successData.message)
+      }
+    })
+    .catch(err => console.log("Category err err",err));
+
+  }
 
 
 
@@ -39,6 +113,7 @@ export default class AddService extends Component {
 
 
     render() {
+        // console.log("this.state.category", this.state.category)
         return (
             <View style={{ flex: 1, height, width, marginTop: -80 }}>
                 <ImageBackground source={require('../../../assets/opacity100.png')} style={{ height: "100%", width: "100%", opacity: 0.9, marginTop: 20 }}>
@@ -75,16 +150,24 @@ export default class AddService extends Component {
                                     <Item floatingLabel>
                                         {/* <Icon active name='home' type="FontAwesome" /> */}
                                         {/* <Label>Address</Label> */}
-                                        <Input onChangeText={(e) => { this.setState({ address: e }) }} placeholder="Enter Cost" />
+                                        <Input keyboardType="number-pad" onChangeText={(e) => { this.setState({ cost: e }) }} placeholder="Enter Cost" />
                                     </Item>
-                                    <Item floatingLabel>
-                                        {/* <Icon active name='phone' type="MaterialCommunityIcons" /> */}
-                                        {/* <Label>Phone Number</Label> */}
-                                        <Input onChangeText={(e) => { this.setState({ phoneNo: e }) }} placeholder="Enter Category" />
-                                    </Item>
-                                   
+                                    <View>
+                                    <Picker
+                                            selectedValue={this.state.selectedCategory}
+                                            style={{height: 50, width: 100}}
+                                            onValueChange={(itemValue, itemIndex) =>
+                                                this.setState({selectedCategory: itemValue})
+                                            }>
+                                                {/* <Picker.Item label="jksfdgsdfh" value="{value.category_name}"/> */}
+                                                {this.state.category.map((value, index) => {
+                                                    console.log("value.category_name", value.category_name)
+                                                    return(<Picker.Item label={value.category_name} value={value.category_id}/>)
+                                                })}
+                                    </Picker>
+                                    </View>
 
-                                            <Button onPress={() => {this.props.navigation.navigate('ServiceList')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#f14538", width:"100%", borderRadius: 10, opacity:0.7, marginTop:"5%"}}> 
+                                            <Button onPress={this.addCategory} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#f14538", width:"100%", borderRadius: 10, opacity:0.7, marginTop:"5%"}}> 
                                             <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                                             Ok
                                             </Text>   

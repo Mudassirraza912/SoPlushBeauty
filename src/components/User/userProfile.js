@@ -11,19 +11,17 @@ export default class UserProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            profileData : 
-                {
-                    name: "So plush",
-                    email: "SoPlush@gmail.com",
-                    mobile: "+1 23456789",
-                    gender: "Female",
-                    abour: "Inspect the React component hierarchy"
-                },
+            profileData : this.props.screenProps.profileData
+                
             
         }
     }
 
-
+    componentWillMount() {
+        this.setState({
+            profileData: this.props.screenProps.profileData
+        })
+    }
 
 
     static navigationOptions = () => ({
@@ -34,6 +32,7 @@ export default class UserProfile extends Component {
 
     
     render() {
+        console.log("USERPROFILE",this.state.profileData)
         return (
             <View style={{flex:1, height, width, marginTop: -80}}>
                 <ImageBackground source={require('../../../assets/opacity.jpg')} style={{height:"100%", width:"100%",opacity:0.9, marginTop: 20}}> 
@@ -59,23 +58,23 @@ export default class UserProfile extends Component {
                         <Card containerStyle={{backgroundColor:"#fff", borderRadius:10, width:"90%",}}> 
 
                         <View style={{justifyContent:"center", alignContent:"center", alignItems:"center"}}>
-                             <Avatar onEditPress={() => {console.log("CONSOLE LOG")}} containerStyle={{backgroundColor:"#f14538",}} showEditButton  rounded size="xlarge" editButton={{name:"camera",type:"font-awesome", size:25, iconStyle:{marginTop:8} ,containerStyle:{backgroundColor:"#f14538", borderRadius:50, height: 40, width:40}, color:"#fff", underlayColor:"#f14538", reverseColor:"#f14538", }} source={require('../../../assets/barbie.jpg')} />
+                             <Avatar onEditPress={() => {console.log("CONSOLE LOG")}} containerStyle={{backgroundColor:"#f14538",}} showEditButton  rounded size="xlarge" editButton={{name:"camera",type:"font-awesome", size:25, iconStyle:{marginTop:8} ,containerStyle:{backgroundColor:"#f14538", borderRadius:50, height: 40, width:40}, color:"#fff", underlayColor:"#f14538", reverseColor:"#f14538", }} source={{uri:`http://192.168.1.125/SoPlush/profile_pics/${this.state.profileData.profile_pic}`}} />
                         </View>
                             <Item floatingLabel>
                         <Icon active name='user' type="FontAwesome"  />
                         {/* <Label>Name</Label> */}
-                        <Input onChangeText={(e) => {this.setState({name:e})}} placeholder="Name" />
+                        <Input defaultValue={this.state.profileData.username} onChangeText={(e) => {this.setState({name:e})}} placeholder="Name" />
                     </Item>
                     
                     <Item floatingLabel>
                         <Icon active name='phone' type="MaterialCommunityIcons" />
                         {/* <Label>Phone Number</Label> */}
-                        <Input onChangeText={(e) => {this.setState({phoneNo:e})}} placeholder="Phone Number" />
+                        <Input defaultValue={this.state.profileData.phone_number} onChangeText={(e) => {this.setState({phoneNo:e})}} placeholder="Phone Number" />
                     </Item>
                     <Item floatingLabel>
                         <Icon active name='email' type="MaterialCommunityIcons" />
                         {/* <Label>Email Address</Label> */}
-                        <Input onChangeText={(e) => {this.setState({email:e})}} placeholder="Email Address" />
+                        <Input defaultValue={this.state.profileData.email} onChangeText={(e) => {this.setState({email:e})}} placeholder="Email Address" />
                     </Item>
                     
                 

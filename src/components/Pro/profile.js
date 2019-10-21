@@ -11,18 +11,17 @@ export default class ProProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            profileData : 
-                {
-                    name: "So plush",
-                    email: "SoPlush@gmail.com",
-                    mobile: "+1 23456789",
-                    gender: "Female",
-                    abour: "Inspect the React component hierarchy"
-                },
+          profileData : this.props.screenProps.profileData,
             
         }
     }
 
+
+    componentWillMount() {
+        this.setState({
+            profileData: this.props.screenProps.profileData
+        })
+    }
 
 
 
@@ -58,11 +57,11 @@ export default class ProProfile extends Component {
                    
                         <Card containerStyle={{backgroundColor:"#fff", borderRadius:10, width:"90%",}}> 
                             <View style={{width:"100%"}}>
-                                <Image resizeMode="cover" style={{width:"100%", height:300}} source={require('../../../assets/barbie.jpg')} />
+                                <Image resizeMode="cover" style={{width:"100%", height:300}} source={{uri:`http://192.168.1.125/SoPlush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}} />
                             </View>
                                 <View style={{display:"flex", flexDirection:"column", marginTop: 15}}> 
                                     <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, color: "gray"}}>Name</Text>
-                                    <Text style={{ fontFamily:"MrEavesXLModNarOT-Reg", fontSize:15}}>{this.state.profileData.name}</Text>
+                                    <Text style={{ fontFamily:"MrEavesXLModNarOT-Reg", fontSize:15}}>{this.state.profileData.username}</Text>
                                     <Divider style={{ backgroundColor: 'lightgray' }} />
                                 </View>
 
@@ -74,7 +73,7 @@ export default class ProProfile extends Component {
 
                                 <View style={{display:"flex", flexDirection:"column", marginTop: 15}}> 
                                     <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, color: "gray"}}>Mobile No</Text>
-                                    <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize:15}}>{this.state.profileData.mobile}</Text>
+                                    <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize:15}}>{this.state.profileData.phone_number}</Text>
                                     <Divider style={{ backgroundColor: 'lightgray' }} />
                                 </View>
 
@@ -86,7 +85,7 @@ export default class ProProfile extends Component {
 
                                 <View style={{display:"flex", flexDirection:"column", marginTop: 15}}> 
                                     <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, color: "gray"}}>About</Text>
-                                    <Text style={{ fontFamily:"MrEavesXLModNarOT-Reg", fontSize:15}}>{this.state.profileData.abour}</Text>
+                                    <Text style={{ fontFamily:"MrEavesXLModNarOT-Reg", fontSize:15}}>{this.state.profileData.address}</Text>
                                     <Divider style={{ backgroundColor: 'lightgray' }} />
                                 </View>
 

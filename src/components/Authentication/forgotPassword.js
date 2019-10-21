@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground , Dimensions, Image, Keyboard, Animated, UIManager, TextInput, TouchableOpacity, ScrollView} from 'react-native'
+import { Text, View, ImageBackground , Dimensions, Image, Keyboard, Animated, UIManager, TextInput, TouchableOpacity, ScrollView, Alert} from 'react-native'
 // import { nodeInternals } from 'stack-utils';
 import { Container, Header, Content, Item, Input, Icon, Label, Form, Button } from 'native-base';
 import CodeInput from 'react-native-confirmation-code-input';
-
+import moment from 'moment';
+import CountDown from 'react-native-countdown-component';
 
 const { State: TextInputState } = TextInput;
 const {width, height} = Dimensions.get("window")
@@ -19,10 +20,49 @@ export default class ForgotPassword extends Component {
             email:"",
             code:"",
             password:"",
-            newPassword:""
+            newPassword:"",
+            startDate:"",
+            endDate:""
          }
         //  this.refs.refname.
     //    const from = this.props.navigation.getParam("from")
+    }
+
+    componentDidMount() {
+        this.dateTimer()
+        // this.setState({ startDate: moment().toDate(), endDate:moment().add(1.5, "minute").toDate()})
+    }
+
+
+    dateTimer = () => {
+        var that = this;
+        console.log(moment(new Date()))
+        //We are showing the coundown timer for a given expiry date-time
+        //If you are making an quize type app then you need to make a simple timer
+        //which can be done by using the simple like given below
+        //that.setState({ totalDuration: 30 }); //which is 30 sec
+
+        var date = moment(new Date())
+            .utcOffset('+05:00')
+            .format('YYYY-MM-DD hh:mm:ss');
+        //Getting the current date-time with required formate and UTC   
+
+        var expirydate = moment().add(1.5, "minute")
+        .utcOffset('+05:00')
+        .format('YYYY-MM-DD hh:mm:ss');//You can set your own date-time
+        //Let suppose we have to show the countdown for above date-time 
+
+        var diffr = moment.duration(moment(expirydate).diff(moment(date)));
+        //difference of the expiry date-time given and current date-time
+
+        var hours = parseInt(diffr.asHours());
+        var minutes = parseInt(diffr.minutes());
+        var seconds = parseInt(diffr.seconds());
+        console.log(hours, minutes, seconds, date, expirydate)
+        var d = hours * 60 * 60 + minutes * 60 + seconds;
+        //converting in seconds
+        that.setState({ totalDuration: d });
+        //Settign up the duration of countdown in seconds to re-render
     }
 
     componentWillMount() {
@@ -36,6 +76,159 @@ export default class ForgotPassword extends Component {
         headerVisible: false,
         header: null,
     })
+
+    codeMailFetch = async () => {
+        const { email, password } = this.state
+        console.log("FIKHSDJKDFJSN")
+    
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
+    
+        if(reg.test(email) === false ) {
+    
+          Alert.alert("Email is not correct")
+        }else{
+    
+          // http://192.168.0.120/29-may-2019/rest_api_for_plant_client/login_signup.php?action=login_user
+    
+         
+          const formData = new FormData();
+          formData.append("email", email),
+         
+  
+          console.log("email, password", email, password)
+  
+  
+          fetch("http://192.168.1.125/SoPlush/auth/forgot_password.php?action=forget_password", {
+              method: 'POST',
+              // dataType: "json",
+              headers: {
+                  'Accept' : 'application/json',
+                  'Content-Type': 'multipart/form-data'
+              },
+              body: formData
+          }).then(res => res.json())
+          .then(resp =>{
+            console.log(JSON.stringify(resp))
+            var successData =  resp
+    
+            if(successData.status === true) {
+                        Alert.alert("Mail Send successful")
+                        this.setState({renderEMail: false, renderCode: true, renderPassword:false, startDate: moment(), endDate:moment().add(1.5, "M")})
+            }else {
+              Alert.alert(successData.message)
+            }
+            console.log("SUCCESS", successData, successData.status, successData.data)
+          })
+          .catch(err => console.log("err err err",err));
+      }
+    
+    
+      }
+
+
+      codeChecker = async () => {
+        const { email, code } = this.state
+        // console.log("FIKHSDJKDFJSN",code)
+    
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
+    
+        if(reg.test(email) === false ) {
+    
+          Alert.alert("Email is not correct")
+        }else{
+    
+          // http://192.168.0.120/29-may-2019/rest_api_for_plant_client/login_signup.php?action=login_user
+    
+         
+          const formData = new FormData();
+          formData.append("email", email)
+          formData.append("code", code)
+         
+  
+          console.log("email, code", email, code)
+  
+  
+          fetch("http://192.168.1.125/SoPlush/auth/forgot_password.php?action=check_code", {
+              method: 'POST',
+              // dataType: "json",
+              headers: {
+                  'Accept' : 'application/json',
+                  'Content-Type': 'multipart/form-data'
+              },
+              body: formData
+          }).then(res => res.json())
+          .then(resp =>{
+            console.log(JSON.stringify(resp))
+            var successData =  resp
+    
+            if(successData.status === true) {
+                        Alert.alert("Code Matched")
+                        this.setState({renderEMail: false, renderCode: false, renderPassword:true})
+            }else {
+              Alert.alert(successData.message)
+            }
+            console.log("SUCCESS", successData, successData.status, successData.data)
+          })
+          .catch(err => console.log("err err err",err));
+      }
+    
+    
+      }
+
+
+
+
+      changePassword = async () => {
+        const { password, newPassword, email, code} = this.state
+        // console.log("FIKHSDJKDFJSN",code)
+    
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
+    
+        if(password != newPassword ) {
+    
+          Alert.alert("Password not Matched")
+        }else{
+    
+          // http://192.168.0.120/29-may-2019/rest_api_for_plant_client/login_signup.php?action=login_user
+    
+         
+          const formData = new FormData();
+          formData.append("email", email)
+          formData.append("new_password", password)
+         
+  
+          console.log("email, code, password", email, code, password)
+  
+  
+          fetch("http://192.168.1.125/SoPlush/auth/forgot_password.php?action=change_password", {
+              method: 'POST',
+              // dataType: "json",
+              headers: {
+                  'Accept' : 'application/json',
+                  'Content-Type': 'multipart/form-data'
+              },
+              body: formData
+          }).then(res => res.json())
+          .then(resp =>{
+            console.log(JSON.stringify(resp))
+            var successData =  resp
+    
+            if(successData.status === true) {
+                        Alert.alert("Password Changed Succesfully")
+                        // this.setState({renderEMail: false, renderCode: false, renderPassword:false}),
+                this.props.navigation.goBack()
+            }else {
+              Alert.alert(successData.message)
+            }
+            console.log("SUCCESS", successData, successData.status, successData.data)
+          })
+          .catch(err => console.log("err err err",err));
+      }
+    
+    
+      }
+
+
 
     RenderEnterEmial = () => {
         return(
@@ -61,7 +254,7 @@ export default class ForgotPassword extends Component {
                   </View>
 
                   <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
-                    <Button onPress={() => {this.setState({renderEMail: false, renderCode: true, renderPassword:false})}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#f14538", width:"90%", borderRadius: 10, opacity:0.7}}> 
+                    <Button onPress={this.codeMailFetch} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#f14538", width:"90%", borderRadius: 10, opacity:0.7}}> 
                      <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                         Continue    
                     </Text>   
@@ -98,7 +291,7 @@ export default class ForgotPassword extends Component {
                     ignoreCase={true}
                     inputPosition='center'
                     size={30}
-                    onFulfill={(isValid) => {this.setState({code:isValid})}}
+                    onFulfill={(isValid) => {this.setState({code :isValid})}}
                     containerStyle={{ marginTop: 30 }}
                     codeInputStyle={{ borderWidth: 1.5, borderColor:"rgba(242, 201, 240, 0.7)" , borderRadius: 5, color:"#000"}}
                     />
@@ -106,10 +299,32 @@ export default class ForgotPassword extends Component {
                   </View>
 
 
-                  <View>
+                  <View style={{flexDirection:"row" , alignContent:"center", justifyContent: 'center'}}>
+
+                      <View>
                     <Text style={{alignSelf:"center",color:"#000", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, textAlign:"center"}}>
-                        Code Expires in 01:30
+                        Code Expires in 
                     </Text>
+                    </View>
+
+                    <View >
+                       <CountDown
+                            // style={{}}
+                            until={60 * 1 + 30}
+                            size={30}
+                            onFinish={() => {
+                                alert('Code Expired!')
+                                this.setState({renderEMail: true, renderCode: false,  renderPassword:false,})
+                            }}
+                            digitStyle={{backgroundColor: 'transparent', height:30, width: 30}}
+                            digitTxtStyle={{color: '#000', fontSize:15}}
+                            timeToShow={['M', 'S']}
+                            timeLabels={{m: '', s: ''}}
+                            showSeparator
+                            separatorStyle={{fontSize:15}}
+                        />
+                    </View>
+
                 </View>
 
                 <View>
@@ -120,7 +335,7 @@ export default class ForgotPassword extends Component {
 
 
                   <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
-                    <Button onPress={() => {this.setState({renderEMail: false, renderCode: false, renderPassword:true})}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#f14538", width:"90%", borderRadius: 10, opacity:0.7}}> 
+                    <Button onPress={this.codeChecker} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#f14538", width:"90%", borderRadius: 10, opacity:0.7}}> 
                      <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                         Continue    
                     </Text>   
@@ -165,8 +380,7 @@ export default class ForgotPassword extends Component {
                   </View>
 
                   <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
-                    <Button onPress={() => {this.setState({renderEMail: false, renderCode: false, renderPassword:false}),
-                this.props.navigation.navigate(from)}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#f14538", width:"90%", borderRadius: 10, opacity:0.7}}> 
+                    <Button onPress={this.changePassword} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#f14538", width:"90%", borderRadius: 10, opacity:0.7}}> 
                      <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                        Submit
                     </Text>   
@@ -181,7 +395,9 @@ export default class ForgotPassword extends Component {
     
     render() {
         const {renderCode, renderEMail, renderPassword, email, code, password, newPassword} = this.state
-        console.log(email, password, newPassword, code)
+        console.log("totalDuration", this.state.totalDuration, "this.state.startDate, this.state.endDate")
+
+        // console.log(email, password, newPassword, code)
         return (
             <View style={{flex:1, height, width, marginTop: -80}}>
             <ImageBackground source={require('../../../assets/opacity100.png')} style={{height:"100%", width:"100%",}}>

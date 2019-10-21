@@ -19,13 +19,14 @@ import EditProProfile from '../components/Pro/editProfile'
 import AddService from '../components/Pro/addService'
 import ViewBooking from '../components/Pro/viewBooking'
 
-import { createStackNavigator, createDrawerNavigator, createAppContainer, DrawerItems } from "react-navigation";
+import { createStackNavigator, createDrawerNavigator, createAppContainer, DrawerItems, createSwitchNavigator } from "react-navigation";
 import PassChange from '../components/Pro/passChange'
 import ServingHistory from '../components/Pro/servingHistory'
 import About from '../components/Pro/about'
 import Term from  '../components/Pro/termCondition'
 import BookingHistory from '../components/Pro/bookingHIstory'
-
+import UserNavigator from '../UserNavigator/userNavigator'
+import Home from '../components/Home/home'
 const Drawer = createDrawerNavigator(
     {
 
@@ -321,7 +322,25 @@ const MainScreenNavigator = createStackNavigator({
 
 
 
-const Navigator = createAppContainer(MainScreenNavigator);
+
+
+
+const SwitchNavigator = createSwitchNavigator({
+    Home: {
+        screen: Home
+    },
+    ProNavigator: {
+        screen: MainScreenNavigator
+    },
+    UserNavigator: {
+        screen: UserNavigator
+    },
+})
+
+
+
+const Navigator = createAppContainer(SwitchNavigator);
+
 export default Navigator;
 
 

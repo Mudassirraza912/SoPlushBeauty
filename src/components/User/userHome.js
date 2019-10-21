@@ -14,32 +14,9 @@ export default class UserHome extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: [
-                {
-                    image: Cover4,
-                    navigate: "PersonalService",
-                    title: "Personal",
-                    key: 1
-                },
-                {
-                    image: Cover1,
-                    navigate: "Bridal",
-                    title: "Bridal",
-                    key: 2
-                },
-                {
-                    image: Cover3,
-                    navigate: "Film",
-                    title: "Television / Film",
-                    key: 3
-                },
-                {
-                    image: Cover2,
-                    navigate: "Awards",
-                    title: "Awards / Gala",
-                    key: 4
-                },
-            ]
+            navigate: "PersonalService",
+            items: "",
+            profileData:  this.props.screenProps.profileData
         }
     }
 
@@ -56,7 +33,50 @@ export default class UserHome extends Component {
     })
 
 
+    componentWillMount() {
+        console.log("this.props.screenProps.profileData",this.props.screenProps.profileData)
+    }
+
+    componentDidMount() {
+        const {profileData} = this.state
+        console.log("user_id", profileData.user_id)
+        const formData = new FormData();
+        formData.append("id", profileData.user_id),
+       
+
+        // console.log("email, password, address, name, phoneNo, profilePic", email, password)
+
+
+        fetch("http://192.168.1.125/SoPlush/category/category.php?action=select_category", {
+            method: 'GET',
+            // dataType: "json",
+            // headers: {
+            //     'Accept' : 'application/json',
+            //     'Content-Type': 'multipart/form-data'
+            // },
+            // body: ""
+        }).then(res => res.json())
+        .then(resp =>{
+          console.log(JSON.stringify(resp))
+          var successData =  resp
+  
+          if(successData.status === true){
+              // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
+                this.setState({
+                    items: successData.data
+                })
+                //   console.log("Category PRO", successData)
+            // this.props.navigation.navigate("Main")
+       
+          }else {
+            Alert.alert(successData.message)
+          }
+        })
+        .catch(err => console.log("Category err err",err));
+    }
+
     render() {
+        // console.log("this.state.items", this.state.items)
         const { items } = this.state
         return (
             <View style={{ flex: 1, height, width, marginTop: -80 }}>
@@ -88,17 +108,20 @@ export default class UserHome extends Component {
 
 
 
-                        <View style={{ flex: 1, height: Dimensions.get('window').height, width: Dimensions.get('window').width }}>
+                        <View style={{ flex: 1, width: Dimensions.get('window').width, height:"100%", marginBottom:"10%" }}>
                             <FlatList style={{ flex: 1, marginTop:"3%" }}
                                 data={this.state.items}
-                                renderItem={({ item }) => (
-                                    <View style={{ flexDirection: "column", margin: 2, height: 180, width: 180, borderRadius: 10, alignContent:"center", alignItems:"center", alignSelf:"center" }}>
-                                        <TouchableOpacity onPress={() => this.props.navigation.navigate(item.navigate)}>
-                                            <Image style={styles.imageThumbnail} source={item.image} />
+                                renderItem={({ item }) => {
+                                    console.log("FlatList FlatList",`http://192.168.1.125/SoPlush/images/${item.image}`)
+                                    return( <View style={{ flexDirection: "column", margin: 2, height: 180, width: 180, borderRadius: 10, alignContent:"center", alignItems:"center", alignSelf:"center" }}>
+                                        <TouchableOpacity onPress={() => this.props.navigation.navigate(this.state.navigate)}>
+                                            <Image style={styles.imageThumbnail} source={{uri:`http://192.168.1.125/SoPlush/images/${item.image}`}} />
                                         </TouchableOpacity>
-                                        <Text style={{fontSize:18, color:"#000", opacity:0.6, fontFamily:"MrEavesXLModNarOT-Reg"}}>{item.title}</Text>
+                                        <Text style={{fontSize:18, color:"#000", opacity:0.6, fontFamily:"MrEavesXLModNarOT-Reg"}}>{item.category_name}</Text>
                                     </View>
-                                )}
+                                )
+                            }
+                            }
                                 //Setting the number of column
                                 numColumns={2}
                                 key={2}

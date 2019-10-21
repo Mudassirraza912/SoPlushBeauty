@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground , Dimensions, Image, Keyboard, Animated, UIManager, TextInput, TouchableOpacity, ScrollView} from 'react-native'
+import { Text, View, ImageBackground , Dimensions, Image, Keyboard, Animated, UIManager, TextInput, TouchableOpacity, ScrollView, Alert} from 'react-native'
 // import { nodeInternals } from 'stack-utils';
 import { Container, Header, Content, Item, Input, Icon, Label, Form, Button, Body } from 'native-base';
 import {Avatar} from 'react-native-elements'
@@ -29,6 +29,64 @@ export default class ProLogin extends Component {
         headerVisible: false,
         header: null,
     })
+
+     login = async () => {
+        const { email, password } = this.state
+        console.log("FIKHSDJKDFJSN")
+    
+    
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
+    
+        if(reg.test(email) === false ) {
+    
+          Alert.alert("Email is not correct")
+        }else{
+    
+          // http://192.168.0.120/29-may-2019/rest_api_for_plant_client/login_signup.php?action=login_user
+    
+         
+          const formData = new FormData();
+          formData.append("email", email),
+          formData.append("password", password),
+         
+  
+          console.log("email, password, address, name, phoneNo, profilePic", email, password)
+  
+  
+          fetch("http://192.168.1.125/SoPlush/auth/login.php?action=signin", {
+              method: 'POST',
+              // dataType: "json",
+              headers: {
+                  'Accept' : 'application/json',
+                  'Content-Type': 'multipart/form-data'
+              },
+              body: formData
+          }).then(res => res.json())
+          .then(resp =>{
+            console.log(JSON.stringify(resp))
+            var successData =  resp
+    
+            if(successData.status === true){
+                // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
+                if(successData.data[0].role_id == 3){
+                    this.props.screenProps.fetchProfileData(successData.data[0])
+                    Alert.alert("Login successful")
+              this.props.navigation.navigate("Main")
+          }else{
+            Alert.alert("Email Or Password Incorrect")
+          }
+            }else {
+              Alert.alert(successData.message)
+            }
+            console.log("SUCCESS PRO", successData, successData.status, successData.data)
+          })
+          .catch(err => console.log("err err err",err));
+      }
+    
+    
+      }
+
+
     render() {
         const {email, password} = this.state
         console.log(email, password)
@@ -72,7 +130,7 @@ export default class ProLogin extends Component {
                 </View>
 
                 <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
-                    <Button onPress={() => {this.props.navigation.navigate("Main")}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#f14538", width:"90%", borderRadius: 10, opacity:0.7}}> 
+                    <Button onPress={this.login} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#f14538", width:"90%", borderRadius: 10, opacity:0.7}}> 
                      <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                         Login    
                     </Text>   

@@ -23,7 +23,7 @@ class DrawerMenu extends Component {
 
 
   render() {
-
+        console.log(`http://192.168.1.125/SoPlush/profile_pics/${this.props.screenProps.profileData.profile_pic}`)
       return (
      
         <Container style={{flex: 1, justifyContent:"center", alignContent: "center"}}>
@@ -35,13 +35,13 @@ class DrawerMenu extends Component {
                         overlayContainerStyle={{backgroundColor:"#fff"}}
                         rounded
                         size="large"
-                        source={require('../../assets/barbie.jpg')}
+                        source={{uri:`http://192.168.1.125/SoPlush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}}
                     />
   
                   </View> 
                 <View style={{marginTop:25, marginLeft:20}}>
                     <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 25 }}>
-                          Jane Jordan
+                      {this.props.screenProps.profileData.username}
                     </Text>
                 </View>
   
