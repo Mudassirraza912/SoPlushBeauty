@@ -129,15 +129,15 @@ export default class BookingReq extends Component {
                         containerStyle={{marginTop:60, backgroundColor:"#fff"}}
                         placement="left"
                         leftComponent={<Icon onPress={() => {this.props.navigation.navigate('Main')}} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>Booking Requests</Text>}
+                        centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>BOOKING REQUEST</Text>}
                         rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("Notification")}}>
-                            <Image source={require('../../../assets/notification.png')} style={{height:30, width:30}} />
+                            <Image source={require('../../../assets/notification.png')} style={{height:20, width:20}} />
                         </TouchableOpacity>}
                         />
 
 
 
-                <View style={{ height, width, backgroundColor:"rgba(190, 144, 212, 0.7)",justifyContent:"center"}}>
+                <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
 
                 <ScrollView style={{height: height}}>
 
@@ -153,7 +153,7 @@ export default class BookingReq extends Component {
                                     <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg"}}>Name</Text>
                                     <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg"}}>{value.name}</Text>
                                     <TouchableOpacity onPress={() => {this.props.navigation.navigate('BookingDetail')}}>
-                                    <Text  style={{marginLeft:"30%", color:"#f14538", borderBottomColor:"#f14538", borderBottomWidth:1, fontFamily:"MrEavesXLModNarOT-Reg", width:50}}>VIEW DETAILS</Text>
+                                    <Text  style={{marginLeft:"30%", color:"#fc8b8c", borderBottomColor:"#fc8b8c", borderBottomWidth:1, fontFamily:"MrEavesXLModNarOT-Reg", width:50, textAlign:"center"}}>VIEW DETAILS</Text>
                                     </TouchableOpacity>
                                 </View>
 
@@ -194,7 +194,7 @@ export default class BookingReq extends Component {
                                                 )}},
                                         ],
                                         {cancelable: false},
-                                        )}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#f14538", width:"90%", borderRadius: 10, opacity:0.7}}> 
+                                        )}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
                                             <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                                             Accept
                                             </Text>   
@@ -214,7 +214,7 @@ export default class BookingReq extends Component {
                                             {text: 'Yes', onPress: () => {this.props.navigation.navigate('ServingHistory')}},
                                         ],
                                         {cancelable: false},
-                                        )}}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#ffff", width:"90%", borderRadius: 10, opacity:0.7, borderColor:"#f14538", borderWidth: 1}}> 
+                                        )}}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#ffff", width:"90%", borderRadius: 10, opacity:0.7, borderColor:"#fc8b8c", borderWidth: 1}}> 
                                             <Text style={{alignSelf:"center",color:"#000", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                                             Reject
                                             </Text>   
@@ -259,12 +259,12 @@ export default class BookingReq extends Component {
                                     footer={
                                     <DialogFooter>
                                         <DialogButton
-                                        textStyle={{color:"#f14538"}}
+                                        textStyle={{color:"#fc8b8c"}}
                                         text="Yes"
                                         onPress={() => {this.props.navigation.navigate('ServingHistory')}}
                                         />
                                         <DialogButton
-                                        textStyle={{color:"#f14538"}}
+                                        textStyle={{color:"#fc8b8c"}}
                                         text="No"
                                         onPress={() => {this.setState({rejectVisible: !rejectVisible})}}
                                         />
@@ -287,7 +287,7 @@ export default class BookingReq extends Component {
                                     footer={
                                     <DialogFooter>
                                         <DialogButton
-                                        textStyle={{color:"#f14538"}}
+                                        textStyle={{color:"#fc8b8c"}}
                                         text="Ok"
                                         onPress={() => {this.setState({thankVisible:!thankVisible}),this.props.navigation.navigate('ServingHistory')}}
                                         />

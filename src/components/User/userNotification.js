@@ -123,13 +123,13 @@ export default class UserNotification extends Component {
                     containerStyle={{marginTop:60, backgroundColor:"#fff"}}
                     placement="left"
                     leftComponent={<Icon onPress={() => {this.props.navigation.navigate('UserHome')}} name="arrow-back" color="#000" />}
-                    centerComponent={<Text style={{alignSelf:"center",fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>NOTIFICCATION</Text>}
-                    // rightComponent={  <Image source={require('../../../assets/notification.png')} style={{height:30, width:30}} />}
+                    centerComponent={<Text style={{alignSelf:"center",fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>NOTIFICATION</Text>}
+                    // rightComponent={  <Image source={require('../../../assets/notification.png')} style={{height:20, width:20}} />}
                     />
 
 
 
-                <View style={{ height, width, backgroundColor:"rgba(190, 144, 212, 0.7)",justifyContent:"center"}}>
+                <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
 
                 <ScrollView style={{height: height}}>
 

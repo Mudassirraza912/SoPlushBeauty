@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, FlatList } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, FlatList, TextInput } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
-import { Container, Content,Left, Right, Button } from 'native-base';
-import {Avatar, Header, Icon, Card, ListItem, Divider, Rating} from 'react-native-elements'
+import { Container, Content,Left, Right, Button, Item, Input, Icon} from 'native-base';
+import {Avatar, Header,  Card, ListItem, Divider, Rating} from 'react-native-elements'
 import img from '../../../assets/barbie.jpg'
 import StarRating from 'react-native-star-rating';
 
@@ -125,7 +125,7 @@ export default class SelectBeautician extends Component {
           }}
           rightIcon={{ color: 'black', name: "chevron-right", type:"font-awesome" }}
         />
-        <Divider style={{ backgroundColor: 'lightgray' }} />
+        <Divider style={{ backgroundColor: 'black' }} />
         </View>
       )}
 
@@ -135,26 +135,53 @@ export default class SelectBeautician extends Component {
     render() {
         // console.log("SelectBeautician", this.state.cart, this.state.selectDate)
         return (
-            <View style={{flex:1, height, width, marginTop: -80}}>
+            <View style={{flex:1, height, width, marginTop: -80, backgroundColor:"rgb(200, 165, 212)"}}>
                 <ImageBackground source={require('../../../assets/opacity100.png')} style={{height:"100%", width:"100%",opacity:0.9}}> 
 
                 <Header
                     containerStyle={{marginTop:60, backgroundColor:"#fff"}}
                     placement="left"
                     leftComponent={<Icon onPress={() => {this.props.navigation.navigate('UserHome')}} name="arrow-back" color="#000" />}
-                    centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>Select Beauticianist</Text>}
-                    rightComponent={  <Image source={require('../../../assets/notification.png')} style={{height:30, width:30}} />}
+                    centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>SELECT BEAUTICIAN</Text>}
+                    rightComponent={  <Image source={require('../../../assets/notification.png')} style={{height:20, width:20}} />}
                     />
 
 
-
-                <View style={{ height, width, backgroundColor:"rgba(190, 144, 212, 0.4)",justifyContent:"center"}}>
+                <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.4)",justifyContent:"center"}}>
 
                 <ScrollView style={{height: height}}>
 
+                <View style={{
+                        backgroundColor: "transparent",
+                        borderColor: 'gray',
+                        borderWidth: 1,
+                        borderColor: 'gray',
+                        borderRadius: 10,
+                        height: 50,
+                        marginTop: 15,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        alignSelf: 'center',
+                        width: '93%',
+                        paddingHorizontal: 16,
+                    }}>
+                        <TextInput style={{
+                            height: 45,
+                            flex: 1,
+                        }}
+                            value={this.state.search}
+                            placeholder="Search"
+                            onChangeText={this.updateSearch}
+                        />
+                        <Icon style={{
+                            color: 'gray',
+                            justifyContent: 'flex-end'
+                        }} type="EvilIcons" name="search" size={24} />
+                    </View>
+
                 {/* <View style={{backgroundColor:"#fff", width:"80%",justifyContent:"center", alignContent:"center", alignSelf:"center",borderRadius:10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', marginTop: '10%', marginBottom:'5%'}}> */}
                    
-                   <View style={{justifyContent:"center", alignContent:"center", alignItems:"center", marginTop:20}}>
+                   <View style={{justifyContent:"center", alignContent:"center", alignItems:"center", marginTop:15}}>
 
                 <View style={{width:width}}>
                 <FlatList

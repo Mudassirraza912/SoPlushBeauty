@@ -6,6 +6,9 @@ import { Avatar, Header, Icon, Card } from 'react-native-elements'
 
 
 const { width, height } = Dimensions.get("window")
+var soplushData;
+var plushData;
+
 
 export default class PersonalService extends Component {
     constructor(props) {
@@ -23,35 +26,45 @@ export default class PersonalService extends Component {
             ],
             plush: true,
             plushData: [
-                {name:"Blow out", amount:60, checked: false},
-                {name:"Blow out w/ style", amount:70,checked: false},
-                {name:"Braidede Style", amount:75, checked: false},
-                {name:"Updo", amount:80,checked: false},
-                {name:"Makeup & lashes", amount:90, checked: false},
-                {name:"Makeup ( No lashes )", amount:70,checked: false},
-                {name:"Airbrush Makeup & lash", amount:120, checked: false},
-                {name:"Airbrush Makeup ( No lashes )", amount:105,checked: false},
-                {name:"Add clip ins", amount:30,checked: false},
+                {service_name:"Blow out", service_cost:60, checked: false},
+                {service_name:"Blow out w/ style", service_cost:70,checked: false},
+                {service_name:"Braidede Style", service_cost:75, checked: false},
+                {service_name:"Updo", service_cost:80,checked: false},
+                {service_name:"Makeup & lashes", service_cost:90, checked: false},
+                {service_name:"Makeup ( No lashes )", service_cost:70,checked: false},
+                {service_name:"Airbrush Makeup & lash", service_cost:120, checked: false},
+                {service_name:"Airbrush Makeup ( No lashes )", service_cost:105,checked: false},
+                {service_name:"Add clip ins", service_cost:30,checked: false},
 
              ],
-            
              soplushData:  [
-                {name:"Blow out", amount:125, checked: false},
-                {name:"Blow out w/ style", amount:150,checked: false},
-                {name:"Braidede Style", amount:150, checked: false},
-                {name:"Updo", amount:170,checked: false},
-                {name:"Makeup & lashes", amount:200, checked: false},
-                {name:"Makeup ( No lashes )", amount:160,checked: false},
-                {name:"Airbrush Makeup & lash", amount:250, checked: false},
-                {name:"Airbrush Makeup ( No lashes )", amount:225,checked: false},
-                {name:"Add clip ins", amount:60,checked: false},
+                {service_name:"Blow out", service_cost:60, checked: false},
+                {service_name:"Blow out w/ style", service_cost:70,checked: false},
+                {service_name:"Braidede Style", service_cost:75, checked: false},
+                {service_name:"Updo", service_cost:80,checked: false},
+                {service_name:"Makeup & lashes", service_cost:90, checked: false},
+                {service_name:"Makeup ( No lashes )", service_cost:70,checked: false},
+                {service_name:"Airbrush Makeup & lash", service_cost:120, checked: false},
+                {service_name:"Airbrush Makeup ( No lashes )", service_cost:105,checked: false},
+                {service_name:"Add clip ins", service_cost:30,checked: false},
 
              ],
              cart: [],
              amount:0,
+             categoryId: this.props.navigation.getParam('category_id'),
+             image: this.props.navigation.getParam('image'),
              selectDate: this.props.navigation.getParam('selectdate')
         }
         // this.workFunction = this.workFunction.bind(this)
+    }
+
+
+    componentWillUnmount() {
+      console.log("WILLUNOUNT")
+    }
+
+    componentWillMount() {
+            console.log(" this.props.navigation.getParam('category_id')",  this.props.navigation.getParam('category_id'))
     }
 
 
@@ -63,118 +76,185 @@ export default class PersonalService extends Component {
     })
 
 
+    // componentDidMount() {
+    //     const {categoryId, image} = this.state
+    //     console.log("user_id", categoryId)
+    //         const formData = new FormData();
+    //         formData.append("id",categoryId),
+        
+
+    //     // console.log("email, password, address, name, phoneNo, profilePic", email, password)
+
+
+    //     fetch("http://192.168.1.103/SoPlush/service/service.php?action=select_service", {
+    //         method: 'POST',
+    //         // dataType: "json",
+    //         headers: {
+    //             'Accept' : 'application/json',
+    //             'Content-Type': 'multipart/form-data'
+    //         },
+    //         body: formData
+    //     }).then(res => res.json())
+    //     .then(resp =>{
+    //       console.log(JSON.stringify(resp))
+    //       var successData =  resp
+  
+    //       if(successData.status === true){
+    //           // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
+    //           if (successData.data.length >=1) {
+    //             this.setState({
+    //                 plushData: successData.data,
+    //                 soplushData: successData.data
+  
+    //             })
+    //           }
+             
+    //               console.log("SUCCESS PRO", successData)
+    //             //   Alert.alert("Login successful")
+    //         // this.props.navigation.navigate("Main")
+       
+    //       }else {
+    //         Alert.alert(successData.message)
+    //       }
+    //     })
+    //     .catch(err => console.log("err err err",err));
+    // }
+
+
     workFunction(val, type, ind) {
-        let {plushData, soplushData, plush, cart, amount} =  this.state
+        let { plush, cart, amount} =  this.state
 
         amount = 0
 
-        switch(type) {
-            case "plush":
+       
                
-                if(val.checked) {
+                if(val.p_checked != 0) {
                     // console.log("trueWala",type, val.checked, ind)
-                    plushData[ind].checked = false
+                    plushData[ind].p_checked = false
                     cart = []
 
                     plushData.map((val) => {
-                      if(val.checked){
+                      if(val.p_checked){
                         cart.push(val)
                       }
                     })
 
-                    soplushData.map((val) => {
-                        if(val.checked){
-                          cart.push(val)
-                        }
-                      })
+                    // soplushData.map((val) => {
+                    //     if(val.s_checked){
+                    //       cart.push(val)
+                    //     }
+                    //   })
   
 
                       amount = this.state.amount - val.amount
-                    this.setState({plushData, cart, amount: amount})
+                    this.setState({cart, amount: amount})
 
                 }else {
                     // console.log("FalseWala",type, val.checked, ind)
-                    plushData[ind].checked = true
+                    plushData[ind].p_checked = true
+                    console.log("OOOOOOOOOO",val)
                     cart = []
 
                     plushData.map((val) => {
-                      if(val.checked){
+                      if(val.p_checked){
                         cart.push(val)
                       }
                     })
 
-                    soplushData.map((val) => {
-                        if(val.checked){
-                          cart.push(val)
-                        }
-                      })
+                    // soplushData.map((val) => {
+                    //     if(val.s_checked){
+                    //       cart.push(val)
+                    //     }
+                    //   })
   
 
                       amount = this.state.amount + val.amount
-                    this.setState({plushData, cart, amount: amount})
+                    this.setState({cart, amount: amount})
 
                 }
             
             
-            break;
+           
+
+       
+
+    }
 
 
 
-            case "soplush": 
+    workFunction1(val, type, ind) {
+        let { plush, cart, amount} =  this.state
+
+        amount = 0
+
+       
+
+
+           
             // console.log(type)
 
-            if(val.checked) {
+            if(val.s_checked != 0) {
                 console.log("trueWala",type, val.checked, ind)
-                soplushData[ind].checked = false
+                soplushData[ind].s_checked = false
                 cart = []
 
-                plushData.map((val) => {
-                  if(val.checked){
-                    cart.push(val)
-                  }
-                })
+                // plushData.map((val) => {
+                //   if(val.p_checked){
+                //     cart.push(val)
+                //   }
+                // })
 
                 soplushData.map((val) => {
-                    if(val.checked){
+                    if(val.s_checked){
                       cart.push(val)
                     }
                   })
 
 
                   amount = this.state.amount - val.amount
-                this.setState({soplushData, cart, amount: amount})
+                this.setState({cart, amount: amount})
 
             }else {
                 console.log("FalseWala",type, val.checked, ind)
-                soplushData[ind].checked = true
+                soplushData[ind].s_checked = true
+                console.log("!!!!!!!!!!!",val)
                 cart = []
 
-                plushData.map((val) => {
-                  if(val.checked){
-                    cart.push(val)
-                  }
-                })
+                // plushData.map((val) => {
+                //   if(val.p_checked){
+                //     cart.push(val)
+                //   }
+                // })
 
                 soplushData.map((val) => {
-                    if(val.checked){
+                    if(val.s_checked){
                       cart.push(val)
                     }
                   })
 
 
                   amount = this.state.amount + val.amount
-                this.setState({soplushData, cart, amount: amount})
+                this.setState({ cart, amount: amount})
 
             }
 
-            break;
-        }
+       
 
     }
 
 
     render() {
         // console.log("WORK",this.state.cart, this.state.selectDate)
+        console.log("IN RENDER .navigation.getParam('category_id'),",this.state.cart)
+        var img =  this.props.navigation.getParam('image')
+        soplushData = this.props.navigation.getParam('service')
+        plushData = this.props.navigation.getParam('service')
+        // if(this.state.plushData.length < 1) {
+        //         this.setState({
+        //                 plushData: data,
+        //                 soplushData: data
+        //         })
+        // }
         return (
             <View style={{ flex: 1, height, width, marginTop: -80 }}>
                 <ImageBackground source={require('../../../assets/opacity.jpg')} style={{ height: "100%", width: "100%", opacity: 0.9 }}>
@@ -182,28 +262,28 @@ export default class PersonalService extends Component {
                     <Header
                         containerStyle={{ marginTop: 60, backgroundColor: "#fff" }}
                         placement="left"
-                        leftComponent={<Icon onPress={() => { this.props.navigation.navigate('UserHome') }} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>Personal Services</Text>}
+                        leftComponent={<Icon onPress={() => { this.props.navigation.navigate('UserHome'), this.setState({categoryId:"", image:""}) }} name="arrow-back" color="#000" />}
+                        centerComponent={<Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>PERSONAL SERVICE</Text>}
                         rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("Notification")}}>
-                        <Image source={require('../../../assets/notification.png')} style={{height:30, width:30}} />
+                        <Image source={require('../../../assets/notification.png')} style={{height:20, width:20}} />
                     </TouchableOpacity>}
 
                     />
 
 
 
-                    <View style={{ width, backgroundColor: "rgba(190, 144, 212, 0.7)" }}>
+                    <View style={{ width, backgroundColor: "rgba(200, 165, 212, 0.7)" }}>
 
                         <ScrollView  contentContainerStyle={{ alignItems: "center", alignContent: "center", width: "100%" }}>
 
 
-                            <View style={{ width: "80%", alignItems: "center" }}>
+                            <View style={{ width: "90%", alignItems: "center" }}>
 
 
                                 <Card key={1} containerStyle={{ width: "100%", padding: 0,  borderRadius: 10, overflow: "hidden", alignContent: "space-between" }}>
 
                                     <View style={{ width: "100%", marginLeft: 0, marginRight: 0 }}>
-                                        <Image source={require('../../../assets/Cover4.png')} style={{ height: 280, width: "100%", }} />
+                                        <Image source={{uri:'https://cdn.vox-cdn.com/thumbor/XtwGXC-0GhXcDXiM0B0rjGAAxZE=/148x0:1768x1080/1200x800/filters:focal(148x0:1768x1080)/cdn.vox-cdn.com/uploads/chorus_image/image/45905674/3042430-poster-p-1-hello-barbie-talking-toy-toytalk.0.0.jpg'}} style={{ height: 200, width: "100%", }} />
                                     </View>
 
 
@@ -211,7 +291,7 @@ export default class PersonalService extends Component {
                                         <View style={{ width: "90%", borderRadius: 20, flexDirection: "row", borderColor: "pink", borderWidth: 1, alignSelf: "center", overflow: "hidden", top: 20 }}>
 
 
-                                            <View style={{ backgroundColor: "#f14538", width: "50%", padding: 15, }}>
+                                            <View style={{ backgroundColor: "#fc8b8c", width: "50%", padding: 15, }}>
                                                 <TouchableOpacity onPress={() => {this.setState({plush: true})}}>
                                                     <Text style={{color:"#fff", alignSelf:"center"}}>
                                                         Plush
@@ -239,7 +319,7 @@ export default class PersonalService extends Component {
                                                 </TouchableOpacity>
                                             </View>
 
-                                            <View style={{ backgroundColor: "#f14538", width: "50%", padding: 15 }}>
+                                            <View style={{ backgroundColor: "#fc8b8c", width: "50%", padding: 15 }}>
                                                 <TouchableOpacity onPress={() => {this.setState({plush: false})}}>
                                                     <Text style={{color:"#fff", alignSelf:"center"}}>
                                                         SoPlush
@@ -252,49 +332,61 @@ export default class PersonalService extends Component {
 
 
                                         {this.state.plush  ?  <View>
+                                             {soplushData == undefined  &&
+                                                <View>
                                             {this.state.plushData.map((value, index) => {
+                                                if(value.p_checked === 0) {
+                                                    var checked  = false
+                                                }
                                                 return(
                                                 <List>
-                                                <ListItem key={index} onPress={this.workFunction.bind(this, value, "plush", index)} avatar>
-                                                    <Left style={{marginTop:"13%"}}>
+                                                <ListItem key={index}  avatar>
+                                                    <Left style={{marginTop:"12%"}}>
                                                     <Text></Text>
                                                     <Text></Text>
                                                     <Text></Text>
-                                                    <CheckBox style={{borderRadius: 5}} checked={value.checked} color="pink"/>
+                                                    <CheckBox style={{borderRadius: 5}} checked={value.p_checked} color="pink"/>
                                                     </Left>
-                                                    <Body>
+                                                    <Body style={{paddingHorizontal:"4%"}}>
                                                     <Text></Text>
                                                     <Text note></Text>
-                                                    <Text note>{value.name}</Text>
+                                                    <Text note>{value.service_name}</Text>
                                                     </Body>
                                                     <Right style={{display:"flex", flexDirection:"row", borderBottomColor: null}}>
-                                                    <Text note style={{color:"pink"}}> ${value.amount}</Text>
+                                                    <Text note style={{color:"pink"}}> ${value.service_cost}</Text>
                                                    
                                                     </Right>
                                                 </ListItem>
                                                 </List>)
                                             })}
+
+                                            </View>
+
+}
+
                                             </View>  :
                                            
                                            
                                            <View>
+                                                {plushData == undefined &&
+                                                <View>
                                            {this.state.soplushData.map((value, index) => {
                                                return(
                                                <List>
-                                               <ListItem key={index} onPress={this.workFunction.bind(this, value, "soplush", index)}  avatar>
+                                               <ListItem key={index}   avatar>
                                                    <Left style={{marginTop:"13%"}}>
                                                    <Text></Text>
                                                    <Text></Text>
                                                    <Text></Text>
-                                                   <CheckBox style={{borderRadius: 5}} checked={value.checked} color="pink"/>
+                                                   <CheckBox style={{borderRadius: 5}} checked={value.s_checked} color="pink"/>
                                                    </Left>
                                                    <Body>
                                                    <Text></Text>
                                                    <Text note></Text>
-                                                   <Text note>{value.name}</Text>
+                                                   <Text note>{value.service_name}</Text>
                                                    </Body>
                                                    <Right style={{display:"flex", flexDirection:"row", borderBottomColor: null}}>
-                                                   <Text note style={{color:"pink"}}> ${value.amount}</Text>
+                                                   <Text note style={{color:"pink"}}> ${value.so_plush_cost}</Text>
                                                   
                                                    </Right>
                                                </ListItem>
@@ -302,26 +394,33 @@ export default class PersonalService extends Component {
                                            })}
                                            </View>}
 
+                                        </View> }
+
+                                           {/* () => {this.props.navigation.navigate('SelectBeautician', {
+                                                        cart: this.state.cart,
+                                                        selectDate: this.state.selectDate
+                                                    })} */}
+
+                                       {(soplushData == undefined || plushData == undefined) ?           
 
                                            <View> 
 
                                                 <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
-                                                    <Button onPress={() => {this.props.navigation.navigate('SelectBeautician', {
-                                                        cart: this.state.cart,
-                                                        selectDate: this.state.selectDate
-                                                    })}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#f14538", width:"90%", borderRadius: 10, opacity:0.7}}> 
+                                                    <Button onPress={() => this.props.navigation.navigate('SelectBeautician')} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
                                                     <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                                                     Next
                                                     </Text>   
                                                     </Button>
                                                 </View> 
 
-                                                </View>
-
+                                                </View> :
                                         
                                     <View>
                                         <Text></Text>
                                     </View>
+
+}
+
 
                                 </Card>
 

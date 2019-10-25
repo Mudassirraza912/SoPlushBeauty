@@ -132,15 +132,15 @@ export default class BookingHistory extends Component {
                         containerStyle={{marginTop:60, backgroundColor:"#fff"}}
                         placement="left"
                         leftComponent={<Icon onPress={() => {this.props.navigation.navigate('UserHome')}} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>Booking History</Text>}
+                        centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>BOOKING HISTORY</Text>}
                         // rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("Notification")}}>
-                        //     <Image source={require('../../../assets/notification.png')} style={{height:30, width:30}} />
+                        //     <Image source={require('../../../assets/notification.png')} style={{height:20, width:20}} />
                         // </TouchableOpacity>}
                         />
 
 
 
-                <View style={{ height, width, backgroundColor:"rgba(190, 144, 212, 0.7)",justifyContent:"center"}}>
+                <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
 
                 <ScrollView style={{height: height}}>
 
@@ -154,7 +154,7 @@ export default class BookingHistory extends Component {
                         <Card key={index} containerStyle={{backgroundColor:"transparent", borderColor:"#fff", borderWidth:3, borderRadius:10}}> 
 
                            <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", color:"#f14538", fontSize:25}}>{value.dateTime}</Text>
+                                    <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", color:"#fc8b8c", fontSize:25}}>{value.dateTime}</Text>
                                 </View>
 
 
@@ -198,7 +198,7 @@ export default class BookingHistory extends Component {
                                         
                   {/* <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
                     <Button onPress={() => {this.setState({renderEMail: false, renderCode: false, renderPassword:false}),
-                this.props.navigation.navigate(from)}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#f14538", width:"90%", borderRadius: 10, opacity:0.7}}> 
+                this.props.navigation.navigate(from)}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
                      <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                        Submit
                     </Text>   

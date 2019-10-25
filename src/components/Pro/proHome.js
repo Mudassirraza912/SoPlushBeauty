@@ -63,14 +63,14 @@ export default class ProHome extends Component {
                         containerStyle={{marginTop:60, backgroundColor:"#fff"}}
                         placement="left"
                         leftComponent={<Icon onPress={() => {this.props.navigation.toggleDrawer()}} name="menu" color="#000" />}
-                        centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>Home</Text>}
+                        centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>HOME</Text>}
                         // rightComponent={{ icon: 'home', color: '#000' }}
                         />
 
 
-                <View style={{ height, width, backgroundColor:"rgba(190, 144, 212, 0.7)",justifyContent:"center"}}>
+                <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
                 
-                <View style={{height:"70%", width : width-20, backgroundColor:'#fff', borderWidth:1, alignSelf:"center",borderRadius: 10, opacity:0.75, marginTop:-50 }}>
+                <View style={{height:"80%", width : width-20, backgroundColor:'#fff', borderWidth:1, alignSelf:"center",borderRadius: 10, opacity:0.75, marginTop:-50 }}>
 
                     <ScrollView>
 
@@ -90,7 +90,7 @@ export default class ProHome extends Component {
                         </TouchableOpacity>
 
                         <TouchableOpacity onPress={() => {this.props.navigation.navigate("BookingReq")}}>
-                        <View style={{alignContent:"center",alignItems:"center",alignSelf:"center",backgroundColor:"#f14538",width:143, height:139, borderRadius: 5, justifyContent:"space-evenly" }}>
+                        <View style={{alignContent:"center",alignItems:"center",alignSelf:"center",backgroundColor:"#fc8b8c",width:143, height:139, borderRadius: 5, justifyContent:"space-evenly" }}>
 
                             <Image source={require('../../../assets/book.png')} style={{height:60, width:55, marginTop:"10%"}}/>
                             <Text style={{fontFamily: 'MrEavesXLModNarOT-Reg', fontWeight:"bold", color:"#fff"}}>Booking</Text>

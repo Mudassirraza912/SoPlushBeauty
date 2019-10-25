@@ -48,7 +48,7 @@ export default class PassChange extends Component {
                         // </TouchableOpacity> }
                         />
 
-                <View style={{ height, width, backgroundColor:"rgba(190, 144, 212, 0.7)",justifyContent:"center"}}>
+                <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
 
                 <ScrollView style={{height: height}}>
                    
@@ -59,19 +59,19 @@ export default class PassChange extends Component {
 
                         
                     <Item floatingLabel>
-                        <Icon active name='lock' type="MaterialCommunityIcons" />   
+                        <Icon active name='lock-outline' type="MaterialCommunityIcons" />   
                         {/* <Label>Email Address</Label> */}
                         <Input onChangeText={(e) => {this.setState({email:e})}} placeholder="Current Password" />
                     </Item>
                     
                     <Item floatingLabel>
-                        <Icon active name='lock' type="MaterialCommunityIcons" />
+                        <Icon active name='lock-outline' type="MaterialCommunityIcons" />
                         {/* <Label>Password</Label> */}
                         <Input  onChangeText={(e) => {this.setState({password:e})}} placeholder="New Password" secureTextEntry={true} />
                     </Item>
 
                     <Item floatingLabel>
-                        <Icon active name='lock' type="MaterialCommunityIcons" />
+                        <Icon active name='lock-outline' type="MaterialCommunityIcons" />
                         {/* <Label>Password</Label> */}
                         <Input  onChangeText={(e) => {this.setState({password:e})}} placeholder="Confirm Password" secureTextEntry={true} />
                     </Item>
@@ -79,7 +79,7 @@ export default class PassChange extends Component {
                                 <View style={{marginRight:"6%"}}> 
 
                                         <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
-                                            <Button onPress={() => {this.props.navigation.navigate('Main')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#f14538", width:"90%", borderRadius: 10, opacity:0.7}}> 
+                                            <Button onPress={() => {this.props.navigation.navigate('Main')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
                                             <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                                                  Update Password
                                             </Text>   

@@ -23,7 +23,7 @@ class DrawerMenu extends Component {
 
 
   render() {
-          console.log("Drawer DrawerDrawer  Drawer", `http://192.168.1.125/SoPlush/profile_pics/${this.props.screenProps.profileData.profile_pic}`)
+          console.log("Drawer DrawerDrawer  Drawer", `http://192.168.1.103/SoPlush/profile_pics/${this.props.screenProps.profileData.profile_pic}`)
     return(
      
         <Container style={{flex: 1, justifyContent:"center", alignContent: "center"}}>
@@ -31,18 +31,32 @@ class DrawerMenu extends Component {
           <View style={{display:"flex", flexDirection:"row", marginTop:20, marginRight:80}}>
   
              <View >
-                    <Avatar
+                    {/* <Avatar
                         overlayContainerStyle={{backgroundColor:"#fff"}}
                         rounded
                         size="large"
-                        source={{uri:`http://192.168.1.125/SoPlush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}}
+                        source={{uri:`http://192.168.1.103/SoPlush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}}
                     />
   
                   </View> 
                 <View style={{marginTop:25, marginLeft:20}}>
                     <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 25 }}>
                           {this.props.screenProps.profileData.username}
+                    </Text> */}
+
+<Avatar
+                        overlayContainerStyle={{backgroundColor:"#fff"}}
+                        rounded
+                        size="large"
+                        source={{uri:`https://cdn.vox-cdn.com/thumbor/XtwGXC-0GhXcDXiM0B0rjGAAxZE=/148x0:1768x1080/1200x800/filters:focal(148x0:1768x1080)/cdn.vox-cdn.com/uploads/chorus_image/image/45905674/3042430-poster-p-1-hello-barbie-talking-toy-toytalk.0.0.jpg`}}
+                    />
+  
+                  </View> 
+                <View style={{marginTop:25, marginLeft:20}}>
+                    <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 25 }}>
+                      John Doe
                     </Text>
+                    
                 </View>
   
           </View>   

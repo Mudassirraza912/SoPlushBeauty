@@ -74,7 +74,7 @@ export default class ProSignUp extends Component {
         console.log("SIGN UP jksdajkfajkshjghj")
 
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
+        this.props.navigation.navigate("ProLogin")
         if (reg.test(email) === false) {
 
             Alert.alert("Email is not correct")
@@ -101,7 +101,7 @@ export default class ProSignUp extends Component {
 
                 console.log("email, password, address, name, phoneNo, profilePic", email, password, address, name, phoneNo, profilePic)
 
-            // axios.post("http://192.168.1.125/SoPlush/auth/signup.php?action=signup_customer",{
+            // axios.post("http://192.168.1.103/SoPlush/auth/signup.php?action=signup_customer",{
             //     email: email,
             //     password: password,
             //     address: address,
@@ -124,30 +124,30 @@ export default class ProSignUp extends Component {
 
 
 
-            fetch("http://192.168.1.125/SoPlush/auth/signup.php?action=signup_beautician", {
-                method: 'POST',
-                dataType: "json",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'multipart/form-data'
-                },
-                body: formData
-            }).then(res => res.json())
-                .then(resp => {
-                    console.log(JSON.stringify(resp))
-                    var successData = resp
+            // fetch("http://192.168.1.103/SoPlush/auth/signup.php?action=signup_beautician", {
+            //     method: 'POST',
+            //     dataType: "json",
+            //     headers: {
+            //         'Accept': 'application/json',
+            //         'Content-Type': 'multipart/form-data'
+            //     },
+            //     body: formData
+            // }).then(res => res.json())
+            //     .then(resp => {
+            //         console.log(JSON.stringify(resp))
+            //         var successData = resp
 
-                    if (successData.status) {
-                        if (successData.status === true) {
-                            Alert.alert("Signup successful")
-                            this.props.navigation.navigate("ProLogin")
-                        }
-                    } else {
-                        Alert.alert(successData.message)
-                    }
-                    console.log("SUCCESS", successData, successData.status, successData.data)
-                })
-                .catch(err => console.log("err err err", err));
+            //         if (successData.status) {
+            //             if (successData.status === true) {
+            //                 Alert.alert("Signup successful")
+            //                 this.props.navigation.navigate("ProLogin")
+            //             }
+            //         } else {
+            //             Alert.alert(successData.message)
+            //         }
+            //         console.log("SUCCESS", successData, successData.status, successData.data)
+            //     })
+            //     .catch(err => console.log("err err err", err));
         }
     }
 
@@ -291,7 +291,7 @@ export default class ProSignUp extends Component {
 
                                 {/* 
                  <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
-                    <Button style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#f14538", width:"90%", borderRadius: 10, opacity:0.7}}> 
+                    <Button style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
                      <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                         Login    
                     </Text>   
@@ -299,7 +299,7 @@ export default class ProSignUp extends Component {
                 </View> */}
 
 
-                                <Button onPress={this.signUp} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#f14538", width: "90%", borderRadius: 10, opacity: 0.7 }}>
+                                <Button onPress={this.signUp} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#fc8b8c", width: "90%", borderRadius: 10, opacity: 0.7 }}>
                                     <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
                                         Sign Up
                     </Text>

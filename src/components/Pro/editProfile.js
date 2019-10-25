@@ -45,7 +45,7 @@ export default class EditProProfile extends Component {
                         // </TouchableOpacity> }
                         />
 
-                <View style={{ height, width, backgroundColor:"rgba(190, 144, 212, 0.7)",justifyContent:"center"}}>
+                <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
 
                 <ScrollView style={{height: height}}>
                    
@@ -56,7 +56,7 @@ export default class EditProProfile extends Component {
                         <Card containerStyle={{backgroundColor:"#fff", borderRadius:10, width:"90%",}}> 
 
                         <View style={{justifyContent:"center", alignContent:"center", alignItems:"center"}}>
-                             <Avatar onEditPress={() => {console.log("CONSOLE LOG")}} containerStyle={{backgroundColor:"#f14538",}} showEditButton  rounded size="xlarge" editButton={{name:"camera",type:"font-awesome", size:25, iconStyle:{marginTop:8} ,containerStyle:{backgroundColor:"#f14538", borderRadius:50, height: 40, width:40}, color:"#fff", underlayColor:"#f14538", reverseColor:"#f14538", }}  source={{uri:`http://192.168.1.125/SoPlush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}} />
+                             <Avatar onEditPress={() => {console.log("CONSOLE LOG")}} containerStyle={{backgroundColor:"#fc8b8c",}} showEditButton  rounded size="xlarge" editButton={{name:"camera",type:"font-awesome", size:25, iconStyle:{marginTop:8} ,containerStyle:{backgroundColor:"#fc8b8c", borderRadius:50, height: 40, width:40}, color:"#fff", underlayColor:"#fc8b8c", reverseColor:"#fc8b8c", }}  source={{uri:`http://192.168.1.103/SoPlush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}} />
                         </View>
                             <Item floatingLabel>
                         <Icon active name='user' type="FontAwesome"  />
@@ -89,7 +89,7 @@ export default class EditProProfile extends Component {
                                 <View style={{marginRight:"6%"}}> 
 
                                         <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
-                                            <Button onPress={() => {this.props.navigation.navigate('UserHome')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#f14538", width:"90%", borderRadius: 10, opacity:0.7}}> 
+                                            <Button onPress={() => {this.props.navigation.navigate('UserHome')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
                                             <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                                             Update
                                             </Text>   

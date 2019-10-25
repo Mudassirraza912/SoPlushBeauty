@@ -43,10 +43,10 @@ export default class Payment extends Component {
                         containerStyle={{ marginTop: 40, backgroundColor: "#fff" }}
                         placement="left"
                         leftComponent={<Icon onPress={() => { this.props.navigation.navigate('Main') }} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{ alignSelf:"center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>Payment</Text>}
+                        centerComponent={<Text style={{ alignSelf:"center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>PAYMENT</Text>}
                     />
 
-                    <View style={{ height, width, backgroundColor: "rgba(190, 144, 212, 0.7)"}}>
+                    <View style={{ height, width, backgroundColor: "rgba(200, 165, 212, 0.7)"}}>
 
                         <ScrollView style={{ height: height }}>
 
@@ -93,7 +93,7 @@ export default class Payment extends Component {
                                             {text: 'Ok', onPress: () => {this.props.navigation.navigate('BookingHistory')}},
                                         ],
                                         {cancelable: false},
-                                        )}}}  style={{backgroundColor:"#f14538", width:"100%", borderRadius: 10, opacity:0.7, marginTop:"5%", alignContent:"center", justifyContent:"center"}}> 
+                                        )}}}  style={{backgroundColor:"#fc8b8c", width:"100%", borderRadius: 10, opacity:0.7, marginTop:"5%", alignContent:"center", justifyContent:"center"}}> 
                                                     <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                                                    PROCEED TO PAYMENT
                                             </Text>   

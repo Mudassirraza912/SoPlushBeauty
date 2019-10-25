@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity,  } from 'react-native'
-import {Avatar, Header, Card, Divider} from 'react-native-elements'
+import {Avatar, Header, Card, Divider, Icon} from 'react-native-elements'
 import Navigator from '../../Navigation/navigator'
 import UserNavigator from '../../UserNavigator/userNavigator'
 // import {  } from 'react-native-gesture-handler';
@@ -44,14 +44,15 @@ export default class Home extends Component {
             <View style={{flex:1, height, width, marginTop: -80}}>
                 <ImageBackground source={require('../../../assets/opacity.jpg')} style={{height:"100%", width:"100%",opacity:0.9}}> 
                 <Header
+                        leftComponent={<Icon  name="arrow-back" color="#000" />}
                         containerStyle={{marginTop:60, backgroundColor:"#fff"}}
                         placement="left"
                         centerComponent={<Text style={{marginLeft:"40%", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>Home</Text>}
                         />
 
-                <View style={{ height, width, backgroundColor:"rgba(190, 144, 212, 0.7)",justifyContent:"center"}}>
+                <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
 
-                <View style={{height:"70%", width : width-20, backgroundColor:'#fff', borderWidth:1, marginTop:-50,  alignSelf:"center",borderRadius: 10, opacity:0.75 }}>
+                <View style={{height:"78%", width : width-20, backgroundColor:'#fff', borderWidth:1, marginTop:-50,  alignSelf:"center",borderRadius: 10, opacity:0.75, marginBottom:"4%" }}>
 
                     <View style={{alignSelf:"center", alignContent:"center", alignItems:"center", marginTop:"15%"}}> 
                     <Image source={require('../../../assets/text.png')} style={{opacity: 2}} />

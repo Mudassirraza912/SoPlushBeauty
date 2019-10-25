@@ -63,13 +63,13 @@ export default class ConfirmBooking extends Component {
                         containerStyle={{marginTop:40, backgroundColor:"#fff"}}
                         placement="left"
                         leftComponent={<Icon onPress={() => {this.props.navigation.navigate('Main')}} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>Confirm Booking</Text>}
+                        centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>CONFIRM BOOKING</Text>}
                         rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("Notification")}}>
-                        <Image source={require('../../../assets/notification.png')} style={{height:30, width:30}} />
+                        <Image source={require('../../../assets/notification.png')} style={{height:20, width:20}} />
                     </TouchableOpacity>}
                         />
 
-                <View style={{ height, width, backgroundColor:"rgba(190, 144, 212, 0.7)",justifyContent:"center"}}>
+                <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
 
                 <ScrollView style={{height: height}}>
                    
@@ -104,10 +104,10 @@ export default class ConfirmBooking extends Component {
                                         this.state.cart.map((value, index) => {
                                             return(
                                                 <View>  
-                                                    <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize:15}}>{value.name}</Text>
+                                                    <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize:15}}>{value.service_name}</Text>
                                                     <View style={{flexDirection:"row", width:"100%"}}>
                                                         <View style={{ width:"50%"}}>
-                                                        <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, color: "#f14538"}}>${value.amount}</Text> 
+                                                        <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, color: "#fc8b8c"}}>${value.service_cost}</Text> 
                                                         </View>
                                                        
                                                         <View style={{width:"50%", alignSelf:"center", alignItems:"center"}}>
@@ -142,7 +142,7 @@ export default class ConfirmBooking extends Component {
                                 <View style={{marginRight:"6%"}}> 
 
                                 <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
-                                            <Button onPress={() => {this.props.navigation.navigate('PersonalService')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#ffff", width:"100%", borderRadius: 10, opacity:0.7, borderColor:"#f14538", borderWidth: 1}}> 
+                                            <Button onPress={() => {this.props.navigation.navigate('PersonalService')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#ffff", width:"100%", borderRadius: 10, opacity:0.7, borderColor:"#fc8b8c", borderWidth: 1}}> 
                                             <Text style={{alignSelf:"center",color:"#000", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                                             Add More Services
                                             </Text>   
@@ -152,7 +152,7 @@ export default class ConfirmBooking extends Component {
 
 
                                         <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
-                                            <Button onPress={() => {this.props.navigation.navigate('Payment')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#f14538", width:"100%", borderRadius: 10, opacity:0.7}}> 
+                                            <Button onPress={() => {this.props.navigation.navigate('Payment')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"100%", borderRadius: 10, opacity:0.7}}> 
                                             <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                                            Proceed to Payment
                                             </Text>   
@@ -161,7 +161,7 @@ export default class ConfirmBooking extends Component {
 
 
                                         <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
-                                            <Button onPress={() => {this.props.navigation.navigate('UserHome')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#ffff", width:"100%", borderRadius: 10, opacity:0.7, borderColor:"#f14538", borderWidth: 1}}> 
+                                            <Button onPress={() => {this.props.navigation.navigate('UserHome')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#ffff", width:"100%", borderRadius: 10, opacity:0.7, borderColor:"#fc8b8c", borderWidth: 1}}> 
                                             <Text style={{alignSelf:"center",color:"#000", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                                             Cancel
                                             </Text>   

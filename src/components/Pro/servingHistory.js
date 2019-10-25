@@ -175,15 +175,15 @@ export default class ServingHistory extends Component {
                         containerStyle={{marginTop:60, backgroundColor:"#fff"}}
                         placement="left"
                         leftComponent={<Icon onPress={() => {this.props.navigation.navigate('Main')}} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>Service History</Text>}
+                        centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>SERVICE HISTORY</Text>}
                         // rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("Notification")}}>
-                        //     <Image source={require('../../../assets/notification.png')} style={{height:30, width:30}} />
+                        //     <Image source={require('../../../assets/notification.png')} style={{height:20, width:20}} />
                         // </TouchableOpacity>}
                         />
 
 
 
-                <View style={{ height, width, backgroundColor:"rgba(190, 144, 212, 0.7)",justifyContent:"center"}}>
+                <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
 
                 <ScrollView style={{height: height}}>
 
@@ -197,7 +197,7 @@ export default class ServingHistory extends Component {
                         <Card key={index} containerStyle={{backgroundColor:"transparent", borderColor:"#fff", borderWidth:3, borderRadius:10}}> 
 
                            <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", color:"#f14538", fontSize:25}}>{value.dateTime}</Text>
+                                    <Text style={{marginLeft:"20%", fontFamily:"MrEavesXLModNarOT-Reg", color:"#fc8b8c", fontSize:25}}>{value.dateTime}</Text>
                                 </View>
 
 
@@ -205,39 +205,39 @@ export default class ServingHistory extends Component {
 
                                 <View style={{display:"flex", flexDirection:"row"}}> 
                                     <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Service Name</Text>
-                                    <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.service}</Text>
+                                    <Text style={{marginLeft:"20%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, textAlign:"right"}}>{value.service}</Text>
                                 </View>
 
 
                                 <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>User Name</Text>
-                                    <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.name}</Text>
+                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>User Name</Text>
+                                    <Text style={{marginLeft:"20%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, textAlign:"right"}}>{value.name}</Text>
                                     {/* <TouchableOpacity onPress={() => {this.props.navigation.navigate('BookingDetail')}}>
-                                    <Text  style={{marginLeft:"30%", color:"#f14538", borderBottomColor:"#f14538", borderBottomWidth:1, fontFamily:"MrEavesXLModNarOT-Reg", width:50}}>VIEW DETAILS</Text>
+                                    <Text  style={{marginLeft:"30%", color:"#fc8b8c", borderBottomColor:"#fc8b8c", borderBottomWidth:1, fontFamily:"MrEavesXLModNarOT-Reg", width:50}}>VIEW DETAILS</Text>
                                     </TouchableOpacity> */}
                                 </View>
 
                                 
 
-                                <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Time</Text>
-                                    <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.time}</Text>
+                                <View style={{display:"flex", flexDirection:"row",}}> 
+                                    <Text style={{width:"50%",fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Time</Text>
+                                    <Text style={{marginLeft:"20%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, textAlign:"right", justifyContent:"flex-end"}}>{value.time}</Text>
                                 </View>
 
                                  <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Date</Text>
+                                    <Text style={{width:"66%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Date</Text>
                                     <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.date}</Text>
                                 </View>
 
                                 <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Cost</Text>
-                                    <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.cost}</Text>
+                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Cost</Text>
+                                    <Text style={{marginLeft:"20%",  fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.cost}</Text>
                                 </View>
 
                                 <View style={{display:"flex", flexDirection:"row", marginRight:"6%"}}> 
 
                                         <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
-                                            <Button onPress={() => {this.props.navigation.navigate('BookingHistory')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#f14538", width:"100%", borderRadius: 10, opacity:0.7}}> 
+                                            <Button onPress={() => {this.props.navigation.navigate('BookingHistory')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"100%", borderRadius: 10, opacity:0.7}}> 
                                             <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                                             Mark As Compelete
                                             </Text>   
@@ -245,7 +245,7 @@ export default class ServingHistory extends Component {
                                         </View> 
 
                                         <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
-                                            <Button style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#f14538", borderRadius: 10, opacity:0.7, width:"60%"}}> 
+                                            <Button style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", borderRadius: 10, opacity:0.7, width:"60%"}}> 
                                             <Icon name="camera" type="font-awesome" color="#fff" />
                                             </Button>
                                         </View> 
@@ -260,7 +260,7 @@ export default class ServingHistory extends Component {
                                         
                   {/* <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
                     <Button onPress={() => {this.setState({renderEMail: false, renderCode: false, renderPassword:false}),
-                this.props.navigation.navigate(from)}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#f14538", width:"90%", borderRadius: 10, opacity:0.7}}> 
+                this.props.navigation.navigate(from)}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
                      <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                        Submit
                     </Text>   

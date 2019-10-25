@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View , StyleSheet} from 'react-native'
+import { Text, View , StyleSheet, Image} from 'react-native'
 import AppIntroSlider from 'react-native-app-intro-slider';
 // import Navigator from '../../Navigation/navigator'
 // import Home from '../Home/home'
@@ -38,7 +38,9 @@ const slides = [
     {
       key: 'k1',
       title: 'Ecommerce Leader',
-      text: 'Best ecommerce in the world',
+      text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry ',
+      text1:"Online",
+      text2:"Beauty",
       image: require('../../../assets/slide1.png'),
       titleStyle: styles.title,
       textStyle: styles.text,
@@ -48,7 +50,9 @@ const slides = [
     {
       key: 'k2',
       title: 'fast delivery',
-      text: 'get your order insantly fast',
+      text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry ',
+      text1:"Online",
+      text2:"Beauty",
       image: require('../../../assets/slide1.png'),
       titleStyle: styles.title,
       textStyle: styles.text,
@@ -58,7 +62,9 @@ const slides = [
     {
       key: 'k3',
       title: 'many store ',
-      text: 'Multiple store location',
+      text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry ',
+      text1:"Online",
+      text2:"Beauty",
       image: require('../../../assets/slide1.png'),
       titleStyle: styles.title,
       textStyle: styles.text,
@@ -100,6 +106,19 @@ export default class Walkthrogh extends Component {
       };
 
 
+      _renderItem = ({ item, dimensions }) => (
+        <View style={{justifyContent:"center", alignContent:"center", flex:1, alignItems:"center"}}>
+          
+          <Image style={{height:300, width:300}} source={item.image} />
+          <View>
+            <Text style={{fontSize:30}}>{item.text1}  <Text style={{fontWeight:"bold"}}>{item.text2}</Text></Text>
+          </View>
+          <View style={{width:"80%", marginTop:"10%"}}>
+            <Text style={{fontSize:15}} >{item.text}</Text>
+          </View>
+        </View>
+      );
+
       
       render() {
         if (this.state.show_Main_App) {
@@ -111,7 +130,7 @@ export default class Walkthrogh extends Component {
           );
        } else { 
            return ( 
-             <AppIntroSlider activeDotStyle={{backgroundColor:"#000"}} buttonTextStyle={{selectionColor:"#0000", color:"#000"}} slides={slides} onDone={this.on_Done_all_slides} 
+             <AppIntroSlider activeDotStyle={{backgroundColor:"#000"}} buttonTextStyle={{selectionColor:"#0000", color:"#000"}} slides={slides} renderItem={this._renderItem} onDone={this.on_Done_all_slides} 
               showSkipButton={true} 
               onSkip={this.on_Skip_slides} /> 
             ); 

@@ -166,13 +166,13 @@ export default class ViewBooking extends Component {
                         leftComponent={<Icon onPress={() => {this.props.navigation.navigate('Main')}} name="arrow-back" color="#000" />}
                         centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>VIEW BOOKING</Text>}
                         rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("Notification")}}>
-                            <Image source={require('../../../assets/notification.png')} style={{height:30, width:30}} />
+                            <Image source={require('../../../assets/notification.png')} style={{height:20, width:20}} />
                         </TouchableOpacity>}
                         />
 
 
 
-                <View style={{ height, width, backgroundColor:"rgba(190, 144, 212, 0.7)",justifyContent:"center"}}>
+                <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
 
                 <ScrollView style={{height: height}}>
 
@@ -188,7 +188,7 @@ export default class ViewBooking extends Component {
                                     <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg"}}>Name</Text>
                                     <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg"}}>{value.name}</Text>
                                     {/* <TouchableOpacity onPress={() => {this.props.navigation.navigate('BookingDetail')}}>
-                                    <Text  style={{marginLeft:"30%", color:"#f14538", borderBottomColor:"#f14538", borderBottomWidth:1, fontFamily:"MrEavesXLModNarOT-Reg", width:50}}>VIEW DETAILS</Text>
+                                    <Text  style={{marginLeft:"30%", color:"#fc8b8c", borderBottomColor:"#fc8b8c", borderBottomWidth:1, fontFamily:"MrEavesXLModNarOT-Reg", width:50}}>VIEW DETAILS</Text>
                                     </TouchableOpacity> */}
                                 </View>
 
@@ -210,7 +210,7 @@ export default class ViewBooking extends Component {
                                 <View style={{display:"flex", flexDirection:"row", marginRight:"6%"}}> 
 
                                         <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
-                                            <Button onPress={() => {this.props.navigation.navigate('BookingReq')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#f14538", width:"90%", borderRadius: 10, opacity:0.7}}> 
+                                            <Button onPress={() => {this.props.navigation.navigate('BookingReq')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
                                             <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                                             Done
                                             </Text>   
@@ -218,7 +218,7 @@ export default class ViewBooking extends Component {
                                         </View> 
 
                                         <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
-                                            <Button  style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#ffff", width:"90%", borderRadius: 10, opacity:0.7, borderColor:"#f14538", borderWidth: 1}}> 
+                                            <Button  style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#ffff", width:"90%", borderRadius: 10, opacity:0.7, borderColor:"#fc8b8c", borderWidth: 1}}> 
                                             <Text style={{alignSelf:"center",color:"#000", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                                             Cancel
                                             </Text>   
@@ -235,7 +235,7 @@ export default class ViewBooking extends Component {
                                         
                   {/* <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
                     <Button onPress={() => {this.setState({renderEMail: false, renderCode: false, renderPassword:false}),
-                this.props.navigation.navigate(from)}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#f14538", width:"90%", borderRadius: 10, opacity:0.7}}> 
+                this.props.navigation.navigate(from)}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
                      <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                        Submit
                     </Text>   

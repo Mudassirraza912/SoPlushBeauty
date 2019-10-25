@@ -3,6 +3,7 @@ import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, Scrol
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button } from 'native-base';
 import {Avatar, Header, Icon, Card} from 'react-native-elements'
+import LinearGradient from 'react-native-linear-gradient'
 
 
 const {width, height} = Dimensions.get("window")
@@ -16,7 +17,9 @@ export default class BookingDetail extends Component {
                     name: "So plush",
                     service: "Hair Cutting",
                     time: "02:00",
-                    date: "14-08-1900"
+                    date: "14-08-1900",
+                    address:"Lorem Ipsum is simply dummy text of the ",
+                    mobile:"090078601"
                 },
             ]
         }
@@ -42,7 +45,7 @@ export default class BookingDetail extends Component {
                         placement="left"
                         leftComponent={<Icon onPress={() => {this.props.navigation.navigate('BookingReq')}} name="arrow-back" color="#000" />}
                         centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>BOOKING DETAILS</Text>}
-                        rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("Notification")}}><Image source={require('../../../assets/notification.png')} style={{height:30, width:30}} /> 
+                        rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("Notification")}}><Image source={require('../../../assets/notification.png')} style={{height:20, width:20}} /> 
                         </TouchableOpacity> }
                         />
 
@@ -59,9 +62,9 @@ export default class BookingDetail extends Component {
                                 <View style={{display:"flex", flexDirection:"row"}}> 
                                     <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg"}}>Name</Text>
                                     <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg"}}>{value.name}</Text>
-                                    <TouchableOpacity>
-                                    <Text  style={{marginLeft:"30%", color:"#f14538", borderBottomColor:"#f14538", borderBottomWidth:1, fontFamily:"MrEavesXLModNarOT-Reg", width:50}}>VIEW DETAILS</Text>
-                                    </TouchableOpacity>
+                                    {/* <TouchableOpacity>
+                                    <Text  style={{marginLeft:"30%", color:"#fc8b8c", borderBottomColor:"#fc8b8c", borderBottomWidth:1, fontFamily:"MrEavesXLModNarOT-Reg", width:50}}>VIEW DETAILS</Text>
+                                    </TouchableOpacity> */}
                                 </View>
 
                                 <View style={{display:"flex", flexDirection:"row"}}> 
@@ -79,23 +82,25 @@ export default class BookingDetail extends Component {
                                     <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg"}}>{value.date}</Text>
                                 </View>
 
-                                <View style={{display:"flex", flexDirection:"row", marginRight:"6%"}}> 
+                                <View style={{display:"flex", flexDirection:"row"}}> 
+                                    <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg"}}>Address</Text>
+                                    <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg"}}>{value.address}</Text>
+                                </View>
 
-                                        <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
-                                            <Button style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#f14538", width:"90%", borderRadius: 10, opacity:0.7}}> 
-                                            <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
-                                            Accept
-                                            </Text>   
-                                            </Button>
-                                        </View> 
+                                <View style={{display:"flex", flexDirection:"row", overflow:"hidden"}}> 
+                                    <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg"}}>Mobile </Text>
+                                    <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", width:"60%"}}>{value.mobile}</Text>
+                                </View>
 
-                                        <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
-                                            <Button style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#ffff", width:"90%", borderRadius: 10, opacity:0.7, borderColor:"#f14538", borderWidth: 1}}> 
-                                            <Text style={{alignSelf:"center",color:"#000", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
-                                            Reject
-                                            </Text>   
-                                            </Button>
-                                        </View> 
+                                <View style={{display:"flex",  marginRight:"6%", marginTop:"5%", width:"100%"}}> 
+
+                                <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "100%", borderRadius: 10 }}>
+                                        <Button style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
+                                            <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, marginRight: "10%" }}>
+                                               Ok
+</Text>
+                                        </Button>
+                                    </LinearGradient>
                                 </View>
                     </Card>
 

@@ -12,36 +12,22 @@ export default class ServiceList extends Component {
         super(props);
         this.state = {
             services : [
-                {
-                    name: "So plush",
-                    price: "$70"
-                },
-                {
-                    name: "Blow Out",
-                    price: "$70"
-                },
-                {
-                    name: "Blow Out",
-                    price: "$70"
-                },
-                {
-                    name: "Blow Out",
-                    price: "$70"
-                },
-                {
-                    name: "Blow Out",
-                    price: "$70"
-                },
-                {
-                    name: "Blow Out",
-                    price: "$70"
-                },
-                {
-                    name: "Blow Out",
-                    price: "$70"
-                },
-                
-               
+                {service_name : "So Plush",
+                service_cost:"20"
+            },
+            {service_name : "So Plush",
+                service_cost:"20"
+            },
+            {service_name : "So Plush",
+                service_cost:"20"
+            },
+            {service_name : "So Plush",
+                service_cost:"20"
+            },
+
+            {service_name : "So Plush",
+                service_cost:"20"
+            },
             ],
             profileData : this.props.screenProps.profileData,
         }
@@ -64,7 +50,7 @@ export default class ServiceList extends Component {
         // console.log("email, password, address, name, phoneNo, profilePic", email, password)
 
 
-        fetch("http://192.168.1.125/SoPlush/beautician/beautician_service.php?action=select_service", {
+        fetch("http://192.168.1.103/SoPlush/beautician/beautician_service.php?action=select_service", {
             method: 'POST',
             // dataType: "json",
             headers: {
@@ -79,9 +65,11 @@ export default class ServiceList extends Component {
   
           if(successData.status === true){
               // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
-              
-                  console.log("SUCCESS PRO", successData, successData.status, successData.data)
-                  Alert.alert("Login successful")
+              this.setState({
+                  services: successData.data
+              })
+                //   console.log("SUCCESS PRO", successData)
+                //   Alert.alert("Login successful")
             // this.props.navigation.navigate("Main")
        
           }else {
@@ -151,13 +139,13 @@ export default class ServiceList extends Component {
                         containerStyle={{marginTop:60, backgroundColor:"#fff"}}
                         placement="left"
                         leftComponent={<Icon onPress={() => {this.props.navigation.toggleDrawer()}} name="menu" color="#000" />}
-                        centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>Services List</Text>}
+                        centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>SERVICE LIST</Text>}
                         // rightComponent={{ icon: 'home', color: '#000' }}
                         />
 
 
 
-                <View style={{ height, width, backgroundColor:"rgba(190, 144, 212, 0.7)",justifyContent:"center"}}>
+                <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
 
                 <ScrollView style={{height: height}}>
 
@@ -170,10 +158,10 @@ export default class ServiceList extends Component {
                         <List> 
                             <ListItem>
                             <Left>
-                                <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.name}</Text>
+                                <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.service_name}</Text>
                             </Left>
                             <Right>
-                            <Text style={{color:"#f14538", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.price}</Text>
+                            <Text style={{color:"#fc8b8c", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>${value.service_cost}</Text>
                             </Right>
                             </ListItem>
                     </List>
@@ -186,9 +174,9 @@ export default class ServiceList extends Component {
                         
                   <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
                     <Button onPress={() => {this.setState({renderEMail: false, renderCode: false, renderPassword:false}),
-                this.props.navigation.navigate('Main')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#f14538", width:"90%", borderRadius: 10, opacity:0.7}}> 
+                this.props.navigation.navigate('Main')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
                      <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
-                       Submit
+                       Save Service
                     </Text>   
                      </Button>
                 </View>
