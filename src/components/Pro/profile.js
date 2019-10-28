@@ -55,9 +55,9 @@ export default class ProProfile extends Component {
 
                 {/* <View style={{backgroundColor:"#fff",borderRadius:10, width:"90%"}}> */}
                    
-                        {/* <Card containerStyle={{backgroundColor:"#fff", borderRadius:10, width:"90%",}}> 
+                        <Card containerStyle={{backgroundColor:"#fff", borderRadius:10, width:"90%",}}> 
                             <View style={{width:"100%"}}>
-                                <Image resizeMode="cover" style={{width:"100%", height:300}} source={{uri:`http://192.168.1.103/SoPlush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}} />
+                                <Image resizeMode="cover" style={{width:"100%", height:300}} source={{uri:`http://192.168.1.112/SoPlush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}} />
                             </View>
                                 <View style={{display:"flex", flexDirection:"column", marginTop: 15}}> 
                                     <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, color: "gray"}}>Name</Text>
@@ -100,12 +100,12 @@ export default class ProProfile extends Component {
                                         </View> 
 
                                 </View>
-                    </Card> */}
+                    </Card>
 
 
 
 
-<Card containerStyle={{backgroundColor:"#fff", borderRadius:10, width:"90%",}}> 
+{/* <Card containerStyle={{backgroundColor:"#fff", borderRadius:10, width:"90%",}}> 
                             <View style={{width:"100%"}}>
                                 <Image resizeMode="cover" style={{width:"100%", height:300}} source={{uri:`https://cdn.vox-cdn.com/thumbor/XtwGXC-0GhXcDXiM0B0rjGAAxZE=/148x0:1768x1080/1200x800/filters:focal(148x0:1768x1080)/cdn.vox-cdn.com/uploads/chorus_image/image/45905674/3042430-poster-p-1-hello-barbie-talking-toy-toytalk.0.0.jpg`}} />
                             </View>
@@ -150,7 +150,7 @@ export default class ProProfile extends Component {
                                         </View> 
 
                                 </View>
-                    </Card>
+                    </Card> */}
 
                        
                          

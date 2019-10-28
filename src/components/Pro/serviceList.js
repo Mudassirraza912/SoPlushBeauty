@@ -11,25 +11,26 @@ export default class ServiceList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            services : [
-                {service_name : "So Plush",
-                service_cost:"20"
-            },
-            {service_name : "So Plush",
-                service_cost:"20"
-            },
-            {service_name : "So Plush",
-                service_cost:"20"
-            },
-            {service_name : "So Plush",
-                service_cost:"20"
-            },
+            // services : [
+            //     {service_name : "So Plush",
+            //     service_cost:"20"
+            // },
+            // {service_name : "So Plush",
+            //     service_cost:"20"
+            // },
+            // {service_name : "So Plush",
+            //     service_cost:"20"
+            // },
+            // {service_name : "So Plush",
+            //     service_cost:"20"
+            // },
 
-            {service_name : "So Plush",
-                service_cost:"20"
-            },
-            ],
+            // {service_name : "So Plush",
+            //     service_cost:"20"
+            // },
+            // ],
             profileData : this.props.screenProps.profileData,
+            services: []
         }
     }
 
@@ -50,7 +51,7 @@ export default class ServiceList extends Component {
         // console.log("email, password, address, name, phoneNo, profilePic", email, password)
 
 
-        fetch("http://192.168.1.103/SoPlush/beautician/beautician_service.php?action=select_service", {
+        fetch("http://192.168.1.112/SoPlush/beautician/beautician_service.php?action=select_service", {
             method: 'POST',
             // dataType: "json",
             headers: {

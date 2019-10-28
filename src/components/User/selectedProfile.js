@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, FlatList } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, FlatList, TextInput } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button, DatePicker } from 'native-base';
 import { Avatar, Header, Icon, Card, Divider } from 'react-native-elements'
@@ -154,6 +154,38 @@ export default class SelectedProfile extends Component {
                                         <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 15 }}>{this.state.profileData.email}</Text>
                                         <Divider style={{ backgroundColor: 'lightgray' }} />
                                     </View>
+
+                                    <View style={{
+                        backgroundColor: "transparent",
+                        borderColor: 'gray',
+                        borderWidth: 1,
+                        borderColor: 'gray',
+                        borderRadius: 10,
+                        height: 50,
+                        marginTop: 10,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        alignSelf: 'center',
+                        width: '93%',
+                        paddingHorizontal: 16,
+                        paddingVertical: 10,
+                        marginBottom: 10,
+
+                    }}>
+                        <TextInput style={{
+                            height: 45,
+                            flex: 1,
+                        }}
+                            value={this.state.search}
+                            placeholder="Define Your Important Notice"
+                            onChangeText={this.updateSearch}
+                        />
+                        <Icon style={{
+                            color: 'gray',
+                            justifyContent: 'flex-end'
+                        }} type="EvilIcons" name="search" size={24} />
+                    </View>
+
 
                                     <View style={{ display: "flex", flexDirection: "column", marginTop: 15 }}>
                                         <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Selected Date</Text>

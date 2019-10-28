@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, FlatList, StyleSheet } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, FlatList, StyleSheet, TextInput } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 // import { Container, Header, Content, Item, Input, Icon, Label, Form, Button, Body } from 'native-base';
 import { Avatar, Header, Icon } from 'react-native-elements'
@@ -15,15 +15,16 @@ export default class UserHome extends Component {
         super(props);
         this.state = {
             navigate: "PersonalService",
-            items: [
-                {category_name:"Bridal", image:Cover1},
-                {category_name:"Personal", image:Cover2},
-                {category_name:"Television", image:Cover3},
-                {category_name:"Bridal", image:Cover4},
-            ],
+            // items: [
+            //     {category_name:"Bridal", image:Cover1},
+            //     {category_name:"Personal", image:Cover2},
+            //     {category_name:"Television", image:Cover3},
+            //     {category_name:"Bridal", image:Cover4},
+            // ],
             profileData: this.props.screenProps.profileData,
             plush: [],
-            SoPlush: []
+            SoPlush: [],
+            items: []
         }
     }
 
@@ -44,53 +45,53 @@ export default class UserHome extends Component {
         console.log("this.props.screenProps.profileData", this.props.screenProps.profileData)
     }
 
-    // componentDidMount() {
-    //     const { profileData } = this.state
-    //     console.log("user_id", profileData.user_id)
-    //     const formData = new FormData();
-    //     formData.append("id", profileData.user_id),
+    componentDidMount() {
+        const { profileData } = this.state
+        console.log("user_id", profileData.user_id)
+        const formData = new FormData();
+        formData.append("id", profileData.user_id),
 
 
-    //         // console.log("email, password, address, name, phoneNo, profilePic", email, password)
+            // console.log("email, password, address, name, phoneNo, profilePic", email, password)
 
 
-    //         fetch("http://192.168.1.103/SoPlush/category/category.php?action=select_category", {
-    //             method: 'GET',
-    //             // dataType: "json",
-    //             // headers: {
-    //             //     'Accept' : 'application/json',
-    //             //     'Content-Type': 'multipart/form-data'
-    //             // },
-    //             // body: ""
-    //         }).then(res => res.json())
-    //             .then(resp => {
-    //                 console.log(JSON.stringify(resp))
-    //                 var successData = resp
+            fetch("http://192.168.1.112/SoPlush/category/category.php?action=select_category", {
+                method: 'GET',
+                // dataType: "json",
+                // headers: {
+                //     'Accept' : 'application/json',
+                //     'Content-Type': 'multipart/form-data'
+                // },
+                // body: ""
+            }).then(res => res.json())
+                .then(resp => {
+                    console.log(JSON.stringify(resp))
+                    var successData = resp
 
-    //                 if (successData.status === true) {
-    //                     // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
-    //                     this.setState({
-    //                         items: successData.data
-    //                     })
-    //                     //   console.log("Category PRO", successData)
-    //                     // this.props.navigation.navigate("Main")
+                    if (successData.status === true) {
+                        // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
+                        this.setState({
+                            items: successData.data
+                        })
+                        //   console.log("Category PRO", successData)
+                        // this.props.navigation.navigate("Main")
 
-    //                 } else {
-    //                     Alert.alert(successData.message)
-    //                 }
-    //             })
-    //             .catch(err => console.log("Category err err", err));
-    // }
+                    } else {
+                        Alert.alert(successData.message)
+                    }
+                })
+                .catch(err => console.log("Category err err", err));
+    }
 
 
     navigatingToOther = (item) => {
 
         const formData = new FormData();
         formData.append("id", item.category_id),
-        this.props.navigation.navigate(this.state.navigate)
-            // his.props.navigation.navigate(this.state.navigate, {
+        // this.props.navigation.navigate(this.state.navigate)
+            // this.props.navigation.navigate(this.state.navigate, {
             //     category_id: item.category_id,
-            //     image: `http://192.168.1.103/SoPlush/images/${item.image}`,
+            //     image: `http://192.168.1.112/SoPlush/images/${item.image}`,
             //     service: successData.data
 
             // })
@@ -98,37 +99,37 @@ export default class UserHome extends Component {
         //   Alert.alert("Login successful")
         // this.props.navigation.navigate("Main")
 
-        // fetch("http://192.168.1.103/SoPlush/service/service.php?action=select_service", {
-        //     method: 'POST',
-        //     // dataType: "json",
-        //     headers: {
-        //         'Accept' : 'application/json',
-        //         'Content-Type': 'multipart/form-data'
-        //     },
-        //     body: formData
-        // }).then(res => res.json())
-        // .then(resp =>{
-        //   console.log(JSON.stringify(resp))
-        //   var successData =  resp
+        fetch("http://192.168.1.112/SoPlush/service/service.php?action=select_service", {
+            method: 'POST',
+            // dataType: "json",
+            headers: {
+                'Accept' : 'application/json',
+                'Content-Type': 'multipart/form-data'
+            },
+            body: formData
+        }).then(res => res.json())
+        .then(resp =>{
+          console.log(JSON.stringify(resp))
+          var successData =  resp
 
-        //   if(successData.status === true){
-        //       // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
+          if(successData.status === true){
+              // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
+              console.log(" successData.data PRO", successData.data, `http://192.168.1.112/SoPlush/images/${item.image}`)
+              this.props.navigation.navigate(this.state.navigate, {
+                category_id: item.category_id,
+                image: `http://192.168.1.112/SoPlush/images/${item.image}`,
+                service: successData.data
 
-        //       this.props.navigation.navigate(this.state.navigate, {
-        //         category_id: item.category_id,
-        //         image: `http://192.168.1.103/SoPlush/images/${item.image}`,
-        //         service: successData.data
+              })
+                 
+                //   Alert.alert("Login successful")
+            // this.props.navigation.navigate("Main")
 
-        //       })
-        //           console.log("SUCCESS PRO", successData)
-        //         //   Alert.alert("Login successful")
-        //     // this.props.navigation.navigate("Main")
-
-        //   }else {
-        //     Alert.alert(successData.message)
-        //   }
-        // })
-        // .catch(err => console.log("err err err",err));
+          }else {
+            Alert.alert(successData.message)
+          }
+        })
+        .catch(err => console.log("err err err",err));
 
 
 
@@ -161,20 +162,52 @@ export default class UserHome extends Component {
                             <Image source={require('../../../assets/Cover.png')} style={{ opacity: 2 }} />
                         </View>
 
-                        <View style={{ width: width, marginTop: "2%", marginLeft: "5%" }}>
+                        <View style={{ width: width, marginVertical: "2%", marginLeft: "5%" }}>
                             <Text style={{ fontSize: 20, fontFamily: "MrEavesXLModNarOT-Reg", fontWeight: "bold" }}>SERVICES</Text>
                         </View>
 
 
+                        <View style={{
+                        backgroundColor: "transparent",
+                        borderColor: 'gray',
+                        borderWidth: 1,
+                        borderColor: 'gray',
+                        borderRadius: 10,
+                        height: 50,
+                        marginTop: 10,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        alignSelf: 'center',
+                        width: '93%',
+                        paddingHorizontal: 16,
+                        paddingVertical: 10,
+                        marginBottom: 10,
 
-                        <View style={{ flex: 1, width: Dimensions.get('window').width, height: "100%", marginBottom: "10%" }}>
-                            <FlatList style={{ flex: 1, marginTop: "3%" }}
+                    }}>
+                        <TextInput style={{
+                            height: 45,
+                            flex: 1,
+                        }}
+                            value={this.state.search}
+                            placeholder="Search"
+                            onChangeText={this.updateSearch}
+                        />
+                        <Icon style={{
+                            color: 'gray',
+                            justifyContent: 'flex-end'
+                        }} type="EvilIcons" name="search" size={24} />
+                    </View>
+
+
+
+                        <View style={{ flex: 1, width: Dimensions.get('window').width, height: "100%" }}>
+                            <FlatList style={{ flex: 1}}
                                 data={this.state.items}
                                 renderItem={({ item }) => {
-                                    console.log("FlatList FlatList", item.category_name)
+                                    console.log("FlatList FlatList", `http://192.168.1.112/SoPlush/images/${item.image}`)
                                     return (<View style={{ flexDirection: "column", margin: 2, height: 180, width: 180, borderRadius: 10, alignContent: "center", alignItems: "center", alignSelf: "center" }}>
                                         <TouchableOpacity onPress={() => this.navigatingToOther(item)}>
-                                            <Image style={styles.imageThumbnail} source={item.image} />
+                                            <Image style={styles.imageThumbnail} source={{uri:`http://192.168.1.112/SoPlush/images/${item.image}`}} />
                                         </TouchableOpacity>
                                         <Text style={{ fontSize: 18, color: "#000", opacity: 0.6, fontFamily: "MrEavesXLModNarOT-Reg" }}>{item.category_name}</Text>
                                     </View>

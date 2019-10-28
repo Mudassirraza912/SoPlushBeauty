@@ -82,46 +82,46 @@ export default class ForgotPassword extends Component {
         console.log("FIKHSDJKDFJSN")
     
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
-        this.setState({renderEMail: false, renderCode: true, renderPassword:false, startDate: moment(), endDate:moment().add(1.5, "M")})
+        // this.setState({renderEMail: false, renderCode: true, renderPassword:false, startDate: moment(), endDate:moment().add(1.5, "M")})
     
-    //     if(reg.test(email) === false ) {
+        if(reg.test(email) === false ) {
     
-    //       Alert.alert("Email is not correct")
-    //     }else{
+          Alert.alert("Email is not correct")
+        }else{
     
-    //       // http://192.168.0.120/29-may-2019/rest_api_for_plant_client/login_signup.php?action=login_user
+          // http://192.168.0.120/29-may-2019/rest_api_for_plant_client/login_signup.php?action=login_user
     
          
-    //       const formData = new FormData();
-    //       formData.append("email", email),
+          const formData = new FormData();
+          formData.append("email", email),
          
   
-    //       console.log("email, password", email, password)
+          console.log("email, password", email, password)
   
   
-    //       fetch("http://192.168.1.103/SoPlush/auth/forgot_password.php?action=forget_password", {
-    //           method: 'POST',
-    //           // dataType: "json",
-    //           headers: {
-    //               'Accept' : 'application/json',
-    //               'Content-Type': 'multipart/form-data'
-    //           },
-    //           body: formData
-    //       }).then(res => res.json())
-    //       .then(resp =>{
-    //         console.log(JSON.stringify(resp))
-    //         var successData =  resp
+          fetch("http://192.168.1.112/SoPlush/auth/forgot_password.php?action=forget_password", {
+              method: 'POST',
+              // dataType: "json",
+              headers: {
+                  'Accept' : 'application/json',
+                  'Content-Type': 'multipart/form-data'
+              },
+              body: formData
+          }).then(res => res.json())
+          .then(resp =>{
+            console.log(JSON.stringify(resp))
+            var successData =  resp
     
-    //         if(successData.status === true) {
-    //                     Alert.alert("Mail Send successful")
-    //                     this.setState({renderEMail: false, renderCode: true, renderPassword:false, startDate: moment(), endDate:moment().add(1.5, "M")})
-    //         }else {
-    //           Alert.alert(successData.message)
-    //         }
-    //         console.log("SUCCESS", successData, successData.status, successData.data)
-    //       })
-    //       .catch(err => console.log("err err err",err));
-    //   }
+            if(successData.status === true) {
+                        Alert.alert("Mail Send successful")
+                        this.setState({renderEMail: false, renderCode: true, renderPassword:false, startDate: moment(), endDate:moment().add(1.5, "M")})
+            }else {
+              Alert.alert(successData.message)
+            }
+            console.log("SUCCESS", successData, successData.status, successData.data)
+          })
+          .catch(err => console.log("err err err",err));
+      }
     
     
       }
@@ -132,47 +132,47 @@ export default class ForgotPassword extends Component {
         // console.log("FIKHSDJKDFJSN",code)
     
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
-        this.setState({renderEMail: false, renderCode: false, renderPassword:true})
+        // this.setState({renderEMail: false, renderCode: false, renderPassword:true})
     
-    //     if(reg.test(email) === false ) {
+        if(reg.test(email) === false ) {
     
-    //       Alert.alert("Email is not correct")
-    //     }else{
+          Alert.alert("Email is not correct")
+        }else{
     
-    //       // http://192.168.0.120/29-may-2019/rest_api_for_plant_client/login_signup.php?action=login_user
+          // http://192.168.0.120/29-may-2019/rest_api_for_plant_client/login_signup.php?action=login_user
     
          
-    //       const formData = new FormData();
-    //       formData.append("email", email)
-    //       formData.append("code", code)
+          const formData = new FormData();
+          formData.append("email", email)
+          formData.append("code", code)
          
   
-    //       console.log("email, code", email, code)
+          console.log("email, code", email, code)
   
   
-    //       fetch("http://192.168.1.103/SoPlush/auth/forgot_password.php?action=check_code", {
-    //           method: 'POST',
-    //           // dataType: "json",
-    //           headers: {
-    //               'Accept' : 'application/json',
-    //               'Content-Type': 'multipart/form-data'
-    //           },
-    //           body: formData
-    //       }).then(res => res.json())
-    //       .then(resp =>{
-    //         console.log(JSON.stringify(resp))
-    //         var successData =  resp
+          fetch("http://192.168.1.112/SoPlush/auth/forgot_password.php?action=check_code", {
+              method: 'POST',
+              // dataType: "json",
+              headers: {
+                  'Accept' : 'application/json',
+                  'Content-Type': 'multipart/form-data'
+              },
+              body: formData
+          }).then(res => res.json())
+          .then(resp =>{
+            console.log(JSON.stringify(resp))
+            var successData =  resp
     
-    //         if(successData.status === true) {
-    //                     Alert.alert("Code Matched")
-    //                     this.setState({renderEMail: false, renderCode: false, renderPassword:true})
-    //         }else {
-    //           Alert.alert(successData.message)
-    //         }
-    //         console.log("SUCCESS", successData, successData.status, successData.data)
-    //       })
-    //       .catch(err => console.log("err err err",err));
-    //   }
+            if(successData.status === true) {
+                        Alert.alert("Code Matched")
+                        this.setState({renderEMail: false, renderCode: false, renderPassword:true})
+            }else {
+              Alert.alert(successData.message)
+            }
+            console.log("SUCCESS", successData, successData.status, successData.data)
+          })
+          .catch(err => console.log("err err err",err));
+      }
     
     
       }
@@ -185,47 +185,47 @@ export default class ForgotPassword extends Component {
         // console.log("FIKHSDJKDFJSN",code)
     
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
-        this.setState({renderEMail: false, renderCode: false, renderPassword:false})
-    //     if(password != newPassword ) {
+        // this.setState({renderEMail: false, renderCode: false, renderPassword:false})
+        if(password != newPassword ) {
     
-    //       Alert.alert("Password not Matched")
-    //     }else{
+          Alert.alert("Password not Matched")
+        }else{
     
-    //       // http://192.168.0.120/29-may-2019/rest_api_for_plant_client/login_signup.php?action=login_user
+          // http://192.168.0.120/29-may-2019/rest_api_for_plant_client/login_signup.php?action=login_user
     
          
-    //       const formData = new FormData();
-    //       formData.append("email", email)
-    //       formData.append("new_password", password)
+          const formData = new FormData();
+          formData.append("email", email)
+          formData.append("new_password", password)
          
   
-    //       console.log("email, code, password", email, code, password)
+          console.log("email, code, password", email, code, password)
   
   
-    //       fetch("http://192.168.1.103/SoPlush/auth/forgot_password.php?action=change_password", {
-    //           method: 'POST',
-    //           // dataType: "json",
-    //           headers: {
-    //               'Accept' : 'application/json',
-    //               'Content-Type': 'multipart/form-data'
-    //           },
-    //           body: formData
-    //       }).then(res => res.json())
-    //       .then(resp =>{
-    //         console.log(JSON.stringify(resp))
-    //         var successData =  resp
+          fetch("http://192.168.1.112/SoPlush/auth/forgot_password.php?action=change_password", {
+              method: 'POST',
+              // dataType: "json",
+              headers: {
+                  'Accept' : 'application/json',
+                  'Content-Type': 'multipart/form-data'
+              },
+              body: formData
+          }).then(res => res.json())
+          .then(resp =>{
+            console.log(JSON.stringify(resp))
+            var successData =  resp
     
-    //         if(successData.status === true) {
-    //                     Alert.alert("Password Changed Succesfully")
-    //                     // this.setState({renderEMail: false, renderCode: false, renderPassword:false}),
-    //             this.props.navigation.goBack()
-    //         }else {
-    //           Alert.alert(successData.message)
-    //         }
-    //         console.log("SUCCESS", successData, successData.status, successData.data)
-    //       })
-    //       .catch(err => console.log("err err err",err));
-    //   }
+            if(successData.status === true) {
+                        Alert.alert("Password Changed Succesfully")
+                        // this.setState({renderEMail: false, renderCode: false, renderPassword:false}),
+                this.props.navigation.goBack()
+            }else {
+              Alert.alert(successData.message)
+            }
+            console.log("SUCCESS", successData, successData.status, successData.data)
+          })
+          .catch(err => console.log("err err err",err));
+      }
     
     
       }

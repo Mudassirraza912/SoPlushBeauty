@@ -35,59 +35,59 @@ export default class UserLogin extends Component {
         const { email, password } = this.state
         console.log("FIKHSDJKDFJSN")
 
-        this.props.navigation.navigate("UserHome")
+        // this.props.navigation.navigate("UserHome")
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-        // if (reg.test(email) === false) {
+        if (reg.test(email) === false) {
 
-        //     Alert.alert("Email is not correct")
-        // } else {
+            Alert.alert("Email is not correct")
+        } else {
 
-        //     // http://192.168.0.120/29-may-2019/rest_api_for_plant_client/login_signup.php?action=login_user
-
-
-        //     const formData = new FormData();
-        //     formData.append("email", email),
-        //         formData.append("password", password),
+            // http://192.168.0.120/29-may-2019/rest_api_for_plant_client/login_signup.php?action=login_user
 
 
-        //         console.log("email, password, address, name, phoneNo, profilePic", email, password)
+            const formData = new FormData();
+            formData.append("email", email),
+                formData.append("password", password),
 
 
-        //     fetch("http://192.168.1.103/SoPlush/auth/login.php?action=signin", {
-        //         method: 'POST',
-        //         // dataType: "json",
-        //         headers: {
-        //             'Accept': 'application/json',
-        //             'Content-Type': 'multipart/form-data'
-        //         },
-        //         body: formData
-        //     }).then(res => res.json())
-        //         .then(resp => {
-        //             console.log(JSON.stringify(resp))
-        //             var successData = resp
+                console.log("email, password, address, name, phoneNo, profilePic", email, password)
 
-        //             if (successData.status) {
 
-        //                 if (successData.status === true) {
-        //                     // console.log(" After Status SUCCESS USER", successData.data[0].role_id == 2)
+            fetch("http://192.168.1.112/SoPlush/auth/login.php?action=signin", {
+                method: 'POST',
+                // dataType: "json",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'multipart/form-data'
+                },
+                body: formData
+            }).then(res => res.json())
+                .then(resp => {
+                    console.log(JSON.stringify(resp))
+                    var successData = resp
 
-        //                     if (successData.data[0].role_id == 2) {
-        //                         console.log(" After ROLE ID SUCCESS USER", this.props)
-        //                         this.props.screenProps.fetchProfileData(successData.data[0])
-        //                         Alert.alert("Login successful")
-        //                         this.props.navigation.navigate("UserHome")
-        //                     }
-        //                 } else {
-        //                     Alert.alert("Email Or Password Incorrect")
-        //                 }
-        //             } else {
-        //                 Alert.alert(successData.message)
-        //             }
-        //             console.log("SUCCESS USER", successData, successData.status, successData.data)
-        //         })
-        //         .catch(err => console.log("err err err", err));
-        // }
+                    if (successData.status) {
+
+                        if (successData.status === true) {
+                            // console.log(" After Status SUCCESS USER", successData.data[0].role_id == 2)
+
+                            if (successData.data[0].role_id == 2) {
+                                console.log(" After ROLE ID SUCCESS USER", this.props)
+                                this.props.screenProps.fetchProfileData(successData.data[0])
+                                Alert.alert("Login successful")
+                                this.props.navigation.navigate("UserHome")
+                            }
+                        } else {
+                            Alert.alert("Email Or Password Incorrect")
+                        }
+                    } else {
+                        Alert.alert(successData.message)
+                    }
+                    console.log("SUCCESS USER", successData, successData.status, successData.data)
+                })
+                .catch(err => console.log("err err err", err));
+        }
 
 
     }

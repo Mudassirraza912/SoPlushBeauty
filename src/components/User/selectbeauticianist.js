@@ -12,62 +12,63 @@ export default class SelectBeautician extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            notifications : [
-                {
-                    icon: img,
-                    data: "Jane",
-                    time: "02:00",
-                },
-              {
-                    icon: img,
-                    data: "Hair Cutting",
-                    time: "02:00",
-                },
-                {
-                    icon: img,
-                    data: "Hair Cutting",
-                    time: "02:00",
-                },
-                {
-                    icon: img,
-                    data: "Hair Cutting",
-                    time: "02:00",
-                },
-                {
-                    icon: img,
-                    data: "Hair Cutting",
-                    time: "02:00",
-                },
-                {
-                    icon: img,
-                    data: "Hair Cutting",
-                    time: "02:00",
-                },
-                {
-                    icon: img,
-                    data: "Hair Cutting",
-                    time: "02:00",
-                },
-                {
-                    icon: img,
-                    data: "Hair Cutting",
-                    time: "02:00",
-                },
-                {
-                    icon: img,
-                    data: "Hair Cutting",
-                    time: "02:00",
-                },
-                {
-                    icon: img,
-                    data: "Hair Cutting",
-                    time: "02:00",
-                },
+            // notifications : [
+            //     {
+            //         icon: img,
+            //         data: "Jane",
+            //         time: "02:00",
+            //     },
+            //   {
+            //         icon: img,
+            //         data: "Hair Cutting",
+            //         time: "02:00",
+            //     },
+            //     {
+            //         icon: img,
+            //         data: "Hair Cutting",
+            //         time: "02:00",
+            //     },
+            //     {
+            //         icon: img,
+            //         data: "Hair Cutting",
+            //         time: "02:00",
+            //     },
+            //     {
+            //         icon: img,
+            //         data: "Hair Cutting",
+            //         time: "02:00",
+            //     },
+            //     {
+            //         icon: img,
+            //         data: "Hair Cutting",
+            //         time: "02:00",
+            //     },
+            //     {
+            //         icon: img,
+            //         data: "Hair Cutting",
+            //         time: "02:00",
+            //     },
+            //     {
+            //         icon: img,
+            //         data: "Hair Cutting",
+            //         time: "02:00",
+            //     },
+            //     {
+            //         icon: img,
+            //         data: "Hair Cutting",
+            //         time: "02:00",
+            //     },
+            //     {
+            //         icon: img,
+            //         data: "Hair Cutting",
+            //         time: "02:00",
+            //     },
 
                 
                 
                
-            ],
+            // ],
+            notifications: this.props.navigation.getParam('users'),
             starCount: 3,
             cart: this.props.navigation.getParam('cart'),
             selectDate: this.props.navigation.getParam('selectDate')
@@ -89,9 +90,9 @@ export default class SelectBeautician extends Component {
     renderItem = ({ item }) => {
         let length = 70
         let mainItem = item.data
-        if(item.data.length < length){
-            mainItem = item.data
-        } else { mainItem = `${item.data.substring(0, length)}...` }
+        // if(item.length < length){
+        //     mainItem = item.data}
+        // } else { mainItem = `${item.data.substring(0, length)}...` }
         return(
         <View style={{backgroundColor:"transparent", width:width}}>
         <ListItem onPress={() => {this.props.navigation.navigate('SelectedProfile', {
@@ -99,7 +100,7 @@ export default class SelectBeautician extends Component {
                                                         selectDate: this.state.selectDate
                                                     })}}
         containerStyle={{backgroundColor:"transparent", width:"100%"}}
-          title={mainItem}
+          title={item.username}
           
           subtitle={<StarRating
             containerStyle={{width:100}}
@@ -114,9 +115,9 @@ export default class SelectBeautician extends Component {
           titleStyle = {{fontFamily:"MrEavesXLModNarOT-Reg"}}
           subtitleStyle={{color:"red",fontFamily:"MrEavesXLModNarOT-Reg"}}
           leftAvatar={{
-            source: item.icon &&  item.icon ,
+            source: item.profile_pic &&  {uri: `http://192.168.1.112/SoPlush/profile_pics/${item.profile_pic}`} ,
             titleStyle:{fontFamily:"MrEavesXLModNarOT-Reg"},
-            title: item.data[0],
+            // title: item.data[0],
             rounded:true,
             size:"medium",
             containerStyle:{borderRadius: 10, backgroundColor:"none"},

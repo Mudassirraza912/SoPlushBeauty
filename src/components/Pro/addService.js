@@ -29,7 +29,7 @@ export default class AddService extends Component {
         // console.log("email, password, address, name, phoneNo, profilePic", email, password)
 
 
-        fetch("http://192.168.1.103/SoPlush/category/category.php?action=select_category", {
+        fetch("http://192.168.1.112/SoPlush/category/category.php?action=select_category", {
             method: 'GET',
             // dataType: "json",
             // headers: {
@@ -68,38 +68,38 @@ export default class AddService extends Component {
     formData.append("cost", cost)
     formData.append("category_id", selectedCategory)
     formData.append("user_id", profileData.user_id)
-    this.props.navigation.navigate("ServiceList")
+    // this.props.navigation.navigate("ServiceList")
     // category.map((val) => {
     //     if (val.category_name === selectedCategory) {
     //         formData.append("category_id", val.category_id)
     //     }
 // })
-    // fetch("http://192.168.1.103/SoPlush/beautician/beautician_service.php?action=add_beautician_service", {
-    //     method: 'POST',
-    //     dataType: "json",
-    //     headers: {
-    //         'Accept' : 'application/json',
-    //         'Content-Type': 'multipart/form-data'
-    //     },
-    //     body: formData
-    // }).then(res => res.json())
-    // .then(resp =>{
-    //   console.log(JSON.stringify(resp))
-    //   var successData =  resp
+    fetch("http://192.168.1.112/SoPlush/beautician/beautician_service.php?action=add_beautician_service", {
+        method: 'POST',
+        dataType: "json",
+        headers: {
+            'Accept' : 'application/json',
+            'Content-Type': 'multipart/form-data'
+        },
+        body: formData
+    }).then(res => res.json())
+    .then(resp =>{
+      console.log(JSON.stringify(resp))
+      var successData =  resp
 
-    //   if(successData.status === true){
-    //       // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
-    //         // this.setState({
-    //         //     category: successData.data
-    //         // })
-    //         //   console.log("Category PRO", successData)
-    //     this.props.navigation.navigate("ServiceList")
+      if(successData.status === true){
+          // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
+            // this.setState({
+            //     category: successData.data
+            // })
+            //   console.log("Category PRO", successData)
+        this.props.navigation.navigate("ServiceList")
    
-    //   }else {
-    //     Alert.alert(successData.message)
-    //   }
-    // })
-    // .catch(err => console.log("Category err err",err));
+      }else {
+        Alert.alert(successData.message)
+      }
+    })
+    .catch(err => console.log("Category err err",err));
 
   }
 

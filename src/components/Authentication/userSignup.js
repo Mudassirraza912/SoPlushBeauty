@@ -87,88 +87,88 @@ export default class UserSignUp extends Component {
         const { email, password, name, phoneNo, address, profilePic, fileName, fileUri } = this.state
         // this.props.successSign()
         console.log("SIGN UP jksdajkfajkshjghj")
-        this.props.navigation.navigate("UserLogin")
+        // this.props.navigation.navigate("UserLogin")
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
 
-    // if(reg.test(email) === false ) {
+    if(reg.test(email) === false ) {
 
-    //   Alert.alert("Email is not correct")
-    // }else{
+      Alert.alert("Email is not correct")
+    }else{
 
-    //     var file = {
-    //         uri: fileUri,
-    //         name: fileName,
-    //         type: 'image/png'
-    //     }
+        var file = {
+            uri: fileUri,
+            name: fileName,
+            type: 'image/png'
+        }
 
-    //     const formData = new FormData();
-    //     formData.append("email", email),
-    //     formData.append("password", password),
-    //     formData.append("address", address),
-    //     formData.append("name", name),
-    //     formData.append("phone_number", phoneNo),
-    //     formData.append("file_upload", file),
+        const formData = new FormData();
+        formData.append("email", email),
+        formData.append("password", password),
+        formData.append("address", address),
+        formData.append("name", name),
+        formData.append("phone_number", phoneNo),
+        formData.append("file_upload", file),
 
-    //     console.log("email, password, address, name, phoneNo, profilePic", email, password, address, name, phoneNo, profilePic)
+        console.log("email, password, address, name, phoneNo, profilePic", email, password, address, name, phoneNo, profilePic)
 
-    //     // axios.post("http://192.168.1.103/SoPlush/auth/signup.php?action=signup_customer",{
-    //     //     email: email,
-    //     //     password: password,
-    //     //     address: address,
-    //     //     name: name,
-    //     //     phone_number : phoneNo,
-    //     //     file_upload : file
-    //     //   })
-    //     //     .then((response) => {
-    //     //      console.log("SIGN_UP_PROCESSED response",response)
-    //     //     //   dispatch({type: "SIGN_UP_PROCESSED", payload: response.data});
-    //     //     })
-    //     //     .catch((err) => {
-    //     //      console.log("SIGN_UP_ERROR response",err)
+        // axios.post("http://192.168.1.112/SoPlush/auth/signup.php?action=signup_customer",{
+        //     email: email,
+        //     password: password,
+        //     address: address,
+        //     name: name,
+        //     phone_number : phoneNo,
+        //     file_upload : file
+        //   })
+        //     .then((response) => {
+        //      console.log("SIGN_UP_PROCESSED response",response)
+        //     //   dispatch({type: "SIGN_UP_PROCESSED", payload: response.data});
+        //     })
+        //     .catch((err) => {
+        //      console.log("SIGN_UP_ERROR response",err)
 
-    //     //     //   dispatch({type: "ERROR", payload: 'An unexpected error occured!'});dispatch({type: "CLEAR_PROCESSING"});
-    //     //       // dispatch({type: "SIGN_UP_PROCESSED", payload: {error: 'An unexpected error occured!', status: 'error'}})
-    //     //     })
-    //     // }
+        //     //   dispatch({type: "ERROR", payload: 'An unexpected error occured!'});dispatch({type: "CLEAR_PROCESSING"});
+        //       // dispatch({type: "SIGN_UP_PROCESSED", payload: {error: 'An unexpected error occured!', status: 'error'}})
+        //     })
+        // }
 
-    // //     axios.post("https://hnh-crypto.herokuapp.com/api/activities/get-activity",{
-    // //   id: 1
-    // // })
-    // //   .then((response) => {
-    // //     console.log("SIGN_UP_PROCESSED response",response)
-    // //   })
-    // //   .catch((err) => {
-    // //     console.log("SIGN_UP_ERROR response",err)
-    // //     // dispatch({type: "ACTIVITIES_PROCESSED", payload: {error: 'An unexpected error occured!', status: 'error'}})
-    // //   })
+    //     axios.post("https://hnh-crypto.herokuapp.com/api/activities/get-activity",{
+    //   id: 1
+    // })
+    //   .then((response) => {
+    //     console.log("SIGN_UP_PROCESSED response",response)
+    //   })
+    //   .catch((err) => {
+    //     console.log("SIGN_UP_ERROR response",err)
+    //     // dispatch({type: "ACTIVITIES_PROCESSED", payload: {error: 'An unexpected error occured!', status: 'error'}})
+    //   })
     
 
 
-    //     fetch("http://192.168.1.103/SoPlush/auth/signup.php?action=signup_customer", {
-    //         method: 'POST',
-    //         // dataType: "json",
-    //         headers: {
-    //             'Accept' : 'application/json',
-    //             'Content-Type': 'multipart/form-data'
-    //         },
-    //         body: formData
-    //     }).then(res => res.json())
-    //     .then(resp =>{
-    //       console.log(JSON.stringify(resp))
-    //       var successData =  resp
+        fetch("http://192.168.1.112/SoPlush/auth/signup.php?action=signup_customer", {
+            method: 'POST',
+            // dataType: "json",
+            headers: {
+                'Accept' : 'application/json',
+                'Content-Type': 'multipart/form-data'
+            },
+            body: formData
+        }).then(res => res.json())
+        .then(resp =>{
+          console.log(JSON.stringify(resp))
+          var successData =  resp
   
-    //       if(successData.status) {
-    //           if(successData.status === true){
-    //         Alert.alert("Signup successful")
-    //         this.props.navigation.navigate("UserLogin")
-    //     }
-    //       }else {
-    //         Alert.alert(successData.message)
-    //       }
-    //       console.log("SUCCESS", successData, successData.status, successData.data)
-    //     })
-    //     .catch(err => console.log("err err err",err));
-    // }
+          if(successData.status) {
+              if(successData.status === true){
+            Alert.alert("Signup successful")
+            this.props.navigation.navigate("UserLogin")
+        }
+          }else {
+            Alert.alert(successData.message)
+          }
+          console.log("SUCCESS", successData, successData.status, successData.data)
+        })
+        .catch(err => console.log("err err err",err));
+    }
     }
 
     

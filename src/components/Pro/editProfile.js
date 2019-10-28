@@ -56,7 +56,7 @@ export default class EditProProfile extends Component {
                         <Card containerStyle={{backgroundColor:"#fff", borderRadius:10, width:"90%",}}> 
 
                         <View style={{justifyContent:"center", alignContent:"center", alignItems:"center"}}>
-                             <Avatar onEditPress={() => {console.log("CONSOLE LOG")}} containerStyle={{backgroundColor:"#fc8b8c",}} showEditButton  rounded size="xlarge" editButton={{name:"camera",type:"font-awesome", size:25, iconStyle:{marginTop:8} ,containerStyle:{backgroundColor:"#fc8b8c", borderRadius:50, height: 40, width:40}, color:"#fff", underlayColor:"#fc8b8c", reverseColor:"#fc8b8c", }}  source={{uri:`http://192.168.1.103/SoPlush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}} />
+                             <Avatar onEditPress={() => {console.log("CONSOLE LOG")}} containerStyle={{backgroundColor:"#fc8b8c",}} showEditButton  rounded size="xlarge" editButton={{name:"camera",type:"font-awesome", size:25, iconStyle:{marginTop:8} ,containerStyle:{backgroundColor:"#fc8b8c", borderRadius:50, height: 40, width:40}, color:"#fff", underlayColor:"#fc8b8c", reverseColor:"#fc8b8c", }}  source={{uri:`http://192.168.1.112/SoPlush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}} />
                         </View>
                             <Item floatingLabel>
                         <Icon active name='user' type="FontAwesome"  />
