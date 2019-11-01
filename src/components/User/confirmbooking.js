@@ -4,7 +4,7 @@ import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, Scrol
 import { Container, Content, List, ListItem, Left, Right, Button, } from 'native-base';
 import {Avatar, Header, Icon, Card, Divider} from 'react-native-elements'
 import NumericInput from 'react-native-numeric-input'
-
+import moment from 'moment'
 const {width, height} = Dimensions.get("window")
 
 export default class ConfirmBooking extends Component {
@@ -12,16 +12,18 @@ export default class ConfirmBooking extends Component {
         super(props);
         this.state = {
             profileData : this.props.navigation.getParam('beauticianData'),
-            selectedSlot: this.props.navigation.getParam('bookingTime'),
-            cart: this.props.navigation.getParam('cart')
-            
+            selectedSlot: this.props.navigation.getParam('selectedSlot'),
+            cart: this.props.navigation.getParam('cart'),
+            selectdate:  this.props.navigation.getParam('selectdate'),
+            costumerProfile: this.props.screenProps.profileData,
+            note: this.props.navigation.getParam('note'),
         }
     }
 
 
             workFunction = (item) => {
                 const {profileData, selectedSlot} = this.state
-                console.log("item",item)
+                // console.log("item",item)
                 
                 const index = selectedSlot.findIndex(x => x == item)
                     // console.log("index",index)
@@ -37,8 +39,8 @@ export default class ConfirmBooking extends Component {
 
 
             addQuantity = (index, qunat) => {
-                console.log(index, qunat)
                 const {cart} = this.state
+                // console.log(index, qunat, cart)
                 cart[index].quantity = qunat
                 this.setState({cart})
 
@@ -50,10 +52,88 @@ export default class ConfirmBooking extends Component {
         header: null,
     })
 
+
+    fetchconfirmBooking = () => {
+        // this.props.navigation.navigate('Payment')
+        console.log("FUNTION CALLED")
+        const {cart, selectedSlot, selectdate, profileData, note} = this.state
+        var params = JSON.stringify(cart)
+            const formData = new FormData()
+            var formmatedDate = moment(selectdate).format("YYYY-MM-DD")
+            formData.append('services', params)
+            formData.append('time_slot_id', selectedSlot.id )
+            formData.append('customer_id', this.props.screenProps.profileData.user_id)
+            formData.append('beauticain_id',profileData.user_id)
+            formData.append('note',"note")
+
+        console.log("formData formData", formData, formmatedDate)
+
+        
+        fetch("https://hnhtechsolutions.com/hassan/soplush/cart/cart.php?action=add_cart", {
+            method: 'POST',
+            // dataType: "json",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'multipart/form-data'
+                // 'Content-Type': 'application/json'
+
+            },
+            body: formData
+        }).then(res => res.json())
+        .then(resp =>{
+        //   console.log(JSON.stringify(resp))
+          var successData =  resp
+
+          if(successData.status === true){
+              // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
+              const bookingFormData = new FormData()
+                bookingFormData.append('cart_id', successData.cart_id.toString())
+                bookingFormData.append('customer_id',this.props.screenProps.profileData.user_id)
+                bookingFormData.append('address', 'karachi')
+                bookingFormData.append('service_date', formmatedDate)
+                console.log('bookingFormData', bookingFormData)
+
+                                fetch("https://hnhtechsolutions.com/hassan/soplush/booking/booking.php?action=add_booking", {
+                                method: 'POST',
+                                // dataType: "json",
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'multipart/form-data'
+                                    // 'Content-Type': 'application/json'
+
+                                },
+                                body: bookingFormData
+                            }).then(res => res.json())
+                            .then(resp =>{
+                            //   console.log(JSON.stringify(resp))
+                            var successData =  resp
+
+                            if(successData.status === true){
+                                // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
+                                console.log(" successData.data Add BOOKING", successData)
+                                this.props.navigation.navigate('UserHome')
+                        
+                            }else {
+                                console.log("Else", successData)
+                                Alert.alert(successData.message)
+                            }
+                            })
+                            .catch(err => console.log("err err Add BOOKING",err));
+             
+                 
+          
+          }else {
+            console.log("Else", successData)
+            Alert.alert(successData.message)
+          }
+        })
+        .catch(err => console.log("err err ADD CART",err));
+    }
+ 
     
     render() {
-        const {selectedSlot, cart} = this.state
-        console.log("Confirm", this.state.cart)
+        const {selectedSlot, cart, selectdate, profileData} = this.state
+        // console.log('profileData', profileData)
         return (
             <View style={{flex:1, height, width, marginTop: -80}}>
                 <ImageBackground source={require('../../../assets/opacity.jpg')} style={{height:"100%", width:"100%",opacity:0.9, marginTop: 20}}> 
@@ -62,7 +142,7 @@ export default class ConfirmBooking extends Component {
                 <Header
                         containerStyle={{marginTop:40, backgroundColor:"#fff"}}
                         placement="left"
-                        leftComponent={<Icon onPress={() => {this.props.navigation.navigate('Main')}} name="arrow-back" color="#000" />}
+                        leftComponent={<Icon onPress={() => {this.props.navigation.goBack()}} name="arrow-back" color="#000" />}
                         centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>CONFIRM BOOKING</Text>}
                         rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("Notification")}}>
                         <Image source={require('../../../assets/notification.png')} style={{height:20, width:20}} />
@@ -80,20 +160,25 @@ export default class ConfirmBooking extends Component {
                         <Card containerStyle={{backgroundColor:"#fff", borderRadius:10, width:"90%",}}> 
                             
                                 <View style={{display:"flex", flexDirection:"column", marginTop: 15}}> 
+                               
                                     <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, color: "gray"}}>Name</Text>
-                                    <Text style={{ fontFamily:"MrEavesXLModNarOT-Reg", fontSize:15}}>{this.state.profileData.name}</Text>
+                                    {this.state.profileData !== null ?
+                                    <Text style={{ fontFamily:"MrEavesXLModNarOT-Reg", fontSize:15}}>{this.state.profileData.username}</Text> 
+                                    : 
+                                    <Text style={{ fontFamily:"MrEavesXLModNarOT-Reg", fontSize:15}}>UnSelecteds</Text> 
+                                    }
                                     <Divider style={{ backgroundColor: 'lightgray' }} />
                                 </View>
 
                                 <View style={{display:"flex", flexDirection:"column", marginTop: 15}}> 
                                     <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, color: "gray"}}>Booking Time</Text>
-                                    <Text style={{ fontFamily:"MrEavesXLModNarOT-Reg", fontSize:15}}>{this.state.selectedSlot}</Text>
+                                    <Text style={{ fontFamily:"MrEavesXLModNarOT-Reg", fontSize:15}}>{this.state.selectedSlot.time}</Text>
                                     <Divider style={{ backgroundColor: 'lightgray' }} />
                                 </View>
 
                                 <View style={{display:"flex", flexDirection:"column", marginTop: 15}}> 
                                     <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, color: "gray"}}>Booking Day</Text>
-                                    <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize:15}}>{this.state.profileData.birthdate}</Text>
+                                    <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize:15}}>{this.state.selectdate}</Text>
                                     <Divider style={{ backgroundColor: 'lightgray' }} />
                                 </View>
 
@@ -113,6 +198,7 @@ export default class ConfirmBooking extends Component {
                                                         <View style={{width:"50%", alignSelf:"center", alignItems:"center"}}>
                                                         <NumericInput 
                                                         // value={this.state.value} 
+                                                        initValue={1}
                                                         containerStyle={{borderColor :"pink"}}
                                                         onChange={value => this.addQuantity(index, value)} 
                                                         onLimitReached={(isMax,msg) => console.log(isMax,msg)}
@@ -152,7 +238,7 @@ export default class ConfirmBooking extends Component {
 
 
                                         <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
-                                            <Button onPress={() => {this.props.navigation.navigate('Payment')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"100%", borderRadius: 10, opacity:0.7}}> 
+                                            <Button onPress={() => {this.fetchconfirmBooking()}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"100%", borderRadius: 10, opacity:0.7}}> 
                                             <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                                            Proceed to Payment
                                             </Text>   

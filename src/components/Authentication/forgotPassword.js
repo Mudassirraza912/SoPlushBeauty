@@ -99,7 +99,7 @@ export default class ForgotPassword extends Component {
           console.log("email, password", email, password)
   
   
-          fetch("http://192.168.1.112/SoPlush/auth/forgot_password.php?action=forget_password", {
+          fetch("https://hnhtechsolutions.com/hassan/soplush/auth/forgot_password.php?action=forget_password", {
               method: 'POST',
               // dataType: "json",
               headers: {
@@ -150,7 +150,7 @@ export default class ForgotPassword extends Component {
           console.log("email, code", email, code)
   
   
-          fetch("http://192.168.1.112/SoPlush/auth/forgot_password.php?action=check_code", {
+          fetch("https://hnhtechsolutions.com/hassan/soplush/auth/forgot_password.php?action=check_code", {
               method: 'POST',
               // dataType: "json",
               headers: {
@@ -202,7 +202,7 @@ export default class ForgotPassword extends Component {
           console.log("email, code, password", email, code, password)
   
   
-          fetch("http://192.168.1.112/SoPlush/auth/forgot_password.php?action=change_password", {
+          fetch("https://hnhtechsolutions.com/hassan/soplush/auth/forgot_password.php?action=change_password", {
               method: 'POST',
               // dataType: "json",
               headers: {

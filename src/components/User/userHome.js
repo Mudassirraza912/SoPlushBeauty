@@ -24,7 +24,10 @@ export default class UserHome extends Component {
             profileData: this.props.screenProps.profileData,
             plush: [],
             SoPlush: [],
-            items: []
+            items: [],
+            searchText:'',
+            categories: [],
+            data: []
         }
     }
 
@@ -46,7 +49,7 @@ export default class UserHome extends Component {
     }
 
     componentDidMount() {
-        const { profileData } = this.state
+        const { profileData, categories } = this.state
         console.log("user_id", profileData.user_id)
         const formData = new FormData();
         formData.append("id", profileData.user_id),
@@ -55,7 +58,7 @@ export default class UserHome extends Component {
             // console.log("email, password, address, name, phoneNo, profilePic", email, password)
 
 
-            fetch("http://192.168.1.112/SoPlush/category/category.php?action=select_category", {
+            fetch("https://hnhtechsolutions.com/hassan/soplush/category/category.php?action=select_category", {
                 method: 'GET',
                 // dataType: "json",
                 // headers: {
@@ -70,8 +73,13 @@ export default class UserHome extends Component {
 
                     if (successData.status === true) {
                         // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
+                        successData.data.map((value) => {
+                            categories.push(value.category_name)
+                        })
                         this.setState({
-                            items: successData.data
+                            items: successData.data,
+                            data: successData.data,
+                            categories,
                         })
                         //   console.log("Category PRO", successData)
                         // this.props.navigation.navigate("Main")
@@ -91,7 +99,7 @@ export default class UserHome extends Component {
         // this.props.navigation.navigate(this.state.navigate)
             // this.props.navigation.navigate(this.state.navigate, {
             //     category_id: item.category_id,
-            //     image: `http://192.168.1.112/SoPlush/images/${item.image}`,
+            //     image: `https://hnhtechsolutions.com/hassan/soplush/images/${item.image}`,
             //     service: successData.data
 
             // })
@@ -99,7 +107,7 @@ export default class UserHome extends Component {
         //   Alert.alert("Login successful")
         // this.props.navigation.navigate("Main")
 
-        fetch("http://192.168.1.112/SoPlush/service/service.php?action=select_service", {
+        fetch("https://hnhtechsolutions.com/hassan/soplush/service/service.php?action=select_service", {
             method: 'POST',
             // dataType: "json",
             headers: {
@@ -114,10 +122,10 @@ export default class UserHome extends Component {
 
           if(successData.status === true){
               // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
-              console.log(" successData.data PRO", successData.data, `http://192.168.1.112/SoPlush/images/${item.image}`)
+              console.log(" successData.data PRO", successData.data, `https://hnhtechsolutions.com/hassan/soplush/images/${item.image}`)
               this.props.navigation.navigate(this.state.navigate, {
                 category_id: item.category_id,
-                image: `http://192.168.1.112/SoPlush/images/${item.image}`,
+                image: `https://hnhtechsolutions.com/hassan/soplush/images/${item.image}`,
                 service: successData.data
 
               })
@@ -135,8 +143,29 @@ export default class UserHome extends Component {
 
     }
 
+
+    searchFilterFunction = text => {    
+        const {items} = this.state
+        if (text !== "") {
+            const newData = items.filter(item => {      
+                const itemData = `${item.category_name.toUpperCase()}`;
+                
+                 const textData = text.toUpperCase();
+                  
+                 return itemData.indexOf(textData) > -1;    
+              });
+              
+              this.setState({ data: newData });  
+        }else {
+            this.setState({data: items })
+        }
+        
+      };
+
+
+
     render() {
-        // console.log("this.state.items", this.state.items)
+        console.log("this.state.catrgotiies", this.state.categories)
         const { items } = this.state
         return (
             <View style={{ flex: 1, height, width, marginTop: -80 }}>
@@ -190,7 +219,7 @@ export default class UserHome extends Component {
                         }}
                             value={this.state.search}
                             placeholder="Search"
-                            onChangeText={this.updateSearch}
+                            onChangeText={(text) =>  this.searchFilterFunction(text)}
                         />
                         <Icon style={{
                             color: 'gray',
@@ -202,17 +231,16 @@ export default class UserHome extends Component {
 
                         <View style={{ flex: 1, width: Dimensions.get('window').width, height: "100%" }}>
                             <FlatList style={{ flex: 1}}
-                                data={this.state.items}
+                                data={this.state.data}
                                 renderItem={({ item }) => {
-                                    console.log("FlatList FlatList", `http://192.168.1.112/SoPlush/images/${item.image}`)
-                                    return (<View style={{ flexDirection: "column", margin: 2, height: 180, width: 180, borderRadius: 10, alignContent: "center", alignItems: "center", alignSelf: "center" }}>
+                                    console.log("FlatList FlatList", `https://hnhtechsolutions.com/hassan/soplush/images/${item.image}`)
+                                        return (<View style={{ flexDirection: "column", margin: 2, height: 180, width: 180, borderRadius: 10, alignContent: "center", alignItems: "center", alignSelf: "center" }}>
                                         <TouchableOpacity onPress={() => this.navigatingToOther(item)}>
-                                            <Image style={styles.imageThumbnail} source={{uri:`http://192.168.1.112/SoPlush/images/${item.image}`}} />
+                                            <Image style={styles.imageThumbnail} source={{uri:`https://hnhtechsolutions.com/hassan/soplush/images/${item.image}`}} />
                                         </TouchableOpacity>
                                         <Text style={{ fontSize: 18, color: "#000", opacity: 0.6, fontFamily: "MrEavesXLModNarOT-Reg" }}>{item.category_name}</Text>
                                     </View>
-                                    )
-                                }
+                                    )}
                                 }
                                 //Setting the number of column
                                 numColumns={2}

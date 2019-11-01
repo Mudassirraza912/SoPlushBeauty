@@ -23,7 +23,7 @@ class DrawerMenu extends Component {
 
 
   render() {
-        console.log(`http://192.168.1.112/SoPlush/profile_pics/${this.props.screenProps.profileData.profile_pic}`)
+        console.log(`https://hnhtechsolutions.com/hassan/soplush/profile_pics/${this.props.screenProps.profileData.profile_pic}`)
       return (
      
         <Container style={{flex: 1, justifyContent:"center", alignContent: "center"}}>
@@ -35,7 +35,7 @@ class DrawerMenu extends Component {
                         overlayContainerStyle={{backgroundColor:"#fff"}}
                         rounded
                         size="large"
-                        source={{uri:`http://192.168.1.112/SoPlush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}}
+                        source={{uri:`https://hnhtechsolutions.com/hassan/soplush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}}
                     />
   
                   </View> 
@@ -147,11 +147,11 @@ class DrawerMenu extends Component {
   
                       >
                       <View>
-                      <Image source={require('../../assets/history.png')} style={{height:30, width:30}} />
+                      <Image source={require('../../assets/bible.png')} style={{height:30, width:30}} />
                         </View>
   
                         <View style={{marginLeft:10}}>
-                        <Text style={styles.menuItemText}>Serving History</Text>
+                        <Text style={styles.menuItemText}>View Booking</Text>
                         </View>
   
   
@@ -216,11 +216,11 @@ class DrawerMenu extends Component {
   
                       >
                       <View>
-                      <Image source={require('../../assets/bible.png')} style={{height:30, width:30}} />
+                      <Image source={require('../../assets/history.png')} style={{height:30, width:30}} />
                         </View>
   
                         <View style={{marginLeft:10}}>
-                        <Text style={styles.menuItemText}>View Booking</Text>
+                        <Text style={styles.menuItemText}>Serving History</Text>
                         </View>
   
   

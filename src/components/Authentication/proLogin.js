@@ -13,8 +13,8 @@ export default class ProLogin extends Component {
         super(props)
         this.state = {
             shift: new Animated.Value(0),
-            email: "razamudassir912@gmail.com",
-            password: "123456"
+            email: "Haris@gmail.com",
+            password: "12345"
         }
     }
 
@@ -53,7 +53,7 @@ export default class ProLogin extends Component {
                 console.log("email, password, address, name, phoneNo, profilePic", email, password)
 
 
-            fetch("http://192.168.1.112/SoPlush/auth/login.php?action=signin", {
+            fetch("https://hnhtechsolutions.com/hassan/soplush/auth/login.php?action=signin", {
                 method: 'POST',
                 // dataType: "json",
                 headers: {

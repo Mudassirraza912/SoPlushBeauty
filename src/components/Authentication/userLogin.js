@@ -54,7 +54,7 @@ export default class UserLogin extends Component {
                 console.log("email, password, address, name, phoneNo, profilePic", email, password)
 
 
-            fetch("http://192.168.1.112/SoPlush/auth/login.php?action=signin", {
+            fetch("https://hnhtechsolutions.com/hassan/soplush/auth/login.php?action=signin", {
                 method: 'POST',
                 // dataType: "json",
                 headers: {
@@ -84,7 +84,6 @@ export default class UserLogin extends Component {
                     } else {
                         Alert.alert(successData.message)
                     }
-                    console.log("SUCCESS USER", successData, successData.status, successData.data)
                 })
                 .catch(err => console.log("err err err", err));
         }

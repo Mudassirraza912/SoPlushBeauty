@@ -101,7 +101,7 @@ export default class ProSignUp extends Component {
 
                 console.log("email, password, address, name, phoneNo, profilePic", email, password, address, name, phoneNo, profilePic)
 
-            // axios.post("http://192.168.1.112/SoPlush/auth/signup.php?action=signup_customer",{
+            // axios.post("https://hnhtechsolutions.com/hassan/soplush/auth/signup.php?action=signup_customer",{
             //     email: email,
             //     password: password,
             //     address: address,
@@ -124,7 +124,7 @@ export default class ProSignUp extends Component {
 
 
 
-            fetch("http://192.168.1.112/SoPlush/auth/signup.php?action=signup_beautician", {
+            fetch("https://hnhtechsolutions.com/hassan/soplush/auth/signup.php?action=signup_beautician", {
                 method: 'POST',
                 dataType: "json",
                 headers: {

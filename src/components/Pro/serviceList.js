@@ -51,7 +51,7 @@ export default class ServiceList extends Component {
         // console.log("email, password, address, name, phoneNo, profilePic", email, password)
 
 
-        fetch("http://192.168.1.112/SoPlush/beautician/beautician_service.php?action=select_service", {
+        fetch("https://hnhtechsolutions.com/hassan/soplush/beautician/beautician_service.php?action=select_service", {
             method: 'POST',
             // dataType: "json",
             headers: {

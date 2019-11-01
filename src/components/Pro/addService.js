@@ -29,7 +29,7 @@ export default class AddService extends Component {
         // console.log("email, password, address, name, phoneNo, profilePic", email, password)
 
 
-        fetch("http://192.168.1.112/SoPlush/category/category.php?action=select_category", {
+        fetch("https://hnhtechsolutions.com/hassan/soplush/category/category.php?action=select_category", {
             method: 'GET',
             // dataType: "json",
             // headers: {
@@ -74,7 +74,7 @@ export default class AddService extends Component {
     //         formData.append("category_id", val.category_id)
     //     }
 // })
-    fetch("http://192.168.1.112/SoPlush/beautician/beautician_service.php?action=add_beautician_service", {
+    fetch("https://hnhtechsolutions.com/hassan/soplush/beautician/beautician_service.php?action=add_beautician_service", {
         method: 'POST',
         dataType: "json",
         headers: {

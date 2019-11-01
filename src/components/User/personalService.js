@@ -8,6 +8,8 @@ import { Avatar, Header, Icon, Card } from 'react-native-elements'
 const { width, height } = Dimensions.get("window")
 var soplushData;
 var plushData;
+var filterplush;
+var filterSoplush;
 
 
 export default class PersonalService extends Component {
@@ -53,7 +55,8 @@ export default class PersonalService extends Component {
              amount:0,
              categoryId: this.props.navigation.getParam('category_id'),
              image: this.props.navigation.getParam('image'),
-             selectDate: this.props.navigation.getParam('selectdate')
+             selectDate: this.props.navigation.getParam('selectdate'),
+             faltu:true
         }
         // this.workFunction = this.workFunction.bind(this)
     }
@@ -86,43 +89,44 @@ export default class PersonalService extends Component {
     //     // console.log("email, password, address, name, phoneNo, profilePic", email, password)
 
 
-    //     fetch("http://192.168.1.112/SoPlush/service/service.php?action=select_service", {
-    //         method: 'POST',
-    //         // dataType: "json",
-    //         headers: {
-    //             'Accept' : 'application/json',
-    //             'Content-Type': 'multipart/form-data'
-    //         },
-    //         body: formData
-    //     }).then(res => res.json())
-    //     .then(resp =>{
-    //       console.log(JSON.stringify(resp))
-    //       var successData =  resp
+        // fetch("https://hnhtechsolutions.com/hassan/soplush/service/service.php?action=select_service", {
+        //     method: 'POST',
+        //     // dataType: "json",
+        //     headers: {
+        //         'Accept' : 'application/json',
+        //         'Content-Type': 'multipart/form-data'
+        //     },
+        //     body: formData
+        // }).then(res => res.json())
+        // .then(resp =>{
+        //   console.log(JSON.stringify(resp))
+        //   var successData =  resp
   
-    //       if(successData.status === true){
-    //           // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
-    //           if (successData.data.length >=1) {
-    //             this.setState({
-    //                 plushData: successData.data,
-    //                 soplushData: successData.data
+        //   if(successData.status === true){
+        //       // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
+        //       if (successData.data.length >=1) {
+        //         this.setState({
+        //             plushData: successData.data,
+        //             soplushData: successData.data
   
-    //             })
-    //           }
+        //         })
+        //       }
              
-    //               console.log("SUCCESS PRO", successData)
-    //             //   Alert.alert("Login successful")
-    //         // this.props.navigation.navigate("Main")
+        //           console.log("SUCCESS PRO", successData)
+        //         //   Alert.alert("Login successful")
+        //     // this.props.navigation.navigate("Main")
        
-    //       }else {
-    //         Alert.alert(successData.message)
-    //       }
-    //     })
-    //     .catch(err => console.log("err err err",err));
+        //   }else {
+        //     Alert.alert(successData.message)
+        //   }
+        // })
+        // .catch(err => console.log("err err err",err));
     // }
 
 
     workFunction(val, type, ind) {
         let { plush, cart, amount} =  this.state
+        console.log("val val", val)
 
         amount = 0
 
@@ -131,11 +135,13 @@ export default class PersonalService extends Component {
                 if(val.p_checked != 0) {
                     // console.log("trueWala",type, val.p_checked, ind)
                     plushData[ind].p_checked = false
+                    filterplush = plushData
                     cart = []
 
                     plushData.map((val) => {
                       if(val.p_checked == 1 || val.p_checked == true ){
                           console.log("trueWala LOOP")
+                          val.quantity = 1
                         cart.push(val)
                       }
                     })
@@ -143,6 +149,7 @@ export default class PersonalService extends Component {
                     soplushData.map((val) => {
                         if(val.s_checked == 1 || val.s_checked == true ){
                         console.log("LOOP",val.p_checked)
+                        val.quantity = 1
                         cart.push(val)
                       }
                     })
@@ -154,12 +161,14 @@ export default class PersonalService extends Component {
                 }else {
                     // console.log("FalseWala",type, val.checked, ind)
                     plushData[ind].p_checked = true
+                    filterplush = plushData
                     // console.log("OOOOOOOOOO",val)
                     cart = []
 
                     plushData.map((val) => {
                         if(val.p_checked == 1 || val.p_checked == true ){
                         console.log("LOOP",val.p_checked)
+                        val.quantity = 1
                         cart.push(val)
                       }
                     })
@@ -167,6 +176,7 @@ export default class PersonalService extends Component {
                     soplushData.map((val) => {
                         if(val.s_checked == 1 || val.s_checked == true ){
                         console.log("LOOP",val.p_checked)
+                        val.quantity = 1
                         cart.push(val)
                       }
                     })
@@ -200,16 +210,19 @@ export default class PersonalService extends Component {
             if(val.s_checked != 0) {
                 console.log("trueWala",type, val.checked, ind)
                 soplushData[ind].s_checked = false
+                filterSoplush = soplushData
                 cart = []
 
                 plushData.map((val) => {
                     if(val.p_checked == 1 || val.p_checked == true ){
                     console.log("LOOP",val.p_checked)
+                    val.quantity = 1
                     cart.push(val)
                   }
                 })
                 soplushData.map((val) => {
                     if(val.s_checked == 1 || val.s_checked == true ){
+                        val.quantity = 1
                       cart.push(val)
                     }
                   })
@@ -221,19 +234,22 @@ export default class PersonalService extends Component {
             }else {
                 console.log("FalseWala",type, val.checked, ind)
                 soplushData[ind].s_checked = true
+                filterSoplush = soplushData
                 // console.log("!!!!!!!!!!!",val)
                 cart = []
 
                 plushData.map((val) => {
                     if(val.p_checked == 1 || val.p_checked == true ){
                     console.log("LOOP",val.p_checked)
+                    val.quantity = 1
                     cart.push(val)
                   }
                 })
 
                 soplushData.map((val) => {
                     if(val.s_checked == 1 || val.s_checked == true ){
-                      cart.push(val)
+                        val.quantity = 1
+                        cart.push(val)
                     }
                   })
 
@@ -276,7 +292,7 @@ export default class PersonalService extends Component {
 
       formData.append("search",params);
 
-        fetch("http://192.168.1.112/SoPlush/customer/search_beautcian.php?action=search_beautician", {
+        fetch("https://hnhtechsolutions.com/hassan/soplush/customer/search_beautcian.php?action=search_beautician", {
             method: 'POST',
             // dataType: "json",
             headers: {
@@ -312,11 +328,49 @@ export default class PersonalService extends Component {
     }
 
 
+    searchFilterFunction = text => {    
+        const {faltu} = this.state
+        if (text !== "") {
+            const newData = plushData.filter(item => {      
+                const itemData = `${item.service_name.toUpperCase()}`;
+                
+                 const textData = text.toUpperCase();
+                  
+                 return itemData.indexOf(textData) > -1;    
+              });
+
+              const neSoplush = soplushData.filter(item => {      
+                const itemData = `${item.service_name.toUpperCase()}`;
+                
+                 const textData = text.toUpperCase();
+                  
+                 return itemData.indexOf(textData) > -1;    
+              });
+              
+             filterplush = newData
+             filterSoplush = neSoplush
+             this.setState({faltu: !faltu})
+             console.log("filterSoplush", filterSoplush)
+        }else {
+            filterplush = plushData
+             filterSoplush = soplushData
+             this.setState({faltu: !faltu})
+
+        }
+        
+      };
+
+
     render() {
         // console.log("WORK",this.state.cart, this.state.selectDate)
         var img =  this.props.navigation.getParam('image')
         soplushData = this.props.navigation.getParam('service')
         plushData = this.props.navigation.getParam('service')
+        if (filterSoplush == null) {
+            filterSoplush = this.props.navigation.getParam('service')
+        filterplush= this.props.navigation.getParam('service')
+        }
+        
         console.log("CART",this.state.cart, this.state.amount)
 
         // if(this.state.plushData.length < 1) {
@@ -332,7 +386,7 @@ export default class PersonalService extends Component {
                     <Header
                         containerStyle={{ marginTop: 60, backgroundColor: "#fff" }}
                         placement="left"
-                        leftComponent={<Icon onPress={() => { this.props.navigation.navigate('UserHome'), this.setState({categoryId:"", image:""}) }} name="arrow-back" color="#000" />}
+                        leftComponent={<Icon onPress={() => { this.props.navigation.goBack(), this.setState({categoryId:"", image:""}) }} name="arrow-back" color="#000" />}
                         centerComponent={<Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>PERSONAL SERVICE</Text>}
                         rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("Notification")}}>
                         <Image source={require('../../../assets/notification.png')} style={{height:20, width:20}} />
@@ -381,7 +435,7 @@ export default class PersonalService extends Component {
                         }}
                             value={this.state.search}
                             placeholder="Search"
-                            onChangeText={this.updateSearch}
+                           onChangeText={(text) =>  this.searchFilterFunction(text)}
                         />
                         <Icon style={{
                             color: 'gray',
@@ -438,7 +492,7 @@ export default class PersonalService extends Component {
                                         {this.state.plush  ?  <View>
                                              {soplushData !== undefined  ?
                                                 <View>
-                                            {plushData.map((value, index) => {
+                                            {filterplush.map((value, index) => {
                                                 if(value.p_checked === 0) {
                                                     var checked  = false
                                                 }
@@ -466,7 +520,10 @@ export default class PersonalService extends Component {
 
                                             </View> :
 
-                                            <View style={{flex: 1, height:300}}>
+                                            <View style={{flex: 1, height:300, alignContent:"center", justifyContent:"center"}}>
+                                                    <View style={{ alignItems:"center", justifyContent:"center", alignSelf:"center"}}>
+                                                        <Text style={{alignSelf:"center"}}>No Services Found</Text>
+                                              </View>
 
                                             </View>
 
@@ -478,7 +535,7 @@ export default class PersonalService extends Component {
                                            <View>
                                                 {plushData !== undefined ?
                                                 <View>
-                                           {soplushData.map((value, index) => {
+                                           {filterSoplush.map((value, index) => {
                                                return(
                                                <List>
                                                <ListItem key={index} onPress={() => this.workFunction1(value,"soplush", index)}   avatar>
@@ -503,7 +560,10 @@ export default class PersonalService extends Component {
                                            </View> : 
                                         
                                         
-                                        <View style={{flex: 1, height:300}}>
+                                        <View style={{flex: 1, height:300 , alignItems:"center", justifyContent:"center"}}>
+                                                <View style={{ alignItems:"center", justifyContent:"center", alignSelf:"center"}}>
+                                                        <Text style={{alignSelf:"center"}}>No Services Found</Text>
+                                              </View>
 
                                             </View>
 }
