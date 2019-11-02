@@ -27,7 +27,10 @@ export default class UserHome extends Component {
             items: [],
             searchText:'',
             categories: [],
-            data: []
+            data: [],
+            focusOn: false,
+            offFocus: true,
+            text:''
         }
     }
 
@@ -41,6 +44,7 @@ export default class UserHome extends Component {
         headerMode: 'none',
         headerVisible: false,
         header: null,
+        
     })
 
 
@@ -159,6 +163,7 @@ export default class UserHome extends Component {
         }else {
             this.setState({data: items })
         }
+        this.setState({text: text})
         
       };
 
@@ -174,10 +179,63 @@ export default class UserHome extends Component {
                     containerStyle={{ marginTop: 60, backgroundColor: "rgb(255,239,241)" }}
                     placement="left"
                     leftComponent={<Icon onPress={() => { this.props.navigation.toggleDrawer() }} name="menu" color="#000" />}
-                    centerComponent={<Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>HOME</Text>}
-                    rightComponent={<TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
-                        <Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />
+                    centerComponent={
+                        <View style={{alignContent:"center", alignItems:"center", alignSelf:"center"}}>
+                  {!this.state.focusOn  ? <Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>HOME</Text> 
+                  :
+
+                  <View style={{
+                    backgroundColor: "transparent",
+                    borderColor: 'gray',
+                    borderWidth: 1,
+                    borderColor: 'gray',
+                    borderRadius: 10,
+                    height: 50,
+                    marginTop: 10,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    alignSelf: 'center',
+                    width: '93%',
+                    paddingHorizontal: 16,
+                    paddingVertical: 10,
+                    marginBottom: 10,
+
+                }}>
+                    <TextInput style={{
+                        height: 45,
+                        flex: 1,
+                    }}
+                        value={this.state.text}
+                        placeholder="Search"
+                        onChangeText={(text) =>  this.searchFilterFunction(text)}
+                        onBlur = {() => {this.setState({focusOn: false})} }
+                        autoFocus = {true}
+                        ref={x => this.input = x}
+                    />
+                    <Icon style={{
+                        color: 'gray',
+                        justifyContent: 'flex-end'
+                    }} type="EvilIcons" name="search" size={24} />
+                </View>
+
+                }
+                    </View>
+                }
+                    rightComponent={
+                    <View style={{flexDirection:"row"}}>
+                   {!this.state.focusOn && <TouchableOpacity style={{right: 20}} onPress={() => {this.setState({focusOn: true})
+                //  this.input.focus()
+                    }}>
+                        <Icon style={{
+                        color: 'gray',
+                        justifyContent: 'flex-end'
+                    }} type="EvilIcons" name="search" size={24} />
                     </TouchableOpacity>}
+                    
+                    <TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
+                        <Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />
+                    </TouchableOpacity>
+                    </View>}
                 />
 
 
@@ -196,7 +254,7 @@ export default class UserHome extends Component {
                         </View>
 
 
-                        <View style={{
+                        {/* <View style={{
                         backgroundColor: "transparent",
                         borderColor: 'gray',
                         borderWidth: 1,
@@ -225,7 +283,7 @@ export default class UserHome extends Component {
                             color: 'gray',
                             justifyContent: 'flex-end'
                         }} type="EvilIcons" name="search" size={24} />
-                    </View>
+                    </View> */}
 
 
 

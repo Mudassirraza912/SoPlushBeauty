@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert, Picker } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
-import { Container, Content, List, ListItem, Left, Right, Button } from 'native-base';
+import { Container, Content, List, ListItem, Left, Right, Button, Item, Input, } from 'native-base';
 import {Avatar, Header, Icon} from 'react-native-elements'
 
 
@@ -30,7 +30,13 @@ export default class ServiceList extends Component {
             // },
             // ],
             profileData : this.props.screenProps.profileData,
-            services: []
+            services: [],
+            edit: false,
+            category: [],
+            service: '',
+            cost:'',
+            select_category:'',
+            index: ''
         }
     }
 
@@ -39,6 +45,33 @@ export default class ServiceList extends Component {
         this.setState({
             profileData: this.props.screenProps.profileData
         })
+
+        fetch("https://hnhtechsolutions.com/hassan/soplush/category/category.php?action=select_category", {
+            method: 'GET',
+            // dataType: "json",
+            // headers: {
+            //     'Accept' : 'application/json',
+            //     'Content-Type': 'multipart/form-data'
+            // },
+            // body: ""
+        }).then(res => res.json())
+        .then(resp =>{
+          console.log(JSON.stringify(resp))
+          var successData =  resp
+  
+          if(successData.status === true){
+              // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
+                this.setState({
+                    category: successData.data
+                })
+                //   console.log("Category PRO", successData)
+            // this.props.navigation.navigate("Main")
+       
+          }else {
+            Alert.alert(successData.message)
+          }
+        })
+        .catch(err => console.log("Category err err",err));
     }
 
     componentDidMount() {
@@ -65,7 +98,7 @@ export default class ServiceList extends Component {
           var successData =  resp
   
           if(successData.status === true){
-              // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
+              console.log("successData.data[0].role_id === 3", successData.data)
               this.setState({
                   services: successData.data
               })
@@ -123,6 +156,52 @@ export default class ServiceList extends Component {
     //   });
 
 
+    deleteService = (value, index) => {
+        const { services} = this.state
+        const formData = new FormData()
+        formData.append('id', value.service_id)
+
+        Alert.alert(
+            'Services',
+            'Are you sure you want to to delete this service?',
+            [
+                {
+                text: 'No',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+                },
+                {text: 'Yes', onPress: () => {
+                    
+                    fetch("https://hnhtechsolutions.com/hassan/soplush/beautician/beautician_service.php?action=delete_service", {
+                        method: 'POST',
+                        dataType: "json",
+                        headers: {
+                            'Accept' : 'application/json',
+                            'Content-Type': 'multipart/form-data'
+                        },
+                        body: formData
+                    }).then(res => res.json())
+                    .then(resp =>{
+                      console.log(JSON.stringify(resp))
+                      var successData =  resp
+                
+                      if(successData.status === true){
+                                             
+                        services.splice(index, 1)
+                        this.setState({services})
+                        Alert.alert(successData.message)
+                      }else {
+                        Alert.alert(successData.message)
+                      }
+                    })
+                    .catch(err => console.log("Category err err",err));
+                }},
+            ],
+            {cancelable: false},
+            )
+    } 
+
+
 
     static navigationOptions = () => ({
         headerMode: 'none',
@@ -132,6 +211,7 @@ export default class ServiceList extends Component {
 
     
     render() {
+        console.log(this.state.services)
         return (
             <View style={{flex:1, height, width, marginTop: -80}}>
                 <ImageBackground source={require('../../../assets/opacity.jpg')} style={{height:"100%", width:"100%",opacity:0.9}}> 
@@ -150,7 +230,7 @@ export default class ServiceList extends Component {
 
                 <ScrollView style={{height: height}}>
 
-                <View style={{backgroundColor:"#fff", width:"80%",justifyContent:"center", alignContent:"center", alignSelf:"center",borderRadius:10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', marginTop: "10%", paddingBottom:10}}>
+              {!this.state.edit ? <View style={{backgroundColor:"#fff", width:"80%",justifyContent:"center", alignContent:"center", alignSelf:"center",borderRadius:10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', marginTop: "10%", paddingBottom:10}}>
                    
 
                 <View>
@@ -161,7 +241,29 @@ export default class ServiceList extends Component {
                             <Left>
                                 <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.service_name}</Text>
                             </Left>
-                            <Right>
+                            <Right style={{flexDirection:'row'}}>
+                            
+                            <TouchableOpacity onPress = {() => {
+                                this.setState({
+                                    service: value.service_name,
+                                    cost: value.service_cost,
+                                    select_category: value.category_id,
+                                    index: index,
+                                    edit: true
+                                })
+                            }}>
+                            <Icon style={{
+                            color: '#fc8b8c',
+                            justifyContent: 'flex-end'
+                             }} color='#fc8b8c' type="EvilIcons" name="edit" size={20} />
+                            </TouchableOpacity>
+
+                            <TouchableOpacity onPress = {() => this.deleteService(value, index)}>
+                             <Icon style={{
+                            color: '#fc8b8c',
+                            justifyContent: 'flex-end'
+                             }}  color='#fc8b8c' type="EvilIcons" name="delete" size={20} />
+                            </TouchableOpacity>
                             <Text style={{color:"#fc8b8c", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>${value.service_cost}</Text>
                             </Right>
                             </ListItem>
@@ -182,7 +284,53 @@ export default class ServiceList extends Component {
                      </Button>
                 </View>
 
-                </View>
+                </View> 
+                
+            :            
+               
+            <View style={{backgroundColor:"#fff", width:"80%",justifyContent:"center", alignContent:"center", alignSelf:"center",borderRadius:10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', marginTop: "10%", paddingBottom:10}}>
+            <Item floatingLabel style={{ alignSelf: 'center', alignItems: 'center', alignContent: 'center' }}>
+                {/* <Icon active name='user' type="FontAwesome" /> */}
+                {/* <Label>Name</Label> */}
+                <Input defaultValue={this.state.service} onChangeText={(e) => { this.setState({ name: e }) }} placeholder="Enter Service" />
+            </Item>
+            <Item floatingLabel>
+                {/* <Icon active name='home' type="FontAwesome" /> */}
+                {/* <Label>Address</Label> */}
+                <Input defaultValue={this.state.cost} keyboardType="number-pad" onChangeText={(e) => { this.setState({ cost: e }) }} placeholder="Enter Cost" />
+            </Item>
+            <View>
+            <Picker
+                    selectedValue={this.state.select_category}
+                    style={{height: 50, width: 280}}
+                    onValueChange={(itemValue, itemIndex) =>
+                        this.setState({select_category: itemValue})
+                    }>
+                        {/* <Picker.Item label="jksfdgsdfh" value="{value.category_name}"/> */}
+                        {this.state.category.map((value, index) => {
+                            console.log("value.category_name", value.category_name)
+                            return(<Picker.Item label={value.category_name} value={value.category_id}/>)
+                        })}
+            </Picker>
+            </View>
+
+            <View style={{alignContent:"center", alignItems:'center'}}>
+
+                    <Button onPress={this.addCategory} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"80%", borderRadius: 10, opacity:0.7, marginTop:"5%"}}> 
+                    <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
+                    Ok
+                    </Text>   
+                    </Button>
+
+                    <Button onPress={() => { this.setState({edit:false})}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"80%", borderRadius: 10, opacity:0.7, marginTop:"5%"}}> 
+                    <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
+                    Cancel
+                    </Text>   
+                    </Button>
+            </View>
+
+        </View>         
+                           }
 
 
 

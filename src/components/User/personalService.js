@@ -56,7 +56,10 @@ export default class PersonalService extends Component {
              categoryId: this.props.navigation.getParam('category_id'),
              image: this.props.navigation.getParam('image'),
              selectDate: this.props.navigation.getParam('selectdate'),
-             faltu:true
+             faltu:true,
+             focusOn: false,
+            offFocus: true,
+            text:''
         }
         // this.workFunction = this.workFunction.bind(this)
     }
@@ -357,6 +360,7 @@ export default class PersonalService extends Component {
              this.setState({faltu: !faltu})
 
         }
+        this.setState({text: text})
         
       };
 
@@ -387,12 +391,65 @@ export default class PersonalService extends Component {
                         containerStyle={{ marginTop: 60, backgroundColor: "#fff" }}
                         placement="left"
                         leftComponent={<Icon onPress={() => { this.props.navigation.goBack(), this.setState({categoryId:"", image:""}) }} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>PERSONAL SERVICE</Text>}
-                        rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("Notification")}}>
-                        <Image source={require('../../../assets/notification.png')} style={{height:20, width:20}} />
-                    </TouchableOpacity>}
-
+                        centerComponent={
+                            <View style={{alignContent:"center", alignItems:"center", alignSelf:"center"}}>
+                      {!this.state.focusOn  ? <Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>HOME</Text> 
+                      :
+    
+                      <View style={{
+                        backgroundColor: "transparent",
+                        borderColor: 'gray',
+                        borderWidth: 1,
+                        borderColor: 'gray',
+                        borderRadius: 10,
+                        height: 50,
+                        marginTop: 10,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        alignSelf: 'center',
+                        width: '93%',
+                        paddingHorizontal: 16,
+                        paddingVertical: 10,
+                        marginBottom: 10,
+    
+                    }}>
+                        <TextInput style={{
+                            height: 45,
+                            flex: 1,
+                        }}
+                            value={this.state.text}
+                            placeholder="Search"
+                            onChangeText={(text) =>  this.searchFilterFunction(text)}
+                            onBlur = {() => {this.setState({focusOn: false})} }
+                            autoFocus = {true}
+                            ref={x => this.input = x}
+                        />
+                        <Icon style={{
+                            color: 'gray',
+                            justifyContent: 'flex-end'
+                        }} type="EvilIcons" name="search" size={24} />
+                    </View>
+    
+                    }
+                        </View>
+                    }
+                    rightComponent={
+                        <View style={{flexDirection:"row"}}>
+                       {!this.state.focusOn && <TouchableOpacity style={{right: 20}} onPress={() => {this.setState({focusOn: true})
+                    //  this.input.focus()
+                        }}>
+                            <Icon style={{
+                            color: 'gray',
+                            justifyContent: 'flex-end'
+                        }} type="EvilIcons" name="search" size={24} />
+                        </TouchableOpacity>}
+                        
+                        <TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
+                            <Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />
+                        </TouchableOpacity>
+                        </View>}
                     />
+    
 
 
 
@@ -412,7 +469,7 @@ export default class PersonalService extends Component {
                                         <Image source={{uri:img}} style={{ height: 200, width: "100%", }} />
                                     </View>
 
-                                    <View style={{
+                                    {/* <View style={{
                         backgroundColor: "transparent",
                         borderColor: 'gray',
                         borderWidth: 1,
@@ -442,7 +499,7 @@ export default class PersonalService extends Component {
                             justifyContent: 'flex-end'
                         }} type="EvilIcons" name="search" size={24} />
                     </View>
-
+ */}
 
 
                                     {this.state.plush ?

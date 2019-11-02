@@ -210,14 +210,14 @@ export default class SelectedProfile extends Component {
 
                                     <View style={{ display: "flex", flexDirection: "column", marginTop: 15 }}>
                                         <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>About</Text>
-                                        <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 15 }}>{this.state.profileData.abour}</Text>
+                                        <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 15 }}>{this.state.profileData.about}</Text>
                                         <Divider style={{ backgroundColor: 'lightgray' }} />
                                     </View>
 
 
                                     <View style={{ display: "flex", flexDirection: "column", marginTop: 15 }}>
                                         <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Expertize</Text>
-                                        <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 15 }}>{this.state.profileData.expertize}</Text>
+                                        <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 15 }}>{this.state.profileData.expertise}</Text>
                                         <Divider style={{ backgroundColor: 'lightgray' }} />
                                     </View>
 

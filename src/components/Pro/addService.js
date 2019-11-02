@@ -155,7 +155,7 @@ export default class AddService extends Component {
                                     <View>
                                     <Picker
                                             selectedValue={this.state.selectedCategory}
-                                            style={{height: 50, width: 100}}
+                                            style={{height: 50, width: 280}}
                                             onValueChange={(itemValue, itemIndex) =>
                                                 this.setState({selectedCategory: itemValue})
                                             }>
