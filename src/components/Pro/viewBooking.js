@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert, RefreshControl } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert, RefreshControl,TextInput } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button } from 'native-base';
 import {Avatar, Header, Icon, Card} from 'react-native-elements'
@@ -101,7 +101,11 @@ export default class ViewBooking extends Component {
                
             // ]
             services: [],
-            refreshing: false
+            refreshing: false,
+            data: [],
+            focusOn: false,
+            offFocus: true,
+            text:''
         }
     }
 
@@ -120,7 +124,9 @@ export default class ViewBooking extends Component {
                             console.log("successData.data[0].role_id === 3", successData.data)
                             //   console.log("Category PRO", successData)
                    this.setState({
-                       services:successData.data
+                       services:successData.data,
+                       data:successData.data
+
                    })
                         
 
@@ -189,12 +195,16 @@ export default class ViewBooking extends Component {
                     //   console.log("Category PRO", successData)
            this.setState({
                services:successData.data,
+               data:successData.data,
                refreshing: false
            })
                 
 
                 } else {
                     Alert.alert(successData.message)
+                    this.setState({
+                        refreshing: false
+                    })
                 }
             })
             .catch(err => console.log("Category err err", err));
@@ -208,6 +218,28 @@ export default class ViewBooking extends Component {
         header: null,
     })
 
+
+    searchFilterFunction = text => {    
+        const {services} = this.state
+        if (text !== "") {
+            const newData = services.filter(item => {      
+                const itemData = `${item.services[0].service_name.toUpperCase()}`;
+                
+                 const textData = text.toUpperCase();
+                  
+                 return itemData.indexOf(textData) > -1;    
+              });
+              
+              this.setState({ data: newData });  
+        }else {
+            this.setState({data: services })
+        }
+        this.setState({text: text})
+        
+      };
+
+
+
     
     render() {
         return (
@@ -218,10 +250,63 @@ export default class ViewBooking extends Component {
                         containerStyle={{marginTop:60, backgroundColor:"#fff"}}
                         placement="left"
                         leftComponent={<Icon onPress={() => {this.props.navigation.navigate('Main')}} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>BOOKING HISTORY</Text>}
-                        rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("Notification")}}>
-                            <Image source={require('../../../assets/notification.png')} style={{height:20, width:20}} />
+                        centerComponent={
+                            <View style={{alignContent:"center", alignItems:"center", alignSelf:"center"}}>
+                      {!this.state.focusOn  ? <Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>BOOKING HISTORY</Text> 
+                      :
+    
+                      <View style={{
+                        backgroundColor: "transparent",
+                        borderColor: 'gray',
+                        borderWidth: 1,
+                        borderColor: 'gray',
+                        borderRadius: 10,
+                        height: 50,
+                        marginTop: 10,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        alignSelf: 'center',
+                        width: '93%',
+                        paddingHorizontal: 16,
+                        paddingVertical: 10,
+                        marginBottom: 10,
+    
+                    }}>
+                        <TextInput style={{
+                            height: 45,
+                            flex: 1,
+                        }}
+                            value={this.state.text}
+                            placeholder="Search"
+                            onChangeText={(text) =>  this.searchFilterFunction(text)}
+                            onBlur = {() => {this.setState({focusOn: false})} }
+                            autoFocus = {true}
+                            ref={x => this.input = x}
+                        />
+                        <Icon style={{
+                            color: 'gray',
+                            justifyContent: 'flex-end'
+                        }} type="EvilIcons" name="search" size={24} />
+                    </View>
+    
+                    }
+                        </View>
+                    }
+                    rightComponent={
+                        <View style={{flexDirection:"row"}}>
+                       {!this.state.focusOn && <TouchableOpacity style={{right: 20}} onPress={() => {this.setState({focusOn: true})
+                    //  this.input.focus()
+                        }}>
+                            <Icon style={{
+                            color: 'gray',
+                            justifyContent: 'flex-end'
+                        }} type="EvilIcons" name="search" size={24} />
                         </TouchableOpacity>}
+                        
+                        {/* <TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
+                            <Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />
+                        </TouchableOpacity> */}
+                        </View>}
                         />
 
 
@@ -234,8 +319,8 @@ export default class ViewBooking extends Component {
                    
                    <View style={{justifyContent:"center", alignContent:"center", alignItems:"center", marginTop:20}}>
 
-                <View style={{backgroundColor:"#fff",borderRadius:10, width:"90%"}}>
-                    {this.state.services.map((value, index) => {
+              {this.state.data.length > 0 ?  <View style={{backgroundColor:"#fff",borderRadius:10, width:"90%"}}>
+                    {this.state.data.map((value, index) => {
                         return(
                         <Card containerStyle={{backgroundColor:"transparent", borderColor:"#fff", borderWidth:3, borderRadius:10}}> 
                                 <View style={{display:"flex", flexDirection:"row"}}> 
@@ -284,7 +369,17 @@ export default class ViewBooking extends Component {
                         )
                     })}
                          
-              </View>
+              </View>  :
+            
+
+            <View style={{alignContent:"center",alignItems:'center', alignSelf:'center', justifyContent:'center', height:100}}>
+            <Text>
+                    Empty History
+            </Text>
+        </View>
+            
+            
+            }
          </View>
                                         
                   {/* <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>

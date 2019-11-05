@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert, TextInput } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button } from 'native-base';
 import { Avatar, Header, Icon, Card } from 'react-native-elements'
@@ -107,7 +107,11 @@ export default class BookingReq extends Component {
             rejectVisible: false,
             thankVisible: false,
             profileData: this.props.screenProps.profileData,
-            services: []
+            services: [],
+            data: [],
+            focusOn: false,
+            offFocus: true,
+            text:''
         }
     }
 
@@ -129,7 +133,7 @@ export default class BookingReq extends Component {
 
                 if (successData.status === true) {
                     console.log("successData.data[0].role_id === 3", successData.data)
-                    this.setState({ services: successData.data })
+                    this.setState({ services: successData.data, data: successData.data, })
                     //   console.log("Category PRO", successData)
                     // this.props.navigation.navigate("Main")
 
@@ -143,7 +147,7 @@ export default class BookingReq extends Component {
 
 
     changeStatus = (value, detail, index) => {
-        const { profileData, services } = this.state
+        const { profileData, services, data } = this.state
         console.log('changeStatus', value, detail, profileData.user_id)
         const formData = new FormData()
         formData.append('booking_id', detail.booking_id)
@@ -193,7 +197,9 @@ export default class BookingReq extends Component {
                                                         // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
                                                         console.log(" successData.data CHANGE STATUS", successData.data)
                                                         this.state.services.splice(index, 1)
-                                                        this.setState({ services })
+                                                        this.state.data.splice(index, 1)
+
+                                                        this.setState({ services, data })
                                                         fetch(`https://hnhtechsolutions.com/hassan/soplush/beautician/beautician_booking.php?action=get_beautician_bookings&beautician_id=${profileData.user_id}&status=accepted`, {
 
                                                         }).then(res => res.json())
@@ -275,7 +281,9 @@ export default class BookingReq extends Component {
                                         // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
                                         console.log(" successData.data CHANGE STATUS", successData.data)
                                         this.state.services.splice(index, 1)
-                                        this.setState({ services })
+                                        this.state.data.splice(index, 1)
+
+                                        this.setState({ services, data })
                                         
                                         fetch(`https://hnhtechsolutions.com/hassan/soplush/beautician/beautician_booking.php?action=get_beautician_bookings&beautician_id=${profileData.user_id}&status=accepted`, {
 
@@ -339,6 +347,24 @@ export default class BookingReq extends Component {
     }
 
 
+    searchFilterFunction = text => {    
+        const {services} = this.state
+        if (text !== "") {
+            const newData = services.filter(item => {      
+                const itemData = `${item.services[0].service_name.toUpperCase()}`;
+                
+                 const textData = text.toUpperCase();
+                  
+                 return itemData.indexOf(textData) > -1;    
+              });
+              
+              this.setState({ data: newData });  
+        }else {
+            this.setState({data: services })
+        }
+        this.setState({text: text})
+        
+      };
 
 
 
@@ -350,8 +376,8 @@ export default class BookingReq extends Component {
 
 
     render() {
-        const { accptVisible, rejectVisible, thankVisible } = this.state
-        console.log(accptVisible, rejectVisible, thankVisible)
+        const { accptVisible, rejectVisible, thankVisible, services } = this.state
+        console.log('services services services',services)
         return (
             <View style={{ flex: 1, height, width, marginTop: -80 }}>
                 <ImageBackground source={require('../../../assets/opacity.jpg')} style={{ height: "100%", width: "100%", opacity: 0.9 }}>
@@ -360,10 +386,63 @@ export default class BookingReq extends Component {
                         containerStyle={{ marginTop: 60, backgroundColor: "#fff" }}
                         placement="left"
                         leftComponent={<Icon onPress={() => { this.props.navigation.navigate('Main') }} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>BOOKING REQUEST</Text>}
-                        rightComponent={<TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
-                            <Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />
+                        centerComponent={
+                            <View style={{alignContent:"center", alignItems:"center", alignSelf:"center"}}>
+                      {!this.state.focusOn  ? <Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>BOOKING REQUEST</Text> 
+                      :
+    
+                      <View style={{
+                        backgroundColor: "transparent",
+                        borderColor: 'gray',
+                        borderWidth: 1,
+                        borderColor: 'gray',
+                        borderRadius: 10,
+                        height: 50,
+                        marginTop: 10,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        alignSelf: 'center',
+                        width: '93%',
+                        paddingHorizontal: 16,
+                        paddingVertical: 10,
+                        marginBottom: 10,
+    
+                    }}>
+                        <TextInput style={{
+                            height: 45,
+                            flex: 1,
+                        }}
+                            value={this.state.text}
+                            placeholder="Search"
+                            onChangeText={(text) =>  this.searchFilterFunction(text)}
+                            onBlur = {() => {this.setState({focusOn: false})} }
+                            autoFocus = {true}
+                            ref={x => this.input = x}
+                        />
+                        <Icon style={{
+                            color: 'gray',
+                            justifyContent: 'flex-end'
+                        }} type="EvilIcons" name="search" size={24} />
+                    </View>
+    
+                    }
+                        </View>
+                    }
+                    rightComponent={
+                        <View style={{flexDirection:"row"}}>
+                       {!this.state.focusOn && <TouchableOpacity style={{right: 20}} onPress={() => {this.setState({focusOn: true})
+                    //  this.input.focus()
+                        }}>
+                            <Icon style={{
+                            color: 'gray',
+                            justifyContent: 'flex-end'
+                        }} type="EvilIcons" name="search" size={24} />
                         </TouchableOpacity>}
+                        
+                        <TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
+                            <Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />
+                        </TouchableOpacity>
+                        </View>}
                     />
 
 
@@ -376,8 +455,8 @@ export default class BookingReq extends Component {
 
                             <View style={{ justifyContent: "center", alignContent: "center", alignItems: "center", marginTop: 20 }}>
 
-                                <View style={{ backgroundColor: "#fff", borderRadius: 10, width: "90%" }}>
-                                    {this.state.services.map((value, index) => {
+                             {this.state.data.length > 0 ?   <View style={{ backgroundColor: "#fff", borderRadius: 10, width: "90%" }}>
+                                    {this.state.data.map((value, index) => {
                                         return (
                                             <Card key={index} containerStyle={{ backgroundColor: "transparent", borderColor: "#fff", borderWidth: 3, borderRadius: 10 }}>
                                                 <View style={{ display: "flex", flexDirection: "row" }}>
@@ -430,7 +509,15 @@ export default class BookingReq extends Component {
                                         )
                                     })}
 
-                                </View>
+                                </View> : 
+                            
+                            <View style={{alignContent:"center",alignItems:'center', alignSelf:'center', justifyContent:'center', height:100}}>
+                            <Text>
+                                Empty Booking Request.
+                            </Text>
+                        </View>
+                            
+                            }
                             </View>
 
 

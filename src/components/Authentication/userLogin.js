@@ -14,7 +14,7 @@ export default class UserLogin extends Component {
         this.state = {
             shift: new Animated.Value(0),
             email: "razamudassir912@gmail.com",
-            password: "123456"
+            password: "12345"
         }
     }
 
@@ -64,11 +64,11 @@ export default class UserLogin extends Component {
                 body: formData
             }).then(res => res.json())
                 .then(resp => {
-                    console.log(JSON.stringify(resp))
+                    // console.log(JSON.stringify(resp))
                     var successData = resp
 
                     if (successData.status) {
-
+                            console.log('successData',successData)
                         if (successData.status === true) {
                             // console.log(" After Status SUCCESS USER", successData.data[0].role_id == 2)
 

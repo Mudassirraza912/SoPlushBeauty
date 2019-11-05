@@ -36,7 +36,8 @@ export default class ServiceList extends Component {
             service: '',
             cost:'',
             select_category:'',
-            index: ''
+            index: '',
+            value:''
         }
     }
 
@@ -203,6 +204,60 @@ export default class ServiceList extends Component {
 
 
 
+
+
+    editService = () => {
+        const {value, service, cost, index, services} = this.state
+        const formData = new FormData()
+        formData.append('id', value.service_id)
+        formData.append('name', service)
+        formData.append('cost', cost)
+
+        console.log('value value value', index,formData, )
+
+        Alert.alert(
+            'Services',
+            'Are you sure you want to to Edit this service?',
+            [
+                {
+                text: 'No',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+                },
+                {text: 'Yes', onPress: () => {
+                    
+                    fetch("https://hnhtechsolutions.com/hassan/soplush/beautician/beautician_service.php?action=edit_service", {
+                        method: 'POST',
+                        dataType: "json",
+                        headers: {
+                            'Accept' : 'application/json',
+                            'Content-Type': 'multipart/form-data'
+                        },
+                        body: formData
+                    }).then(res => res.json())
+                    .then(resp =>{
+                      console.log(JSON.stringify(resp))
+                      var successData =  resp
+                
+                      if(successData.status === true){
+                        value.service_name = service
+                        value.service_cost = cost
+                         services.splice(index, 1, value)
+                        this.setState({services, edit: false, service:'', cost:'', value:'', index:''})
+                        Alert.alert(successData.message)
+                      }else {
+                        Alert.alert(successData.message)
+                      }
+                    })
+                    .catch(err => console.log("Category err err",err));
+                }},
+            ],
+            {cancelable: false},
+            )
+    } 
+
+
+
     static navigationOptions = () => ({
         headerMode: 'none',
         headerVisible: false,
@@ -211,7 +266,7 @@ export default class ServiceList extends Component {
 
     
     render() {
-        console.log(this.state.services)
+        console.log(this.state.service, this.state.cost)
         return (
             <View style={{flex:1, height, width, marginTop: -80}}>
                 <ImageBackground source={require('../../../assets/opacity.jpg')} style={{height:"100%", width:"100%",opacity:0.9}}> 
@@ -233,7 +288,7 @@ export default class ServiceList extends Component {
               {!this.state.edit ? <View style={{backgroundColor:"#fff", width:"80%",justifyContent:"center", alignContent:"center", alignSelf:"center",borderRadius:10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', marginTop: "10%", paddingBottom:10}}>
                    
 
-                <View>
+            {this.state.services.length > 0 ?   <View>
                     {this.state.services.map((value, index) => {
                         return(
                         <List> 
@@ -249,7 +304,8 @@ export default class ServiceList extends Component {
                                     cost: value.service_cost,
                                     select_category: value.category_id,
                                     index: index,
-                                    edit: true
+                                    edit: true,
+                                    value: value
                                 })
                             }}>
                             <Icon style={{
@@ -272,7 +328,16 @@ export default class ServiceList extends Component {
                         )
                     })}
                          
-              </View>
+              </View>   :   
+            
+            <View style={{alignContent:"center",alignItems:'center', alignSelf:'center', justifyContent:'center', height:100}}>
+                <Text>
+                    you are not provide any services yet.
+                </Text>
+            </View>
+            
+            
+            }
                       
                         
                   <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
@@ -290,33 +355,30 @@ export default class ServiceList extends Component {
                
             <View style={{backgroundColor:"#fff", width:"80%",justifyContent:"center", alignContent:"center", alignSelf:"center",borderRadius:10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', marginTop: "10%", paddingBottom:10}}>
             <Item floatingLabel style={{ alignSelf: 'center', alignItems: 'center', alignContent: 'center' }}>
-                {/* <Icon active name='user' type="FontAwesome" /> */}
-                {/* <Label>Name</Label> */}
-                <Input defaultValue={this.state.service} onChangeText={(e) => { this.setState({ name: e }) }} placeholder="Enter Service" />
+               
+                <Input value={this.state.service} defaultValue={this.state.service} onChangeText={(e) => { this.setState({ service: e }) }} placeholder="Enter Service" />
             </Item>
             <Item floatingLabel>
-                {/* <Icon active name='home' type="FontAwesome" /> */}
-                {/* <Label>Address</Label> */}
-                <Input defaultValue={this.state.cost} keyboardType="number-pad" onChangeText={(e) => { this.setState({ cost: e }) }} placeholder="Enter Cost" />
+                <Icon active name='currency-usd' type="MaterialCommunityIcons" />
+                <Input value={this.state.cost} defaultValue={this.state.cost} keyboardType="number-pad" onChangeText={(e) => { this.setState({ cost: e }) }} placeholder="Enter Cost" />
             </Item>
             <View>
-            <Picker
+            {/* <Picker
                     selectedValue={this.state.select_category}
                     style={{height: 50, width: 280}}
                     onValueChange={(itemValue, itemIndex) =>
                         this.setState({select_category: itemValue})
                     }>
-                        {/* <Picker.Item label="jksfdgsdfh" value="{value.category_name}"/> */}
                         {this.state.category.map((value, index) => {
                             console.log("value.category_name", value.category_name)
                             return(<Picker.Item label={value.category_name} value={value.category_id}/>)
                         })}
-            </Picker>
+            </Picker> */}
             </View>
 
             <View style={{alignContent:"center", alignItems:'center'}}>
 
-                    <Button onPress={this.addCategory} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"80%", borderRadius: 10, opacity:0.7, marginTop:"5%"}}> 
+                    <Button onPress={this.editService} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"80%", borderRadius: 10, opacity:0.7, marginTop:"5%"}}> 
                     <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                     Ok
                     </Text>   
