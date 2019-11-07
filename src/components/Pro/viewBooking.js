@@ -342,28 +342,11 @@ export default class ViewBooking extends Component {
                                 </View>
 
                                  <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg"}}>Datae</Text>
+                                    <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg"}}>Date</Text>
                                     <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg"}}>{value.service_date}</Text>
                                 </View>
 
-                                {/* <View style={{display:"flex", flexDirection:"row", marginRight:"6%"}}> 
-
-                                        <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
-                                            <Button onPress={() => {this.props.navigation.navigate('BookingReq')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
-                                            <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
-                                            Done
-                                            </Text>   
-                                            </Button>
-                                        </View> 
-
-                                        <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
-                                            <Button  style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#ffff", width:"90%", borderRadius: 10, opacity:0.7, borderColor:"#fc8b8c", borderWidth: 1}}> 
-                                            <Text style={{alignSelf:"center",color:"#000", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
-                                            Cancel
-                                            </Text>   
-                                            </Button>
-                                        </View> 
-                                </View> */}
+                                
                     </Card>
 
                         )

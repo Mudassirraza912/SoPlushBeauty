@@ -26,6 +26,7 @@ import SelectBeautician from '../components/User/selectbeauticianist'
 import SelectedProfile from '../components/User/selectedProfile'
 import ConfirmBooking from '../components/User/confirmbooking'
 import Payment from '../components/User/payment'
+import Feedback from '../components/User/feedback'
 const Drawer = createDrawerNavigator(
     {
 
@@ -309,6 +310,16 @@ const MainScreenNavigator = createStackNavigator({
 
     Payment: {
         screen: Payment,
+        headerMode: 'none',
+        navigationOptions: {
+            headerMode: 'none',
+            headerVisible: false,
+            header: null,
+        }
+    },
+
+    Feedback: {
+        screen: Feedback,
         headerMode: 'none',
         navigationOptions: {
             headerMode: 'none',
