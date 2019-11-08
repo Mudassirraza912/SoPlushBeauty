@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
-import { Container, Header, Content, Item, Input, Icon, Label, Form, Button} from 'native-base';
+import { Container, Header, Content, Item, Input, Icon, Label, Form, Button, Spinner} from 'native-base';
 import camicon from '../../../assets/camera.png'
 import pro from '../../../assets/barbie.jpg'
 import { Avatar, Badge, withBadge } from 'react-native-elements';
@@ -40,7 +40,8 @@ export default class UserSignUp extends Component {
             phoneNo:"",
             profilePic:false,
             fileName:"",
-            fileUri:""
+            fileUri:"",
+            loader: false
 
         }
     }
@@ -84,6 +85,7 @@ export default class UserSignUp extends Component {
 
 
     signUp = () => {
+        this.setState({loader: true})
         const { email, password, name, phoneNo, address, profilePic, fileName, fileUri } = this.state
         // this.props.successSign()
         console.log("SIGN UP jksdajkfajkshjghj")
@@ -91,9 +93,11 @@ export default class UserSignUp extends Component {
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
 
     if(reg.test(email) === false ) {
-
+        this.setState({loader: false})
       Alert.alert("Email is not correct")
     }else{
+
+
 
         var file = {
             uri: fileUri,
@@ -160,20 +164,29 @@ export default class UserSignUp extends Component {
           if(successData.status) {
               if(successData.status === true){
             Alert.alert("Signup successful")
+            this.setState({loader:false})
             this.props.navigation.navigate("UserLogin")
         }
           }else {
             Alert.alert(successData.message)
+            this.setState({loader:false})
+
           }
           console.log("SUCCESS", successData, successData.status, successData.data)
         })
-        .catch(err => console.log("err err err",err));
+        .catch(err => {
+            // Alert.alert(err)
+            Alert.alert('Try Later')
+            console.log("err err err",err)
+        this.setState({loader:false})
+        
+    });
     }
     }
 
     
     render() {
-        const {email, password, name, address, phoneNo} = this.state
+        const {email, password, name, address, phoneNo, loader} = this.state
         console.log(email, password, name, address, phoneNo)
         return (
             <View style={{flex:1, height, width, marginTop: -80}}>
@@ -200,7 +213,7 @@ export default class UserSignUp extends Component {
                     <Item floatingLabel>
                         <Icon active name='user' type="FontAwesome"  />
                         {/* <Label>Name</Label> */}
-                        <Input onChangeText={(e) => {this.setState({name:e})}} placeholder="Name" />
+                        <Input onChangeText={(e) => {this.setState({name:e})}} placeholder=" Name" />
                     </Item>
                     <Item floatingLabel>
                         <Icon active name='home' type="FontAwesome" />
@@ -224,10 +237,16 @@ export default class UserSignUp extends Component {
                         <Input  onChangeText={(e) => {this.setState({password:e})}} placeholder="Password" secureTextEntry={true} />
                     </Item>
 
-                    <Item  onPress={this.openGallery} style={{marginBottom:"3%", width: "100%"}}> 
+                    <Item onPress={this.openGallery} floatingLabel>
+                                    <Icon active name='camera' type="FontAwesome" />
+                                    <Input disabled keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Upload" />
+                                </Item>
+
+
+                    {/* <Item  onPress={this.openGallery} style={{marginBottom:"3%", width: "100%"}}> 
                         <Icon active name='camera' type="MaterialCommunityIcons" />
-                        <Label>Upload</Label>
-                    </Item>
+                        <Input disabled  placeholder=" Upload" secureTextEntry={true} />
+                    </Item> */}
 
                     <View style={{display:"flex", flexDirection:"row",marginBottom:"3%"}}>
 
@@ -263,11 +282,15 @@ export default class UserSignUp extends Component {
 
 
 
-                <Button onPress={this.signUp} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
+              {!loader ?  <Button onPress={this.signUp} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
                     <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                         Sign Up
                     </Text>
-                </Button>
+                </Button> : 
+                
+                            <Spinner color="#fc8b8c"/>
+
+                }
 
 
                 </View>

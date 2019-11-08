@@ -47,12 +47,12 @@ export default class Home extends Component {
                         leftComponent={<Icon  name="arrow-back" color="#000" />}
                         containerStyle={{marginTop:60, backgroundColor:"#fff"}}
                         placement="left"
-                        centerComponent={<Text style={{marginLeft:"40%", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>Home</Text>}
+                        centerComponent={<Text style={{marginLeft:"40%", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>HOME</Text>}
                         />
 
                 <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
 
-                <View style={{height:"78%", width : width-20, backgroundColor:'#fff', borderWidth:1, marginTop:-50,  alignSelf:"center",borderRadius: 10, opacity:0.75, marginBottom:"4%" }}>
+                <View style={{height:"78%", width : width-20, backgroundColor:'#fff', borderWidth:1, marginTop:-50,  alignSelf:"center",borderRadius: 10, opacity:0.75, marginBottom:"4%", borderColor:'#fff' }}>
 
                     <View style={{alignSelf:"center", alignContent:"center", alignItems:"center", marginTop:"15%"}}> 
                     <Image source={require('../../../assets/text.png')} style={{opacity: 2}} />

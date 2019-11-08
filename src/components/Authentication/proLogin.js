@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, ImageBackground, Dimensions, Image, Keyboard, Animated, UIManager, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native'
 // import { nodeInternals } from 'stack-utils';
 import { Avatar } from 'react-native-elements'
-import { Container, Header, Content, Item, Input, Icon, Label, Form, Button, List, ListItem, Left, Body } from 'native-base';
+import { Container, Header, Content, Item, Input, Icon, Label, Form, Button, List, ListItem, Left, Body, Spinner } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient'
 
 const { State: TextInputState } = TextInput;
@@ -14,7 +14,8 @@ export default class ProLogin extends Component {
         this.state = {
             shift: new Animated.Value(0),
             email: "Haris@gmail.com",
-            password: "12345"
+            password: "12345",
+            loader: false
         }
     }
 
@@ -31,6 +32,7 @@ export default class ProLogin extends Component {
     })
 
     login = async () => {
+        this.setState({loader: true})
         const { email, password } = this.state
         console.log("FIKHSDJKDFJSN")
 
@@ -38,6 +40,7 @@ export default class ProLogin extends Component {
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
         if (reg.test(email) === false) {
+            this.setState({loader: false})
 
             Alert.alert("Email is not correct")
         } else {
@@ -71,16 +74,25 @@ export default class ProLogin extends Component {
                         if (successData.data[0].role_id == 3) {
                             this.props.screenProps.fetchProfileData(successData.data[0])
                             Alert.alert("Login successful")
+                            this.setState({loader: false})
+
                             this.props.navigation.navigate("Main")
                         } else {
                             Alert.alert("Email Or Password Incorrect")
+                            this.setState({loader: false})
+
                         }
                     } else {
+                        this.setState({loader: false})
                         Alert.alert(successData.message)
                     }
                     console.log("SUCCESS PRO", successData, successData.status, successData.data)
                 })
-                .catch(err => console.log("err err err", err));
+                .catch(err => {
+                    console.log("err err err", err)
+                    this.setState({loader: false})
+                
+                });
         }
 
 
@@ -88,7 +100,7 @@ export default class ProLogin extends Component {
 
 
     render() {
-        const { email, password } = this.state
+        const { email, password, loader } = this.state
         console.log(email, password)
         return (
             <View style={{ flex: 1, height, width, marginTop: -80 }}>
@@ -108,16 +120,16 @@ export default class ProLogin extends Component {
                                     <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", marginLeft: "10%", fontSize: 20, marginTop: "4%", opacity: 0.6 }}>Sign in with your email ID and Password</Text>
                                 </View>
 
-                                <View style={{ marginTop: "10%", alignContent: "center", alignSelf: "center", alignItems: "center", width: "80%", backgroundColor: "#fff", borderRadius: 10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', paddingVertical: "8%", overflow: "hidden" }}>
+                                <View style={{ marginTop: "10%", alignContent: "center", alignSelf: "center", alignItems: "center", width: "80%", backgroundColor: "#fff", borderRadius: 10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', overflow: "hidden" }}>
                                     {/* // Text input box with icon aligned to the left */}
                                     <View >
-                                        <List>
+                                    <List style={{ paddingVertical: "2%", borderBottomColor:'lightgray', borderBottomWidth:0.5 }}>
                                             <ListItem avatar>
 
                                                 <Left style={{ marginBottom: "5%" }}>
                                                     <Icon style={{ fontSize: 20, height: 50 }} active name='email-outline' type="MaterialCommunityIcons" />
                                                 </Left>
-                                                <Item floatingLabel style={{ marginBottom: "3%", marginLeft: "5%" }}>
+                                                <Item floatingLabel style={{ marginLeft: "5%",borderBottomWidth: 0 }}>
                                                     <Label style={{fontSize:15}}>Email Address</Label>
                                                     <Input value={this.state.email} style onChangeText={(e) => { this.setState({ email: e }) }} />
                                                 </Item>
@@ -128,10 +140,10 @@ export default class ProLogin extends Component {
                                         <List style={{ marginTop: "5%" }}>
                                             <ListItem avatar>
 
-                                                <Left style={{ marginBottom: "5%" }}>
+                                                <Left>
                                                     <Icon style={{ fontSize: 20, height: 50 }} active name='lock-outline' type="MaterialCommunityIcons" />
                                                 </Left>
-                                                <Item floatingLabel style={{ marginBottom: "3%", marginLeft: "5%" }}>
+                                                <Item floatingLabel style={{ marginLeft: "5%", borderBottomWidth: 0 }}>
                                                     <Label style={{fontSize:15}}>Password</Label>
                                                     <Input value={this.state.password} style onChangeText={(e) => { this.setState({ password: e }) }} secureTextEntry />
                                                 </Item>
@@ -148,7 +160,7 @@ export default class ProLogin extends Component {
                                     </TouchableOpacity>
                                 </View>
 
-                                <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
+                              {!loader ?  <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
                                     <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                                         <Button onPress={this.login} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
                                             <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
@@ -156,7 +168,11 @@ export default class ProLogin extends Component {
                     </Text>
                                         </Button>
                                     </LinearGradient>
-                                </View>
+                                </View> :
+                                
+                                <Spinner color='#fc8b8c'/>
+                                
+                                }
 
                                 <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
                                     <Text style={{ fontFamily: 'MrEavesXLModNarOT-Reg', fontSize: 20 }}>Or Sign Up Using</Text>

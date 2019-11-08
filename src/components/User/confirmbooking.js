@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, FlatList } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, FlatList, Alert } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button, } from 'native-base';
 import { Avatar, Header, Icon, Card, Divider } from 'react-native-elements'
 import NumericInput from 'react-native-numeric-input'
 import moment from 'moment'
 const { width, height } = Dimensions.get("window")
+import LinearGradient from 'react-native-linear-gradient'
 
 export default class ConfirmBooking extends Component {
     constructor(props) {
@@ -118,6 +119,7 @@ export default class ConfirmBooking extends Component {
                             if (successData.status === true) {
                                 // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
                                 console.log(" successData.data Add BOOKING", successData)
+                                Alert.alert("Booking Send sucessful")
                                 this.props.navigation.navigate('UserHome')
 
                             } else {
@@ -166,27 +168,30 @@ export default class ConfirmBooking extends Component {
 
                                 <Card containerStyle={{ backgroundColor: "#fff", borderRadius: 10, width: "90%", }}>
 
-                                    <View style={{ display: "flex", flexDirection: "column", marginTop: 15 }}>
-
-                                        <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Name</Text>
-                                        {this.state.profileData !== null ?
-                                            <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 15 }}>{this.state.profileData.username}</Text>
-                                            :
-                                            <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 15 }}>UnSelecteds</Text>
-                                        }
-                                        <Divider style={{ backgroundColor: 'lightgray' }} />
-                                    </View>
+                                    
 
                                     <View style={{ display: "flex", flexDirection: "column", marginTop: 15 }}>
                                         <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Booking Time</Text>
-                                        <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 15 }}>{this.state.selectedSlot.time}</Text>
-                                        <Divider style={{ backgroundColor: 'lightgray' }} />
+                                        <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>{this.state.selectedSlot.time}</Text>
+                                        {/* <Divider style={{ backgroundColor: 'lightgray' }} /> */}
                                     </View>
 
                                     <View style={{ display: "flex", flexDirection: "column", marginTop: 15 }}>
-                                        <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Booking Day</Text>
-                                        <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 15 }}>{this.state.selectdate}</Text>
-                                        <Divider style={{ backgroundColor: 'lightgray' }} />
+                                        <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Booking Date</Text>
+                                        <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>{this.state.selectdate}</Text>
+                                        {/* <Divider style={{ backgroundColor: 'lightgray' }} /> */}
+                                    </View>
+
+
+                                    <View style={{ display: "flex", flexDirection: "column", marginTop: 15 }}>
+
+                                        <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Provider Name</Text>
+                                        {this.state.profileData !== null ?
+                                            <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>{this.state.profileData.username}</Text>
+                                            :
+                                            <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>UnSelecteds</Text>
+                                        }
+                                        {/* <Divider style={{ backgroundColor: 'lightgray' }} /> */}
                                     </View>
 
 
@@ -196,7 +201,7 @@ export default class ConfirmBooking extends Component {
                                             this.state.cart.map((value, index) => {
                                                 return (
                                                     <View>
-                                                        <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 15 }}>{value.service_name}</Text>
+                                                        <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>{value.service_name}</Text>
                                                         <View style={{ flexDirection: "row", width: "100%" }}>
                                                             <View style={{ width: "50%" }}>
                                                                 <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "#fc8b8c" }}>${value.service_cost}</Text>
@@ -229,7 +234,7 @@ export default class ConfirmBooking extends Component {
                                                 )
                                             })
                                         }
-                                        <Divider style={{ backgroundColor: 'lightgray' }} />
+                                        {/* <Divider style={{ backgroundColor: 'lightgray' }} /> */}
                                     </View>
 
 
@@ -240,26 +245,37 @@ export default class ConfirmBooking extends Component {
                                         <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
                                             <Button onPress={() => { this.props.navigation.navigate('PersonalService') }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#ffff", width: "100%", borderRadius: 10, opacity: 0.7, borderColor: "#fc8b8c", borderWidth: 1 }}>
                                                 <Text style={{ alignSelf: "center", color: "#000", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
-                                                    Add More Services
+                                                   ADD MORE SERVICES
                                             </Text>
                                             </Button>
                                         </View>
 
 
 
-                                        <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
+                                        {/* <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
                                             <Button onPress={() => { this.fetchconfirmBooking() }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#fc8b8c", width: "100%", borderRadius: 10, opacity: 0.7 }}>
                                                 <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
                                                     Proceed to Payment
                                             </Text>
                                             </Button>
+                                        </View> */}
+
+
+                                        <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10 ,width: "100%" }}>
+                                            <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "100%", borderRadius: 10 }}>
+                                                <Button onPress={() => { this.fetchconfirmBooking() }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 , width:'100%'}}>
+                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                    PROCEES TO PAYMENT
+</Text>
+                                                </Button>
+                                            </LinearGradient>
                                         </View>
 
 
                                         <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
                                             <Button onPress={() => { this.props.navigation.navigate('UserHome') }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#ffff", width: "100%", borderRadius: 10, opacity: 0.7, borderColor: "#fc8b8c", borderWidth: 1 }}>
                                                 <Text style={{ alignSelf: "center", color: "#000", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
-                                                    Cancel
+                                                    CANCEL
                                             </Text>
                                             </Button>
                                         </View>

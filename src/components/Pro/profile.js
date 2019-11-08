@@ -89,7 +89,7 @@ export default class ProProfile extends Component {
                                     <Divider style={{ backgroundColor: 'lightgray' }} />
                                 </View>
 
-                                <View style={{marginRight:"6%"}}> 
+                                <View> 
 
                                         <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
                                             <Button onPress={() => {this.props.navigation.navigate('Main')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 

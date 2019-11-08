@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert, Picker } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert, Picker, RefreshControl } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button, Item, Input, } from 'native-base';
 import {Avatar, Header, Icon} from 'react-native-elements'
@@ -37,7 +37,9 @@ export default class ServiceList extends Component {
             cost:'',
             select_category:'',
             index: '',
-            value:''
+            value:'',
+            refreshing: false,
+
         }
     }
 
@@ -75,6 +77,66 @@ export default class ServiceList extends Component {
         .catch(err => console.log("Category err err",err));
     }
 
+
+    onRefresh = () => {
+
+        const {profileData} = this.state
+        console.log("user_id", profileData.user_id)
+        const formData = new FormData();
+        formData.append("id", profileData.user_id),
+
+        
+        this.setState({
+            refreshing: true
+        })
+
+
+
+        fetch("https://hnhtechsolutions.com/hassan/soplush/beautician/beautician_service.php?action=select_service", {
+            method: 'POST',
+            // dataType: "json",
+            headers: {
+                'Accept' : 'application/json',
+                'Content-Type': 'multipart/form-data'
+            },
+            body: formData
+        }).then(res => res.json())
+        .then(resp =>{
+          console.log(JSON.stringify(resp))
+          var successData =  resp
+  
+          if(successData.status === true){
+              console.log("successData.data[0].role_id === 3", successData.data)
+              if(successData.data !== undefined){
+              this.setState({
+                  services: successData.data,
+                  refreshing: false
+              })
+            }else {
+                    this.setState({
+                        services: [],
+                        refreshing: false
+
+                    })
+            }
+
+                //   console.log("SUCCESS PRO", successData)
+                //   Alert.alert("Login successful")
+            // this.props.navigation.navigate("Main")
+       
+          }else {
+            Alert.alert(successData.message)
+            this.setState({refreshing: false})
+          }
+        })
+        .catch(err => console.log("err err err",err));
+
+    }
+
+
+
+
+
     componentDidMount() {
         const {profileData} = this.state
         console.log("user_id", profileData.user_id)
@@ -100,9 +162,16 @@ export default class ServiceList extends Component {
   
           if(successData.status === true){
               console.log("successData.data[0].role_id === 3", successData.data)
+              if(successData.data !== undefined){
               this.setState({
                   services: successData.data
               })
+            }else {
+                    this.setState({
+                        services: []
+                    })
+            }
+
                 //   console.log("SUCCESS PRO", successData)
                 //   Alert.alert("Login successful")
             // this.props.navigation.navigate("Main")
@@ -283,7 +352,7 @@ export default class ServiceList extends Component {
 
                 <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
 
-                <ScrollView style={{height: height}}>
+                <ScrollView refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh} />}  style={{height: height}}>
 
               {!this.state.edit ? <View style={{backgroundColor:"#fff", width:"80%",justifyContent:"center", alignContent:"center", alignSelf:"center",borderRadius:10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', marginTop: "10%", paddingBottom:10}}>
                    
@@ -340,7 +409,7 @@ export default class ServiceList extends Component {
             }
                       
                         
-                  <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
+                  <View style={{alignContent:"center", alignItems:"center", marginTop:"5%", paddingBottom:"5%"}}>
                     <Button onPress={() => {this.setState({renderEMail: false, renderCode: false, renderPassword:false}),
                 this.props.navigation.navigate('Main')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
                      <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>

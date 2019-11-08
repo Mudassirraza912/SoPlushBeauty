@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView,Alert, TextInput} from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert, TextInput } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
-import { Container, Content, List, ListItem, Left, Body, Right, Thumbnail, CheckBox,Button} from 'native-base';
+import { Container, Content, List, ListItem, Left, Body, Right, Thumbnail, CheckBox, Button } from 'native-base';
 import { Avatar, Header, Icon, Card } from 'react-native-elements'
+import LinearGradient from 'react-native-linear-gradient'
 
 
 const { width, height } = Dimensions.get("window")
@@ -10,6 +11,7 @@ var soplushData;
 var plushData;
 var filterplush;
 var filterSoplush;
+var category_name
 
 
 export default class PersonalService extends Component {
@@ -51,15 +53,16 @@ export default class PersonalService extends Component {
             //     {service_name:"Add clip ins", service_cost:30,checked: false},
 
             //  ],
-             cart: [],
-             amount:0,
-             categoryId: this.props.navigation.getParam('category_id'),
-             image: this.props.navigation.getParam('image'),
-             selectDate: this.props.navigation.getParam('selectdate'),
-             faltu:true,
-             focusOn: false,
+            cart: [],
+            amount: 0,
+            categoryId: this.props.navigation.getParam('category_id'),
+            image: this.props.navigation.getParam('image'),
+            selectDate: this.props.navigation.getParam('selectdate'),
+            category_name: this.props.navigation.getParam('category_name'),
+            faltu: true,
+            focusOn: false,
             offFocus: true,
-            text:''
+            text: ''
         }
         // this.workFunction = this.workFunction.bind(this)
     }
@@ -87,182 +90,182 @@ export default class PersonalService extends Component {
     //     console.log("user_id", categoryId)
     //         const formData = new FormData();
     //         formData.append("id",categoryId),
-        
+
 
     //     // console.log("email, password, address, name, phoneNo, profilePic", email, password)
 
 
-        // fetch("https://hnhtechsolutions.com/hassan/soplush/service/service.php?action=select_service", {
-        //     method: 'POST',
-        //     // dataType: "json",
-        //     headers: {
-        //         'Accept' : 'application/json',
-        //         'Content-Type': 'multipart/form-data'
-        //     },
-        //     body: formData
-        // }).then(res => res.json())
-        // .then(resp =>{
-        //   console.log(JSON.stringify(resp))
-        //   var successData =  resp
-  
-        //   if(successData.status === true){
-        //       // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
-        //       if (successData.data.length >=1) {
-        //         this.setState({
-        //             plushData: successData.data,
-        //             soplushData: successData.data
-  
-        //         })
-        //       }
-             
-        //           console.log("SUCCESS PRO", successData)
-        //         //   Alert.alert("Login successful")
-        //     // this.props.navigation.navigate("Main")
-       
-        //   }else {
-        //     Alert.alert(successData.message)
-        //   }
-        // })
-        // .catch(err => console.log("err err err",err));
+    // fetch("https://hnhtechsolutions.com/hassan/soplush/service/service.php?action=select_service", {
+    //     method: 'POST',
+    //     // dataType: "json",
+    //     headers: {
+    //         'Accept' : 'application/json',
+    //         'Content-Type': 'multipart/form-data'
+    //     },
+    //     body: formData
+    // }).then(res => res.json())
+    // .then(resp =>{
+    //   console.log(JSON.stringify(resp))
+    //   var successData =  resp
+
+    //   if(successData.status === true){
+    //       // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
+    //       if (successData.data.length >=1) {
+    //         this.setState({
+    //             plushData: successData.data,
+    //             soplushData: successData.data
+
+    //         })
+    //       }
+
+    //           console.log("SUCCESS PRO", successData)
+    //         //   Alert.alert("Login successful")
+    //     // this.props.navigation.navigate("Main")
+
+    //   }else {
+    //     Alert.alert(successData.message)
+    //   }
+    // })
+    // .catch(err => console.log("err err err",err));
     // }
 
 
     workFunction(val, type, ind) {
-        let { plush, cart, amount} =  this.state
+        let { plush, cart, amount } = this.state
         console.log("val val", val)
 
         amount = 0
 
-       
-               
-                if(val.p_checked != 0) {
-                    // console.log("trueWala",type, val.p_checked, ind)
-                    plushData[ind].p_checked = false
-                    filterplush = plushData
-                    cart = []
 
-                    plushData.map((val) => {
-                      if(val.p_checked == 1 || val.p_checked == true ){
-                          console.log("trueWala LOOP")
-                          val.quantity = 1
-                        cart.push(val)
-                      }
-                    })
 
-                    soplushData.map((val) => {
-                        if(val.s_checked == 1 || val.s_checked == true ){
-                        console.log("LOOP",val.p_checked)
-                        val.quantity = 1
-                        cart.push(val)
-                      }
-                    })
-  
+        if (val.p_checked != 0) {
+            // console.log("trueWala",type, val.p_checked, ind)
+            plushData[ind].p_checked = false
+            filterplush = plushData
+            cart = []
 
-                      amount = this.state.amount - val.amount
-                    this.setState({cart, amount: amount})
-
-                }else {
-                    // console.log("FalseWala",type, val.checked, ind)
-                    plushData[ind].p_checked = true
-                    filterplush = plushData
-                    // console.log("OOOOOOOOOO",val)
-                    cart = []
-
-                    plushData.map((val) => {
-                        if(val.p_checked == 1 || val.p_checked == true ){
-                        console.log("LOOP",val.p_checked)
-                        val.quantity = 1
-                        cart.push(val)
-                      }
-                    })
-
-                    soplushData.map((val) => {
-                        if(val.s_checked == 1 || val.s_checked == true ){
-                        console.log("LOOP",val.p_checked)
-                        val.quantity = 1
-                        cart.push(val)
-                      }
-                    })
-  
-
-                      amount = this.state.amount + val.amount
-                    this.setState({cart, amount: amount})
-
+            plushData.map((val) => {
+                if (val.p_checked == 1 || val.p_checked == true) {
+                    console.log("trueWala LOOP")
+                    val.quantity = 1
+                    cart.push(val)
                 }
-            
-            
-           
+            })
 
-       
+            soplushData.map((val) => {
+                if (val.s_checked == 1 || val.s_checked == true) {
+                    console.log("LOOP", val.p_checked)
+                    val.quantity = 1
+                    cart.push(val)
+                }
+            })
+
+
+            amount = this.state.amount - val.amount
+            this.setState({ cart, amount: amount })
+
+        } else {
+            // console.log("FalseWala",type, val.checked, ind)
+            plushData[ind].p_checked = true
+            filterplush = plushData
+            // console.log("OOOOOOOOOO",val)
+            cart = []
+
+            plushData.map((val) => {
+                if (val.p_checked == 1 || val.p_checked == true) {
+                    console.log("LOOP", val.p_checked)
+                    val.quantity = 1
+                    cart.push(val)
+                }
+            })
+
+            soplushData.map((val) => {
+                if (val.s_checked == 1 || val.s_checked == true) {
+                    console.log("LOOP", val.p_checked)
+                    val.quantity = 1
+                    cart.push(val)
+                }
+            })
+
+
+            amount = this.state.amount + val.amount
+            this.setState({ cart, amount: amount })
+
+        }
+
+
+
+
+
 
     }
 
 
 
     workFunction1(val, type, ind) {
-        let { plush, cart, amount} =  this.state
+        let { plush, cart, amount } = this.state
 
         amount = 0
 
-       
 
 
-           
-            // console.log(type)
 
-            if(val.s_checked != 0) {
-                console.log("trueWala",type, val.checked, ind)
-                soplushData[ind].s_checked = false
-                filterSoplush = soplushData
-                cart = []
 
-                plushData.map((val) => {
-                    if(val.p_checked == 1 || val.p_checked == true ){
-                    console.log("LOOP",val.p_checked)
+        // console.log(type)
+
+        if (val.s_checked != 0) {
+            console.log("trueWala", type, val.checked, ind)
+            soplushData[ind].s_checked = false
+            filterSoplush = soplushData
+            cart = []
+
+            plushData.map((val) => {
+                if (val.p_checked == 1 || val.p_checked == true) {
+                    console.log("LOOP", val.p_checked)
                     val.quantity = 1
                     cart.push(val)
-                  }
-                })
-                soplushData.map((val) => {
-                    if(val.s_checked == 1 || val.s_checked == true ){
-                        val.quantity = 1
-                      cart.push(val)
-                    }
-                  })
-
-
-                  amount = this.state.amount - val.amount
-                this.setState({cart, amount: amount})
-
-            }else {
-                console.log("FalseWala",type, val.checked, ind)
-                soplushData[ind].s_checked = true
-                filterSoplush = soplushData
-                // console.log("!!!!!!!!!!!",val)
-                cart = []
-
-                plushData.map((val) => {
-                    if(val.p_checked == 1 || val.p_checked == true ){
-                    console.log("LOOP",val.p_checked)
+                }
+            })
+            soplushData.map((val) => {
+                if (val.s_checked == 1 || val.s_checked == true) {
                     val.quantity = 1
                     cart.push(val)
-                  }
-                })
-
-                soplushData.map((val) => {
-                    if(val.s_checked == 1 || val.s_checked == true ){
-                        val.quantity = 1
-                        cart.push(val)
-                    }
-                  })
+                }
+            })
 
 
-                  amount = this.state.amount + val.amount
-                this.setState({ cart, amount: amount})
+            amount = this.state.amount - val.amount
+            this.setState({ cart, amount: amount })
 
-            }
+        } else {
+            console.log("FalseWala", type, val.checked, ind)
+            soplushData[ind].s_checked = true
+            filterSoplush = soplushData
+            // console.log("!!!!!!!!!!!",val)
+            cart = []
 
-       
+            plushData.map((val) => {
+                if (val.p_checked == 1 || val.p_checked == true) {
+                    console.log("LOOP", val.p_checked)
+                    val.quantity = 1
+                    cart.push(val)
+                }
+            })
+
+            soplushData.map((val) => {
+                if (val.s_checked == 1 || val.s_checked == true) {
+                    val.quantity = 1
+                    cart.push(val)
+                }
+            })
+
+
+            amount = this.state.amount + val.amount
+            this.setState({ cart, amount: amount })
+
+        }
+
+
 
     }
 
@@ -270,8 +273,8 @@ export default class PersonalService extends Component {
 
     FilterBeautician = () => {
 
-            const {cart} = this.state
-            // console.log('FilterBeautician FilterBeautician FilterBeautician', cart)
+        const { cart } = this.state
+        // console.log('FilterBeautician FilterBeautician FilterBeautician', cart)
 
         // this.props.navigation.navigate('SelectBeautician', {
         //     cart: this.state.cart,
@@ -280,20 +283,20 @@ export default class PersonalService extends Component {
 
 
         const formData = new FormData()
-            // formData.append("search", ["blow out"])
+        // formData.append("search", ["blow out"])
 
         // console.log("cart", cart)
         var filterName = []
-         cart.map((val) =>  {
+        cart.map((val) => {
             filterName.push(val.service_name)
         })
 
-        console.log("filterName",filterName)
+        console.log("filterName", filterName)
 
-         var params = JSON.stringify(filterName);
-         console.log("json convert:"+params);
+        var params = JSON.stringify(filterName);
+        console.log("json convert:" + params);
 
-      formData.append("search",params);
+        formData.append("search", params);
 
         fetch("https://hnhtechsolutions.com/hassan/soplush/customer/search_beautcian.php?action=search_beautician", {
             method: 'POST',
@@ -306,76 +309,77 @@ export default class PersonalService extends Component {
             },
             body: formData
         }).then(res => res.json())
-        .then(resp =>{
-        //   console.log(JSON.stringify(resp))
-          var successData =  resp
+            .then(resp => {
+                //   console.log(JSON.stringify(resp))
+                var successData = resp
 
-          if(successData.status === true){
-              // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
-              console.log(" successData.data SEARCH BEAUTICIAN", successData.data)
-             
-                 
-                //   Alert.alert("Login successful")
-            this.props.navigation.navigate("SelectBeautician", {
-                users: successData.data,
-                cart: this.state.cart
+                if (successData.status === true) {
+                    // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
+                    console.log(" successData.data SEARCH BEAUTICIAN", successData.data)
+
+
+                    //   Alert.alert("Login successful")
+                    this.props.navigation.navigate("SelectBeautician", {
+                        users: successData.data,
+                        cart: this.state.cart
+                    })
+
+                } else {
+                    console.log("Else", successData)
+                    Alert.alert(successData.message)
+                }
             })
-
-          }else {
-            console.log("Else", successData)
-            Alert.alert(successData.message)
-          }
-        })
-        .catch(err => console.log("err err SEARCH",err));
+            .catch(err => console.log("err err SEARCH", err));
 
     }
 
 
-    searchFilterFunction = text => {    
-        const {faltu} = this.state
+    searchFilterFunction = text => {
+        const { faltu } = this.state
         if (text !== "") {
-            const newData = plushData.filter(item => {      
+            const newData = plushData.filter(item => {
                 const itemData = `${item.service_name.toUpperCase()}`;
-                
-                 const textData = text.toUpperCase();
-                  
-                 return itemData.indexOf(textData) > -1;    
-              });
 
-              const neSoplush = soplushData.filter(item => {      
+                const textData = text.toUpperCase();
+
+                return itemData.indexOf(textData) > -1;
+            });
+
+            const neSoplush = soplushData.filter(item => {
                 const itemData = `${item.service_name.toUpperCase()}`;
-                
-                 const textData = text.toUpperCase();
-                  
-                 return itemData.indexOf(textData) > -1;    
-              });
-              
-             filterplush = newData
-             filterSoplush = neSoplush
-             this.setState({faltu: !faltu})
-             console.log("filterSoplush", filterSoplush)
-        }else {
+
+                const textData = text.toUpperCase();
+
+                return itemData.indexOf(textData) > -1;
+            });
+
+            filterplush = newData
+            filterSoplush = neSoplush
+            this.setState({ faltu: !faltu })
+            console.log("filterSoplush", filterSoplush)
+        } else {
             filterplush = plushData
-             filterSoplush = soplushData
-             this.setState({faltu: !faltu})
+            filterSoplush = soplushData
+            this.setState({ faltu: !faltu })
 
         }
-        this.setState({text: text})
-        
-      };
+        this.setState({ text: text })
+
+    };
 
 
     render() {
         // console.log("WORK",this.state.cart, this.state.selectDate)
-        var img =  this.props.navigation.getParam('image')
+        var img = this.props.navigation.getParam('image')
         soplushData = this.props.navigation.getParam('service')
         plushData = this.props.navigation.getParam('service')
+        category_name = this.props.navigation.getParam('category_name')
         if (filterSoplush == null) {
             filterSoplush = this.props.navigation.getParam('service')
-        filterplush= this.props.navigation.getParam('service')
+            filterplush = this.props.navigation.getParam('service')
         }
-        
-        console.log("CART",this.state.cart, this.state.amount)
+
+        console.log("CART", this.state.cart, category_name)
 
         // if(this.state.plushData.length < 1) {
         //         this.setState({
@@ -390,83 +394,84 @@ export default class PersonalService extends Component {
                     <Header
                         containerStyle={{ marginTop: 60, backgroundColor: "#fff" }}
                         placement="left"
-                        leftComponent={<Icon onPress={() => { this.props.navigation.goBack(), this.setState({categoryId:"", image:""}) }} name="arrow-back" color="#000" />}
+                        leftComponent={<Icon onPress={() => { this.props.navigation.goBack(), this.setState({ categoryId: "", image: "" }) }} name="arrow-back" color="#000" />}
                         centerComponent={
-                            <View style={{alignContent:"center", alignItems:"center", alignSelf:"center"}}>
-                      {!this.state.focusOn  ? <Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>HOME</Text> 
-                      :
-    
-                      <View style={{
-                        backgroundColor: "transparent",
-                        borderColor: 'gray',
-                        borderWidth: 1,
-                        borderColor: 'gray',
-                        borderRadius: 10,
-                        height: 50,
-                        marginTop: 10,
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        alignSelf: 'center',
-                        width: '93%',
-                        paddingHorizontal: 16,
-                        paddingVertical: 10,
-                        marginBottom: 10,
-    
-                    }}>
-                        <TextInput style={{
-                            height: 45,
-                            flex: 1,
-                        }}
-                            value={this.state.text}
-                            placeholder="Search"
-                            onChangeText={(text) =>  this.searchFilterFunction(text)}
-                            onBlur = {() => {this.setState({focusOn: false})} }
-                            autoFocus = {true}
-                            ref={x => this.input = x}
-                        />
-                        <Icon style={{
-                            color: 'gray',
-                            justifyContent: 'flex-end'
-                        }} type="EvilIcons" name="search" size={24} />
-                    </View>
-    
-                    }
-                        </View>
-                    }
-                    rightComponent={
-                        <View style={{flexDirection:"row"}}>
-                       {!this.state.focusOn && <TouchableOpacity style={{right: 20}} onPress={() => {this.setState({focusOn: true})
-                    //  this.input.focus()
-                        }}>
-                            <Icon style={{
-                            color: 'gray',
-                            justifyContent: 'flex-end'
-                        }} type="EvilIcons" name="search" size={24} />
-                        </TouchableOpacity>}
-                        
-                        <TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
-                            <Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />
-                        </TouchableOpacity>
-                        </View>}
+                            <View style={{ alignContent: "center", alignItems: "center", alignSelf: "center" }}>
+                        {!this.state.focusOn ? <Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg", textTransform:'capitalize' }}>{category_name}</Text>
+                                    :
+
+                                    <View style={{
+                                        backgroundColor: "transparent",
+                                        borderColor: 'gray',
+                                        borderWidth: 1,
+                                        borderColor: 'gray',
+                                        borderRadius: 10,
+                                        height: 50,
+                                        marginTop: 10,
+                                        flexDirection: 'row',
+                                        alignItems: 'center',
+                                        alignSelf: 'center',
+                                        width: '93%',
+                                        paddingHorizontal: 16,
+                                        paddingVertical: 10,
+                                        marginBottom: 10,
+
+                                    }}>
+                                        <TextInput style={{
+                                            height: 45,
+                                            flex: 1,
+                                        }}
+                                            value={this.state.text}
+                                            placeholder="Search"
+                                            onChangeText={(text) => this.searchFilterFunction(text)}
+                                            onBlur={() => { this.setState({ focusOn: false }) }}
+                                            autoFocus={true}
+                                            ref={x => this.input = x}
+                                        />
+                                        <Icon style={{
+                                            color: 'gray',
+                                            justifyContent: 'flex-end'
+                                        }} type="EvilIcons" name="search" size={24} />
+                                    </View>
+
+                                }
+                            </View>
+                        }
+                        rightComponent={
+                            <View style={{ flexDirection: "row" }}>
+                                {!this.state.focusOn && <TouchableOpacity style={{ right: 20 }} onPress={() => {
+                                    this.setState({ focusOn: true })
+                                    //  this.input.focus()
+                                }}>
+                                    <Icon style={{
+                                        color: 'gray',
+                                        justifyContent: 'flex-end'
+                                    }} type="EvilIcons" name="search" size={24} />
+                                </TouchableOpacity>}
+
+                                <TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
+                                    <Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />
+                                </TouchableOpacity>
+                            </View>}
                     />
-    
+
 
 
 
                     <View style={{ width, backgroundColor: "rgba(200, 165, 212, 0.7)" }}>
 
-                        <ScrollView  contentContainerStyle={{ alignItems: "center", alignContent: "center", width: "100%" }}>
+                        <ScrollView contentContainerStyle={{ alignItems: "center", alignContent: "center", width: "100%" }}>
 
 
                             <View style={{ width: "90%", alignItems: "center" }}>
 
 
-                                <Card key={1} containerStyle={{ width: "100%", padding: 0,  borderRadius: 10, overflow: "hidden", alignContent: "space-between" }}>
+                                <Card key={1} containerStyle={{ width: "100%", padding: 0, borderRadius: 10, overflow: "hidden", alignContent: "space-between" }}>
 
                                     <View style={{ width: "100%", marginLeft: 0, marginRight: 0 }}>
                                         {/* <Image source={{uri:'https://cdn.vox-cdn.com/thumbor/XtwGXC-0GhXcDXiM0B0rjGAAxZE=/148x0:1768x1080/1200x800/filters:focal(148x0:1768x1080)/cdn.vox-cdn.com/uploads/chorus_image/image/45905674/3042430-poster-p-1-hello-barbie-talking-toy-toytalk.0.0.jpg'}} style={{ height: 200, width: "100%", }} /> */}
 
-                                        <Image source={{uri:img}} style={{ height: 200, width: "100%", }} />
+                                        <Image source={{ uri: img }} style={{ height: 200, width: "100%", }} />
                                     </View>
 
                                     {/* <View style={{
@@ -507,16 +512,16 @@ export default class PersonalService extends Component {
 
 
                                             <View style={{ backgroundColor: "#fc8b8c", width: "50%", padding: 15, }}>
-                                                <TouchableOpacity onPress={() => {this.setState({plush: true})}}>
-                                                    <Text style={{color:"#fff", alignSelf:"center"}}>
+                                                <TouchableOpacity onPress={() => { this.setState({ plush: true }) }}>
+                                                    <Text style={{ color: "#fff", alignSelf: "center" }}>
                                                         Plush
                                                             </Text>
                                                 </TouchableOpacity>
                                             </View>
 
                                             <View style={{ backgroundColor: "#fff", width: "50%", padding: 15 }}>
-                                                <TouchableOpacity onPress={() => {this.setState({plush: false})}}>
-                                                    <Text style={{color:"pink", alignSelf:"center"}}>
+                                                <TouchableOpacity onPress={() => { this.setState({ plush: false }) }}>
+                                                    <Text style={{ color: "pink", alignSelf: "center" }}>
                                                         SoPlush
                                                             </Text>
                                                 </TouchableOpacity>
@@ -527,16 +532,16 @@ export default class PersonalService extends Component {
 
 
                                             <View style={{ backgroundColor: "#fff", width: "50%", padding: 15, }}>
-                                                <TouchableOpacity onPress={() => {this.setState({plush: true})}}> 
-                                                    <Text style={{color:"pink", alignSelf:"center"}}>
+                                                <TouchableOpacity onPress={() => { this.setState({ plush: true }) }}>
+                                                    <Text style={{ color: "pink", alignSelf: "center" }}>
                                                         Plush
                         </Text>
                                                 </TouchableOpacity>
                                             </View>
 
                                             <View style={{ backgroundColor: "#fc8b8c", width: "50%", padding: 15 }}>
-                                                <TouchableOpacity onPress={() => {this.setState({plush: false})}}>
-                                                    <Text style={{color:"#fff", alignSelf:"center"}}>
+                                                <TouchableOpacity onPress={() => { this.setState({ plush: false }) }}>
+                                                    <Text style={{ color: "#fff", alignSelf: "center" }}>
                                                         SoPlush
                         </Text>
                                                 </TouchableOpacity>
@@ -546,126 +551,124 @@ export default class PersonalService extends Component {
 
 
 
-                                        {this.state.plush  ?  <View>
-                                             {soplushData !== undefined  ?
-                                                <View>
-                                            {filterplush.map((value, index) => {
-                                                if(value.p_checked === 0) {
-                                                    var checked  = false
-                                                }
-                                                return(
-                                                <List>
-                                                <ListItem key={index} onPress={() => this.workFunction(value,"plush", index)}  avatar>
-                                                    <Left style={{marginTop:"12%"}}>
-                                                    <Text></Text>
-                                                    <Text></Text>
-                                                    <Text></Text>
-                                                    <CheckBox style={{borderRadius: 5}} checked={value.p_checked} color="pink"/>
-                                                    </Left>
-                                                    <Body style={{paddingHorizontal:"4%"}}>
-                                                    <Text></Text>
-                                                    <Text note></Text>
-                                                    <Text note>{value.service_name}</Text>
-                                                    </Body>
-                                                    <Right style={{display:"flex", flexDirection:"row", borderBottomColor: null}}>
-                                                    <Text note style={{color:"pink"}}> ${value.service_cost}</Text>
-                                                   
-                                                    </Right>
-                                                </ListItem>
-                                                </List>)
-                                            })}
+                                    {this.state.plush ? <View>
+                                        {soplushData !== undefined ?
+                                            <View>
+                                                {filterplush.map((value, index) => {
+                                                    if (value.p_checked === 0) {
+                                                        var checked = false
+                                                    }
+                                                    return (
+                                                        <List style={{ width: '90%', borderBottomWidth: 0.5, borderBottomColor: 'gray', alignSelf: 'center', justifyContent: 'center', height: 70 }}>
+                                                            <ListItem key={index} onPress={() => this.workFunction(value, "plush", index)} avatar>
+                                                                <Left style={{ marginTop: "12%" }}>
+                                                                    <Text></Text>
+                                                                    <Text></Text>
+                                                                    <Text></Text>
+                                                                    <CheckBox style={{ borderRadius: 5 }} checked={value.p_checked} color="pink" />
+                                                                </Left>
+                                                                <Body style={{ paddingHorizontal: "4%", borderBottomWidth: 0 }}>
+                                                                    <Text></Text>
+                                                                    <Text note></Text>
+                                                                    <Text note>{value.service_name}</Text>
+                                                                </Body>
+                                                                <Right style={{ display: "flex", flexDirection: "row", borderBottomWidth: 0 }}>
+                                                                    <Text note style={{ color: "pink" }}> ${value.service_cost}</Text>
+
+                                                                </Right>
+                                                            </ListItem>
+                                                        </List>)
+                                                })}
 
                                             </View> :
 
-                                            <View style={{flex: 1, height:300, alignContent:"center", justifyContent:"center"}}>
-                                                    <View style={{ alignItems:"center", justifyContent:"center", alignSelf:"center"}}>
-                                                        <Text style={{alignSelf:"center"}}>No Services Found</Text>
-                                              </View>
+                                            <View style={{ flex: 1, height: 300, alignContent: "center", justifyContent: "center" }}>
+                                                <View style={{ alignItems: "center", justifyContent: "center", alignSelf: "center" }}>
+                                                    <Text style={{ alignSelf: "center" }}>No Services Found</Text>
+                                                </View>
 
                                             </View>
 
-}
+                                        }
 
-                                            </View>  :
-                                           
-                                           
-                                           <View>
-                                                {plushData !== undefined ?
+                                    </View> :
+
+
+                                        <View>
+                                            {plushData !== undefined ?
                                                 <View>
-                                           {filterSoplush.map((value, index) => {
-                                               return(
-                                               <List>
-                                               <ListItem key={index} onPress={() => this.workFunction1(value,"soplush", index)}   avatar>
-                                                   <Left style={{marginTop:"13%"}}>
-                                                   <Text></Text>
-                                                   <Text></Text>
-                                                   <Text></Text>
-                                                   <CheckBox style={{borderRadius: 5}} checked={value.s_checked} color="pink"/>
-                                                   </Left>
-                                                   <Body>
-                                                   <Text></Text>
-                                                   <Text note></Text>
-                                                   <Text note>{value.service_name}</Text>
-                                                   </Body>
-                                                   <Right style={{display:"flex", flexDirection:"row", borderBottomColor: null}}>
-                                                   <Text note style={{color:"pink"}}> ${value.so_plush_cost}</Text>
-                                                  
-                                                   </Right>
-                                               </ListItem>
-                                               </List>)
-                                           })}
-                                           </View> : 
-                                        
-                                        
-                                        <View style={{flex: 1, height:300 , alignItems:"center", justifyContent:"center"}}>
-                                                <View style={{ alignItems:"center", justifyContent:"center", alignSelf:"center"}}>
-                                                        <Text style={{alignSelf:"center"}}>No Services Found</Text>
-                                              </View>
+                                                    {filterSoplush.map((value, index) => {
+                                                        return (
+                                                            <List style={{ width: '90%', borderBottomWidth: 0.5, borderBottomColor: 'gray', alignSelf: 'center', justifyContent: 'center', height: 70 }}>
+                                                                <ListItem key={index} onPress={() => this.workFunction1(value, "soplush", index)} avatar>
+                                                                    <Left style={{ marginTop: "13%" }}>
+                                                                        <Text></Text>
+                                                                        <Text></Text>
+                                                                        <Text></Text>
+                                                                        <CheckBox style={{ borderRadius: 5 }} checked={value.s_checked} color="pink" />
+                                                                    </Left>
+                                                                    <Body style={{ paddingHorizontal: "4%", borderBottomWidth: 0 }}>
+                                                                        <Text></Text>
+                                                                        <Text note></Text>
+                                                                        <Text note>{value.service_name}</Text>
+                                                                    </Body>
+                                                                    <Right style={{ display: "flex", flexDirection: "row", borderBottomWidth: 0 }}>
+                                                                        <Text note style={{ color: "pink" }}> ${value.so_plush_cost}</Text>
 
-                                            </View>
-}
+                                                                    </Right>
+                                                                </ListItem>
+                                                            </List>)
+                                                    })}
+                                                </View> :
 
-                                        </View> }
 
-                                           {/* () => {this.props.navigation.navigate('SelectBeautician', {
+                                                <View style={{ flex: 1, height: 300, alignItems: "center", justifyContent: "center" }}>
+                                                    <View style={{ alignItems: "center", justifyContent: "center", alignSelf: "center" }}>
+                                                        <Text style={{ alignSelf: "center" }}>No Services Found</Text>
+                                                    </View>
+
+                                                </View>
+                                            }
+
+                                        </View>}
+
+                                    {/* () => {this.props.navigation.navigate('SelectBeautician', {
                                                         cart: this.state.cart,
                                                         selectDate: this.state.selectDate
                                                     })} */}
 
-                                       {(soplushData !== undefined || plushData !== undefined) ?           
+                                    {(soplushData !== undefined || plushData !== undefined) ?
 
-                                           <View> 
+                                        <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10 }}>
+                                            <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
+                                                <Button onPress={() => this.FilterBeautician()} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
+                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                        Next
+</Text>
+                                                </Button>
+                                            </LinearGradient>
+                                        </View> :
 
-                                                <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
-                                                    <Button onPress={() => this.FilterBeautician()} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
-                                                    <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
-                                                    Next
-                                                    </Text>   
-                                                    </Button>
-                                                </View> 
+                                        <View>
+                                            <Text></Text>
+                                        </View>
 
-                                                </View> :
-                                        
-                                    <View>
-                                        <Text></Text>
-                                    </View>
-
-}
+                                    }
 
 
                                 </Card>
 
-                            
-                            <View>
-                                <Text></Text>
-                                <Text></Text>
-                                <Text></Text>
-                                <Text></Text>
-                                <Text></Text>
-                                <Text></Text>
-                                <Text></Text>
-                                <Text></Text>
-                            </View>
+
+                                <View>
+                                    <Text></Text>
+                                    <Text></Text>
+                                    <Text></Text>
+                                    <Text></Text>
+                                    <Text></Text>
+                                    <Text></Text>
+                                    <Text></Text>
+                                    <Text></Text>
+                                </View>
 
 
 

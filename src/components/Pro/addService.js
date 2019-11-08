@@ -93,6 +93,12 @@ export default class AddService extends Component {
             //     category: successData.data
             // })
             //   console.log("Category PRO", successData)
+            this.setState({
+                add: false,
+            selectedCategory:"",
+            name: "",
+            cost: ""
+            })
         this.props.navigation.navigate("ServiceList")
    
       }else {

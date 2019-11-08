@@ -12,56 +12,56 @@ export default class UserNotification extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            notifications : [
+            notifications :  [
                 {
                     icon: img,
                     data: "Dividers are visual separators of content. Use Divider when you want to make a distinction between sections of content.",
-                    time: "02:00",
+                    time: "8 May, 2018",
                 },
               {
                     icon: img,
-                    data: "Dividers are visual separators of content. Use Divider when you want to make a distinction between sections of content.",
-                    time: "02:00",
+                    data: "Hair Cutting",
+                    time: "8 May, 2018",
                 },
                 {
                     icon: img,
-                    data: "Dividers are visual separators of content. Use Divider when you want to make a distinction between sections of content.",
-                    time: "02:00",
+                    data: "Hair Cutting",
+                    time: "8 May, 2018",
                 },
                 {
                     icon: img,
-                    data: "Dividers are visual separators of content. Use Divider when you want to make a distinction between sections of content.",
-                    time: "02:00",
+                    data: "Hair Cutting",
+                    time: "8 May, 2018",
                 },
                 {
                     icon: img,
-                    data: "Dividers are visual separators of content. Use Divider when you want to make a distinction between sections of content.",
-                    time: "02:00",
+                    data: "Hair Cutting",
+                    time: "8 May, 2018",
                 },
                 {
                     icon: img,
-                    data: "Dividers are visual separators of content. Use Divider when you want to make a distinction between sections of content.",
-                    time: "02:00",
+                    data: "Hair Cutting",
+                    time: "8 May, 2018",
                 },
                 {
                     icon: img,
-                    data: "Dividers are visual separators of content. Use Divider when you want to make a distinction between sections of content.",
-                    time: "02:00",
+                    data: "Hair Cutting",
+                    time: "8 May, 2018",
                 },
                 {
                     icon: img,
-                    data: "Dividers are visual separators of content. Use Divider when you want to make a distinction between sections of content.",
-                    time: "02:00",
+                    data: "Hair Cutting",
+                    time: "8 May, 2018",
                 },
                 {
                     icon: img,
-                    data: "Dividers are visual separators of content. Use Divider when you want to make a distinction between sections of content.",
-                    time: "02:00",
+                    data: "Hair Cutting",
+                    time: "8 May, 2018",
                 },
                 {
                     icon: img,
-                    data: "Dividers are visual separators of content. Use Divider when you want to make a distinction between sections of content.",
-                    time: "02:00",
+                    data: "Hair Cutting",
+                    time: "8 May, 2018",
                 },
                 
                 
@@ -107,7 +107,7 @@ export default class UserNotification extends Component {
           }}
           
         />
-        <Divider style={{ backgroundColor: 'lightgray' }} />
+        <Divider style={{ backgroundColor: 'gray' }} />
         </View>
       )}
 

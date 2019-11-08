@@ -16,52 +16,52 @@ export default class Notification extends Component {
                 {
                     icon: img,
                     data: "Dividers are visual separators of content. Use Divider when you want to make a distinction between sections of content.",
-                    time: "02:00",
+                    time: "8 May, 2018",
                 },
               {
                     icon: img,
                     data: "Hair Cutting",
-                    time: "02:00",
+                    time: "8 May, 2018",
                 },
                 {
                     icon: img,
                     data: "Hair Cutting",
-                    time: "02:00",
+                    time: "8 May, 2018",
                 },
                 {
                     icon: img,
                     data: "Hair Cutting",
-                    time: "02:00",
+                    time: "8 May, 2018",
                 },
                 {
                     icon: img,
                     data: "Hair Cutting",
-                    time: "02:00",
+                    time: "8 May, 2018",
                 },
                 {
                     icon: img,
                     data: "Hair Cutting",
-                    time: "02:00",
+                    time: "8 May, 2018",
                 },
                 {
                     icon: img,
                     data: "Hair Cutting",
-                    time: "02:00",
+                    time: "8 May, 2018",
                 },
                 {
                     icon: img,
                     data: "Hair Cutting",
-                    time: "02:00",
+                    time: "8 May, 2018",
                 },
                 {
                     icon: img,
                     data: "Hair Cutting",
-                    time: "02:00",
+                    time: "8 May, 2018",
                 },
                 {
                     icon: img,
                     data: "Hair Cutting",
-                    time: "02:00",
+                    time: "8 May, 2018",
                 },
                 
                 
@@ -107,7 +107,7 @@ export default class Notification extends Component {
           }}
           
         />
-        <Divider style={{ backgroundColor: 'lightgray' }} />
+        <Divider style={{ backgroundColor: 'gray' }} />
         </View>
       )}
 

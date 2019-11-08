@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   View,Image
+  ,ImageBackground
 } from "react-native";
 
 import { NavigationActions } from "react-navigation";
@@ -28,7 +29,7 @@ class DrawerMenu extends Component {
      
         <Container style={{flex: 1, justifyContent:"center", alignContent: "center"}}>
         <Header style={{ height: 100, backgroundColor: '#fff' }}>
-          <View style={{display:"flex", flexDirection:"row", marginTop:20, marginRight:80}}>
+          <View style={{display:"flex", flexDirection:"row", marginTop:20, marginRight:25}}>
   
              <View >
                     <Avatar
@@ -67,18 +68,18 @@ class DrawerMenu extends Component {
         <Content style={{ backgroundColor: '#fff', marginTop: 20 }}>
           
   
-  
+        <ImageBackground source={require('../../assets/opacity100.png')} style={{ height: "100%", width: "100%", }}>
           
               <TouchableOpacity
                         style={styles.menuItem}
                         onPress={() =>  this.props.navigation.navigate('Main')}
                       >
   
-                        <View>
+                        <View style={{marginLeft:10}}>
                         <Image source={require('../../assets/home.png')} style={{height:30, width:30}} />
                         </View>
   
-                        <View style={{marginLeft:10}}>
+                        <View style={{marginLeft:20}}>
                         <Text style={styles.menuItemText}>Home</Text>
                         </View>
   
@@ -94,11 +95,11 @@ class DrawerMenu extends Component {
                           this.props.navigation.navigate('ProProfile')}
   
                       >
-                      <View>
+                      <View style={{marginLeft:10}}>
                         <Image source={require('../../assets/user.png')} style={{height:30, width:30}} />
                         </View>
   
-                        <View style={{marginLeft:10}}>
+                        <View style={{marginLeft:20}}>
                         <Text style={styles.menuItemText}>My Profile</Text>
                         </View>
   
@@ -116,11 +117,11 @@ class DrawerMenu extends Component {
                         this.props.navigation.navigate('Notification')}
   
                       >
-                      <View>
+                      <View style={{marginLeft:10}}>
                       <Image source={require('../../assets/notification.png')} style={{height:30, width:30}} />
                         </View>
   
-                        <View style={{marginLeft:10}}>
+                        <View style={{marginLeft:20}}>
                         <Text style={styles.menuItemText}>Notification</Text>
                         </View>
   
@@ -146,11 +147,11 @@ class DrawerMenu extends Component {
                           this.props.navigation.navigate('ServingHistory')}
   
                       >
-                      <View>
+                      <View style={{marginLeft:10}}> 
                       <Image source={require('../../assets/bible.png')} style={{height:30, width:30}} />
                         </View>
   
-                        <View style={{marginLeft:10}}>
+                        <View style={{marginLeft:20}}>
                         <Text style={styles.menuItemText}>View Booking</Text>
                         </View>
   
@@ -170,11 +171,11 @@ class DrawerMenu extends Component {
                           this.props.navigation.navigate('AddService')}
   
                       >
-                      <View>
+                      <View style={{marginLeft:10}}>
                       <Image source={require('../../assets/more.png')} style={{height:30, width:30}} />
                         </View>
   
-                        <View style={{marginLeft:10}}>
+                        <View style={{marginLeft:20}}>
                         <Text style={styles.menuItemText}>Add Service</Text>
                         </View>
   
@@ -193,11 +194,11 @@ class DrawerMenu extends Component {
                           this.props.navigation.navigate('About')}
   
                       >
-                      <View>
+                      <View style={{marginLeft:10}}>
                       <Image source={require('../../assets/information.png')} style={{height:30, width:30}} />
                         </View>
   
-                        <View style={{marginLeft:10}}>
+                        <View style={{marginLeft:20}}>
                         <Text style={styles.menuItemText}>About App</Text>
                         </View>
   
@@ -215,11 +216,11 @@ class DrawerMenu extends Component {
                           this.props.navigation.navigate('ViewBooking')}
   
                       >
-                      <View>
+                      <View style={{marginLeft:10}}>
                       <Image source={require('../../assets/history.png')} style={{height:30, width:30}} />
                         </View>
   
-                        <View style={{marginLeft:10}}>
+                        <View style={{marginLeft:20}}>
                         <Text style={styles.menuItemText}>Serving History</Text>
                         </View>
   
@@ -236,11 +237,11 @@ class DrawerMenu extends Component {
                           this.props.navigation.navigate('PassChange')}
   
                       >
-                      <View>
+                      <View style={{marginLeft:10}}>
                       <Image source={require('../../assets/lock.png')} style={{height:30, width:30}} />
                         </View>
   
-                        <View style={{marginLeft:10}}>
+                        <View style={{marginLeft:20}}>
                         <Text style={styles.menuItemText}>Change Password</Text>
                         </View>
   
@@ -254,14 +255,14 @@ class DrawerMenu extends Component {
                       <TouchableOpacity
                         style={styles.menuItem}
                         onPress={() =>
-                          this.props.navigation.navigate('ProLogin')}
+                          this.props.navigation.navigate('Main')}
   
                       >
-                      <View>
+                      <View style={{marginLeft:10}}>
                       <Image source={require('../../assets/translation.png')} style={{height:30, width:30}} />
                         </View>
   
-                        <View style={{marginLeft:10}}>
+                        <View style={{marginLeft:20}}>
                         <Text style={styles.menuItemText}>English - عربي</Text>
                         </View>
   
@@ -281,11 +282,11 @@ class DrawerMenu extends Component {
                           this.props.navigation.navigate('Term')}
   
                       >
-                      <View>
+                      <View style={{marginLeft:10}}>
                       <Image source={require('../../assets/accept.png')} style={{height:30, width:30}} />
                         </View>
   
-                        <View style={{marginLeft:10}}>
+                        <View style={{marginLeft:20}}>
                         <Text style={styles.menuItemText}>Term & Condition</Text>
                         </View>
   
@@ -301,11 +302,11 @@ class DrawerMenu extends Component {
                           this.props.navigation.navigate('ProLogin')}
   
                       >
-                      <View>
+                      <View style={{marginLeft:10}}>
                       <Image source={require('../../assets/logout.png')} style={{height:30, width:30}} />
                         </View>
   
-                        <View style={{marginLeft:10}}>
+                        <View style={{marginLeft:20}}>
                         <Text style={styles.menuItemText}>Logout</Text>
                         </View>
   
@@ -314,7 +315,8 @@ class DrawerMenu extends Component {
                       </TouchableOpacity>
   
   
-                      
+
+              </ImageBackground>  
                     
                       
         </Content>

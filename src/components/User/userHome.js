@@ -126,11 +126,12 @@ export default class UserHome extends Component {
 
           if(successData.status === true){
               // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
-              console.log(" successData.data PRO", successData.data, `https://hnhtechsolutions.com/hassan/soplush/images/${item.image}`)
+              console.log(" successData.data PRO", successData.data, item.category_name)
               this.props.navigation.navigate(this.state.navigate, {
                 category_id: item.category_id,
                 image: `https://hnhtechsolutions.com/hassan/soplush/images/${item.image}`,
-                service: successData.data
+                service: successData.data,
+                category_name: item.category_name
 
               })
                  
@@ -245,8 +246,8 @@ export default class UserHome extends Component {
 
                     <ScrollView >
 
-                        <View style={{ alignSelf: "center", alignContent: "center", alignItems: "center", backgroundColor: "#fff", width: width }}>
-                            <Image source={require('../../../assets/Cover.png')} style={{ opacity: 2 }} />
+                        <View style={{ alignSelf: "center", alignContent: "center", alignItems: "center", backgroundColor: "#fff", width: '100%' }}>
+                            <Image source={require('../../../assets/Cover.png')} style={{ opacity: 2 ,width: '100%'}} />
                         </View>
 
                         <View style={{ width: width, marginVertical: "2%", marginLeft: "5%" }}>
@@ -292,11 +293,11 @@ export default class UserHome extends Component {
                                 data={this.state.data}
                                 renderItem={({ item }) => {
                                     console.log("FlatList FlatList", `https://hnhtechsolutions.com/hassan/soplush/images/${item.image}`)
-                                        return (<View style={{ flexDirection: "column", margin: 2, height: 180, width: 180, borderRadius: 10, alignContent: "center", alignItems: "center", alignSelf: "center" }}>
+                                        return (<View style={{ flexDirection: "column", margin: 2, height: 180, width: 180, alignContent: "center", alignItems: "center", alignSelf: "center", }}>
                                         <TouchableOpacity onPress={() => this.navigatingToOther(item)}>
                                             <Image style={styles.imageThumbnail} source={{uri:`https://hnhtechsolutions.com/hassan/soplush/images/${item.image}`}} />
                                         </TouchableOpacity>
-                                        <Text style={{ fontSize: 18, color: "#000", opacity: 0.6, fontFamily: "MrEavesXLModNarOT-Reg" }}>{item.category_name}</Text>
+                                        <Text style={{ fontSize: 18, color: "#000", opacity: 0.6, fontFamily: "MrEavesXLModNarOT-Reg", textTransform:'capitalize' }}>{item.category_name}</Text>
                                     </View>
                                     )}
                                 }
@@ -370,7 +371,7 @@ const styles = StyleSheet.create({
         //   alignItems: 'center',
         height: 150,
         width: 150,
-        borderRadius: 10
+        borderRadius: 5
     },
 
 })
