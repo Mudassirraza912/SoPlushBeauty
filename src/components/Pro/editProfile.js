@@ -4,6 +4,7 @@ import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, Scrol
 import { Container, Content, List, ListItem, Left, Right, Button, Item, Input,  Label, Form, Icon } from 'native-base';
 import {Avatar, Header, Card, Divider} from 'react-native-elements'
 import ImagePicker from 'react-native-image-picker'
+import LinearGradient from 'react-native-linear-gradient'
 
 
 const {width, height} = Dimensions.get("window")
@@ -239,7 +240,7 @@ export default class EditProProfile extends Component {
                     </Item> */}
 
 
-                                <View> 
+                                {/* <View> 
 
                                         <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
                                             <Button onPress={() => {this.updateProfile()}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
@@ -249,7 +250,21 @@ export default class EditProProfile extends Component {
                                             </Button>
                                         </View> 
 
-                                </View>
+                                </View> */}
+
+
+                                <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10 }}>
+                                            <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
+                                                <Button onPress={() => {this.updateProfile()}} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
+                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                    Update
+</Text>
+                                                </Button>
+                                            </LinearGradient>
+                                        </View>          
+
+
+                                
                     </Card>
 
                        

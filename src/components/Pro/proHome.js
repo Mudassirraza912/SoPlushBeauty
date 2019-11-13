@@ -70,15 +70,15 @@ export default class ProHome extends Component {
 
                 <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
                 
-                <View style={{height:"80%", width : width-20, backgroundColor:'#fff', borderWidth:1, alignSelf:"center",borderRadius: 10, opacity:0.75, marginTop:-50 }}>
+                <View style={{height:"80%", width : width-20, backgroundColor:'#fff', borderWidth:1, alignSelf:"center",borderRadius: 10, opacity:0.75, marginTop:-70, borderColor:'#fff', borderWidth:1 }}>
 
                     <ScrollView>
 
-                    <View style={{alignSelf:"center", alignContent:"center", alignItems:"center", marginTop:"15%"}}> 
+                    <View style={{alignSelf:"center", alignContent:"center", alignItems:"center", marginTop:"10%"}}> 
                     <Image source={require('../../../assets/text.png')} style={{opacity: 2}} />
                     </View>
 
-                    <View style={{display:"flex", flexDirection:"row", padding: 10, width:"100%", justifyContent:"space-around", marginTop:"3%"}}>
+                    <View style={{display:"flex", flexDirection:"row", padding: 10, width:"100%", justifyContent:"space-around", marginTop:"3%", paddingVertical:60}}>
 
                         <TouchableOpacity onPress={() => {this.props.navigation.navigate("ServiceList")}}>
                         <View style={{alignContent:"center",alignItems:"center",alignSelf:"center",backgroundColor:"transparent",width:143, height:139, borderRadius: 5, borderColor:"#000", borderWidth: 1, justifyContent:"space-evenly" }}>

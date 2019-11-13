@@ -7,6 +7,7 @@ import pro from '../../../assets/barbie.jpg'
 import { Avatar, Badge, withBadge } from 'react-native-elements';
 import ImagePicker from 'react-native-image-picker'
 import axios from 'axios'
+import LinearGradient from 'react-native-linear-gradient'
 
 const BadgedIcon = withBadge("X")(Avatar)
 const {width, height} = Dimensions.get("window")
@@ -189,7 +190,7 @@ export default class UserSignUp extends Component {
         const {email, password, name, address, phoneNo, loader} = this.state
         console.log(email, password, name, address, phoneNo)
         return (
-            <View style={{flex:1, height, width, marginTop: -80}}>
+            <View style={{flex:1, height:'100%', width, marginTop: -80}}>
                 <ImageBackground source={require('../../../assets/opacity.jpg')} style={{height:"100%", width:"100%",opacity:0.9}}> 
 
             <ScrollView style={{height}}>
@@ -204,7 +205,7 @@ export default class UserSignUp extends Component {
                 
 
                    
-                <View style={{marginTop:"5%",alignContent:"center", alignSelf:"center", alignItems:"center", width:"80%", backgroundColor:"#fff",borderRadius:10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', padding:"5%"}}>
+                <View style={{marginTop:"5%",alignContent:"center", alignSelf:"center", alignItems:"center", width:"80%", backgroundColor:"#fff",borderRadius:10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', paddingHorizontal:"5%",paddingVertical:5}}>
 
                     <View>
                         <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 30}}>CREATE ACCOUNT</Text>
@@ -281,12 +282,27 @@ export default class UserSignUp extends Component {
                     </View>
 
 
-
-              {!loader ?  <Button onPress={this.signUp} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
+                    {/* <Button onPress={this.signUp} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
                     <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                         Sign Up
                     </Text>
-                </Button> : 
+                </Button> */}
+
+
+
+              {!loader ? 
+              
+              <View style={{ alignContent: "center", alignItems: "center",  width:'100%', marginBottom:3 }}>
+              <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
+                  <Button onPress={this.signUp} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
+                      <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                     Sign Up
+</Text>
+                  </Button>
+              </LinearGradient>
+          </View>
+          
+          : 
                 
                             <Spinner color="#fc8b8c"/>
 

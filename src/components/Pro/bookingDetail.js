@@ -8,6 +8,8 @@ import LinearGradient from 'react-native-linear-gradient'
 
 const {width, height} = Dimensions.get("window")
 
+var varservices = null
+
 export default class BookingDetail extends Component {
     constructor(props) {
         super(props);
@@ -40,6 +42,12 @@ export default class BookingDetail extends Component {
     // console.log("",services.services[0])
         
     // }
+
+    varservices = this.props.navigation.getParam('bookinDetail')
+
+    // this.setState({
+    //     services:  this.props.navigation.getParam('bookinDetail')
+    // })
         return (
             <View style={{flex:1, height, width, marginTop: -80}}>
                 <ImageBackground source={require('../../../assets/map.png')} style={{height:"100%", width:"100%",opacity:0.9, marginTop: 20}}> 
@@ -63,50 +71,55 @@ export default class BookingDetail extends Component {
                   
                         <Card containerStyle={{backgroundColor:"transparent", borderColor:"#fff", borderWidth:3, borderRadius:10}}> 
                                 <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg"}}>Name</Text>
-                                    <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg"}}>{services.username}</Text>
+                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20 }}>Name</Text>
+                                    <Text style={{marginLeft:"4%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20 }}>{varservices.username}</Text>
                                     {/* <TouchableOpacity>
                                     <Text  style={{marginLeft:"30%", color:"#fc8b8c", borderBottomColor:"#fc8b8c", borderBottomWidth:1, fontFamily:"MrEavesXLModNarOT-Reg", width:50}}>VIEW DETAILS</Text>
                                     </TouchableOpacity> */}
                                 </View>
 
                                 <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg"}}>Service</Text>
-                                   {services && <View>
-                                                    {services.services.map((value, index) => {
+                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20 }}>Service</Text>
+                                   {varservices && <View>
+                                                    {varservices.services.map((value, index) => {
                                                         console.log('value.service_name', value)
                                                         return(
-                                                            <Text style={{ marginLeft: "3%", fontFamily: "MrEavesXLModNarOT-Reg" }}>{value.service_name}</Text>
+                                                            <Text style={{ marginLeft: "10%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20  }}>{value.service_name}</Text>
                                                         )
                                                     })    
                                                     }
                                                     </View>}
                                 </View>
 
+                                <View style={{ display: "flex", flexDirection: "row" }}>
+                                                    <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20 }}>Time</Text>
+                                                    <Text style={{ marginLeft: "4%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20  }}>{varservices.time_slot}</Text>
+                                    </View>
+{/* 
                                 <View style={{display:"flex", flexDirection:"row"}}> 
                                     <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg"}}>Time</Text>
                                     <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg"}}>{services.time_slot}</Text>
-                                </View>
+                                </View> */}
 
                                  <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg"}}>Date</Text>
-                                    <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg"}}>{services.service_date}</Text>
+                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20 }}>Date</Text>
+                                    <Text style={{marginLeft:"4%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20 }}>{varservices.service_date}</Text>
                                 </View>
 
                                 <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg"}}>Address</Text>
-                                    <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg"}}>{services.address}</Text>
+                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20 }}>Address</Text>
+                                    <Text style={{marginLeft:"4%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20 }}>v{varservices.address}</Text>
                                 </View>
 
                                 <View style={{display:"flex", flexDirection:"row", overflow:"hidden"}}> 
-                                    <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg"}}>Mobile </Text>
-                                    <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", width:"60%"}}>{services.mobile}</Text>
+                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20 }}>Mobile </Text>
+                                    <Text style={{marginLeft:"4%", fontFamily:"MrEavesXLModNarOT-Reg", width:"60%", fontSize:20 }}>{varservices.mobile}</Text>
                                 </View>
 
                                 <View style={{display:"flex",  marginRight:"6%", marginTop:"5%", width:"100%"}}> 
 
                                 <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "100%", borderRadius: 10 }}>
-                                        <Button onPress={() => this.props.navigation.goBack()} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
+                                        <Button onPress={() => this.props.navigation.navigate('BookingReq')} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
                                             <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, marginRight: "10%" }}>
                                                Ok
 </Text>

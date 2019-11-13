@@ -6,6 +6,7 @@ import camicon from '../../../assets/camera.png'
 import pro from '../../../assets/barbie.jpg'
 import { Avatar, Badge, withBadge } from 'react-native-elements';
 import ImagePicker from 'react-native-image-picker'
+import LinearGradient from 'react-native-linear-gradient'
 
 
 const BadgedIcon = withBadge("X")(Avatar)
@@ -314,11 +315,27 @@ export default class ProSignUp extends Component {
                 </View> */}
 
 
-                                {!loader ? <Button onPress={this.signUp} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#fc8b8c", width: "90%", borderRadius: 10, opacity: 0.7 }}>
+{/* <Button onPress={this.signUp} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#fc8b8c", width: "90%", borderRadius: 10, opacity: 0.7 }}>
                                     <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
                                         Sign Up
                     </Text>
-                                </Button> :  
+                                </Button> */}
+                
+               
+
+                                {!loader ? 
+                                
+                                <View style={{ alignContent: "center", alignItems: "center", marginBottom:5, width:'100%' }}>
+                                <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
+                                    <Button onPress={this.signUp} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
+                                        <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                        Sign Up
+</Text>
+                                    </Button>
+                                </LinearGradient>
+                            </View>
+                            :  
+
                                 
                                 <Spinner color="#fc8b8c" />
 

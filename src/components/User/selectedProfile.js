@@ -215,7 +215,7 @@ export default class SelectedProfile extends Component {
                                                     var newdate = moment(date.toString().substr(4, 12)).format("MM-DD-YYYY")
                                                     this.state.selectdate = newdate
 
-                                                    this.setState({ selectdate })
+                                                    this.setState({ selectdate :newdate })
 
                                                 }}
                                                 underlineColorAndroid="#f55f2a" />
@@ -280,7 +280,7 @@ export default class SelectedProfile extends Component {
 
 
 
-                                        <View style={{ flex: 1, height: Dimensions.get('window').height / 2, width: Dimensions.get('window').width, marginLeft: 10 }}>
+                                        <View style={{ flex: 1, height: Dimensions.get('window').height / 2,alignItems:'center'  }}>
                                             <FlatList style={{ flex: 1, marginTop: "3%" }}
                                                 data={this.state.works}
                                                 renderItem={({ item }) => (
@@ -349,10 +349,9 @@ export default class SelectedProfile extends Component {
 
 
 
-                                        <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom: 10 }}>
-                                            <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
+{/* <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom: 10 }}> */}
+                                            <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10, alignItems:'center', alignSelf:'center', marginBottom: '5%'}}>
                                                 <Button onPress={() => {
-
                                                     // this.props.navigation.navigate('ConfirmBooking', {
                                                     //     beauticianData: this.state.profileData,
                                                     //     selectedSlot: this.state.selectedSlot,
@@ -378,7 +377,7 @@ export default class SelectedProfile extends Component {
                                                             beauticianData: this.state.profileData,
                                                             selectedSlot: this.state.selectedSlot,
                                                             cart: this.state.cart,
-                                                            selectdate: moment(this.state.selectdate).format("MM-DD-YYYY")
+                                                            selectdate: this.state.selectdate
                                                         })
 
                                                         console.log('IS DATE')
@@ -387,13 +386,13 @@ export default class SelectedProfile extends Component {
 
 
 
-                                                }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
-                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10, width:'100%' }}>
+                                                <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
                                                         Book Now
 </Text>
                                                 </Button>
                                             </LinearGradient>
-                                        </View>
+                                        {/* </View> */}
                                     </Card>
 
                                     :
@@ -465,7 +464,7 @@ export default class SelectedProfile extends Component {
                                                     var newdate = moment(date.toString().substr(4, 12)).format("MM-DD-YYYY")
                                                     this.state.selectdate = newdate
 
-                                                    this.setState({ selectdate })
+                                                    this.setState({ selectdate: newdate })
 
                                                 }}
                                                 underlineColorAndroid="#f55f2a" />
@@ -592,7 +591,7 @@ export default class SelectedProfile extends Component {
                                                             beauticianData: this.state.profileData,
                                                             selectedSlot: this.state.selectedSlot,
                                                             cart: this.state.cart,
-                                                            selectdate: moment(this.state.selectdate).format("MM-DD-YYYY")
+                                                            selectdate: this.state.selectdate
 
                                                         })
 

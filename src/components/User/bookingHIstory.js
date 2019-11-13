@@ -309,13 +309,13 @@ export default class BookingHistory extends Component {
 
                                 <View style={{ display: "flex", flexDirection: "row" }}>
                                                     <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20 }}>Service Name</Text>
-                                                    <Text style={{ marginLeft: "3%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20  }}>{value.services[0].service_name}</Text>
+                                                    <Text style={{ marginLeft: "5%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20  }}>{value.services[0].service_name}</Text>
                                     </View>
 
 
                                 <View style={{display:"flex", flexDirection:"row"}}> 
                                 <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20 }}>Beauticainist Name</Text>
-                                                    <Text style={{ marginLeft: "3%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20  }}>{value.beautician}</Text>
+                                                    <Text style={{ marginLeft: "5%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20  }}>{value.beautician}</Text>
                                 </View>
 
                                 
@@ -332,7 +332,7 @@ export default class BookingHistory extends Component {
 
                                 <View style={{display:"flex", flexDirection:"row"}}> 
                                 <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20 }}>Cost</Text>
-                                                    <Text style={{ marginLeft: "3%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20  }}>$ {value.services[0].service_cost}</Text>
+                                                    <Text style={{ marginLeft: "5%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20  }}>$ {value.services[0].service_cost}</Text>
                                 </View>
 
                                 {value.is_reviewed == '0' && 

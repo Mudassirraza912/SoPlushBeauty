@@ -3,6 +3,7 @@ import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, Scrol
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button, Item, Input, Label, Form, Icon } from 'native-base';
 import { Avatar, Header, Card, Divider } from 'react-native-elements'
+import LinearGradient from 'react-native-linear-gradient'
 
 
 const { width, height } = Dimensions.get("window")
@@ -148,12 +149,12 @@ export default class AddService extends Component {
 
 
                                 {!this.state.add && <View style={{ width: "80%", alignContent: "center", alignItems: "center", justifyContent: "center", alignSelf: 'center' }}>
-                                    <Item floatingLabel style={{ alignSelf: 'center', alignItems: 'center', alignContent: 'center' }}>
+                                    <Item floatingLabel style={{ alignSelf: 'center', alignItems: 'center', alignContent: 'center', borderBottomWidth:1, borderBottomColor: 'gray' }}>
                                         {/* <Icon active name='user' type="FontAwesome" /> */}
                                         {/* <Label>Name</Label> */}
                                         <Input onChangeText={(e) => { this.setState({ name: e }) }} placeholder="Enter Service" />
                                     </Item>
-                                    <Item floatingLabel>
+                                    <Item floatingLabel style={{ borderBottomWidth:1, borderBottomColor: 'gray'}}>
                                         {/* <Icon active name='home' type="FontAwesome" /> */}
                                         {/* <Label>Address</Label> */}
                                         <Input keyboardType="number-pad" onChangeText={(e) => { this.setState({ cost: e }) }} placeholder="Enter Cost" />
@@ -168,16 +169,29 @@ export default class AddService extends Component {
                                                 {/* <Picker.Item label="jksfdgsdfh" value="{value.category_name}"/> */}
                                                 {this.state.category.map((value, index) => {
                                                     console.log("value.category_name", value.category_name)
-                                                    return(<Picker.Item label={value.category_name} value={value.category_id}/>)
+                                                    return(<Picker.Item style={{width: 200}} label={value.category_name} value={value.category_id}/>)
                                                 })}
                                     </Picker>
                                     </View>
 
+
+{/* 
                                             <Button onPress={this.addCategory} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"100%", borderRadius: 10, opacity:0.7, marginTop:"5%"}}> 
                                             <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                                             Ok
                                             </Text>   
-                                            </Button>
+                                            </Button> */}
+
+
+                                            <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10, width: "100%" }}>
+                                            <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
+                                                <Button onPress={this.addCategory} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
+                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                    Ok
+</Text>
+                                                </Button>
+                                            </LinearGradient>
+                                        </View>
 
                                 </View>}
 

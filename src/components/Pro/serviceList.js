@@ -3,6 +3,7 @@ import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, Scrol
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button, Item, Input, } from 'native-base';
 import {Avatar, Header, Icon} from 'react-native-elements'
+import LinearGradient from 'react-native-linear-gradient'
 
 
 const {width, height} = Dimensions.get("window")
@@ -365,7 +366,7 @@ export default class ServiceList extends Component {
                             <Left>
                                 <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.service_name}</Text>
                             </Left>
-                            <Right style={{flexDirection:'row'}}>
+                            <Right style={{flexDirection:'row',paddingHorizontal:30}}>
                             
                             <TouchableOpacity onPress = {() => {
                                 this.setState({
@@ -407,16 +408,27 @@ export default class ServiceList extends Component {
             
             
             }
+
+<View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10 }}>
+                                            <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
+                                                <Button onPress={() => {this.setState({renderEMail: false, renderCode: false, renderPassword:false}),
+                this.props.navigation.navigate('Main')}} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
+                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                    Save Service
+</Text>
+                                                </Button>
+                                            </LinearGradient>
+                                        </View>
                       
                         
-                  <View style={{alignContent:"center", alignItems:"center", marginTop:"5%", paddingBottom:"5%"}}>
+                  {/* <View style={{alignContent:"center", alignItems:"center", marginTop:"5%", paddingBottom:"5%"}}>
                     <Button onPress={() => {this.setState({renderEMail: false, renderCode: false, renderPassword:false}),
                 this.props.navigation.navigate('Main')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
                      <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                        Save Service
                     </Text>   
                      </Button>
-                </View>
+                </View> */}
 
                 </View> 
                 
@@ -445,7 +457,7 @@ export default class ServiceList extends Component {
             </Picker> */}
             </View>
 
-            <View style={{alignContent:"center", alignItems:'center'}}>
+            {/* <View style={{alignContent:"center", alignItems:'center'}}>
 
                     <Button onPress={this.editService} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"80%", borderRadius: 10, opacity:0.7, marginTop:"5%"}}> 
                     <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
@@ -458,7 +470,30 @@ export default class ServiceList extends Component {
                     Cancel
                     </Text>   
                     </Button>
-            </View>
+            </View> */}
+
+
+<View style={{ display: "flex", flexDirection: "row", marginRight: "6%" ,  marginBottom:5}}>
+
+<View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10,width: '50%' }}>
+                                            <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
+                                                <Button onPress={this.editService} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
+                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                        Ok
+</Text>
+                                                </Button>
+                                            </LinearGradient>
+                                        </View>
+
+
+<View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
+    <Button onPress={() => { this.setState({edit:false})}} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#ffff", width: "90%", borderRadius: 10, opacity: 0.7, borderColor: "#fc8b8c", borderWidth: 1 }}>
+        <Text style={{ alignSelf: "center", color: "#000", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+        Cancel
+</Text>
+    </Button>
+</View>
+</View>
 
         </View>         
                            }

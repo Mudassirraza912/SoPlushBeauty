@@ -5,7 +5,9 @@ import { Container, Content, List, ListItem, Left, Right, Button } from 'native-
 import { Avatar, Header, Icon, Card } from 'react-native-elements'
 import Dialog, { DialogFooter, DialogButton, DialogContent, DialogTitle } from 'react-native-popup-dialog';
 import constants from 'jest-haste-map/build/constants';
-import { thisExpression } from '@babel/types';
+// import { thisExpression } from '@babel/types';
+import LinearGradient from 'react-native-linear-gradient'
+
 
 const { width, height } = Dimensions.get("window")
 
@@ -458,7 +460,7 @@ export default class BookingReq extends Component {
                              {this.state.data.length > 0 ?   <View style={{ backgroundColor: "#fff", borderRadius: 10, width: "90%" }}>
                                     {this.state.data.map((value, index) => {
                                         return (
-                                            <Card key={index} containerStyle={{ backgroundColor: "transparent", borderColor: "#fff", borderWidth: 3, borderRadius: 10 }}>
+                                            <View key={index} style={{width:'90%', padding: 10, alignSelf:'center'}}>
                                                 <View style={{ display: "flex", flexDirection: "row" }}>
                                                     <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg" }}>Name</Text>
                                                     <Text style={{ marginLeft: "3%", fontFamily: "MrEavesXLModNarOT-Reg" }}>{value.username}</Text>
@@ -488,13 +490,24 @@ export default class BookingReq extends Component {
 
                                                 <View style={{ display: "flex", flexDirection: "row", marginRight: "6%" }}>
 
-                                                    <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
+                                                    {/* <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
                                                         <Button onPress={() => { this.changeStatus('accepted', value, index) }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#fc8b8c", width: "90%", borderRadius: 10, opacity: 0.7 }}>
                                                             <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
                                                                 Accept
                                             </Text>
                                                         </Button>
-                                                    </View>
+                                                    </View> */}
+
+<View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10,width: '50%' }}>
+                                            <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
+                                                <Button onPress={() => { this.changeStatus('accepted', value, index) }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
+                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                    Accept
+</Text>
+                                                </Button>
+                                            </LinearGradient>
+                                        </View>
+                                                    
 
                                                     <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
                                                         <Button onPress={() => { this.changeStatus('rejected', value, index) }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#ffff", width: "90%", borderRadius: 10, opacity: 0.7, borderColor: "#fc8b8c", borderWidth: 1 }}>
@@ -504,7 +517,7 @@ export default class BookingReq extends Component {
                                                         </Button>
                                                     </View>
                                                 </View>
-                                            </Card>
+                                            </View>
 
                                         )
                                     })}

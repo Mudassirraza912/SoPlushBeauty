@@ -118,7 +118,7 @@ export default class UserAppointment extends Component {
                   <View style={{ justifyContent: "center", alignContent: "center", alignItems: "center", marginTop: 20 }}>
       
       
-                    <Card containerStyle={{ backgroundColor: "#fff", borderRadius: 10, width: "95%", }}>
+                    <Card containerStyle={{ backgroundColor: "#fff", borderRadius: 10, width: "95%", overflow:'hidden' }}>
       
                       <View >
                       </View>

@@ -288,7 +288,7 @@ export default class UserHome extends Component {
 
 
 
-                        <View style={{ flex: 1, width: Dimensions.get('window').width, height: "100%" }}>
+                        <View style={{ flex: 1, width: Dimensions.get('window').width, height: "100%",alignItems:'center' }}>
                             <FlatList style={{ flex: 1}}
                                 data={this.state.data}
                                 renderItem={({ item }) => {

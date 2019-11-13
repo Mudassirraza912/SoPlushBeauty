@@ -13,7 +13,7 @@ export default class ProLogin extends Component {
         super(props)
         this.state = {
             shift: new Animated.Value(0),
-            email: "Haris@gmail.com",
+            email: "Jenny@gmail.com",
             password: "12345",
             loader: false
         }

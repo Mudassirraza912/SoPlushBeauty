@@ -3,6 +3,7 @@ import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, Scrol
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button } from 'native-base';
 import {Avatar, Header, Icon, Card} from 'react-native-elements'
+import LinearGradient from 'react-native-linear-gradient'
 
 
 const {width, height} = Dimensions.get("window")
@@ -152,6 +153,7 @@ export default class ServingHistory extends Component {
                                                         this.state.data.splice(index, 1)
 
                                                         this.setState({ services, data})
+                                                        this.props.navigation.navigate('ViewBooking')
 
                                                     } else {
                                                         console.log("Else", successData)
@@ -329,17 +331,17 @@ export default class ServingHistory extends Component {
                 <View style={{backgroundColor:"#fff",borderRadius:10, width:"90%"}}>
                     {this.state.data.map((value, index) => {
                         return(
-                        <Card key={index} containerStyle={{backgroundColor:"transparent", borderColor:"#fff", borderWidth:3, borderRadius:10}}> 
+                            <View key={index} style={{width:'90%', padding: 10, alignSelf:'center'}}>
 
-                           <View style={{display:"flex", flexDirection:"row"}}> 
+                           {/* <View style={{display:"flex", flexDirection:"row"}}> 
                                     <Text style={{marginLeft:"20%", fontFamily:"MrEavesXLModNarOT-Reg", color:"#fc8b8c", fontSize:25}}>{value.dateTime}</Text>
-                                </View>
+                                </View> */}
 
 
 
 
                                 <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Service Service Name</Text>
+                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Service Name</Text>
                                     <Text style={{marginLeft:"20%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, textAlign:"right"}}>{value.services[0].service_name}</Text>
                                 </View>
 
@@ -378,23 +380,42 @@ export default class ServingHistory extends Component {
                             
                             }
 
-                                <View style={{display:"flex", flexDirection:"row", marginRight:"6%"}}> 
+                                <View style={{display:"flex", flexDirection:"row", marginRight:"15%"}}> 
 
-                                        <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
+                                        {/* <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
                                             <Button onPress={() => {this.markAsCompelet('completed', value, index)}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"100%", borderRadius: 10, opacity:0.7}}> 
                                             <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                                             Mark As Compelete
                                             </Text>   
                                             </Button>
+                                        </View> */}
+
+                                         <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%",width: "90%"}}>
+                                            <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "100%", borderRadius: 10 }}>
+                                                <Button onPress={() => {this.markAsCompelet('completed', value, index)}} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
+                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                    Mark As Compelete
+</Text>
+                                                </Button>
+                                            </LinearGradient>
                                         </View> 
 
-                                        <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
+                                        {/* <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
                                             <Button style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", borderRadius: 10, opacity:0.7, width:"60%"}}> 
                                             <Icon name="camera" type="font-awesome" color="#fff" />
                                             </Button>
+                                        </View> */}
+
+
+                                         <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%",width: "30%", marginLeft: 5}}>
+                                            <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "100%", borderRadius: 10 }}>
+                                            <Button style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
+                                                <Icon name="camera" type="font-awesome" color="#fff" />
+                                                </Button>
+                                            </LinearGradient>
                                         </View> 
                                 </View>
-                    </Card>
+                    </View>
 
                         )
                     })}

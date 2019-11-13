@@ -3,7 +3,7 @@ import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, Scrol
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button } from 'native-base';
 import {Avatar, Header, Icon, Card, Divider} from 'react-native-elements'
-
+import LinearGradient from 'react-native-linear-gradient'
 
 const {width, height} = Dimensions.get("window")
 
@@ -55,35 +55,40 @@ export default class ProProfile extends Component {
 
                 {/* <View style={{backgroundColor:"#fff",borderRadius:10, width:"90%"}}> */}
                    
-                        <Card containerStyle={{backgroundColor:"#fff", borderRadius:10, width:"90%",}}> 
-                            <View style={{width:"100%"}}>
+                        <Card containerStyle={{backgroundColor:"#fff", borderRadius:10, width:"90%",padding:0}}> 
+                            {/* <View style={{width:"100%"}}>
                                 <Image resizeMode="cover" style={{width:"100%", height:300}} source={{uri:`https://hnhtechsolutions.com/hassan/soplush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}} />
-                            </View>
-                                <View style={{display:"flex", flexDirection:"column", marginTop: 15}}> 
+                            </View> */}
+                            <View style={{ width: "100%", marginLeft: 0, marginRight: 0, borderRadius: 10 }}>
+                                            <Image source={{uri:`https://hnhtechsolutions.com/hassan/soplush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}} style={{ height: 200, width: "100%", borderTopRightRadius: 10, borderTopLeftRadius: 10 }} />
+                                        </View>
+
+
+                                <View style={{display:"flex", flexDirection:"column", marginTop: 15, marginLeft: 15}}> 
                                     <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, color: "gray"}}>Name</Text>
                                     <Text style={{ fontFamily:"MrEavesXLModNarOT-Reg", fontSize:15}}>{this.state.profileData.username}</Text>
                                     <Divider style={{ backgroundColor: 'lightgray' }} />
                                 </View>
 
-                                <View style={{display:"flex", flexDirection:"column", marginTop: 15}}> 
+                                <View style={{display:"flex", flexDirection:"column", marginTop: 15, marginLeft: 15}}> 
                                     <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, color: "gray"}}>Email</Text>
                                     <Text style={{ fontFamily:"MrEavesXLModNarOT-Reg", fontSize:15}}>{this.state.profileData.email}</Text>
                                     <Divider style={{ backgroundColor: 'lightgray' }} />
                                 </View>
 
-                                <View style={{display:"flex", flexDirection:"column", marginTop: 15}}> 
+                                <View style={{display:"flex", flexDirection:"column", marginTop: 15, marginLeft: 15}}> 
                                     <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, color: "gray"}}>Mobile No</Text>
                                     <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize:15}}>{this.state.profileData.phone_number}</Text>
                                     <Divider style={{ backgroundColor: 'lightgray' }} />
                                 </View>
 
-                                 <View style={{display:"flex", flexDirection:"column", marginTop: 15}}> 
+                                 <View style={{display:"flex", flexDirection:"column", marginTop: 15, marginLeft: 15}}> 
                                     <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, color: "gray"}}>Gender</Text>
                                     <Text style={{ fontFamily:"MrEavesXLModNarOT-Reg", fontSize:15}}>{this.state.profileData.gender}</Text>
                                     <Divider style={{ backgroundColor: 'lightgray' }} />
                                 </View>
 
-                                <View style={{display:"flex", flexDirection:"column", marginTop: 15}}> 
+                                <View style={{display:"flex", flexDirection:"column", marginTop: 15, marginLeft: 15}}> 
                                     <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, color: "gray"}}>About</Text>
                                     <Text style={{ fontFamily:"MrEavesXLModNarOT-Reg", fontSize:15}}>{this.state.profileData.address}</Text>
                                     <Divider style={{ backgroundColor: 'lightgray' }} />
@@ -91,13 +96,26 @@ export default class ProProfile extends Component {
 
                                 <View> 
 
-                                        <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
+
+                                <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10 }}>
+                                            <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
+                                                <Button onPress={() => {this.props.navigation.navigate('Main')}} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
+                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                        Ok
+</Text>
+                                                </Button>
+                                            </LinearGradient>
+                                        </View>
+
+                                    
+
+                                        {/* <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
                                             <Button onPress={() => {this.props.navigation.navigate('Main')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
                                             <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                                             Ok
                                             </Text>   
                                             </Button>
-                                        </View> 
+                                        </View>  */}
 
                                 </View>
                     </Card>

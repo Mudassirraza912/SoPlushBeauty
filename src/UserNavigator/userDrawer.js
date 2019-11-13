@@ -5,7 +5,8 @@ import {
   Text,
   TouchableOpacity,
   View,Image,
-  ImageBackground
+  ImageBackground,
+  ScrollView
 } from "react-native";
 
 import { NavigationActions } from "react-navigation";
@@ -27,8 +28,8 @@ class DrawerMenu extends Component {
           console.log("Drawer DrawerDrawer  Drawer", `https://hnhtechsolutions.com/hassan/soplush/profile_pics/${this.props.screenProps.profileData.profile_pic}`)
     return(
      
-        <Container style={{flex: 1, justifyContent:"center", alignContent: "center"}}>
-        <Header style={{ height: 100, backgroundColor: '#fff' }}>
+        <View style={{flex: 1, justifyContent:"center", alignContent: "center", height:'100%', backgroundColor:'#fff'}}>
+        <Header style={{ height: 100, backgroundColor: '#fff', marginBottom:'10%',borderBottomColor:'#000', borderBottomWidth: 1 }}>
           <View style={{display:"flex", flexDirection:"row", marginTop:20, marginRight: 20}}>
   
              <View >
@@ -65,11 +66,11 @@ class DrawerMenu extends Component {
   
   
   
-        <Content style={{ backgroundColor: '#fff', marginTop: 20 }}>
+        {/* <Vie style={{ backgroundColor: 'blue', marginTop: 0, height:'100%', padding: 0 }}> */}
           
   
-  
-        <ImageBackground source={require('../../assets/opacity100.png')} style={{ height: "100%", width: "100%", }}>
+        <ImageBackground source={require('../../assets/opacity100.png')} style={{ height: "100%", width: "100%", flex: 1, backgroundColor:"#fff", }} resizeMethod="auto">
+        <ScrollView>
 
 
               <TouchableOpacity
@@ -310,12 +311,12 @@ class DrawerMenu extends Component {
   
                       </TouchableOpacity>
   
+                      </ScrollView>
   
                 </ImageBackground>    
-                    
                       
-        </Content>
-    </Container>
+        {/* </Content> */}
+    </View>
     )
 
   }

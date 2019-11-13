@@ -553,29 +553,44 @@ export default class PersonalService extends Component {
 
                                     {this.state.plush ? <View>
                                         {soplushData !== undefined ?
-                                            <View>
+                                            <View style={{top: '5%'}}>
                                                 {filterplush.map((value, index) => {
                                                     if (value.p_checked === 0) {
                                                         var checked = false
                                                     }
                                                     return (
-                                                        <List style={{ width: '90%', borderBottomWidth: 0.5, borderBottomColor: 'gray', alignSelf: 'center', justifyContent: 'center', height: 70 }}>
+                                                        <List style={{ width: '90%', borderBottomWidth: 0.5, borderBottomColor: 'gray', alignSelf: 'center', justifyContent: 'center', height: 60 }}>
                                                             <ListItem key={index} onPress={() => this.workFunction(value, "plush", index)} avatar>
-                                                                <Left style={{ marginTop: "12%" }}>
-                                                                    <Text></Text>
-                                                                    <Text></Text>
-                                                                    <Text></Text>
+                                                                {/* <Left style={{marginTop:'5%'}}>
                                                                     <CheckBox style={{ borderRadius: 5 }} checked={value.p_checked} color="pink" />
                                                                 </Left>
                                                                 <Body style={{ paddingHorizontal: "4%", borderBottomWidth: 0 }}>
-                                                                    <Text></Text>
                                                                     <Text note></Text>
                                                                     <Text note>{value.service_name}</Text>
                                                                 </Body>
                                                                 <Right style={{ display: "flex", flexDirection: "row", borderBottomWidth: 0 }}>
                                                                     <Text note style={{ color: "pink" }}> ${value.service_cost}</Text>
 
-                                                                </Right>
+                                                                </Right> */}
+                                                                <View style={{flex:1 , flexDirection:'row',paddingVertical:10}}>
+
+                                                                    <View style={{flex:1 , flexDirection:'row'}}>
+                                                                        
+                                                                        <View>
+                                                                        <CheckBox style={{ borderRadius: 5 }} checked={value.p_checked} color="pink" />
+                                                                        </View> 
+
+                                                                        <View style={{marginLeft:'10%'}}>
+                                                                        <Text note>{value.service_name}</Text>
+                                                                        </View>
+
+                                                                    </View>
+
+                                                                    <View>
+                                                                <Text note style={{ color: "pink" }}> ${value.service_cost}</Text>
+                                                                    </View>
+
+                                                                </View>
                                                             </ListItem>
                                                         </List>)
                                                 })}
@@ -596,15 +611,12 @@ export default class PersonalService extends Component {
 
                                         <View>
                                             {plushData !== undefined ?
-                                                <View>
+                                                <View style={{marginTop: '5%'}}>
                                                     {filterSoplush.map((value, index) => {
                                                         return (
-                                                            <List style={{ width: '90%', borderBottomWidth: 0.5, borderBottomColor: 'gray', alignSelf: 'center', justifyContent: 'center', height: 70 }}>
+                                                            <List style={{ width: '90%', borderBottomWidth: 0.5, borderBottomColor: 'gray', alignSelf: 'center', justifyContent: 'center', height: 60 }}>
                                                                 <ListItem key={index} onPress={() => this.workFunction1(value, "soplush", index)} avatar>
-                                                                    <Left style={{ marginTop: "13%" }}>
-                                                                        <Text></Text>
-                                                                        <Text></Text>
-                                                                        <Text></Text>
+                                                                    {/* <Left style={{ top: "8%" }}>
                                                                         <CheckBox style={{ borderRadius: 5 }} checked={value.s_checked} color="pink" />
                                                                     </Left>
                                                                     <Body style={{ paddingHorizontal: "4%", borderBottomWidth: 0 }}>
@@ -615,7 +627,28 @@ export default class PersonalService extends Component {
                                                                     <Right style={{ display: "flex", flexDirection: "row", borderBottomWidth: 0 }}>
                                                                         <Text note style={{ color: "pink" }}> ${value.so_plush_cost}</Text>
 
-                                                                    </Right>
+                                                                    </Right> */}
+
+
+                                                                    <View style={{flex:1 , flexDirection:'row',paddingVertical:10}}>
+
+                                                                    <View style={{flex:1 , flexDirection:'row'}}>
+                                                                        
+                                                                        <View>
+                                                                        <CheckBox style={{ borderRadius: 5 }} checked={value.s_checked} color="pink" />
+                                                                        </View> 
+
+                                                                        <View style={{marginLeft:'10%'}}>
+                                                                        <Text note>{value.service_name}</Text>
+                                                                        </View>
+
+                                                                    </View>
+
+                                                                    <View>
+                                                                    <Text note style={{ color: "pink" }}> ${value.service_cost}</Text>
+                                                                    </View>
+
+                                                                    </View>
                                                                 </ListItem>
                                                             </List>)
                                                     })}

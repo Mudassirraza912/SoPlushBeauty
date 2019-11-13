@@ -13,8 +13,8 @@ export default class UserLogin extends Component {
         super(props)
         this.state = {
             shift: new Animated.Value(0),
-            email: "razamudassir912@gmail.com",
-            password: "12345",
+            email: "John@gmail.com",
+            password: "123456",
             loader: false
         }
     }
