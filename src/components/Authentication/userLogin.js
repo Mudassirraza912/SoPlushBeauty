@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Text, View, ImageBackground, Dimensions, Image, Keyboard, Animated, UIManager, TextInput, TouchableOpacity, ScrollView, Alert, } from 'react-native'
 // import { nodeInternals } from 'stack-utils';
-import { Container, Header, Content, Item, Input, Icon, Label, Form, Button, List, ListItem, Left, Body, Spinner} from 'native-base';
+import { Container, Header, Content, Item, Input, Icon, Label, Form, Button, List, ListItem, Left, Body, Spinner, } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient'
-
+import { LoginButton, AccessToken, LoginManager, GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
 
 const { State: TextInputState } = TextInput;
 const { width, height } = Dimensions.get("window")
@@ -100,6 +100,91 @@ export default class UserLogin extends Component {
 
     }
 
+    // initUser = (token) => {
+    //     fetch(`https://graph.facebook.com/me?access_token=${token}&fields=email,id,about,picture,name,gender,friends`)
+    //     .then((response) => response.json())
+    //     .then((json) => {
+    //       // Some user object has been set up somewhere, build that user here
+    //       var user = {}
+    //       user.name = json.name
+    //       user.id = json.id
+    //       user.user_friends = json.friends
+    //       user.email = json.email
+    //       user.username = json.name
+    //       user.loading = false
+    //       user.loggedIn = true
+    //     //   user.avatar = setAvatar(json.id)      
+    //       console.log('user user user', user, json)
+    //     },
+    //     )
+    //     .catch((err) => {
+    //       console.log('ERROR GETTING DATA FROM FACEBOOK', err)
+    //     })
+    //   }
+
+
+    fbLogin = () => {
+
+        // LoginManager.logInWithPermissions(["public_profile"]).then(
+        //     function(result) {
+        //       if (result.isCancelled) {
+        //         console.log("Login cancelled");
+        //       } else {
+        //         console.log(
+        //           "Login success with permissions: ",
+        //             JSON.stringify(result)
+        //         );
+        //       }
+        //     },
+        //     function(error) {
+        //       console.log("Login fail with error: " + error);
+        //     }
+        //   );
+
+        
+        
+
+        LoginManager.logInWithPermissions(["public_profile"]).then((result) => {
+              if (result.isCancelled) {
+                console.log("Login cancelled");
+              } else {
+                console.log(
+                  "Login success with permissions: " +
+                    result.grantedPermissions.toString()
+                );
+                AccessToken.getCurrentAccessToken().then((accessTokenData ) => {
+                    const infoRequest = new GraphRequest(
+                      '/me?fields=name,picture',
+                      null,
+                      this._responseInfoCallback
+                    );
+                    // Start the graph request.
+                    new GraphRequestManager().addRequest(infoRequest).start();
+                    
+                    //   this.initUser(accessTokenData)
+                    console.log(accessTokenData, 'access')
+                  })
+              }
+            },
+            function(error) {
+              console.log("Login fail with error: " + error);
+            }
+          );
+    }
+
+
+    _responseInfoCallback = (error, result) => {
+        if (error) {
+          alert('Error fetching data: ' + error.toString());
+        } else {
+          alert('Result Name: ' + result.name);
+          console.log('Result ', result)
+        }
+      }
+
+
+    
+
 
     render() {
         const { email, password, loader } = this.state
@@ -179,12 +264,30 @@ export default class UserLogin extends Component {
                                 <View style={{ display: "flex", flexDirection: "row", alignContent: "center", alignItems: "center", marginTop: "5%", justifyContent: "space-between" }}>
 
                                     <LinearGradient colors={['#fff', '#883cb6', '#883cb6']} style={{ width: "45%", borderRadius: 10 }}>
-                                        <Button style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
+                                        <Button onPress={() => this.fbLogin()} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
                                             <Icon name="instagram" type="MaterialCommunityIcons" />
                                             <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, marginRight: "10%" }}>
                                                 Instagram
                     </Text>
                                         </Button>
+                                        {/* <LoginButton
+          onLoginFinished={
+            (error, result) => {
+              if (error) {
+                console.log("login has error: " + result.error);
+              } else if (result.isCancelled) {
+                console.log("login is cancelled.");
+              } else {
+                AccessToken.getCurrentAccessToken().then(
+                  (data) => {
+                    console.log('data.accessToken.toString()',data)
+                  }
+                )
+                .catch((err) => console.log(err))
+              }
+            }
+          }
+          onLogoutFinished={() => console.log("logout.")}/> */}
                                     </LinearGradient>
 
                                     <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "45%", borderRadius: 10 }}>
