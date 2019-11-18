@@ -51,7 +51,7 @@ export default class ProProfile extends Component {
 
                 <ScrollView style={{height: height}}>
                    
-                   <View style={{justifyContent:"center", alignContent:"center", alignItems:"center", marginTop:20}}>
+                   <View style={{justifyContent:"center", alignContent:"center", alignItems:"center", marginTop:10}}>
 
                 {/* <View style={{backgroundColor:"#fff",borderRadius:10, width:"90%"}}> */}
                    

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "240404485205",
+    "firebase_url": "https://so-plush-beauty.firebaseio.com",
+    "project_id": "so-plush-beauty",
+    "storage_bucket": "so-plush-beauty.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:240404485205:android:4f39b742d8ee85803eb0dc",
+        "android_client_info": {
+          "package_name": "com.SoPlushBeauty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "240404485205-5gv1od9vbkiu07c4vahocprlhre1ds5p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.SoPlushBeauty",
+            "certificate_hash": "7aad052920e4942e782090140645c185f34f9bf5"
+          }
+        },
+        {
+          "client_id": "240404485205-d9m1p0jjsu2ncr7l2fa5oqbu5pb7inu1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeF_Yo_iVzcmfgwlEzC7Kuh_6WlWKDnc0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "240404485205-d9m1p0jjsu2ncr7l2fa5oqbu5pb7inu1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

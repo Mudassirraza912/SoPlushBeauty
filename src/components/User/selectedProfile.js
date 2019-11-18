@@ -64,8 +64,8 @@ export default class SelectedProfile extends Component {
     componentDidMount() {
         const { profileData } = this.state
         var sDate = this.props.navigation.getParam('selectdate')
-        var newDate = moment(sDate).toDate()
-        console.log("asfasdjkfhasjkdjk", typeof newDate, typeof new Date())
+        var newDate = moment(sDate).format("MM-DD-YYYY")
+        console.log("asfasdjkfhasjkdjk", newDate)
         // this
         // this.state.profileData.birthdate = this.props.navigation.getParam('selectdate')
         this.setState({
@@ -380,7 +380,7 @@ export default class SelectedProfile extends Component {
                                                             selectdate: this.state.selectdate
                                                         })
 
-                                                        console.log('IS DATE')
+                                                        console.log('IS DATE', this.state.selectdate)
 
                                                     }
 

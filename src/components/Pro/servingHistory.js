@@ -153,7 +153,7 @@ export default class ServingHistory extends Component {
                                                         this.state.data.splice(index, 1)
 
                                                         this.setState({ services, data})
-                                                        this.props.navigation.navigate('ViewBooking')
+                                                        this.props.navigation.navigate('BookingHistory')
 
                                                     } else {
                                                         console.log("Else", successData)
@@ -261,7 +261,7 @@ export default class ServingHistory extends Component {
                         leftComponent={<Icon onPress={() => {this.props.navigation.navigate('Main')}} name="arrow-back" color="#000" />}
                         centerComponent={
                             <View style={{alignContent:"center", alignItems:"center", alignSelf:"center"}}>
-                      {!this.state.focusOn  ? <Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>VIEW BOOKING</Text> 
+                      {!this.state.focusOn  ? <Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>SERVICE HISTORY</Text> 
                       :
     
                       <View style={{
@@ -346,13 +346,7 @@ export default class ServingHistory extends Component {
                                 </View>
 
 
-                                <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>User Name</Text>
-                                    <Text style={{marginLeft:"20%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, textAlign:"right"}}>{value.username}</Text>
-                                    {/* <TouchableOpacity onPress={() => {this.props.navigation.navigate('BookingDetail')}}>
-                                    <Text  style={{marginLeft:"30%", color:"#fc8b8c", borderBottomColor:"#fc8b8c", borderBottomWidth:1, fontFamily:"MrEavesXLModNarOT-Reg", width:50}}>VIEW DETAILS</Text>
-                                    </TouchableOpacity> */}
-                                </View>
+                               
 
                                 
 
@@ -366,16 +360,24 @@ export default class ServingHistory extends Component {
                                     <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.service_date}</Text>
                                 </View>
 
+                                <View style={{display:"flex", flexDirection:"row"}}> 
+                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>User Name</Text>
+                                    <Text style={{marginLeft:"20%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, textAlign:"right"}}>{value.username}</Text>
+                                    {/* <TouchableOpacity onPress={() => {this.props.navigation.navigate('BookingDetail')}}>
+                                    <Text  style={{marginLeft:"30%", color:"#fc8b8c", borderBottomColor:"#fc8b8c", borderBottomWidth:1, fontFamily:"MrEavesXLModNarOT-Reg", width:50}}>VIEW DETAILS</Text>
+                                    </TouchableOpacity> */}
+                                </View>
+
                               {value.services[0].s_checked  == 1 ? 
                                  <View style={{display:"flex", flexDirection:"row"}}> 
                                     <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Cost</Text>
-                                    <Text style={{marginLeft:"20%",  fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.services[0].plush_cost}</Text>
+                                    <Text style={{marginLeft:"20%",  fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>${value.services[0].plush_cost}</Text>
                                 </View>  
                                 
                             :
                             <View style={{display:"flex", flexDirection:"row"}}> 
                             <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Cost</Text>
-                            <Text style={{marginLeft:"20%",  fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.services[0].soplush_cost}</Text>
+                            <Text style={{marginLeft:"20%",  fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>${value.services[0].soplush_cost}</Text>
                             </View>  
                             
                             }
@@ -392,7 +394,7 @@ export default class ServingHistory extends Component {
 
                                          <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%",width: "90%"}}>
                                             <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "100%", borderRadius: 10 }}>
-                                                <Button onPress={() => {this.markAsCompelet('completed', value, index)}} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
+                                                <Button onPress={() => {this.markAsCompelet('completed', value, index)}} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 5 }}>
                                                     <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
                                                     Mark As Compelete
 </Text>
@@ -409,7 +411,7 @@ export default class ServingHistory extends Component {
 
                                          <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%",width: "30%", marginLeft: 5}}>
                                             <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "100%", borderRadius: 10 }}>
-                                            <Button style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
+                                            <Button style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 5 }}>
                                                 <Icon name="camera" type="font-awesome" color="#fff" />
                                                 </Button>
                                             </LinearGradient>

@@ -453,42 +453,42 @@ export default class BookingReq extends Component {
 
                         <ScrollView style={{ height: height }}>
 
-                            {/* <View style={{backgroundColor:"#fff", width:"80%",justifyContent:"center", alignContent:"center", alignSelf:"center",borderRadius:10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', marginTop: '10%', marginBottom:'5%'}}> */}
+                            {/* <View style={{backgroundColor:"#fff", width:"80%",justifyContent:"center", alignContent:"center", alignSelf:"center",borderRadius:10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 187, 0.4)', marginTop: '10%', marginBottom:'5%'}}> */}
 
                             <View style={{ justifyContent: "center", alignContent: "center", alignItems: "center", marginTop: 20 }}>
 
-                             {this.state.data.length > 0 ?   <View style={{ backgroundColor: "#fff", borderRadius: 10, width: "90%" }}>
+                             {this.state.data.length > 0 ?   <View style={{ backgroundColor: "#fff", borderRadius: 10, width: "95%" }}>
                                     {this.state.data.map((value, index) => {
                                         return (
                                             <View key={index} style={{width:'90%', padding: 10, alignSelf:'center'}}>
                                                 <View style={{ display: "flex", flexDirection: "row" }}>
-                                                    <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg" }}>Name</Text>
-                                                    <Text style={{ marginLeft: "3%", fontFamily: "MrEavesXLModNarOT-Reg" }}>{value.username}</Text>
+                                                    <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:18 }}>Name</Text>
+                                                    <Text style={{ marginLeft: "3%", fontFamily: "MrEavesXLModNarOT-Reg" , fontSize:18}}>{value.username}</Text>
                                                     <TouchableOpacity onPress={() => {
                                                         this.props.navigation.navigate('BookingDetail', {
                                                             bookinDetail: value,
                                                         })
                                                     }}>
-                                                        <Text style={{ marginLeft: "30%", color: "#fc8b8c", borderBottomColor: "#fc8b8c", borderBottomWidth: 1, fontFamily: "MrEavesXLModNarOT-Reg", width: 50, textAlign: "center" }}>VIEW DETAILS</Text>
+                                                        <Text style={{ marginLeft: "30%", color: "#fc8b8c", borderBottomColor: "#fc8b8c", borderBottomWidth: 1, fontFamily: "MrEavesXLModNarOT-Reg", width: '40%', textAlign: "center", fontSize:15 }}>VIEW DETAILS</Text>
                                                     </TouchableOpacity>
                                                 </View>
 
                                                 <View style={{ display: "flex", flexDirection: "row" }}>
-                                                    <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg" }}>Service</Text>
-                                                    <Text style={{ marginLeft: "3%", fontFamily: "MrEavesXLModNarOT-Reg" }}>{value.services[0].service_name}</Text>
+                                                    <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg" , fontSize:18}}>Service</Text>
+                                                    <Text style={{ marginLeft: "3%", fontFamily: "MrEavesXLModNarOT-Reg" , fontSize:18}}>{value.services[0].service_name}</Text>
                                                 </View>
 
                                                 <View style={{ display: "flex", flexDirection: "row" }}>
-                                                    <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg" }}>Time</Text>
-                                                    <Text style={{ marginLeft: "3%", fontFamily: "MrEavesXLModNarOT-Reg" }}>{value.time_slot}</Text>
+                                                    <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg" , fontSize:18}}>Time</Text>
+                                                    <Text style={{ marginLeft: "3%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:18 }}>{value.time_slot}</Text>
                                                 </View>
 
                                                 <View style={{ display: "flex", flexDirection: "row" }}>
-                                                    <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg" }}>Date</Text>
-                                                    <Text style={{ marginLeft: "3%", fontFamily: "MrEavesXLModNarOT-Reg" }}>{value.service_date}</Text>
+                                                    <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:18 }}>Date</Text>
+                                                    <Text style={{ marginLeft: "3%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:18 }}>{value.service_date}</Text>
                                                 </View>
 
-                                                <View style={{ display: "flex", flexDirection: "row", marginRight: "6%" }}>
+                                                <View style={{ display: "flex", flexDirection: "row", marginRight: "6%", width:'100%' }}>
 
                                                     {/* <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
                                                         <Button onPress={() => { this.changeStatus('accepted', value, index) }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#fc8b8c", width: "90%", borderRadius: 10, opacity: 0.7 }}>
@@ -500,9 +500,9 @@ export default class BookingReq extends Component {
 
 <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10,width: '50%' }}>
                                             <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
-                                                <Button onPress={() => { this.changeStatus('accepted', value, index) }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
+                                                <Button onPress={() => { this.changeStatus('accepted', value, index) }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 5 }}>
                                                     <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
-                                                    Accept
+                                                    ACCEPT
 </Text>
                                                 </Button>
                                             </LinearGradient>
@@ -510,9 +510,9 @@ export default class BookingReq extends Component {
                                                     
 
                                                     <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
-                                                        <Button onPress={() => { this.changeStatus('rejected', value, index) }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#ffff", width: "90%", borderRadius: 10, opacity: 0.7, borderColor: "#fc8b8c", borderWidth: 1 }}>
+                                                        <Button onPress={() => { this.changeStatus('rejected', value, index) }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#ffff", width: "90%", borderRadius: 5, opacity: 0.7, borderColor: "#fc8b8c", borderWidth: 1 }}>
                                                             <Text style={{ alignSelf: "center", color: "#000", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
-                                                                Reject
+                                                                REJECT
                                             </Text>
                                                         </Button>
                                                     </View>

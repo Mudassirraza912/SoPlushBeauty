@@ -4,7 +4,11 @@ import { Text, View, ImageBackground, Dimensions, Image, Keyboard, Animated, UIM
 import { Container, Header, Content, Item, Input, Icon, Label, Form, Button, List, ListItem, Left, Body, Spinner, } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient'
 import { LoginButton, AccessToken, LoginManager, GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
-
+import {
+    GoogleSignin,
+    GoogleSigninButton,
+    statusCodes,
+  } from '@react-native-community/google-signin';
 const { State: TextInputState } = TextInput;
 const { width, height } = Dimensions.get("window")
 
@@ -20,6 +24,7 @@ export default class UserLogin extends Component {
     }
 
     componentWillMount() {
+        LoginManager.logOut()
         this.keyboardDidShowSub = Keyboard.addListener('keyboardDidShow', this.handleKeyboardDidShow);
         this.keyboardDidHideSub = Keyboard.addListener('keyboardDidHide', this.handleKeyboardDidHide);
 
@@ -308,6 +313,13 @@ export default class UserLogin extends Component {
                                     <TouchableOpacity onPress={() => { this.props.navigation.navigate("UserSignUp") }} style={{ marginLeft: "3%" }}>
                                         <Text style={{ alignSelf: "center", color: "#fc8b8c", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, borderBottomWidth: 1, borderBottomColor: "#fc8b8c" }}>Create Account</Text>
                                     </TouchableOpacity>
+
+                                    {/* <GoogleSigninButton
+                                    style={{ width: 192, height: 48 }}
+                                    size={GoogleSigninButton.Size.Wide}
+                                    color={GoogleSigninButton.Color.Dark}
+                                    onPress={this._signIn}
+                                    disabled={this.state.isSigninInProgress} /> */}
 
                                 </View>
 

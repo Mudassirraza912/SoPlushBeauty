@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   View,Image
   ,ImageBackground,
-  ScrollView
+  ScrollView,
+  Alert
 } from "react-native";
 
 import { NavigationActions } from "react-navigation";
@@ -153,7 +154,7 @@ class DrawerMenu extends Component {
                         </View>
   
                         <View style={{marginLeft:20}}>
-                        <Text style={styles.menuItemText}>View Booking</Text>
+                        <Text style={styles.menuItemText}>Serving History</Text>
                         </View>
   
   
@@ -222,7 +223,7 @@ class DrawerMenu extends Component {
                         </View>
   
                         <View style={{marginLeft:20}}>
-                        <Text style={styles.menuItemText}>Serving History</Text>
+                        <Text style={styles.menuItemText}>View Booking</Text>
                         </View>
   
   
@@ -299,8 +300,29 @@ class DrawerMenu extends Component {
   
                       <TouchableOpacity
                         style={styles.menuItem}
-                        onPress={() =>
-                          this.props.navigation.navigate('ProLogin')}
+                        onPress={() =>{
+                          Alert.alert(
+                            'Logout',
+                            'Are you sure you want to Logout?',
+                            [
+                              {
+                                text: 'No',
+                                onPress: () => console.log('Cancel Pressed'),
+                                style: 'cancel',
+                              },
+                              {
+                                text: 'yes',
+                                onPress: () => this.props.navigation.navigate('ProLogin')
+                                ,
+                                style: 'cancel',
+                              },
+                              {cancelable:  false}
+                            ]
+                          )
+
+                          // this.props.navigation.navigate('ProLogin')
+                        
+                        }}
   
                       >
                       <View style={{marginLeft:10}}>

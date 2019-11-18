@@ -177,7 +177,7 @@ export default class UserProfile extends Component {
                         
                         }
                             <Item floatingLabel>
-                        <Icon active name='user' type="FontAwesome"  />
+                        <Icon active name='user' type="FontAwesome" />
                         {/* <Label>Name</Label> */}
                         <Input defaultValue={this.state.username} onChangeText={(e) => {this.setState({username:e})}} placeholder="Name" />
                     </Item>

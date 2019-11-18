@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, FlatList, StyleSheet, TextInput } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, FlatList, StyleSheet, TextInput, Keyboard } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 // import { Container, Header, Content, Item, Input, Icon, Label, Form, Button, Body } from 'native-base';
 import { Avatar, Header, Icon } from 'react-native-elements'
@@ -179,7 +179,7 @@ export default class UserHome extends Component {
                 <Header
                     containerStyle={{ marginTop: 60, backgroundColor: "rgb(255,239,241)" }}
                     placement="left"
-                    leftComponent={<Icon onPress={() => { this.props.navigation.toggleDrawer() }} name="menu" color="#000" />}
+                    leftComponent={<Icon onPress={() => { Keyboard.dismiss() ,this.props.navigation.toggleDrawer() }} name="menu" color="#000" />}
                     centerComponent={
                         <View style={{alignContent:"center", alignItems:"center", alignSelf:"center"}}>
                   {!this.state.focusOn  ? <Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>HOME</Text> 
