@@ -6,7 +6,7 @@
  * @flow
  */
 console.disableYellowBox = true
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -14,6 +14,10 @@ import {
   View,
   Text,
   StatusBar,
+  Image,
+  BackHandler,
+  Alert, 
+
 } from 'react-native';
 
 import {
@@ -24,20 +28,51 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import WalkThrough from './src/components/Walk through/walkthrogh';
+import Navigator from './src/Navigation/navigator';
+// import NetInfo from '@react-native-community/netinfo '
 
 export default class App extends Component {
-    constructor(props) {
-      super(props)
+  constructor(props) {
+    super(props)
+    this.state = {
+      isLoading: true,
+      profileData: ''
     }
+  }
 
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ isLoading: false })
+    }, 3000);
+
+    // NetInfo.addEventListener(state => {
+    //   if(!state.isConnected){
+    //     Alert.alert("Internet connection seems to be offline")
+    //   }
+    //   console.log("Connection type", state.type);
+    //   console.log("Is connected?", state.isConnected);
+    // })
+  }
+
+  fetchProfileData = (data) => {
+    this.setState({
+      profileData: data
+    })
+  }
 
   render() {
-  return (
-    <View style={{flex:1}}>
-      <WalkThrough/>
-    </View>
-  );
-}
+    if (this.state.isLoading) {
+      return <View style={{ flex: 1 }} >
+        <Image style={{ width: '100%', height: '100%' }} source={require('./assets/splash.png')} />
+      </View>
+    } else {
+      return (
+        <View style={{ flex: 1 }}>
+          <Navigator screenProps={{ fetchProfileData: this.fetchProfileData, profileData: this.state.profileData }} />
+        </View>
+      );
+    }
+  }
 };
 
 const styles = StyleSheet.create({
@@ -80,3 +115,33 @@ const styles = StyleSheet.create({
 });
 
 // export default App;
+
+
+/**
+ * Attaches an event listener that handles the android-only hardware
+ * back button
+ * @param  {Function} callback The function to call on click
+ */
+const handleAndroidBackButton = callback => {
+  BackHandler.addEventListener('hardwareBackPress', () => {
+    callback();
+    return true;
+  });
+};
+const exitAlert = () => {
+  Alert.alert(
+    'Confirm exit',
+    'Do you want to quit the app?'
+    [
+    { text: 'CANCEL', style: 'cancel' },
+    { text: 'OK', onPress: () => BackHandler.exitApp() }
+    ]
+  );
+};
+/**
+ * Removes the event listener in order not to add a new one
+ * every time the view component re-mounts
+ */
+const removeAndroidBackButtonHandler = () => {
+  BackHandler.removeEventListener('hardwareBackPress', () => { });
+}

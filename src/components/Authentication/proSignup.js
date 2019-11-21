@@ -1,23 +1,32 @@
 import React, { Component } from 'react'
 import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
-import { Container, Header, Content, Item, Input, Icon, Label, Form, Button , DatePicker, Spinner} from 'native-base';
+import { Container, Header, Content, Item, Input, Icon, Label, Form, Button, DatePicker, Spinner } from 'native-base';
 import camicon from '../../../assets/camera.png'
 import pro from '../../../assets/barbie.jpg'
 import { Avatar, Badge, withBadge } from 'react-native-elements';
 import ImagePicker from 'react-native-image-picker'
 import LinearGradient from 'react-native-linear-gradient'
 
+import user from '../../../assets/user.png'
+import home from '../../../assets/home.png'
+import phone from '../../../assets/phone-call.png'
+import envelop from '../../../assets/envelope.png'
+import lock from '../../../assets/lock.png'
+import cake from '../../../assets/cake.png'
+import museum from '../../../assets/museum.png'
+import atmcard from '../../../assets/atm-card.png'
+import moment from 'moment'
 
 const BadgedIcon = withBadge("X")(Avatar)
 const { width, height } = Dimensions.get("window")
 const options = {
     title: 'Select Avatar',
     storageOptions: {
-      skipBackup: true,
-      path: 'images',
+        skipBackup: true,
+        path: 'images',
     },
-  };
+};
 
 export default class ProSignUp extends Component {
     constructor(props) {
@@ -31,8 +40,8 @@ export default class ProSignUp extends Component {
             dOB: "",
             bank: "",
             accountNo: "",
-            fileName:"",
-            fileUri:"",
+            fileName: "",
+            fileUri: "",
             loader: false
         }
     }
@@ -47,31 +56,31 @@ export default class ProSignUp extends Component {
     openGallery = () => {
         ImagePicker.showImagePicker(options, (response) => {
             console.log('Response = ', response);
-          
+
             if (response.didCancel) {
-              console.log('User cancelled image picker');
+                console.log('User cancelled image picker');
             } else if (response.error) {
-              console.log('ImagePicker Error: ', response.error);
+                console.log('ImagePicker Error: ', response.error);
             } else if (response.customButton) {
-              console.log('User tapped custom button: ', response.customButton);
+                console.log('User tapped custom button: ', response.customButton);
             } else {
-            //   const source = { uri: response.uri };
-              // You can also display the image using data:
-              const source = { uri: 'data:image/jpeg;base64,' + response.data };
-              console.log( "uri: response.uri", source, response)
-          
-              this.setState({
-                profilePic: source,
-                fileName: response.fileName,
-                fileUri: response.uri
-              });
+                //   const source = { uri: response.uri };
+                // You can also display the image using data:
+                const source = { uri: 'data:image/jpeg;base64,' + response.data };
+                console.log("uri: response.uri", source, response)
+
+                this.setState({
+                    profilePic: source,
+                    fileName: response.fileName,
+                    fileUri: response.uri
+                });
             }
-          });
-    } 
+        });
+    }
 
 
     signUp = () => {
-        this.setState({loader: true})
+        this.setState({ loader: true })
         const { email, password, name, phoneNo, address, profilePic, fileName, fileUri, dOB, bank, accountNo } = this.state
         // this.props.successSign()
         console.log("SIGN UP jksdajkfajkshjghj")
@@ -79,19 +88,24 @@ export default class ProSignUp extends Component {
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         // this.props.navigation.navigate("ProLogin")
         if (reg.test(email) === false) {
-            this.setState({loader: false})
+            this.setState({ loader: false })
 
             Alert.alert("Email is not correct")
         } else {
 
-            var file = {
-                uri: fileUri,
-                name: fileName,
-                type: 'image/png'
-            }
 
             const formData = new FormData();
-                 formData.append("email", email),
+            if (fileUri != "") {
+                var file = {
+                    uri: fileUri,
+                    name: fileName,
+                    type: 'image/png'
+                }
+                formData.append("file_upload", file)
+
+            }
+
+            formData.append("email", email),
                 formData.append("password", password),
                 formData.append("address", address),
                 formData.append("name", name),
@@ -99,7 +113,7 @@ export default class ProSignUp extends Component {
                 formData.append("date_of_birth", dOB),
                 formData.append("bank_number", accountNo),
                 formData.append("bank_name", bank),
-                formData.append("file_upload", file),
+
 
 
 
@@ -144,21 +158,22 @@ export default class ProSignUp extends Component {
                     if (successData.status) {
                         if (successData.status === true) {
                             Alert.alert("Signup successful")
-                            this.setState({loader: true})
+                            this.setState({ loader: false })
 
                             this.props.navigation.navigate("ProLogin")
                         }
                     } else {
-                        this.setState({loader: true})
+                        this.setState({ loader: false })
 
                         Alert.alert(successData.message)
                     }
                     console.log("SUCCESS", successData, successData.status, successData.data)
                 })
                 .catch(err => {
-                    this.setState({loader: false})
-                    Alert.alert('Try Later')
-                    console.log("err err err", err)});
+                    this.setState({ loader: false })
+                    // Alert.alert('Try Later')
+                    console.log("err err err", err)
+                });
         }
     }
 
@@ -168,16 +183,16 @@ export default class ProSignUp extends Component {
         const { email, password, name, address, phoneNo, bank, accountNo, loader } = this.state
         console.log(email, password, name, address, phoneNo, bank, accountNo)
         return (
-            <View style={{ flex: 1, height, width, marginTop: -80 }}>
+            <View style={{ flex: 1, height: '100%', width: '100%', marginTop: -80 }}>
                 <ImageBackground source={require('../../../assets/opacity.jpg')} style={{ height: "100%", width: "100%", opacity: 0.9 }}>
 
                     <ScrollView style={{ height: height }}>
 
 
-                        <View style={{ height: "100%", width, backgroundColor: "rgba(242, 201, 240, 0.7)", justifyContent: "center", marginTop: 80 }}>
+                        <View style={{ height: "100%", width: '100%', backgroundColor: "rgba(242, 201, 240, 0.7)", justifyContent: "center", marginTop: 80 }}>
 
-                            <View style={{ alignSelf: "center", alignContent: "center", alignItems: "center", marginTop: -60 }}>
-                                <Image source={require('../../../assets/text.png')} style={{ opacity: 2 }} />
+                            <View style={{ alignSelf: "center", alignContent: "center", alignItems: "center", marginTop: -65 }}>
+                                <Image source={require('../../../assets/text.png')} style={{ opacity: 2, alignSelf: 'center', width: 240, height: 115 }} />
                             </View>
 
 
@@ -185,87 +200,99 @@ export default class ProSignUp extends Component {
 
                             <View style={{ marginTop: "5%", alignContent: "center", alignSelf: "center", alignItems: "center", width: "80%", backgroundColor: "#fff", borderRadius: 10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', padding: "5%" }}>
 
-                                <View>
-                                    <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 30 }}>CREATE ACCOUNT</Text>
+                                <View style={{ marginVertical: 10 }}>
+                                    <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 22, fontWeight: "bold" }}>CREATE ACCOUNT</Text>
                                 </View>
 
-                               
 
-                                <Item floatingLabel>
-                                    <Icon active name='user' type="FontAwesome" />
+
+                                <Item>
+                                    {/* <Icon active name='user' type="FontAwesome" style={{borderColor: "#000", }}  color="white"/> */}
+                                    <Image source={user} style={{ height: 22, width: 22 }} />
                                     {/* <Label>Name</Label> */}
-                                    <Input onChangeText={(e) => this.setState({ name: e })} placeholder=" Name" />
+                                    <Input placeholderTextColor="#bdbdbd" onChangeText={(e) => this.setState({ name: e })} placeholder=" Name" />
                                 </Item>
-                                <Item floatingLabel>
-                                    <Icon active name='home' type="FontAwesome" />
+                                <Item>
+                                    <Image source={home} style={{ height: 22, width: 22 }} />
+                                    {/* <Icon active name='home' type="FontAwesome" /> */}
                                     {/* <Label>Address</Label> */}
-                                    <Input onChangeText={(e) => this.setState({ address: e })} placeholder="Address" />
+                                    <Input placeholderTextColor="#bdbdbd" onChangeText={(e) => this.setState({ address: e })} placeholder="Address" />
                                 </Item>
-                                <Item floatingLabel>
-                                    <Icon active name='phone' type="MaterialCommunityIcons" />
+                                <Item>
+                                    <Image source={phone} style={{ height: 22, width: 22 }} />
+
+                                    {/* <Icon active name='phone' type="MaterialCommunityIcons" /> */}
                                     {/* <Label>Phone Number</Label> */}
-                                    <Input keyboardType="number-pad" onChangeText={(e) => this.setState({ phoneNo: e })} placeholder="Phone Number" />
+                                    <Input placeholderTextColor="#bdbdbd" keyboardType="number-pad" onChangeText={(e) => this.setState({ phoneNo: e })} placeholder="Phone Number" />
                                 </Item>
-                                <Item floatingLabel>
-                                    <Icon active name='email' type="MaterialCommunityIcons" />
+                                <Item>
+                                    <Image source={envelop} style={{ height: 22, width: 22 }} />
+                                    {/* <Icon active name='email' type="MaterialCommunityIcons" /> */}
                                     {/* <Label>Email Address</Label> */}
-                                    <Input onChangeText={(e) => this.setState({ email: e })} placeholder="Email Address" />
+                                    <Input placeholderTextColor="#bdbdbd" onChangeText={(e) => this.setState({ email: e })} placeholder="Email Address" />
                                 </Item>
 
-                                <Item floatingLabel>
-                                    <Icon active name='lock' type="MaterialCommunityIcons" />
+                                <Item >
+                                    <Image source={lock} style={{ height: 22, width: 22 }} />
+                                    {/* <Icon active name='lock' type="MaterialCommunityIcons" /> */}
                                     {/* <Label>Password</Label> */}
-                                    <Input secureTextEntry={true} onChangeText={(e) => this.setState({ password: e })} placeholder="Password" />
+                                    {/* <Input placeholderTextColor="#bdbdbd" secureTextEntry={true} onChangeText={(e) => this.setState({ password: e })} placeholder="Password" /> */}
+                                    <Input style={{ fontSize: 20 }} placeholderTextColor="#bdbdbd" onChangeText={(e) => this.setState({ password: e })} placeholder="Password" secureTextEntry />
                                 </Item>
 
-                            <View style={{flexDirection:"row", marginTop: 10, width:"100%"}}> 
-                                    <Icon active name='birthday-cake' type="FontAwesome" />
+                                <View style={{ flexDirection: "row", marginTop: 10, width: "100%", borderBottomWidth: 0.5, borderBottomColor: '#bdbdbd' }}>
+                                    {/* <Icon active name='birthday-cake' type="FontAwesome" /> */}
+                                    <Image source={cake} style={{ height: 22, width: 22 }} />
                                     <DatePicker
-                                     ref={ref => this.datePicker = ref}
-                                     // date={this.state.date} //initial date from state
-                                    //  defaultDate={new Date(year, month, date)}
-                                     // defaultDate={"1/23/3"}
-                                     mode="date" //The enum of date, datetime and time
-                                     placeholder="select date"
-                                     format="DD-MM-YYYY"
-                                     minDate="01-01-2019"
-                                     maxDate="01-01-2050"
-                                     confirmBtnText="Confirm"
-                                     cancelBtnText="Cancel"
-                                     customStyles={{
-                                       dateIcon: {
-                                         position: 'absolute',
-                                         left: 0,
-                                         top: 4,
-                                         marginLeft: 0
-                                       },
-                                       dateInput: {
-                                         marginLeft: 36
-                                       }
-                                     }}
-                                     onDateChange={(date) => {
-                                      var newdate = moment(date.toString().substr(4, 12)).format("MM-DD-YYYY")
-                                        //  this.state.profileData.birthdate = newdate
-                                         
-                                     this.setState({dOB : newdate})
-                                 
-                                 }}
-                                     underlineColorAndroid="#f55f2a" />
-                        </View>
+                                        ref={ref => this.datePicker = ref}
+                                        // date={this.state.date} //initial date from state
+                                        //  defaultDate={new Date(year, month, date)}
+                                        // defaultDate={"1/23/3"}
+                                        mode="date" //The enum of date, datetime and time
+                                        placeHolderTextStyle={{ color: "#bdbdbd" }}
+                                        placeHolderText="Date Of Birth"
+                                        format="DD-MM-YYYY"
+                                        minDate="01-01-2019"
+                                        maxDate="01-01-2050"
+                                        confirmBtnText="Confirm"
+                                        cancelBtnText="Cancel"
+                                        customStyles={{
+                                            dateIcon: {
+                                                position: 'absolute',
+                                                left: 0,
+                                                top: 4,
+                                                marginLeft: 0
+                                            },
+                                            dateInput: {
+                                                marginLeft: 36
+                                            }
+                                        }}
+                                        onDateChange={(date) => {
+                                            var newdate = moment(date.toString().substr(4, 12)).format("YYYY-MM-DD")
+                                            //  this.state.profileData.birthdate = newdate
 
-                                <Item floatingLabel>
-                                    <Icon active name='university' type="FontAwesome" />
-                                    <Input onChangeText={(e) => this.setState({ bank: e })} placeholder="Bank Name" />
+                                            this.setState({ dOB: newdate })
+
+                                        }}
+                                        underlineColorAndroid="#f55f2a" />
+                                </View>
+
+                                <Item>
+                                    {/* <Icon active name='university' type="FontAwesome"  /> */}
+                                    <Image source={museum} style={{ height: 22, width: 22 }} />
+                                    <Input placeholderTextColor="#bdbdbd" onChangeText={(e) => this.setState({ bank: e })} placeholder="Bank Name" />
                                 </Item>
 
-                                <Item floatingLabel>
-                                    <Icon active name="address-card" type="FontAwesome" />
-                                    <Input keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Account Number" />
+                                <Item>
+                                    {/* <Icon active name="address-card" type="FontAwesome" /> */}
+                                    <Image source={atmcard} style={{ height: 22, width: 22 }} />
+                                    <Input placeholderTextColor="#bdbdbd" keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Account Number" />
                                 </Item>
 
-                                <Item onPress={this.openGallery} floatingLabel>
-                                    <Icon active name='camera' type="FontAwesome" />
-                                    <Input disabled keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Upload" />
+                                <Item onPress={this.openGallery}>
+                                    {/* <Icon active name='camera' type="FontAwesome" /> */}
+                                    <Image source={camicon} style={{ height: 30, width: 30 }} />
+                                    <Input placeholderTextColor="#bdbdbd" disabled keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Upload Pictures" />
                                 </Item>
 
                                 {/* <Item onPress={this.openGallery} style={{ marginBottom: "3%", width: "100%" }}>
@@ -274,36 +301,37 @@ export default class ProSignUp extends Component {
                                 </Item> */}
 
 
-                                <View style={{ display: "flex", flexDirection: "row", marginBottom: "3%" }}>
-                                    <Avatar onPress={this.openGallery} containerStyle={{ padding: 5, height: 40, width: 40, marginTop: "1%" }} source={camicon} />
-
-                                    {this.state.profilePic && <BadgedIcon onPress={() => this.setState({ profilePic: false })} containerStyle={{ margin: 5, height: 40, width: 40 }} source={this.state.profilePic} />
-                                    }
+                                {this.state.profilePic && <View style={{ display: "flex", flexDirection: "row", marginBottom: "3%", marginVertical: '3%' }}>
+                                    <Avatar onPress={this.openGallery} containerStyle={{ height: 40, width: 40, marginTop: "1%", borderRadius: 10 }} source={camicon} />
 
 
-                                    {/* {this.state.profilePic.map((val, index) => {
-    if(index == 0) {
+                                    <TouchableOpacity style={{ borderRadius: 5 }} onPress={() => {
 
-         return <Avatar onPress={this.openGallery} containerStyle={{padding:5, height:40, width: 40, marginTop:"1%"}} source={val} />
-    } else{
-        return(
-            <BadgedIcon  containerStyle={{padding:5, margin: 5, height:40, width: 40}} source={val}/>
-        )
-    }
+                                        Alert.alert(
+                                            'Profile',
+                                            'Are you sure you want to remove picture?',
+                                            [
+                                                {
+                                                    text: 'No',
+                                                    onPress: () => console.log('Cancel Pressed'),
+                                                    style: 'cancel',
+                                                },
+                                                {
+                                                    text: 'yes',
+                                                    onPress: () => this.setState({ profilePic: false })
+                                                    ,
+                                                    style: 'cancel',
+                                                },
+                                                { cancelable: false }
+                                            ]
+                                        )
 
-    if(index == 0) {
-        return <ImageBackground source={val}  style={{height:30, width:30,backgroundColor:"lightgray", marginTop:"1%"}}/>
-   } else{
-       return(
-        <ImageBackground source={val}  style={{height:30, width:30,borderRadius:5,margin:3, display:"flex", alignContent:"center", backgroundColor:"lightgray"}}> 
-                <Text style={{fontSize:7, backgroundColor: "red", borderRadius:100, color:"#fff",marginTop:-7,marginLeft:20, textAlign:"center", height:10, width:15}}>X</Text>
-        </ImageBackground>
-       )
-   }
-
-
-})} */}
-                                </View>
+                                    }}>
+                                        <ImageBackground source={this.state.profilePic} style={{ height: 40, width: 40, borderRadius: 5, margin: 3, display: "flex", alignContent: "center", backgroundColor: "#bdbdbd" }}>
+                                            <Text style={{ backgroundColor: "red", borderRadius: 100, color: "#fff", height: 20, width: 20, alignSelf: 'flex-end', textAlign: 'center', position: 'absolute', right: -7, top: -7 }}>X</Text>
+                                        </ImageBackground>
+                                    </TouchableOpacity>
+                                </View>}
 
                                 {/* 
                  <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
@@ -315,29 +343,39 @@ export default class ProSignUp extends Component {
                 </View> */}
 
 
-{/* <Button onPress={this.signUp} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#fc8b8c", width: "90%", borderRadius: 10, opacity: 0.7 }}>
+                                {/* <Button onPress={this.signUp} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#fc8b8c", width: "90%", borderRadius: 10, opacity: 0.7 }}>
                                     <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
                                         Sign Up
                     </Text>
                                 </Button> */}
-                
-               
 
-                                {!loader ? 
-                                
-                                <View style={{ alignContent: "center", alignItems: "center", marginBottom:5, width:'100%' }}>
-                                <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
-                                    <Button onPress={this.signUp} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
-                                        <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
-                                        Sign Up
+
+
+                                {!loader ?
+
+                                    //                                 <View style={{ alignContent: "center", alignItems: "center", marginBottom:5, width:'100%', marginVertical:'5%' }}>
+                                    //                                 <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
+                                    //                                     <Button onPress={this.signUp} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
+                                    //                                         <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 , paddingVertical: '8%', marginTop:-5}}>
+                                    //                                         Sign Up
+                                    // </Text>
+                                    //                                     </Button>
+                                    //                                 </LinearGradient>
+                                    //                             </View>
+
+                                    <View style={{ alignContent: "center", alignItems: "center", width: '100%', paddingVertical: '5%' }}>
+                                        <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "100%", borderRadius: 10 }}>
+                                            <TouchableOpacity onPress={this.signUp} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
+                                                <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: '7%', marginTop: -5 }}>
+                                                    Sign Up
 </Text>
-                                    </Button>
-                                </LinearGradient>
-                            </View>
-                            :  
+                                            </TouchableOpacity>
+                                        </LinearGradient>
+                                    </View>
+                                    :
 
-                                
-                                <Spinner color="#fc8b8c" />
+
+                                    <Spinner color="#fc8b8c" />
 
                                 }
 
@@ -361,3 +399,57 @@ export default class ProSignUp extends Component {
         )
     }
 }
+
+
+
+
+
+
+//  // <BadgedIcon onPress={() => 
+//                             //         {
+
+//                             //             Alert.alert(
+//                             //                 'Profile',
+//                             //                 'Are you sure you want to remove picture?',
+//                             //                 [
+//                             //                   {
+//                             //                     text: 'No',
+//                             //                     onPress: () => console.log('Cancel Pressed'),
+//                             //                     style: 'cancel',
+//                             //                   },
+//                             //                   {
+//                             //                     text: 'yes',
+//                             //                     onPress: () =>  this.setState({ profilePic: false })
+//                             //                     ,
+//                             //                     style: 'cancel',
+//                             //                   },
+//                             //                   {cancelable:  false}
+//                             //                 ]
+//                             //               )
+
+//                             //     }}containerStyle={{padding:3, height:40, width: 40, marginTop:"5%"}} iconStyle={{right:'4%'}} source={this.state.profilePic}/> 
+//                         }
+
+
+//                         {/* {this.state.profilePic.map((val, index) => {
+// if(index == 0) {
+
+// return <Avatar onPress={this.openGallery} containerStyle={{padding:5, height:40, width: 40, marginTop:"1%"}} source={val} />
+// } else{
+// return(
+// <BadgedIcon  containerStyle={{padding:5, margin: 5, height:40, width: 40}} source={val}/>
+// )
+// }
+
+// if(index == 0) {
+// return <ImageBackground source={val}  style={{height:30, width:30,backgroundColor:"#bdbdbd", marginTop:"1%"}}/>
+// } else{
+// return(
+// <ImageBackground source={val}  style={{height:30, width:30,borderRadius:5,margin:3, display:"flex", alignContent:"center", backgroundColor:"#bdbdbd"}}> 
+//     <Text style={{fontSize:7, backgroundColor: "red", borderRadius:100, color:"#fff",marginTop:-7,marginLeft:20, textAlign:"center", height:10, width:15}}>X</Text>
+// </ImageBackground>
+// )
+// }
+
+
+// })} */}

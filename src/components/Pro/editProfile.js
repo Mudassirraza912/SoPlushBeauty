@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
-import { Container, Content, List, ListItem, Left, Right, Button, Item, Input,  Label, Form, Icon } from 'native-base';
+import { Container, Content, List, ListItem, Left, Right, Button, Item, Input,  Label, Form, Icon, Spinner } from 'native-base';
 import {Avatar, Header, Card, Divider} from 'react-native-elements'
 import ImagePicker from 'react-native-image-picker'
 import LinearGradient from 'react-native-linear-gradient'
+import camicon from '../../../assets/photo-camera.png'
 
 
 const {width, height} = Dimensions.get("window")
@@ -33,7 +34,8 @@ export default class EditProProfile extends Component {
             fileName: '',
             fileUri: '',
             userId:'',
-            profilePic: false
+            profilePic: false,
+            loader: false,
 
           }
     }
@@ -89,6 +91,7 @@ export default class EditProProfile extends Component {
 
 
     updateProfile = () => {
+        this.setState({loader: true})
         const {profileData, username, phoneNo, address,userId,fileName, fileUri, gender,expertise, about,bankName,accountNumber} = this.state
         const formData = new FormData()
         
@@ -132,6 +135,7 @@ export default class EditProProfile extends Component {
 
                     if (successData.status === true) {
                         console.log(" After Status SUCCESS USER", successData.data)
+                        this.setState({loader: false})
 
                             this.props.screenProps.fetchProfileData(successData.data)
                             Alert.alert("Profile Updated Successfully")
@@ -140,14 +144,18 @@ export default class EditProProfile extends Component {
 
                       
                     } else {
+                        this.setState({loader: false})
                         Alert.alert("Email Or Password Incorrect")
                     }
                 } else {
+                    this.setState({loader: false})
                     Alert.alert(successData.message)
                 }
                 console.log("SUCCESS USER", successData, successData.status, successData.data)
             })
-            .catch(err => console.log("err UPDATEPROFILE", err));
+            .catch(err => {
+                this.setState({loader: false})
+                console.log("err UPDATEPROFILE", err)});
 
     }
 
@@ -162,7 +170,7 @@ export default class EditProProfile extends Component {
                         containerStyle={{marginTop:40, backgroundColor:"#fff"}}
                         placement="left"
                         leftComponent={<Icon onPress={() => {this.props.navigation.navigate('Main')}} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>EDIT PROFILE</Text>}
+                        centerComponent={<Text style={{alignSelf:'center',fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>EDIT PROFILE</Text>}
                         // rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("EditProfile")}}><Image source={require('../../../assets/edit.png')} style={{height:30, width:30}} /> 
                         // </TouchableOpacity> }
                         />
@@ -178,11 +186,11 @@ export default class EditProProfile extends Component {
                         <Card containerStyle={{backgroundColor:"#fff", borderRadius:10, width:"90%",}}> 
 
                        {!this.state.profilePic ? <View style={{justifyContent:"center", alignContent:"center", alignItems:"center"}}>
-                             <Avatar  onPress={this.openGallery} onEditPress={this.openGallery} containerStyle={{backgroundColor:"#fc8b8c",}} showEditButton  rounded size="xlarge" editButton={{name:"camera",type:"font-awesome", size:25, iconStyle:{marginTop:8} ,containerStyle:{backgroundColor:"#fc8b8c", borderRadius:50, height: 40, width:40}, color:"#fff", underlayColor:"#fc8b8c", reverseColor:"#fc8b8c", }}  source={{uri:`https://hnhtechsolutions.com/hassan/soplush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}} />
+                             <Avatar  onPress={this.openGallery} onEditPress={this.openGallery} containerStyle={{backgroundColor:"#fc8b8c",}} showEditButton  rounded size="xlarge" editButton={{name:"camera",type:"font-awesome", size:25, iconStyle:{marginTop:10} ,containerStyle:{backgroundColor:"#fc8b8c", borderRadius:50, height: 45, width: 45, borderColor:'#fff' , borderWidth:2 ,marginRight:60}, color:"#fff", underlayColor:"#fc8b8c", reverseColor:"#fc8b8c", }}  source={{uri:`https://hnhtechsolutions.com/hassan/soplush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}} />
                         </View> 
                         :
                         <View style={{justifyContent:"center", alignContent:"center", alignItems:"center"}}>
-                        <Avatar  onPress={this.openGallery} onEditPress={this.openGallery} containerStyle={{backgroundColor:"#fc8b8c",}} showEditButton  rounded size="xlarge" editButton={{name:"camera",type:"font-awesome", size:25, iconStyle:{marginTop:8} ,containerStyle:{backgroundColor:"#fc8b8c", borderRadius:50, height: 40, width:40}, color:"#fff", underlayColor:"#fc8b8c", reverseColor:"#fc8b8c", }}  source={this.state.profilePic} />
+                        <Avatar  onPress={this.openGallery} onEditPress={this.openGallery} containerStyle={{backgroundColor:"#fc8b8c",}} showEditButton  rounded size="xlarge" editButton={{name:"camera",type:"font-awesome", size:25, iconStyle:{marginTop:10, color:'#fff', borderColor:'#fff'} ,containerStyle:{backgroundColor:"#fc8b8c", borderRadius:50, height: 45, width: 45, borderColor:'#fff' , borderWidth:2 ,marginRight:60}, color:"#fff", underlayColor:"#fc8b8c", reverseColor:"#fc8b8c", }}  source={this.state.profilePic} />
                    </View>
                         
                         }
@@ -191,26 +199,25 @@ export default class EditProProfile extends Component {
                         {/* <Label>Name</Label> */}
                         <Input defaultValue={this.state.username} onChangeText={(e) => {this.setState({username:e})}} placeholder="Name" />
                     </Item>
-                    <Item floatingLabel>
+                    {/* <Item floatingLabel>
                         <Icon active name='home' type="FontAwesome" />
-                        {/* <Label>Address</Label> */}
                         <Input defaultValue={this.state.address} onChangeText={(e) => {this.setState({address:e})}}  placeholder="Address" />
-                    </Item>
-                    <Item floatingLabel>
-                        <Icon active name='phone' type="MaterialCommunityIcons" />
-                        {/* <Label>Phone Number</Label> */}
-                        <Input defaultValue={this.state.phoneNo} onChangeText={(e) => {this.setState({phoneNo:e})}} placeholder="Phone Number" />
-                    </Item>
+                    </Item> */}
+                    
                     <Item floatingLabel>
                         <Icon active name='email' type="MaterialCommunityIcons" />
                         {/* <Label>Email Address</Label> */}
                         <Input defaultValue={this.state.email} onChangeText={(e) => {this.setState({email:e})}} placeholder="Email Address" />
                     </Item>
                     <Item floatingLabel>
-                        <Icon active name='user' type="FontAwesome" />
-                        {/* <Label>Email Address</Label> */}
-                        <Input defaultValue={this.state.gender}  onChangeText={(e) => {this.setState({gender:e})}} placeholder="Gender" />
+                        <Icon active name='phone' type="MaterialCommunityIcons" />
+                        {/* <Label>Phone Number</Label> */}
+                        <Input defaultValue={this.state.phoneNo} onChangeText={(e) => {this.setState({phoneNo:e})}} placeholder="Phone Number" />
                     </Item>
+                    {/* <Item floatingLabel>
+                        <Icon active name='user' type="FontAwesome" />
+                        <Input defaultValue={this.state.gender}  onChangeText={(e) => {this.setState({gender:e})}} placeholder="Gender" />
+                    </Item> */}
                     <Item floatingLabel>
                         <Icon active name='code-greater-than-or-equal' type="MaterialCommunityIcons" />
                         {/* <Label>Email Address</Label> */}
@@ -219,20 +226,60 @@ export default class EditProProfile extends Component {
                     <Item floatingLabel>
                         <Icon active name='information' type="MaterialCommunityIcons" />
                         {/* <Label>Email Address</Label> */}
-                        <Input defaultValue={this.state.about}  onChangeText={(e) => {this.setState({about:e})}} placeholder="About" />
+                        <Input defaultValue={this.state.about}  onChangeText={(e) => {this.setState({about:e})}} placeholder="About me" />
                     </Item>
 
-                    <Item floatingLabel>
+                    <View style={{ display: "flex", flexDirection: "row", marginBottom: "3%",marginVertical:'3%' }}>
+                        
+                        <View style={{ backgroundColor:'lightgray', height: 80, width: 80, borderRadius:5, justifyContent:'center', alignItems:"center"}}>
+                                    <Avatar onPress={this.openGallery} containerStyle={{  height: 40, width: 40, marginTop: "1%", borderRadius: 10 }} source={camicon} />
+                          </View>
+                                   
+                            <TouchableOpacity style={{borderRadius:5}}  onPress={() => 
+                                {
+
+                                    Alert.alert(
+                                        'Profile',
+                                        'Are you sure you want to remove picture?',
+                                        [
+                                          {
+                                            text: 'No',
+                                            onPress: () => console.log('Cancel Pressed'),
+                                            style: 'cancel',
+                                          },
+                                          {
+                                            text: 'yes',
+                                            onPress: () =>  this.setState({ profilePic: false })
+                                            ,
+                                            style: 'cancel',
+                                          },
+                                          {cancelable:  false}
+                                        ]
+                                      )
+                                   
+                            }}>
+
+                           <View style={{flexDirection:'column'}}>   
+                             <ImageBackground source={this.state.profilePic}  style={{height:80, width:80,borderRadius:5,margin:3, display:"flex", alignContent:"center", backgroundColor:"lightgray", flexDirection:'column'}}> 
+                             <Text style={{fontSize:50, textAlign:'center', justifyContent:'center', color:'#fff'}}>+</Text>
+
+                     </ImageBackground>
+                     <Text style={{textAlign:'center', justifyContent:'center'}}>Add more</Text>
+                     </View>  
+
+                     </TouchableOpacity> 
+                                </View>
+
+
+                    {/* <Item floatingLabel>
                         <Icon active name='university' type="FontAwesome" />
-                        {/* <Label>Email Address</Label> */}
                         <Input defaultValue={this.state.bankName}  onChangeText={(e) => {this.setState({bankName:e})}} placeholder="Bank Name" />
-                    </Item>
+                    </Item> */}
 
-                    <Item floatingLabel>
+                    {/* <Item floatingLabel>
                         <Icon active name='address-card' type="FontAwesome" />
-                        {/* <Label>Email Address</Label> */}
                         <Input defaultValue={this.state.accountNumber}  onChangeText={(e) => {this.setState({accountNumber:e})}} placeholder="Acount Number" />
-                    </Item>
+                    </Item> */}
                     {/* <Item floatingLabel>
                         <Icon active name='lock' type="MaterialCommunityIcons" />
                         <Label>Password</Label>
@@ -253,15 +300,15 @@ export default class EditProProfile extends Component {
                                 </View> */}
 
 
-                                <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10 }}>
+                               {!this.state.loader ? <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10 }}>
                                             <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                                                 <Button onPress={() => {this.updateProfile()}} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
                                                     <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
-                                                    Update
+                                                    Ok
 </Text>
                                                 </Button>
                                             </LinearGradient>
-                                        </View>          
+                                        </View> :   <Spinner color="#fc8b8c" />   }      
 
 
                                 

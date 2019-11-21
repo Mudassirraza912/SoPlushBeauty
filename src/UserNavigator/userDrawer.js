@@ -205,6 +205,23 @@ class DrawerMenu extends Component {
             </TouchableOpacity>
 
 
+            <TouchableOpacity
+                        style={styles.menuItem}
+                        // onPress={() =>
+                        //   this.props.navigation.navigate('LoyalityPoints')}
+  
+                      >
+                      <View style={{marginLeft:10}}>
+                      <Image source={require('../../assets/lock.png')} style={{height:30, width:30}} />
+                        </View>
+  
+                        <View style={{marginLeft:20}}>
+                        <Text style={styles.menuItemText}>Loyality Points</Text>
+                        </View>
+
+            </TouchableOpacity>
+
+
 
 
 
@@ -252,7 +269,7 @@ class DrawerMenu extends Component {
             <TouchableOpacity
               style={styles.menuItem}
               onPress={() =>
-                this.props.navigation.navigate('Main')}
+                this.props.navigation.navigate('UserHome')}
 
             >
               <View style={{ marginLeft: 10 }}>

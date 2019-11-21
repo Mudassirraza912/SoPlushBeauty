@@ -789,7 +789,7 @@ export default class ViewBooking extends Component {
                         leftComponent={<Icon onPress={() => { this.props.navigation.navigate('Main') }} name="arrow-back" color="#000" />}
                         centerComponent={
                             <View style={{alignContent:"center", alignItems:"center", alignSelf:"center"}}>
-                      {!this.state.focusOn  ? <Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>VIEW BOOKING</Text> 
+                      {!this.state.focusOn  ? <Text style={{alignSelf:'center',fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>VIEW BOOKING</Text> 
                       :
     
                       <View style={{

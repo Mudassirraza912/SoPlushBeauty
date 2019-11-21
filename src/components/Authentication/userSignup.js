@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
-import { Container, Header, Content, Item, Input, Icon, Label, Form, Button, Spinner} from 'native-base';
+import { Container, Header, Content, Item, Input, Icon, Label, Form, Button, Spinner } from 'native-base';
 import camicon from '../../../assets/camera.png'
 import pro from '../../../assets/barbie.jpg'
 import { Avatar, Badge, withBadge } from 'react-native-elements';
@@ -9,22 +9,33 @@ import ImagePicker from 'react-native-image-picker'
 import axios from 'axios'
 import LinearGradient from 'react-native-linear-gradient'
 
+
+import user from '../../../assets/user.png'
+import home from '../../../assets/home.png'
+import phone from '../../../assets/phone-call.png'
+import envelop from '../../../assets/envelope.png'
+import lock from '../../../assets/lock.png'
+import cake from '../../../assets/cake.png'
+import museum from '../../../assets/museum.png'
+import atmcard from '../../../assets/atm-card.png'
+
+
 const BadgedIcon = withBadge("X")(Avatar)
-const {width, height} = Dimensions.get("window")
+const { width, height } = Dimensions.get("window")
 
 const options = {
     title: 'Select Avatar',
     storageOptions: {
-      skipBackup: true,
-      path: 'images',
+        skipBackup: true,
+        path: 'images',
     },
-  };
+};
 
 
 export default class UserSignUp extends Component {
     constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             // profilePic:[
             //     camicon,
             //     pro,
@@ -34,20 +45,20 @@ export default class UserSignUp extends Component {
             //     // pro,
 
             // ],
-            email:"",
-            password:"",
-            name:"",
-            address:"",
-            phoneNo:"",
-            profilePic:false,
-            fileName:"",
-            fileUri:"",
+            email: "",
+            password: "",
+            name: "",
+            address: "",
+            phoneNo: "",
+            profilePic: false,
+            fileName: "",
+            fileUri: "",
             loader: false
 
         }
     }
 
-  
+
     static navigationOptions = () => ({
         headerMode: 'none',
         headerVisible: false,
@@ -58,231 +69,239 @@ export default class UserSignUp extends Component {
     openGallery = () => {
         ImagePicker.showImagePicker(options, (response) => {
             console.log('Response = ', response);
-          
+
             if (response.didCancel) {
-              console.log('User cancelled image picker');
+                console.log('User cancelled image picker');
             } else if (response.error) {
-              console.log('ImagePicker Error: ', response.error);
+                console.log('ImagePicker Error: ', response.error);
             } else if (response.customButton) {
-              console.log('User tapped custom button: ', response.customButton);
+                console.log('User tapped custom button: ', response.customButton);
             } else {
-            //   const source = { uri: response.uri };
-              // You can also display the image using data:
-              const source = { uri: 'data:image/jpeg;base64,' + response.data };
-              console.log( "uri: response.uri", source, response)
-          
-              this.setState({
-                profilePic: source,
-                fileName: response.fileName,
-                fileUri: response.uri
-              });
+                //   const source = { uri: response.uri };
+                // You can also display the image using data:
+                const source = { uri: 'data:image/jpeg;base64,' + response.data };
+                console.log("uri: response.uri", source, response)
+
+                this.setState({
+                    profilePic: source,
+                    fileName: response.fileName,
+                    fileUri: response.uri
+                });
             }
-          });
-    } 
+        });
+    }
 
 
 
-    
+
 
 
     signUp = () => {
-        this.setState({loader: true})
+        this.setState({ loader: true })
         const { email, password, name, phoneNo, address, profilePic, fileName, fileUri } = this.state
         // this.props.successSign()
         console.log("SIGN UP jksdajkfajkshjghj")
         // this.props.navigation.navigate("UserLogin")
-        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-    if(reg.test(email) === false ) {
-        this.setState({loader: false})
-      Alert.alert("Email is not correct")
-    }else{
+        if (reg.test(email) === false) {
+            this.setState({ loader: false })
+            Alert.alert("Email is not correct")
+        } else {
+
+            const formData = new FormData();
+            if (fileUri != "") {
+                var file = {
+                    uri: fileUri,
+                    name: fileName,
+                    type: 'image/png'
+                }
+                formData.append("file_upload", file)
+
+            }
+            formData.append("email", email),
+                formData.append("password", password),
+                formData.append("address", address),
+                formData.append("name", name),
+                formData.append("phone_number", phoneNo),
+
+
+                console.log("email, password, address, name, phoneNo, profilePic", email, password, address, name, phoneNo, profilePic)
+
+            // axios.post("https://hnhtechsolutions.com/hassan/soplush/auth/signup.php?action=signup_customer",{
+            //     email: email,
+            //     password: password,
+            //     address: address,
+            //     name: name,
+            //     phone_number : phoneNo,
+            //     file_upload : file
+            //   })
+            //     .then((response) => {
+            //      console.log("SIGN_UP_PROCESSED response",response)
+            //     //   dispatch({type: "SIGN_UP_PROCESSED", payload: response.data});
+            //     })
+            //     .catch((err) => {
+            //      console.log("SIGN_UP_ERROR response",err)
+
+            //     //   dispatch({type: "ERROR", payload: 'An unexpected error occured!'});dispatch({type: "CLEAR_PROCESSING"});
+            //       // dispatch({type: "SIGN_UP_PROCESSED", payload: {error: 'An unexpected error occured!', status: 'error'}})
+            //     })
+            // }
+
+            //     axios.post("https://hnh-crypto.herokuapp.com/api/activities/get-activity",{
+            //   id: 1
+            // })
+            //   .then((response) => {
+            //     console.log("SIGN_UP_PROCESSED response",response)
+            //   })
+            //   .catch((err) => {
+            //     console.log("SIGN_UP_ERROR response",err)
+            //     // dispatch({type: "ACTIVITIES_PROCESSED", payload: {error: 'An unexpected error occured!', status: 'error'}})
+            //   })
 
 
 
-        var file = {
-            uri: fileUri,
-            name: fileName,
-            type: 'image/png'
+            fetch("https://hnhtechsolutions.com/hassan/soplush/auth/signup.php?action=signup_customer", {
+                method: 'POST',
+                // dataType: "json",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'multipart/form-data'
+                },
+                body: formData
+            }).then(res => res.json())
+                .then(resp => {
+                    console.log(JSON.stringify(resp))
+                    var successData = resp
+
+                    if (successData.status) {
+                        if (successData.status === true) {
+                            Alert.alert("Signup successful")
+                            this.setState({ loader: false })
+                            this.props.navigation.navigate("UserLogin")
+                        }
+                    } else {
+                        Alert.alert(successData.message)
+                        this.setState({ loader: false })
+
+                    }
+                    console.log("SUCCESS", successData, successData.status, successData.data)
+                })
+                .catch(err => {
+                    // Alert.alert(err)
+                    Alert.alert('Try Later')
+                    console.log("err err err", err)
+                    this.setState({ loader: false })
+
+                });
         }
-
-        const formData = new FormData();
-        formData.append("email", email),
-        formData.append("password", password),
-        formData.append("address", address),
-        formData.append("name", name),
-        formData.append("phone_number", phoneNo),
-        formData.append("file_upload", file),
-
-        console.log("email, password, address, name, phoneNo, profilePic", email, password, address, name, phoneNo, profilePic)
-
-        // axios.post("https://hnhtechsolutions.com/hassan/soplush/auth/signup.php?action=signup_customer",{
-        //     email: email,
-        //     password: password,
-        //     address: address,
-        //     name: name,
-        //     phone_number : phoneNo,
-        //     file_upload : file
-        //   })
-        //     .then((response) => {
-        //      console.log("SIGN_UP_PROCESSED response",response)
-        //     //   dispatch({type: "SIGN_UP_PROCESSED", payload: response.data});
-        //     })
-        //     .catch((err) => {
-        //      console.log("SIGN_UP_ERROR response",err)
-
-        //     //   dispatch({type: "ERROR", payload: 'An unexpected error occured!'});dispatch({type: "CLEAR_PROCESSING"});
-        //       // dispatch({type: "SIGN_UP_PROCESSED", payload: {error: 'An unexpected error occured!', status: 'error'}})
-        //     })
-        // }
-
-    //     axios.post("https://hnh-crypto.herokuapp.com/api/activities/get-activity",{
-    //   id: 1
-    // })
-    //   .then((response) => {
-    //     console.log("SIGN_UP_PROCESSED response",response)
-    //   })
-    //   .catch((err) => {
-    //     console.log("SIGN_UP_ERROR response",err)
-    //     // dispatch({type: "ACTIVITIES_PROCESSED", payload: {error: 'An unexpected error occured!', status: 'error'}})
-    //   })
-    
-
-
-        fetch("https://hnhtechsolutions.com/hassan/soplush/auth/signup.php?action=signup_customer", {
-            method: 'POST',
-            // dataType: "json",
-            headers: {
-                'Accept' : 'application/json',
-                'Content-Type': 'multipart/form-data'
-            },
-            body: formData
-        }).then(res => res.json())
-        .then(resp =>{
-          console.log(JSON.stringify(resp))
-          var successData =  resp
-  
-          if(successData.status) {
-              if(successData.status === true){
-            Alert.alert("Signup successful")
-            this.setState({loader:false})
-            this.props.navigation.navigate("UserLogin")
-        }
-          }else {
-            Alert.alert(successData.message)
-            this.setState({loader:false})
-
-          }
-          console.log("SUCCESS", successData, successData.status, successData.data)
-        })
-        .catch(err => {
-            // Alert.alert(err)
-            Alert.alert('Try Later')
-            console.log("err err err",err)
-        this.setState({loader:false})
-        
-    });
-    }
     }
 
-    
+
     render() {
-        const {email, password, name, address, phoneNo, loader} = this.state
+        const { email, password, name, address, phoneNo, loader } = this.state
         console.log(email, password, name, address, phoneNo)
         return (
-            <View style={{flex:1, height:'100%', width, marginTop: -80}}>
-                <ImageBackground source={require('../../../assets/opacity.jpg')} style={{height:"100%", width:"100%",opacity:0.9}}> 
+            <View style={{ flex: 1, height: '100%', width:'100%', marginTop: -80 }}>
+                <ImageBackground source={require('../../../assets/opacity.jpg')} style={{ height: "100%", width: "100%", opacity: 0.9 }}>
 
-            <ScrollView style={{height}}>
+                    <ScrollView style={{ height }}>
 
-                
-                <View style={{ height, width, backgroundColor:"rgba(242, 201, 240, 0.7)",justifyContent:"center", marginTop: 80}}>
 
-                <View style={{alignSelf:"center", alignContent:"center", alignItems:"center", marginTop: 15}}> 
-                    <Image source={require('../../../assets/text.png')} style={{opacity: 2}} />
-                    </View>
+                        <View style={{ flex:1 , height, width, backgroundColor: "rgba(242, 201, 240, 0.7)", justifyContent: "center", marginTop: 80 }}>
 
-                
+                        <View style={{ alignSelf: "center", alignContent: "center", alignItems: "center", marginTop: -65 }}>
+                                <Image source={require('../../../assets/text.png')} style={{ opacity: 2, alignSelf:'center', width:240, height: 115 }} />
+                            </View>
 
-                   
-                <View style={{marginTop:"5%",alignContent:"center", alignSelf:"center", alignItems:"center", width:"80%", backgroundColor:"#fff",borderRadius:10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', paddingHorizontal:"5%",paddingVertical:5}}>
 
-                    <View>
-                        <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 30}}>CREATE ACCOUNT</Text>
-                    </View>
 
-                    <Item floatingLabel>
-                        <Icon active name='user' type="FontAwesome"  />
-                        {/* <Label>Name</Label> */}
-                        <Input onChangeText={(e) => {this.setState({name:e})}} placeholder=" Name" />
-                    </Item>
-                    <Item floatingLabel>
-                        <Icon active name='home' type="FontAwesome" />
-                        {/* <Label>Address</Label> */}
-                        <Input onChangeText={(e) => {this.setState({address:e})}}  placeholder="Address" />
-                    </Item>
-                    <Item floatingLabel>
-                        <Icon active name='phone' type="MaterialCommunityIcons" />
-                        {/* <Label>Phone Number</Label> */}
-                        <Input onChangeText={(e) => {this.setState({phoneNo:e})}} placeholder="Phone Number" />
-                    </Item>
-                    <Item floatingLabel>
-                        <Icon active name='email' type="MaterialCommunityIcons" />
-                        {/* <Label>Email Address</Label> */}
-                        <Input onChangeText={(e) => {this.setState({email:e})}} placeholder="Email Address" />
-                    </Item>
-                    
-                    <Item floatingLabel>
-                        <Icon active name='lock' type="MaterialCommunityIcons" />
-                        {/* <Label>Password</Label> */}
-                        <Input  onChangeText={(e) => {this.setState({password:e})}} placeholder="Password" secureTextEntry={true} />
-                    </Item>
 
-                    <Item onPress={this.openGallery} floatingLabel>
-                                    <Icon active name='camera' type="FontAwesome" />
-                                    <Input disabled keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Upload" />
+                            <View style={{ marginTop: "5%", alignContent: "center", alignSelf: "center", alignItems: "center", width: "80%", backgroundColor: "#fff", borderRadius: 10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', paddingHorizontal: "5%", paddingVertical: 5 }}>
+
+                                <View style={{marginVertical:10}}>
+                                    <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 22, fontWeight: 'bold' }}>CREATE ACCOUNT</Text>
+                                </View>
+
+                                <Item>
+                                    {/* <Icon active name='user' type="FontAwesome"  /> */}
+                                    <Image source={user} style={{ height: 22, width: 22 }} />
+                                    {/* <Label>Name</Label> */}
+                                    <Input placeholderTextColor="#bdbdbd" onChangeText={(e) => { this.setState({ name: e }) }} placeholder=" Name" />
+                                </Item>
+                                <Item>
+                                    <Image source={home} style={{ height: 22, width: 22 }} />
+                                    {/* <Icon active name='home' type="FontAwesome" /> */}
+                                    {/* <Label>Address</Label> */}
+                                    <Input placeholderTextColor="#bdbdbd" onChangeText={(e) => { this.setState({ address: e }) }} placeholder="Address" />
+                                </Item>
+                                <Item>
+                                    <Image source={phone} style={{ height: 22, width: 22 }} />
+                                    {/* <Icon active name='phone' type="MaterialCommunityIcons" /> */}
+                                    {/* <Label>Phone Number</Label> */}
+                                    <Input onChangeText={(e) => { this.setState({ phoneNo: e }) }} placeholder="Phone Number" />
+                                </Item>
+                                <Item>
+                                    <Image source={envelop} style={{ height: 22, width: 22 }} />
+                                    {/* <Icon active name='email' type="MaterialCommunityIcons" /> */}
+                                    {/* <Label>Email Address</Label> */}
+                                    <Input placeholderTextColor="#bdbdbd" onChangeText={(e) => { this.setState({ email: e }) }} placeholder="Email Address" />
+                                </Item>
+
+                                <Item>
+                                    <Image source={lock} style={{ height: 22, width: 22 }} />
+                                    {/* <Icon active name='lock' type="MaterialCommunityIcons" /> */}
+                                    {/* <Label>Password</Label> */}
+                                    {/* <Input placeholderTextColor="#bdbdbd" onChangeText={(e) => { this.setState({ password: e }) }} placeholder="Password" secureTextEntry={true} /> */}
+                                    <Input style={{fontSize:20}}  placeholderTextColor="#bdbdbd" onChangeText={(e) => this.setState({ password: e })} placeholder="Password"secureTextEntry />
+                                </Item>
+
+                                <Item onPress={this.openGallery}>
+                                    <Image source={camicon} style={{ height: 30, width: 30 }} />
+                                    {/* <Icon active name='camera' type="FontAwesome" /> */}
+                                    <Input placeholderTextColor="#bdbdbd" disabled keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Upload Pictures" />
                                 </Item>
 
 
-                    {/* <Item  onPress={this.openGallery} style={{marginBottom:"3%", width: "100%"}}> 
+                                {/* <Item  onPress={this.openGallery} style={{marginBottom:"3%", width: "100%"}}> 
                         <Icon active name='camera' type="MaterialCommunityIcons" />
                         <Input disabled  placeholder=" Upload" secureTextEntry={true} />
                     </Item> */}
 
-                    <View style={{display:"flex", flexDirection:"row",marginBottom:"3%"}}>
-
-                             <Avatar onPress={this.openGallery} containerStyle={{padding:5, height:40, width: 40, marginTop:"1%"}} source={camicon} /> 
-
-                            {this.state.profilePic &&   <BadgedIcon onPress={() => this.setState({profilePic:false})}  containerStyle={{ margin: 5, height:40, width: 40}} source={this.state.profilePic}/> 
-                            }
-
-                        
-                            {/* {this.state.profilePic.map((val, index) => {
-                                if(index == 0) {
-
-                                     return <Avatar onPress={this.openGallery} containerStyle={{padding:5, height:40, width: 40, marginTop:"1%"}} source={val} />
-                                } else{
-                                    return(
-                                        <BadgedIcon  containerStyle={{padding:5, margin: 5, height:40, width: 40}} source={val}/>
-                                    )
-                                }
-
-                                if(index == 0) {
-                                    return <ImageBackground source={val}  style={{height:30, width:30,backgroundColor:"lightgray", marginTop:"1%"}}/>
-                               } else{
-                                   return(
-                                    <ImageBackground source={val}  style={{height:30, width:30,borderRadius:5,margin:3, display:"flex", alignContent:"center", backgroundColor:"lightgray"}}> 
-                                            <Text style={{fontSize:7, backgroundColor: "red", borderRadius:100, color:"#fff",marginTop:-7,marginLeft:20, textAlign:"center", height:10, width:15}}>X</Text>
-                                    </ImageBackground>
-                                   )
-                               }
-                         
-
-                            })} */}
-                    </View>
+                                {this.state.profilePic && <View style={{ display: "flex", flexDirection: "row", marginBottom: "3%", marginVertical: '3%', alignSelf: 'flex-start' }}>
+                                    <Avatar onPress={this.openGallery} containerStyle={{ height: 40, width: 40, marginTop: "1%", borderRadius: 10 }} source={camicon} overlayContainerStyle={{ height: 40, width: 40, marginTop: "1%", borderRadius: 5 }} />
 
 
-                    {/* <Button onPress={this.signUp} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
+                                    <TouchableOpacity style={{ height: 50, width: 50, borderTopLeftRadius: 5,borderBottomLeftRadius: 5, borderBottomRightRadius: 5,  }} onPress={() => {
+
+                                        Alert.alert(
+                                            'Profile',
+                                            'Are you sure you want to remove picture?',
+                                            [
+                                                {
+                                                    text: 'No',
+                                                    onPress: () => console.log('Cancel Pressed'),
+                                                    style: 'cancel',
+                                                },
+                                                {
+                                                    text: 'yes',
+                                                    onPress: () => this.setState({ profilePic: false })
+                                                    ,
+                                                    style: 'cancel',
+                                                },
+                                                { cancelable: false }
+                                            ]
+                                        )
+
+                                    }}>
+                                        <ImageBackground source={this.state.profilePic}  borderTopLeftRadius = {5}  borderBottomRightRadius= {5} borderBottomLeftRadius={5} style={{ height: 40, width: 40, margin: 3, display: "flex", backgroundColor: "lightgray",}}>
+                                            <Text style={{ backgroundColor: "red", borderRadius: 100, color: "#fff", height: 20, width: 20, alignSelf: 'flex-end', textAlign: 'center', position: 'absolute', right: -7, top: -7 }}>X</Text>
+                                        </ImageBackground>
+                                    </TouchableOpacity>
+                                </View>}
+
+
+                                {/* <Button onPress={this.signUp} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
                     <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
                         Sign Up
                     </Text>
@@ -290,32 +309,32 @@ export default class UserSignUp extends Component {
 
 
 
-              {!loader ? 
-              
-              <View style={{ alignContent: "center", alignItems: "center",  width:'100%', marginBottom:3 }}>
-              <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
-                  <Button onPress={this.signUp} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
-                      <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
-                     Sign Up
+                                {!loader ?
+
+                                    <View style={{ alignContent: "center", alignItems: "center", width: '100%',  paddingVertical:'5%' }}>
+                                        <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "100%", borderRadius: 10 }}>
+                                            <TouchableOpacity onPress={this.signUp} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
+                                                <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 , paddingVertical: '7%', marginTop:-5}}>
+                                                    Sign Up
 </Text>
-                  </Button>
-              </LinearGradient>
-          </View>
-          
-          : 
-                
-                            <Spinner color="#fc8b8c"/>
+                                            </TouchableOpacity>
+                                        </LinearGradient>
+                                    </View>
 
-                }
+                                    :
+
+                                    <Spinner color="#fc8b8c" />
+
+                                }
 
 
-                </View>
+                            </View>
 
-                            
-                </View>
-                </ScrollView>
+
+                        </View>
+                    </ScrollView>
                 </ImageBackground>
-        </View>
+            </View>
         )
     }
 }

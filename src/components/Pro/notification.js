@@ -12,7 +12,7 @@ export default class Notification extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            notifications : [
+            notifications :  [
                 {
                     icon: img,
                     data: "Dividers are visual separators of content. Use Divider when you want to make a distinction between sections of content.",
@@ -20,47 +20,47 @@ export default class Notification extends Component {
                 },
               {
                     icon: img,
-                    data: "Hair Cutting",
+                    data: "Dividers are visual separators of content. Use Divider when you want to make a distinction between sections of content.",
                     time: "8 May, 2018",
                 },
                 {
                     icon: img,
-                    data: "Hair Cutting",
+                    data: "Dividers are visual separators of content. Use Divider when you want to make a distinction between sections of content.",
                     time: "8 May, 2018",
                 },
                 {
                     icon: img,
-                    data: "Hair Cutting",
+                    data: "Dividers are visual separators of content. Use Divider when you want to make a distinction between sections of content.",
                     time: "8 May, 2018",
                 },
                 {
                     icon: img,
-                    data: "Hair Cutting",
+                    data: "Dividers are visual separators of content. Use Divider when you want to make a distinction between sections of content.",
                     time: "8 May, 2018",
                 },
                 {
                     icon: img,
-                    data: "Hair Cutting",
+                    data: "Dividers are visual separators of content. Use Divider when you want to make a distinction between sections of content.",
                     time: "8 May, 2018",
                 },
                 {
                     icon: img,
-                    data: "Hair Cutting",
+                    data: "Dividers are visual separators of content. Use Divider when you want to make a distinction between sections of content.",
                     time: "8 May, 2018",
                 },
                 {
                     icon: img,
-                    data: "Hair Cutting",
+                    data: "Dividers are visual separators of content. Use Divider when you want to make a distinction between sections of content.",
                     time: "8 May, 2018",
                 },
                 {
                     icon: img,
-                    data: "Hair Cutting",
+                    data: "Dividers are visual separators of content. Use Divider when you want to make a distinction between sections of content.",
                     time: "8 May, 2018",
                 },
                 {
                     icon: img,
-                    data: "Hair Cutting",
+                    data: "Dividers are visual separators of content. Use Divider when you want to make a distinction between sections of content.",
                     time: "8 May, 2018",
                 },
                 
@@ -91,19 +91,18 @@ export default class Notification extends Component {
         <ListItem
         containerStyle={{backgroundColor:"transparent", width:"100%"}}
           title={mainItem}
-          
           subtitle={item.time}
-          titleStyle = {{fontFamily:"MrEavesXLModNarOT-Reg"}}
-          subtitleStyle={{color:"red",fontFamily:"MrEavesXLModNarOT-Reg"}}
+          titleStyle = {{fontFamily:"MrEavesXLModNarOT-Reg", textAlignVertical: "top", fontSize: 16}}
+          subtitleStyle={{color:"red", fontFamily:"MrEavesXLModNarOT-Reg", textAlignVertical: "bottom", marginTop: 8}}
           leftAvatar={{
             source: item.icon &&  item.icon ,
             titleStyle:{fontFamily:"MrEavesXLModNarOT-Reg"},
             title: item.data[0],
             rounded:false,
             size:"medium",
-            containerStyle:{borderRadius: 10, backgroundColor:"none"},
+            containerStyle:{borderRadius: 10, backgroundColor:"transparent"},
             iconStyle:{borderRadius: 20}, 
-            avatarStyle:{borderRadius: 10, backgroundColor:"none"}, 
+            avatarStyle:{borderRadius: 10, backgroundColor:"transparent"}, 
           }}
           
         />
@@ -123,8 +122,8 @@ export default class Notification extends Component {
                     containerStyle={{marginTop:60, backgroundColor:"#fff"}}
                     placement="left"
                     leftComponent={<Icon onPress={() => {this.props.navigation.navigate('Main')}} name="arrow-back" color="#000" />}
-                    centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>NOTIFICATION</Text>}
-                    rightComponent={  <Image source={require('../../../assets/notification.png')} style={{height:20, width:20}} />}
+                    centerComponent={<Text style={{alignSelf:"center",fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>NOTIFICATION</Text>}
+                    // rightComponent={  <Image source={require('../../../assets/notification.png')} style={{height:20, width:20}} />}
                     />
 
 

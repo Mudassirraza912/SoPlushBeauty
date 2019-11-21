@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, FlatList, TextInput } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
-import { Container, Content, List, ListItem, Left, Right, Button, DatePicker,Item, Label, Input } from 'native-base';
+import { Container, Content, List, ListItem, Left, Right, Button, DatePicker, Item, Label, Input } from 'native-base';
 import { Avatar, Header, Icon, Card, Divider } from 'react-native-elements'
 import Cover1 from '../../../assets/Cover1.png'
 import Cover2 from '../../../assets/Cover2.png'
@@ -100,16 +100,16 @@ export default class SelectedProfile extends Component {
                         containerStyle={{ marginTop: 40, backgroundColor: "#fff" }}
                         placement="left"
                         leftComponent={<Icon onPress={() => { this.props.navigation.goBack() }} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>PROFILE</Text>}
-                    // rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("EditProProfile")}}><Image source={require('../../../assets/edit.png')} style={{height:30, width:30}} /> 
-                    // </TouchableOpacity> }
+                        centerComponent={<Text style={{ alignSelf: 'center', fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>PROFILE</Text>}
+                        rightComponent={<TouchableOpacity onPress={() => { console.log('asfds') }}><Image source={require('../../../assets/edit.png')} style={{ height: 30, width: 30 }} />
+                        </TouchableOpacity>}
                     />
 
                     <View style={{ height, width, backgroundColor: "rgba(200, 165, 212, 0.7)", justifyContent: "center" }}>
 
                         <ScrollView style={{ height: height }}>
 
-                            <View style={{ justifyContent: "center", alignContent: "center", alignItems: "center", marginTop: 20 }}>
+                            <View style={{ justifyContent: "center", alignContent: "center", alignItems: "center", marginTop: 10 }}>
 
                                 {/* <View style={{backgroundColor:"#fff",borderRadius:10, width:"90%"}}> */}
 
@@ -168,10 +168,10 @@ export default class SelectedProfile extends Component {
                                         </View> */}
 
 
-                                        
 
 
-<View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10 }}>
+
+                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10 }}>
                                             <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Gender</Text>
                                             <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>{this.state.profileData.gender}</Text>
                                             <Divider style={{ backgroundColor: 'lightgray' }} />
@@ -181,17 +181,17 @@ export default class SelectedProfile extends Component {
 
 
 
-                                        <Item floatingLabel style={{  marginLeft: "5%",borderBottomColor: 'lightgray', borderBottomWidth:1, marginTop:5}}>
+                                        {/* <Item floatingLabel style={{  marginLeft: "5%",borderBottomColor: 'lightgray', borderBottomWidth:1, marginTop:5}}>
                                                     <Label>Important Note</Label>
                                                     <Input value={this.state.email} style={{padding:10, margin:0}} onChangeText={(text) => { this.setState({ note: text }) }} />
-                                                </Item>
+                                                </Item> */}
 
 
                                         <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10 }}>
-                                            <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Selected Date</Text>
+                                            <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Select Date</Text>
                                             <DatePicker
                                                 // date={this.state.date} //initial date from state
-                                                defaultDate={new Date(year, month, date)}
+                                                defaultDate={new Date()}
                                                 // defaultDate={"1/23/3"}
                                                 mode="date" //The enum of date, datetime and time
                                                 placeholder="select date"
@@ -211,11 +211,12 @@ export default class SelectedProfile extends Component {
                                                         marginLeft: 36
                                                     }
                                                 }}
+                                                formatChosenDate={date => { return moment(date).format('DD MMMM YYYY'); }}
                                                 onDateChange={(date) => {
                                                     var newdate = moment(date.toString().substr(4, 12)).format("MM-DD-YYYY")
                                                     this.state.selectdate = newdate
 
-                                                    this.setState({ selectdate :newdate })
+                                                    this.setState({ selectdate: newdate })
 
                                                 }}
                                                 underlineColorAndroid="#f55f2a" />
@@ -227,7 +228,7 @@ export default class SelectedProfile extends Component {
 
 
 
-                                       
+
                                         <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10 }}>
                                             <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Available Slot</Text>
 
@@ -263,24 +264,30 @@ export default class SelectedProfile extends Component {
                                         </View>
 
 
-                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10 }}>
-                                            <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>About</Text>
-                                            <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>{this.state.profileData.about}</Text>
-                                            <Divider style={{ backgroundColor: 'lightgray' }} />
-                                        </View>
-
 
                                         <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10 }}>
-                                            <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Expertize</Text>
+                                            <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Expertise</Text>
                                             <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>{this.state.profileData.expertise}</Text>
                                             <Divider style={{ backgroundColor: 'lightgray' }} />
                                         </View>
 
 
 
+                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10 }}>
+                                            <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>About me</Text>
+                                            <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>{this.state.profileData.about}</Text>
+                                            <Divider style={{ backgroundColor: 'lightgray' }} />
+                                        </View>
 
 
-                                        <View style={{ flex: 1, height: Dimensions.get('window').height / 2,alignItems:'center'  }}>
+
+
+
+
+
+                                        <View style={{ flex: 1, height: Dimensions.get('window').height / 2, alignItems: 'center' }}>
+                                            <Text style={{ width: "30%", marginLeft: 15, fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray", alignSelf: "flex-start" }}>
+                                                Work</Text>
                                             <FlatList style={{ flex: 1, marginTop: "3%" }}
                                                 data={this.state.works}
                                                 renderItem={({ item }) => (
@@ -298,7 +305,7 @@ export default class SelectedProfile extends Component {
                                         </View>
 
 
-{/* 
+                                        {/* 
                                         <View>
 
                                             <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
@@ -349,8 +356,8 @@ export default class SelectedProfile extends Component {
 
 
 
-{/* <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom: 10 }}> */}
-                                            <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10, alignItems:'center', alignSelf:'center', marginBottom: '5%'}}>
+                                        {/* <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom: 10 }}> */}
+                                        {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10, alignItems:'center', alignSelf:'center', marginBottom: '5%'}}>
                                                 <Button onPress={() => {
                                                     // this.props.navigation.navigate('ConfirmBooking', {
                                                     //     beauticianData: this.state.profileData,
@@ -391,7 +398,53 @@ export default class SelectedProfile extends Component {
                                                         Book Now
 </Text>
                                                 </Button>
+                                            </LinearGradient> */}
+
+
+                                        <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
+                                            <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10 }}>
+                                                <TouchableOpacity onPress={() => {
+                                                    // this.props.navigation.navigate('ConfirmBooking', {
+                                                    //     beauticianData: this.state.profileData,
+                                                    //     selectedSlot: this.state.selectedSlot,
+                                                    //     cart: this.state.cart,
+                                                    //     selectdate: this.state.selectdate,
+                                                    //     note: this.state.note
+                                                    // })
+
+
+                                                    if (this.state.selectdate == undefined) {
+
+                                                        this.props.navigation.navigate('ConfirmBooking', {
+                                                            beauticianData: this.state.profileData,
+                                                            selectedSlot: this.state.selectedSlot,
+                                                            cart: this.state.cart,
+                                                            selectdate: moment(new Date()).format("MM-DD-YYYY")
+                                                        })
+
+                                                        console.log('EMPTY DATE', moment().toDate())
+
+                                                    } else {
+                                                        this.props.navigation.navigate('ConfirmBooking', {
+                                                            beauticianData: this.state.profileData,
+                                                            selectedSlot: this.state.selectedSlot,
+                                                            cart: this.state.cart,
+                                                            selectdate: this.state.selectdate
+                                                        })
+
+                                                        console.log('IS DATE', this.state.selectdate)
+
+                                                    }
+
+
+
+                                                }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
+                                                    <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: '8%', marginTop:-5 }}>
+                                                        Book Now
+                    </Text>
+                                                </TouchableOpacity>
                                             </LinearGradient>
+                                        </View>
                                         {/* </View> */}
                                     </Card>
 
@@ -431,10 +484,10 @@ export default class SelectedProfile extends Component {
                                         </View> */}
 
 
-<Item floatingLabel style={{  marginLeft: "5%",borderBottomColor: 'lightgray', borderBottomWidth:1, marginTop:5}}>
+                                        {/* <Item floatingLabel style={{  marginLeft: "5%",borderBottomColor: 'lightgray', borderBottomWidth:1, marginTop:5}}>
                                                     <Label>Important Note</Label>
                                                     <Input value={this.state.email} style={{padding:10, margin:0}} onChangeText={(text) => { this.setState({ note: text }) }} />
-                                                </Item>
+                                                </Item> */}
 
                                         <View style={{ display: "flex", flexDirection: "column", marginTop: 15 }}>
                                             <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Selected Date</Text>
@@ -460,6 +513,7 @@ export default class SelectedProfile extends Component {
                                                         marginLeft: 36
                                                     }
                                                 }}
+                                                formatChosenDate={date => { return moment(date).format('DD MMMM YYYY'); }}
                                                 onDateChange={(date) => {
                                                     var newdate = moment(date.toString().substr(4, 12)).format("MM-DD-YYYY")
                                                     this.state.selectdate = newdate
@@ -562,7 +616,7 @@ export default class SelectedProfile extends Component {
 
 
 
-                                        <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom: 10 }}>
+                                        {/* <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom: 10 }}>
                                             <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                                                 <Button onPress={() => {
 
@@ -606,6 +660,55 @@ export default class SelectedProfile extends Component {
                                                         Book Now
 </Text>
                                                 </Button>
+                                            </LinearGradient>
+                                        </View> */}
+
+
+
+                                        <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
+                                            <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10 }}>
+                                                <TouchableOpacity onPress={() => {
+
+                                                    // this.props.navigation.navigate('ConfirmBooking', {
+                                                    //     beauticianData: this.state.profileData,
+                                                    //     selectedSlot: this.state.selectedSlot,
+                                                    //     cart: this.state.cart,
+                                                    //     selectdate: this.state.selectdate,
+                                                    //     note: this.state.note
+                                                    // })
+
+
+                                                    if (this.state.selectdate == undefined) {
+
+                                                        this.props.navigation.navigate('ConfirmBooking', {
+                                                            beauticianData: this.state.profileData,
+                                                            selectedSlot: this.state.selectedSlot,
+                                                            cart: this.state.cart,
+                                                            selectdate: moment(new Date()).format("MM-DD-YYYY")
+                                                        })
+
+                                                        console.log('EMPTY DATE', moment().toDate())
+
+                                                    } else {
+                                                        this.props.navigation.navigate('ConfirmBooking', {
+                                                            beauticianData: this.state.profileData,
+                                                            selectedSlot: this.state.selectedSlot,
+                                                            cart: this.state.cart,
+                                                            selectdate: this.state.selectdate
+
+                                                        })
+
+                                                        console.log('IS DATE')
+
+                                                    }
+
+
+
+                                                }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
+                                                    <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
+                                                        Book Now
+                    </Text>
+                                                </TouchableOpacity>
                                             </LinearGradient>
                                         </View>
                                     </Card>

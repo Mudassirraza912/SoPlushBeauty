@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Picker, PickerItem } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Picker, PickerItem, Alert, BackHandler } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
-import { Container, Content, List, ListItem, Left, Right, Button, Item, Input, Label, Form, Icon } from 'native-base';
+import { Container, Content, List, ListItem, Left, Right, Button, Item, Input, Label, Form, Icon, Spinner } from 'native-base';
 import { Avatar, Header, Card, Divider } from 'react-native-elements'
 import LinearGradient from 'react-native-linear-gradient'
+import { withNavigationFocus } from 'react-navigation';
 
 
 const { width, height } = Dimensions.get("window")
@@ -17,7 +18,8 @@ export default class AddService extends Component {
             category:[],
             selectedCategory:"",
             name: "",
-            cost: ""
+            cost: "",
+            loader: false
         }
     }
 
@@ -25,7 +27,7 @@ export default class AddService extends Component {
     componentDidMount() {
         const {profileData} = this.state
         
-       
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
 
         // console.log("email, password, address, name, phoneNo, profilePic", email, password)
 
@@ -59,11 +61,34 @@ export default class AddService extends Component {
     }
 
 
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+    }
+
+    handleBackButton = () => {
+        console.log('RUNNNING')
+        if (!this.state.add) {
+            console.log('add: true')
+           this.setState({add: true})
+            return true;
+        }
+        else {
+            console.log('navigation: true')
+
+            this.props.navigation.navigate('Main')
+        }
+    };
+
 
   addCategory = () => {
+      this.setState({loader: true})
         const {name, cost, selectedCategory, category, profileData} = this.state
         console.log(selectedCategory, profileData.user_id)
 
+        if (name === "" || cost === "" || selectedCategory === "") {
+            this.setState({loader: false})
+            Alert.alert("please fill all given fileds below")
+        } else {
     var formData = new FormData()
     formData.append("name", name)
     formData.append("cost", cost)
@@ -100,13 +125,18 @@ export default class AddService extends Component {
             name: "",
             cost: ""
             })
+            this.setState({loader: false})
         this.props.navigation.navigate("ServiceList")
    
       }else {
+        this.setState({loader: false})
         Alert.alert(successData.message)
       }
     })
-    .catch(err => console.log("Category err err",err));
+    .catch(err => {
+        this.setState({loader: false})
+        console.log("Category err err",err)});
+    }
 
   }
 
@@ -122,7 +152,7 @@ export default class AddService extends Component {
     render() {
         // console.log("this.state.category", this.state.category)
         return (
-            <View style={{ flex: 1, height, width, marginTop: -80 }}>
+            <View style={{ flex: 1, height: '100%', width:'100%', marginTop: -80 }}>
                 <ImageBackground source={require('../../../assets/opacity100.png')} style={{ height: "100%", width: "100%", opacity: 0.9, marginTop: 20 }}>
 
 
@@ -130,7 +160,7 @@ export default class AddService extends Component {
                         containerStyle={{ marginTop: 40, backgroundColor: "#fff" }}
                         placement="left"
                         leftComponent={<Icon onPress={() => { this.props.navigation.navigate('Main') }} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{ alignSelf:"center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>ADD SERVICE</Text>}
+                        centerComponent={<Text style={{alignSelf:'center',fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>ADD SERVICE</Text>}
                     // rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("EditProfile")}}><Image source={require('../../../assets/edit.png')} style={{height:30, width:30}} /> 
                     // </TouchableOpacity> }
                     />
@@ -183,7 +213,7 @@ export default class AddService extends Component {
                                             </Button> */}
 
 
-                                            <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10, width: "100%" }}>
+                                       {!this.state.loader ?     <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10, width: "100%" }}>
                                             <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                                                 <Button onPress={this.addCategory} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
                                                     <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
@@ -191,7 +221,7 @@ export default class AddService extends Component {
 </Text>
                                                 </Button>
                                             </LinearGradient>
-                                        </View>
+                                        </View> :  <Spinner color="#fc8b8c" />}
 
                                 </View>}
 

@@ -58,7 +58,7 @@ export default class UserAppointment extends Component {
                 leftContainerStyle={{ marginTop: 10 }}
                 centerContainerStyle={{ marginTop: 10 }}
                 leftComponent={<Icon onPress={() => { this.props.navigation.navigate('UserHome') }} name="arrow-back" color="#000" />}
-                centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>BOOK APPOINTMENT</Text>}
+                centerComponent={<Text style={{alignSelf:'center',fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>BOOK APPOINTMENT</Text>}
               />
       
               <Header containerStyle={{ backgroundColor: "#fff", height: 60, width: '100%' }}
@@ -160,9 +160,9 @@ export default class UserAppointment extends Component {
                           onDateSelect={(date) => {
                             var newdate = moment(date).format("MM-DD-YYYY")
                             // console.log("JSJDGJHKSDJHSDHSDKG",date, moment(date).format("MM-DD-YYYY"))
-                            this.props.navigation.navigate('PersonalService', {
-                              selectdate: date
-                            })
+                            // this.props.navigation.navigate('PersonalService', {
+                            //   selectdate: date
+                            // })
                           }}
       
                           showEventIndicators

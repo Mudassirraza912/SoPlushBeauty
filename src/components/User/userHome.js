@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, FlatList, StyleSheet, TextInput, Keyboard } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, FlatList, StyleSheet, TextInput, Keyboard, BackHandler, Alert } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 // import { Container, Header, Content, Item, Input, Icon, Label, Form, Button, Body } from 'native-base';
 import { Avatar, Header, Icon } from 'react-native-elements'
@@ -7,10 +7,11 @@ import Cover1 from '../../../assets/Cover1.png'
 import Cover2 from '../../../assets/Cover2.png'
 import Cover3 from '../../../assets/Cover3.png'
 import Cover4 from '../../../assets/Cover4.png'
+import { withNavigationFocus } from 'react-navigation'
 
 const { width, height } = Dimensions.get("window")
 
-export default class UserHome extends Component {
+ class UserHome extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -25,12 +26,12 @@ export default class UserHome extends Component {
             plush: [],
             SoPlush: [],
             items: [],
-            searchText:'',
+            searchText: '',
             categories: [],
             data: [],
             focusOn: false,
             offFocus: true,
-            text:''
+            text: ''
         }
     }
 
@@ -44,7 +45,7 @@ export default class UserHome extends Component {
         headerMode: 'none',
         headerVisible: false,
         header: null,
-        
+
     })
 
 
@@ -95,78 +96,110 @@ export default class UserHome extends Component {
                 .catch(err => console.log("Category err err", err));
     }
 
+    componentWillMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+    }
+
+    handleBackButton = () => {
+        if (this.props.isFocused) {
+            Alert.alert(
+                'Exit App',
+                'Exiting the application?',
+                [
+                    {
+                        text: 'Cancel',
+                        onPress: () => console.log('Cancel Pressed'),
+                        style: 'cancel'
+                    },
+                    {
+                        text: 'OK',
+                        onPress: () => BackHandler.exitApp()
+                    }
+                ],
+                {
+                    cancelable: false
+                }
+            );
+            return true;
+        }
+    };
 
     navigatingToOther = (item) => {
 
         const formData = new FormData();
         formData.append("id", item.category_id),
-        // this.props.navigation.navigate(this.state.navigate)
+            // this.props.navigation.navigate(this.state.navigate)
             // this.props.navigation.navigate(this.state.navigate, {
             //     category_id: item.category_id,
             //     image: `https://hnhtechsolutions.com/hassan/soplush/images/${item.image}`,
             //     service: successData.data
 
             // })
-        // console.log("SUCCESS PRO", successData)
-        //   Alert.alert("Login successful")
-        // this.props.navigation.navigate("Main")
-
-        fetch("https://hnhtechsolutions.com/hassan/soplush/service/service.php?action=select_service", {
-            method: 'POST',
-            // dataType: "json",
-            headers: {
-                'Accept' : 'application/json',
-                'Content-Type': 'multipart/form-data'
-            },
-            body: formData
-        }).then(res => res.json())
-        .then(resp =>{
-          console.log(JSON.stringify(resp))
-          var successData =  resp
-
-          if(successData.status === true){
-              // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
-              console.log(" successData.data PRO", successData.data, item.category_name)
-              this.props.navigation.navigate(this.state.navigate, {
-                category_id: item.category_id,
-                image: `https://hnhtechsolutions.com/hassan/soplush/images/${item.image}`,
-                service: successData.data,
-                category_name: item.category_name
-
-              })
-                 
-                //   Alert.alert("Login successful")
+            // console.log("SUCCESS PRO", successData)
+            //   Alert.alert("Login successful")
             // this.props.navigation.navigate("Main")
 
-          }else {
-            Alert.alert(successData.message)
-          }
-        })
-        .catch(err => console.log("err err err",err));
+            fetch("https://hnhtechsolutions.com/hassan/soplush/service/service.php?action=select_service", {
+                method: 'POST',
+                // dataType: "json",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'multipart/form-data'
+                },
+                body: formData
+            }).then(res => res.json())
+                .then(resp => {
+                    console.log(JSON.stringify(resp))
+                    var successData = resp
+
+                    if (successData.status === true) {
+                        // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
+                        console.log(" successData.data PRO", successData.data, item.category_name)
+                        this.props.navigation.navigate(this.state.navigate, {
+                            category_id: item.category_id,
+                            image: `https://hnhtechsolutions.com/hassan/soplush/images/${item.image}`,
+                            service: successData.data,
+                            category_name: item.category_name
+
+                        })
+
+                        //   Alert.alert("Login successful")
+                        // this.props.navigation.navigate("Main")
+
+                    } else {
+                        Alert.alert(successData.message)
+                    }
+                })
+                .catch(err => console.log("err err err", err));
 
 
 
     }
 
 
-    searchFilterFunction = text => {    
-        const {items} = this.state
+    searchFilterFunction = text => {
+        const { items } = this.state
         if (text !== "") {
-            const newData = items.filter(item => {      
+            const newData = items.filter(item => {
                 const itemData = `${item.category_name.toUpperCase()}`;
-                
-                 const textData = text.toUpperCase();
-                  
-                 return itemData.indexOf(textData) > -1;    
-              });
-              
-              this.setState({ data: newData });  
-        }else {
-            this.setState({data: items })
+
+                const textData = text.toUpperCase();
+
+                return itemData.indexOf(textData) > -1;
+            });
+
+            this.setState({ data: newData });
+        } else {
+            this.setState({ data: items })
         }
-        this.setState({text: text})
-        
-      };
+        this.setState({ text: text })
+
+    };
 
 
 
@@ -174,69 +207,69 @@ export default class UserHome extends Component {
         console.log("this.state.catrgotiies", this.state.categories)
         const { items } = this.state
         return (
-            <View style={{ flex: 1, height, width, marginTop: -80 }}>
+            <View style={{ flex: 1, height: '100%', width:'100%' , marginTop: -80 }}>
 
                 <Header
                     containerStyle={{ marginTop: 60, backgroundColor: "rgb(255,239,241)" }}
                     placement="left"
-                    leftComponent={<Icon onPress={() => { Keyboard.dismiss() ,this.props.navigation.toggleDrawer() }} name="menu" color="#000" />}
+                    leftComponent={<Icon onPress={() => { Keyboard.dismiss(), this.props.navigation.toggleDrawer() }} name="menu" color="#000" />}
                     centerComponent={
-                        <View style={{alignContent:"center", alignItems:"center", alignSelf:"center"}}>
-                  {!this.state.focusOn  ? <Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>HOME</Text> 
-                  :
+                        <View style={{ alignContent: "center", alignItems: "center", alignSelf: "center" }}>
+                           <Text style={{alignSelf:'center',fontFamily: "MrEavesXLModNarOT-Reg",fontSize:30}}>HOME</Text>
 
-                  <View style={{
-                    backgroundColor: "transparent",
-                    borderColor: 'gray',
-                    borderWidth: 1,
-                    borderColor: 'gray',
-                    borderRadius: 10,
-                    height: 50,
-                    marginTop: 10,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    alignSelf: 'center',
-                    width: '93%',
-                    paddingHorizontal: 16,
-                    paddingVertical: 10,
-                    marginBottom: 10,
+                                {/* <View style={{
+                                    backgroundColor: "transparent",
+                                    borderColor: 'gray',
+                                    borderWidth: 1,
+                                    borderColor: 'gray',
+                                    borderRadius: 10,
+                                    height: 50,
+                                    marginTop: 10,
+                                    flexDirection: 'row',
+                                    alignItems: 'center',
+                                    alignSelf: 'center',
+                                    width: '93%',
+                                    paddingHorizontal: 16,
+                                    paddingVertical: 10,
+                                    marginBottom: 10,
 
-                }}>
-                    <TextInput style={{
-                        height: 45,
-                        flex: 1,
-                    }}
-                        value={this.state.text}
-                        placeholder="Search"
-                        onChangeText={(text) =>  this.searchFilterFunction(text)}
-                        onBlur = {() => {this.setState({focusOn: false})} }
-                        autoFocus = {true}
-                        ref={x => this.input = x}
-                    />
-                    <Icon style={{
-                        color: 'gray',
-                        justifyContent: 'flex-end'
-                    }} type="EvilIcons" name="search" size={24} />
-                </View>
+                                }}>
+                                    <TextInput style={{
+                                        height: 45,
+                                        flex: 1,
+                                    }}
+                                        value={this.state.text}
+                                        placeholder="Search"
+                                        onChangeText={(text) => this.searchFilterFunction(text)}
+                                        onBlur={() => { this.setState({ focusOn: false }) }}
+                                        autoFocus={true}
+                                        ref={x => this.input = x}
+                                    />
+                                    <Icon style={{
+                                        color: 'gray',
+                                        justifyContent: 'flex-end'
+                                    }} type="EvilIcons" name="search" size={24} />
+                                </View> */}
 
-                }
-                    </View>
-                }
+                            {/* } */}
+                        </View>
+                    }
                     rightComponent={
-                    <View style={{flexDirection:"row"}}>
-                   {!this.state.focusOn && <TouchableOpacity style={{right: 20}} onPress={() => {this.setState({focusOn: true})
-                //  this.input.focus()
-                    }}>
-                        <Icon style={{
-                        color: 'gray',
-                        justifyContent: 'flex-end'
-                    }} type="EvilIcons" name="search" size={24} />
-                    </TouchableOpacity>}
-                    
-                    <TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
-                        <Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />
-                    </TouchableOpacity>
-                    </View>}
+                        <View style={{ flexDirection: "row" }}>
+                            {/* {!this.state.focusOn && <TouchableOpacity style={{ right: 20 }} onPress={() => {
+                                this.setState({ focusOn: true })
+                                //  this.input.focus()
+                            }}>
+                                <Icon style={{
+                                    color: 'gray',
+                                    justifyContent: 'flex-end'
+                                }} type="EvilIcons" name="search" size={24} />
+                            </TouchableOpacity>} */}
+
+                            <TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
+                                <Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />
+                            </TouchableOpacity>
+                        </View>}
                 />
 
 
@@ -247,7 +280,7 @@ export default class UserHome extends Component {
                     <ScrollView >
 
                         <View style={{ alignSelf: "center", alignContent: "center", alignItems: "center", backgroundColor: "#fff", width: '100%' }}>
-                            <Image source={require('../../../assets/Cover.png')} style={{ opacity: 2 ,width: '100%'}} />
+                            <Image source={require('../../../assets/Cover.png')} style={{ opacity: 2, width: '100%' }} />
                         </View>
 
                         <View style={{ width: width, marginVertical: "2%", marginLeft: "5%" }}>
@@ -288,18 +321,19 @@ export default class UserHome extends Component {
 
 
 
-                        <View style={{ flex: 1, width: Dimensions.get('window').width, height: "100%",alignItems:'center' }}>
-                            <FlatList style={{ flex: 1}}
+                        <View style={{ flex: 1, width: Dimensions.get('window').width, height: "100%", alignItems: 'center' }}>
+                            <FlatList style={{ flex: 1 }}
                                 data={this.state.data}
                                 renderItem={({ item }) => {
                                     console.log("FlatList FlatList", `https://hnhtechsolutions.com/hassan/soplush/images/${item.image}`)
-                                        return (<View style={{ flexDirection: "column", margin: 2, height: 180, width: 180, alignContent: "center", alignItems: "center", alignSelf: "center", }}>
+                                    return (<View style={{ flexDirection: "column", marginVertical: 6, height: '90%', width: "50%", alignContent: "center", alignItems: "center", alignSelf: "center", }}>
                                         <TouchableOpacity onPress={() => this.navigatingToOther(item)}>
-                                            <Image style={styles.imageThumbnail} source={{uri:`https://hnhtechsolutions.com/hassan/soplush/images/${item.image}`}} />
+                                            <Image style={styles.imageThumbnail} source={{ uri: `https://hnhtechsolutions.com/hassan/soplush/images/${item.image}` }} />
                                         </TouchableOpacity>
-                                        <Text style={{ fontSize: 18, color: "#000", opacity: 0.6, fontFamily: "MrEavesXLModNarOT-Reg", textTransform:'capitalize' }}>{item.category_name}</Text>
+                                        <Text style={{ fontSize: 20, color: "#000", opacity: 0.6, fontFamily: "MrEavesXLModNarOT-Reg", textTransform: 'capitalize', fontWeight:'900', marginVertical:5 }}>{item.category_name}</Text>
                                     </View>
-                                    )}
+                                    )
+                                }
                                 }
                                 //Setting the number of column
                                 numColumns={2}
@@ -369,9 +403,12 @@ const styles = StyleSheet.create({
     imageThumbnail: {
         //   justifyContent: 'center',
         //   alignItems: 'center',
-        height: 150,
-        width: 150,
+        height: 160,
+        width: 170,
         borderRadius: 5
     },
 
 })
+
+
+export default withNavigationFocus(UserHome)

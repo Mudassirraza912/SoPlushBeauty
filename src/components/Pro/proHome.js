@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView  } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert, BackHandler  } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 // import { Container, Header, Content, Item, Input, Icon, Label, Form, Button, Body } from 'native-base';
 import {Avatar, Header, Icon} from 'react-native-elements'
+import { withNavigationFocus } from 'react-navigation';
 
 const {width, height} = Dimensions.get("window")
 
-export default class ProHome extends Component {
+class ProHome extends Component {
     constructor(props) {
         super(props);
     }
@@ -26,6 +27,38 @@ export default class ProHome extends Component {
         // },
     })
 
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+    }
+
+    handleBackButton = () => {
+        if (this.props.isFocused) {
+            Alert.alert(
+                'Exit App',
+                'Exiting the application?',
+                [
+                    {
+                        text: 'Cancel',
+                        onPress: () => console.log('Cancel Pressed'),
+                        style: 'cancel'
+                    },
+                    {
+                        text: 'OK',
+                        onPress: () => BackHandler.exitApp()
+                    }
+                ],
+                {
+                    cancelable: false
+                }
+            );
+            return true;
+        }
+    };
     
     render() {
         return (
@@ -63,7 +96,7 @@ export default class ProHome extends Component {
                         containerStyle={{marginTop:60, backgroundColor:"#fff"}}
                         placement="left"
                         leftComponent={<Icon onPress={() => {this.props.navigation.toggleDrawer()}} name="menu" color="#000" />}
-                        centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>HOME</Text>}
+                        centerComponent={<Text style={{alignSelf:'center', fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>HOME</Text>}
                         // rightComponent={{ icon: 'home', color: '#000' }}
                         />
 
@@ -108,3 +141,5 @@ export default class ProHome extends Component {
         )
     }
 }
+
+export default withNavigationFocus(ProHome)

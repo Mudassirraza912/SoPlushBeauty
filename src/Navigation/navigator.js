@@ -27,6 +27,9 @@ import Term from  '../components/Pro/termCondition'
 import BookingHistory from '../components/Pro/bookingHIstory'
 import UserNavigator from '../UserNavigator/userNavigator'
 import Home from '../components/Home/home'
+import Walkthrogh from '../components/Walk through/walkthrogh';
+import UserLogin from '../components/Authentication/userLogin';
+import UserSignUp from '../components/Authentication/userSignup';
 const Drawer = createDrawerNavigator(
     {
 
@@ -261,6 +264,114 @@ const Drawer = createDrawerNavigator(
 const MainScreenNavigator = createStackNavigator({
   
 
+    // ProLogin: {
+    //     screen: ProLogin,
+    //     // navigationOptions: () => ({
+    //     //     headerBackTitle: null,
+    //     //     headerStyle: {
+    //     //         backgroundColor: "#f55f2a"
+    //     //     },
+    //     // }),
+    //     headerMode: 'none',
+    // navigationOptions: {
+    //     headerVisible: false,
+    // }
+    // },
+
+
+    // ProSignUp: {
+    //     screen: ProSignUp,
+    //     // navigationOptions: () => ({
+    //     //     headerBackTitle: null,
+    //     //     headerStyle: {
+    //     //         backgroundColor: "#f55f2a"
+    //     //     },
+    //     // }),
+    //     headerMode: 'none',
+    // navigationOptions: {
+    //     headerVisible: false,
+    // }
+    // },
+
+    // ForgotPassword: {
+    //     screen: ForgotPassword,
+    //     headerMode: 'none',
+    // navigationOptions: {
+    //     headerVisible: false,
+    // }
+    // },
+
+    Main: {
+        screen: Drawer,
+        headerMode: 'none',
+    navigationOptions: {
+        headerMode: 'none',
+        headerVisible: false,
+        header: null,
+    }
+    },
+
+    // ServiceList: {
+    //     screen: ServiceList,
+    //     headerMode: 'none',
+    // navigationOptions: {
+    //     headerVisible: false,
+    //     headerTitle:"Service"
+    // }
+    // },
+
+   
+}, {headerLayoutPreset: 'center'});
+
+
+const AuthStack = createStackNavigator({
+    
+    Home: Home,
+    UserLogin: {
+        screen: UserLogin,
+        headerMode: 'none',
+    navigationOptions: {
+        headerVisible: false,
+    }
+        // navigationOptions: () => ({
+        //     headerBackTitle: null,
+        //     headerStyle: {
+        //         backgroundColor: "#f55f2a"
+        //     },
+        // }),
+    },
+
+    // UserHome: {screen:UserHome,
+    
+    //     headerMode: 'none',
+    //     navigationOptions: {
+    //         headerVisible: false,
+    //     }
+    // },
+
+    UserSignUp: {
+        screen: UserSignUp,
+        // navigationOptions: () => ({
+        //     headerBackTitle: null,
+        //     headerStyle: {
+        //         backgroundColor: "#f55f2a"
+        //     },
+        // }),
+        headerMode: 'none',
+    navigationOptions: {
+        headerVisible: false,
+    }
+    },
+
+
+    ForgotPassword: {
+        screen: ForgotPassword,
+        headerMode: 'none',
+    navigationOptions: {
+        headerVisible: false,
+    }
+    },
+
     ProLogin: {
         screen: ProLogin,
         // navigationOptions: () => ({
@@ -289,46 +400,18 @@ const MainScreenNavigator = createStackNavigator({
         headerVisible: false,
     }
     },
-
-    ForgotPassword: {
-        screen: ForgotPassword,
-        headerMode: 'none',
-    navigationOptions: {
-        headerVisible: false,
-    }
-    },
-
-    Main: {
-        screen: Drawer,
-        headerMode: 'none',
-    navigationOptions: {
-        headerMode: 'none',
-        headerVisible: false,
-        header: null,
-    }
-    },
-
-    // ServiceList: {
-    //     screen: ServiceList,
-    //     headerMode: 'none',
-    // navigationOptions: {
-    //     headerVisible: false,
-    //     headerTitle:"Service"
-    // }
-    // },
-
-   
-}, {headerLayoutPreset: 'center'});
-
-
-
+})
 
 
 
 const SwitchNavigator = createSwitchNavigator({
-    Home: {
-        screen: Home
+    WalkThrough: Walkthrogh,
+    Authentication: {
+        screen: AuthStack
     },
+    // Home: {
+    //     screen: Home
+    // },
     ProNavigator: {
         screen: MainScreenNavigator
     },
@@ -342,5 +425,3 @@ const SwitchNavigator = createSwitchNavigator({
 const Navigator = createAppContainer(SwitchNavigator);
 
 export default Navigator;
-
-

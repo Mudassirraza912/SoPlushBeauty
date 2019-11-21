@@ -43,7 +43,7 @@ export default class Payment extends Component {
                         containerStyle={{ marginTop: 40, backgroundColor: "#fff" }}
                         placement="left"
                         leftComponent={<Icon onPress={() => { this.props.navigation.navigate('Main') }} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{ alignSelf:"center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>PAYMENT</Text>}
+                        centerComponent={<Text style={{alignSelf:'center',fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>PAYMENT</Text>}
                     />
 
                     <View style={{ height, width, backgroundColor: "rgba(200, 165, 212, 0.7)"}}>

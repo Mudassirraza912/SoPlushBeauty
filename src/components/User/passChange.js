@@ -44,7 +44,7 @@ export default class PassChange extends Component {
                         containerStyle={{marginTop:40, backgroundColor:"#fff"}}
                         placement="left"
                         leftComponent={<Icon onPress={() => {this.props.navigation.navigate('UserHome')}} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>CHANGE PASSWORD</Text>}
+                        centerComponent={<Text style={{ alignSelf:'center',fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>CHANGE PASSWORD</Text>}
                         // rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("EditProfile")}}><Image source={require('../../../assets/edit.png')} style={{height:30, width:30}} /> 
                         // </TouchableOpacity> }
                         />

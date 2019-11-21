@@ -338,37 +338,39 @@ export default class ServiceList extends Component {
     render() {
         console.log(this.state.service, this.state.cost)
         return (
-            <View style={{flex:1, height, width, marginTop: -80}}>
+            <View style={{flex:1, height: '100%', width: '100%', marginTop: -80}}>
                 <ImageBackground source={require('../../../assets/opacity.jpg')} style={{height:"100%", width:"100%",opacity:0.9}}> 
 
                 <Header
                         containerStyle={{marginTop:60, backgroundColor:"#fff"}}
                         placement="left"
                         leftComponent={<Icon onPress={() => {this.props.navigation.toggleDrawer()}} name="menu" color="#000" />}
-                        centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>SERVICE LIST</Text>}
+                        centerComponent={<Text style={{alignSelf:'center',fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>SERVICES LIST</Text>}
                         // rightComponent={{ icon: 'home', color: '#000' }}
                         />
 
 
 
-                <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
+                <View style={{flex: 1 ,height: '100%', width:'100%', backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
 
-                <ScrollView refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh} />}  style={{height: height}}>
+                <ScrollView refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh} />}  style={{height: '100%'}} contentContainerStyle={{ justifyContent:'center', alignContent:'center', paddingVertical:"5%", top: '3%'}}>
 
-              {!this.state.edit ? <View style={{backgroundColor:"#fff", width:"80%",justifyContent:"center", alignContent:"center", alignSelf:"center",borderRadius:10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', marginTop: "10%", paddingBottom:10}}>
+               <View style={{flex: 1,alignItems:'center', justifyContent:'center', alignContent:'center'}}>     
+
+              {!this.state.edit ? <View style={{backgroundColor:"#fff", width:"90%",justifyContent:"center", alignContent:"center",borderRadius:10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)'}}>
                    
 
-            {this.state.services.length > 0 ?   <View>
+            {this.state.services.length > 0 ?   <View style={{flex: 1}}>
                     {this.state.services.map((value, index) => {
                         return(
-                        <List> 
+                        <List style={{flex:1, marginRight:18 }}> 
                             <ListItem>
                             <Left>
                                 <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.service_name}</Text>
                             </Left>
-                            <Right style={{flexDirection:'row',paddingHorizontal:30}}>
+                            <Right >
                             
-                            <TouchableOpacity onPress = {() => {
+                            {/* <TouchableOpacity onPress = {() => {
                                 this.setState({
                                     service: value.service_name,
                                     cost: value.service_cost,
@@ -389,7 +391,8 @@ export default class ServiceList extends Component {
                             color: '#fc8b8c',
                             justifyContent: 'flex-end'
                              }}  color='#fc8b8c' type="EvilIcons" name="delete" size={20} />
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
+
                             <Text style={{color:"#fc8b8c", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>${value.service_cost}</Text>
                             </Right>
                             </ListItem>
@@ -409,14 +412,14 @@ export default class ServiceList extends Component {
             
             }
 
-<View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10 }}>
-                                            <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
-                                                <Button onPress={() => {this.setState({renderEMail: false, renderCode: false, renderPassword:false}),
+<View style={{ alignContent: "center", alignItems: "center",paddingVertical: '5%'}}>
+                                            <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']}  style={{ width: "90%", borderRadius: 10 }}>
+                                                <TouchableOpacity onPress={() => {this.setState({renderEMail: false, renderCode: false, renderPassword:false}),
                 this.props.navigation.navigate('Main')}} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
-                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical:20, marginTop: -5  }}>
                                                     Save Service
 </Text>
-                                                </Button>
+                                                </TouchableOpacity>
                                             </LinearGradient>
                                         </View>
                       
@@ -430,7 +433,8 @@ export default class ServiceList extends Component {
                      </Button>
                 </View> */}
 
-                </View> 
+                </View>
+            
                 
             :            
                
@@ -498,6 +502,7 @@ export default class ServiceList extends Component {
         </View>         
                            }
 
+</View>
 
 
                 </ScrollView>

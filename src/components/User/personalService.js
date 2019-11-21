@@ -297,39 +297,48 @@ export default class PersonalService extends Component {
         console.log("json convert:" + params);
 
         formData.append("search", params);
+ 
 
-        fetch("https://hnhtechsolutions.com/hassan/soplush/customer/search_beautcian.php?action=search_beautician", {
-            method: 'POST',
-            // dataType: "json",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'multipart/form-data'
-                // 'Content-Type': 'application/json'
+        if(this.state.cart.length > 0) {
 
-            },
-            body: formData
-        }).then(res => res.json())
-            .then(resp => {
-                //   console.log(JSON.stringify(resp))
-                var successData = resp
+            fetch("https://hnhtechsolutions.com/hassan/soplush/customer/search_beautcian.php?action=search_beautician", {
+                method: 'POST',
+                // dataType: "json",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'multipart/form-data'
+                    // 'Content-Type': 'application/json'
+    
+                },
+                body: formData
+            }).then(res => res.json())
+                .then(resp => {
+                    //   console.log(JSON.stringify(resp))
+                    var successData = resp
+    
+                    if (successData.status === true) {
+                        // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
+                        console.log(" successData.data SEARCH BEAUTICIAN", successData.data)
+    
+    
+                        //   Alert.alert("Login successful")
+                        this.props.navigation.navigate("SelectBeautician", {
+                            users: successData.data,
+                            cart: this.state.cart
+                        })
+    
+                    } else {
+                        console.log("Else", successData)
+                        Alert.alert(successData.message)
+                    }
+                })
+                .catch(err => console.log("err err SEARCH", err));
 
-                if (successData.status === true) {
-                    // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
-                    console.log(" successData.data SEARCH BEAUTICIAN", successData.data)
+        }else {
+            Alert.alert('Please select services')
+        }
 
-
-                    //   Alert.alert("Login successful")
-                    this.props.navigation.navigate("SelectBeautician", {
-                        users: successData.data,
-                        cart: this.state.cart
-                    })
-
-                } else {
-                    console.log("Else", successData)
-                    Alert.alert(successData.message)
-                }
-            })
-            .catch(err => console.log("err err SEARCH", err));
+       
 
     }
 
@@ -379,7 +388,7 @@ export default class PersonalService extends Component {
             filterplush = this.props.navigation.getParam('service')
         }
 
-        console.log("CART", this.state.cart, category_name)
+        console.log("CART",  filterplush)
 
         // if(this.state.plushData.length < 1) {
         //         this.setState({
@@ -397,7 +406,7 @@ export default class PersonalService extends Component {
                         leftComponent={<Icon onPress={() => { this.props.navigation.goBack(), this.setState({ categoryId: "", image: "" }) }} name="arrow-back" color="#000" />}
                         centerComponent={
                             <View style={{ alignContent: "center", alignItems: "center", alignSelf: "center" }}>
-                        {!this.state.focusOn ? <Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg", textTransform:'capitalize' }}>{category_name}</Text>
+                        {!this.state.focusOn ? <Text style={{ alignSelf:'center',fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg", textTransform:'capitalize' }}>{category_name}</Text>
                                     :
 
                                     <View style={{
@@ -513,7 +522,7 @@ export default class PersonalService extends Component {
 
                                             <View style={{ backgroundColor: "#fc8b8c", width: "50%", padding: 15, }}>
                                                 <TouchableOpacity onPress={() => { this.setState({ plush: true }) }}>
-                                                    <Text style={{ color: "#fff", alignSelf: "center" }}>
+                                                    <Text style={{ color: "#fff", alignSelf: "center", fontWeight:'bold' }}>
                                                         Plush
                                                             </Text>
                                                 </TouchableOpacity>
@@ -521,7 +530,7 @@ export default class PersonalService extends Component {
 
                                             <View style={{ backgroundColor: "#fff", width: "50%", padding: 15 }}>
                                                 <TouchableOpacity onPress={() => { this.setState({ plush: false }) }}>
-                                                    <Text style={{ color: "pink", alignSelf: "center" }}>
+                                                    <Text style={{ color: "pink", alignSelf: "center" , fontWeight:'bold'}}>
                                                         SoPlush
                                                             </Text>
                                                 </TouchableOpacity>
@@ -533,7 +542,7 @@ export default class PersonalService extends Component {
 
                                             <View style={{ backgroundColor: "#fff", width: "50%", padding: 15, }}>
                                                 <TouchableOpacity onPress={() => { this.setState({ plush: true }) }}>
-                                                    <Text style={{ color: "pink", alignSelf: "center" }}>
+                                                    <Text style={{ color: "pink", alignSelf: "center", fontWeight:'bold' }}>
                                                         Plush
                         </Text>
                                                 </TouchableOpacity>
@@ -541,7 +550,7 @@ export default class PersonalService extends Component {
 
                                             <View style={{ backgroundColor: "#fc8b8c", width: "50%", padding: 15 }}>
                                                 <TouchableOpacity onPress={() => { this.setState({ plush: false }) }}>
-                                                    <Text style={{ color: "#fff", alignSelf: "center" }}>
+                                                    <Text style={{ color: "#fff", alignSelf: "center", fontWeight:'bold' }}>
                                                         SoPlush
                         </Text>
                                                 </TouchableOpacity>
@@ -560,7 +569,7 @@ export default class PersonalService extends Component {
                                                     }
                                                     return (
                                                         <List style={{ width: '90%', borderBottomWidth: 0.5, borderBottomColor: 'gray', alignSelf: 'center', justifyContent: 'center', height: 60 }}>
-                                                            <ListItem key={index} onPress={() => this.workFunction(value, "plush", index)} avatar>
+                                                            <ListItem key={index}  avatar>
                                                                 {/* <Left style={{marginTop:'5%'}}>
                                                                     <CheckBox style={{ borderRadius: 5 }} checked={value.p_checked} color="pink" />
                                                                 </Left>
@@ -577,17 +586,17 @@ export default class PersonalService extends Component {
                                                                     <View style={{flex:1 , flexDirection:'row'}}>
                                                                         
                                                                         <View>
-                                                                        <CheckBox style={{ borderRadius: 5 }} checked={value.p_checked} color="pink" />
+                                                                        <CheckBox onPress={() => this.workFunction(value, "plush", index)} style={{ borderRadius: 5 }} checked={value.p_checked} color="pink" />
                                                                         </View> 
 
-                                                                        <View style={{marginLeft:'10%'}}>
-                                                                        <Text note>{value.service_name}</Text>
+                                                                        <View style={{marginLeft:'4%'}}>
+                                                                        <Text style={{textTransform:'capitalize'}} note>{value.service_name}</Text>
                                                                         </View>
 
                                                                     </View>
 
                                                                     <View>
-                                                                <Text note style={{ color: "pink" }}> ${value.service_cost}</Text>
+                                                                <Text note style={{ color: "pink", paddingRight:15 }}> ${value.service_cost}</Text>
                                                                     </View>
 
                                                                 </View>
@@ -615,7 +624,7 @@ export default class PersonalService extends Component {
                                                     {filterSoplush.map((value, index) => {
                                                         return (
                                                             <List style={{ width: '90%', borderBottomWidth: 0.5, borderBottomColor: 'gray', alignSelf: 'center', justifyContent: 'center', height: 60 }}>
-                                                                <ListItem key={index} onPress={() => this.workFunction1(value, "soplush", index)} avatar>
+                                                                <ListItem key={index} avatar>
                                                                     {/* <Left style={{ top: "8%" }}>
                                                                         <CheckBox style={{ borderRadius: 5 }} checked={value.s_checked} color="pink" />
                                                                     </Left>
@@ -635,17 +644,17 @@ export default class PersonalService extends Component {
                                                                     <View style={{flex:1 , flexDirection:'row'}}>
                                                                         
                                                                         <View>
-                                                                        <CheckBox style={{ borderRadius: 5 }} checked={value.s_checked} color="pink" />
+                                                                        <CheckBox onPress={() => this.workFunction1(value, "soplush", index)} style={{ borderRadius: 5 }} checked={value.s_checked} color="pink" />
                                                                         </View> 
 
-                                                                        <View style={{marginLeft:'10%'}}>
-                                                                        <Text note>{value.service_name}</Text>
+                                                                        <View style={{marginLeft:'4%'}}>
+                                                                        <Text style={{textTransform:'capitalize'}} note>{value.service_name}</Text>
                                                                         </View>
 
                                                                     </View>
 
                                                                     <View>
-                                                                    <Text note style={{ color: "pink" }}> ${value.service_cost}</Text>
+                                                                    <Text note style={{ color: "pink", paddingRight:15 }}> ${value.service_cost}</Text>
                                                                     </View>
 
                                                                     </View>
@@ -672,15 +681,30 @@ export default class PersonalService extends Component {
 
                                     {(soplushData !== undefined || plushData !== undefined) ?
 
-                                        <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10 }}>
-                                            <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
-                                                <Button onPress={() => this.FilterBeautician()} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
-                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
-                                                        Next
-</Text>
-                                                </Button>
-                                            </LinearGradient>
-                                        </View> :
+//                                         <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10 }}>
+//                                             <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
+//                                                 <Button onPress={() => this.FilterBeautician()} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
+//                                                     <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+//                                                         Next
+// </Text>
+//                                                 </Button>
+//                                             </LinearGradient>
+//                                         </View>
+
+<View style={{marginVertical:'5%'}}> 
+
+<View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", }}>
+                                    <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10}}>
+                                        <TouchableOpacity onPress={() => this.FilterBeautician()} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
+                                            Next
+                    </Text>
+                                        </TouchableOpacity>
+                                    </LinearGradient>
+                                </View>
+                                        
+                   </View>   
+                                        :
 
                                         <View>
                                             <Text></Text>

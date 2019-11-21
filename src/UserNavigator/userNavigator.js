@@ -27,6 +27,7 @@ import SelectedProfile from '../components/User/selectedProfile'
 import ConfirmBooking from '../components/User/confirmbooking'
 import Payment from '../components/User/payment'
 import Feedback from '../components/User/feedback'
+import LoyalityPoints from '../components/User/loyality-points'
 const Drawer = createDrawerNavigator(
     {
 
@@ -192,6 +193,21 @@ const Drawer = createDrawerNavigator(
         }),
          },
 
+
+         LoyalityPoints: { 
+            screen: LoyalityPoints,
+            navigationOptions: () => ({
+                title:"Loyality Points",
+                headerTitleStyle: {
+                    fontFamily:"MrEavesXLModNarOT-Reg",
+                    fontSize:30
+                },
+                headerMode: 'none',
+                headerVisible: false,
+                header: null,
+        }),
+         },
+
     },
     {
         // initialRouteName: 'Main',
@@ -219,50 +235,50 @@ const MainScreenNavigator = createStackNavigator({
 
     
 
-    UserLogin: {
-        screen: UserLogin,
-        headerMode: 'none',
-    navigationOptions: {
-        headerVisible: false,
-    }
-        // navigationOptions: () => ({
-        //     headerBackTitle: null,
-        //     headerStyle: {
-        //         backgroundColor: "#f55f2a"
-        //     },
-        // }),
-    },
-
-    // UserHome: {screen:UserHome,
-    
+    // UserLogin: {
+    //     screen: UserLogin,
     //     headerMode: 'none',
-    //     navigationOptions: {
-    //         headerVisible: false,
-    //     }
+    // navigationOptions: {
+    //     headerVisible: false,
+    // }
+    //     // navigationOptions: () => ({
+    //     //     headerBackTitle: null,
+    //     //     headerStyle: {
+    //     //         backgroundColor: "#f55f2a"
+    //     //     },
+    //     // }),
     // },
 
-    UserSignUp: {
-        screen: UserSignUp,
-        // navigationOptions: () => ({
-        //     headerBackTitle: null,
-        //     headerStyle: {
-        //         backgroundColor: "#f55f2a"
-        //     },
-        // }),
-        headerMode: 'none',
-    navigationOptions: {
-        headerVisible: false,
-    }
-    },
+    // // UserHome: {screen:UserHome,
+    
+    // //     headerMode: 'none',
+    // //     navigationOptions: {
+    // //         headerVisible: false,
+    // //     }
+    // // },
+
+    // UserSignUp: {
+    //     screen: UserSignUp,
+    //     // navigationOptions: () => ({
+    //     //     headerBackTitle: null,
+    //     //     headerStyle: {
+    //     //         backgroundColor: "#f55f2a"
+    //     //     },
+    //     // }),
+    //     headerMode: 'none',
+    // navigationOptions: {
+    //     headerVisible: false,
+    // }
+    // },
 
 
-    ForgotPassword: {
-        screen: ForgotPassword,
-        headerMode: 'none',
-    navigationOptions: {
-        headerVisible: false,
-    }
-    },
+    // ForgotPassword: {
+    //     screen: ForgotPassword,
+    //     headerMode: 'none',
+    // navigationOptions: {
+    //     headerVisible: false,
+    // }
+    // },
 
     UserHome: {screen: Drawer,
         headerMode: 'none',
@@ -335,5 +351,3 @@ const MainScreenNavigator = createStackNavigator({
 
 const UserNavigator = createAppContainer(MainScreenNavigator);
 export default UserNavigator;
-
-

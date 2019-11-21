@@ -3,7 +3,7 @@ import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, Scrol
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button } from 'native-base';
 import {Avatar, Header, Icon, Card} from 'react-native-elements'
-
+import moment from 'moment'
 
 const {width, height} = Dimensions.get("window")
 
@@ -223,7 +223,7 @@ export default class BookingHistory extends Component {
                         leftComponent={<Icon onPress={() => {this.props.navigation.navigate('UserHome')}} name="arrow-back" color="#000" />}
                         centerComponent={
                             <View style={{alignContent:"center", alignItems:"center", alignSelf:"center"}}>
-                      {!this.state.focusOn  ? <Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>BOOKING HISTORY</Text> 
+                      {!this.state.focusOn  ? <Text style={{alignSelf:'center', fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>BOOKING HISTORY</Text> 
                       :
     
                       <View style={{
@@ -263,24 +263,24 @@ export default class BookingHistory extends Component {
                     }
                         </View>
                     }
-                    rightComponent={
-                        <View style={{flexDirection:"row"}}>
-                       {!this.state.focusOn && <TouchableOpacity style={{right: 20}} onPress={() => {this.setState({focusOn: true})
-                    //  this.input.focus()
-                        }}>
-                            <Icon style={{
-                            color: 'gray',
-                            justifyContent: 'flex-end'
-                        }} type="EvilIcons" name="search" size={24} />
-                        </TouchableOpacity>}
+                    // rightComponent={
+                    //     <View style={{flexDirection:"row"}}>
+                    //    {!this.state.focusOn && <TouchableOpacity style={{right: 20}} onPress={() => {this.setState({focusOn: true})
+                    // //  this.input.focus()
+                    //     }}>
+                    //         <Icon style={{
+                    //         color: 'gray',
+                    //         justifyContent: 'flex-end'
+                    //     }} type="EvilIcons" name="search" size={24} />
+                    //     </TouchableOpacity>}
                         
-                        {/* <TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
-                            <Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />
-                        </TouchableOpacity> */}
-                        </View>}
-                        // rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("Notification")}}>
-                        //     <Image source={require('../../../assets/notification.png')} style={{height:20, width:20}} />
-                        // </TouchableOpacity>}
+                    //     {/* <TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
+                    //         <Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />
+                    //     </TouchableOpacity> */}
+                    //     </View>}
+
+
+                    rightComponent={<Icon name="filter" type = "material-community" containerStyle={{borderColor: "#000", }}  color="white" size={30}/>}
                         />
 
 
@@ -297,24 +297,28 @@ export default class BookingHistory extends Component {
 
                 {this.state.data.length > 0 ?       <View> 
                     {this.state.data.map((value, index) => {
+                        console.log("DAY NAME DAY NAME", )
+                        var formatDate = `${moment(value.service_date).format('dddd')} - ${ moment(value.service_date).format('DD/MM/YYYY')}`
+                        // console.log("DAY NAME DAY NAME", `${formatDate, moment(value.service_date).format('MMMM')} ${formatDate, moment(value.service_date).format('YYYY') }`  )
+
                         return(
                         <Card key={index} containerStyle={{ borderColor:"#fff", borderWidth:3, borderRadius:10}}> 
 
-                           {/* <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", color:"#fc8b8c", fontSize:25}}>{value.dateTime}</Text>
+                           <View style={{display:"flex", flexDirection:"row", paddingVertical:"5%"}}> 
+                                    <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", color:"#fc8b8c", fontSize:25}}>{formatDate}</Text>
                                 </View>
 
- */}
+
 
 
                                 <View style={{ display: "flex", flexDirection: "row" }}>
-                                                    <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20 }}>Service Name</Text>
+                                                    <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20, color: '#bdbdbd' }}>Service Name</Text>
                                                     <Text style={{ marginLeft: "5%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20  }}>{value.services[0].service_name}</Text>
                                     </View>
 
 
                                 <View style={{display:"flex", flexDirection:"row"}}> 
-                                <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20 }}>Beauticainist Name</Text>
+                                <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20, color: '#bdbdbd' }}>Beauticainist Name</Text>
                                                     <Text style={{ marginLeft: "5%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20  }}>{value.beautician}</Text>
                                 </View>
 
@@ -331,7 +335,7 @@ export default class BookingHistory extends Component {
                                 </View> */}
 
                                 <View style={{display:"flex", flexDirection:"row"}}> 
-                                <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20 }}>Cost</Text>
+                                <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20, color: '#bdbdbd' }}>Cost</Text>
                                                     <Text style={{ marginLeft: "5%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20  }}>$ {value.services[0].service_cost}</Text>
                                 </View>
 
@@ -341,7 +345,7 @@ export default class BookingHistory extends Component {
                                         bokingdetails : value
                                     })
                                 }} style={{alignContent:'center',alignItems:'center', alignSelf:'center'}}>
-                                <Text style={{color:"#fc8b8c"}}>Click Here to Rating This Search</Text> 
+                                <Text style={{color:"#fc8b8c", fontSize:15, paddingVertical:5}}>Click Here to Rating</Text> 
                                 </TouchableOpacity>}
 
                     </Card>

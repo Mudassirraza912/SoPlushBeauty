@@ -118,13 +118,22 @@
                 // } else { mainItem = `${item.data.substring(0, length)}...` }
                 return (
                     <View style={{ backgroundColor: "transparent", width: width }}>
-                        <ListItem onPress={() => {
+                        <TouchableOpacity   onPress={() => {
                             this.props.navigation.navigate('SelectedProfile', {
                                 selectedUser: item,
                                 cart: this.state.cart,
                                 selectDate: this.state.selectDate
                             })
-                        }}
+                        }}> 
+                        <ListItem 
+                        // onPress={() => {
+                        //     this.props.navigation.navigate('SelectedProfile', {
+                        //         selectedUser: item,
+                        //         cart: this.state.cart,
+                        //         selectDate: this.state.selectDate
+                        //     })
+                        // }}
+                            rightTitleStyle={{fontWeight:'bold'}}
                             containerStyle={{ backgroundColor: "transparent", width: "100%" }}
                             title={item.username}
 
@@ -138,7 +147,7 @@
                                 selectedStar={(rating) => this.setState({ starCount: rating })}
                                 emptyStarColor="pink"
                             />}
-                            titleStyle={{ fontFamily: "MrEavesXLModNarOT-Reg" }}
+                            titleStyle={{ fontFamily: "MrEavesXLModNarOT-Reg", fontWeight:'bold' }}
                             subtitleStyle={{ color: "red", fontFamily: "MrEavesXLModNarOT-Reg" }}
                             leftAvatar={{
                                 source: item.profile_pic && { uri: `https://hnhtechsolutions.com/hassan/soplush/profile_pics/${item.profile_pic}` },
@@ -150,9 +159,10 @@
                                 iconStyle: { borderRadius: 20 },
                                 avatarStyle: { backgroundColor: "none" },
                             }}
-                            rightIcon={{ color: 'black', name: "chevron-right", type: "font-awesome" }}
+                            rightIcon={{ color: 'black', name: "chevron-right", type: "material-community" }}
                         />
                         <Divider style={{ backgroundColor: 'black' }} />
+                        </TouchableOpacity>
                     </View>
                 )
             }
@@ -170,8 +180,8 @@
                                 containerStyle={{ marginTop: 60, backgroundColor: "#fff" }}
                                 placement="left"
                                 leftComponent={<Icon onPress={() => { this.props.navigation.goBack() }} name="arrow-back" color="#000" />}
-                                centerComponent={<Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>SELECT BEAUTICIAN</Text>}
-                                rightComponent={<Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />}
+                                centerComponent={<Text style={{alignSelf:'center',fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>SELECT BEAUTICIAN</Text>}
+                                // rightComponent={<Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />}
                             />
 
 
@@ -207,7 +217,7 @@
                                         }} type="EvilIcons" name="search" size={24} />
                                     </View>
 
-                                    <View style={{alignContent:"flex-end", alignItems:"flex-end", paddingHorizontal:10, justifyContent:"center",margin:2}}>
+                                    {/* <View style={{alignContent:"flex-end", alignItems:"flex-end", paddingHorizontal:10, justifyContent:"center",margin:2}}>
                                         <Button transparent onPress={() => {
                                     this.props.navigation.navigate('SelectedProfile', {
                                     selectedUser: null,
@@ -219,7 +229,7 @@
                                                             Skip
                                                         </Text>   
                                                         </Button>
-                                    </View>
+                                    </View> */}
 
                                     {/* <View style={{backgroundColor:"#fff", width:"80%",justifyContent:"center", alignContent:"center", alignSelf:"center",borderRadius:10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', marginTop: '10%', marginBottom:'5%'}}> */}
 

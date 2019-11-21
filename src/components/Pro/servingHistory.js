@@ -260,7 +260,7 @@ export default class ServingHistory extends Component {
                         placement="left"
                         leftComponent={<Icon onPress={() => {this.props.navigation.navigate('Main')}} name="arrow-back" color="#000" />}
                         centerComponent={
-                            <View style={{alignContent:"center", alignItems:"center", alignSelf:"center"}}>
+                            <View style={{ alignItems:"center", alignSelf:"center"}}>
                       {!this.state.focusOn  ? <Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>SERVICE HISTORY</Text> 
                       :
     

@@ -56,7 +56,7 @@ export default class BookingDetail extends Component {
                         containerStyle={{marginTop:40, backgroundColor:"#fff"}}
                         placement="left"
                         leftComponent={<Icon onPress={() => {this.props.navigation.navigate('BookingReq')}} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>BOOKING DETAILS</Text>}
+                        centerComponent={<Text style={{alignSelf:'center',fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>BOOKING DETAILS</Text>}
                         rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("Notification")}}><Image source={require('../../../assets/notification.png')} style={{height:20, width:20}} /> 
                         </TouchableOpacity> }
                         />
