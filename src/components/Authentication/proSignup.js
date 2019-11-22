@@ -203,7 +203,7 @@ let date = moment(dOB).format("YYYY-MM-DD")
             if (reg.test(email) === false) {
                 console.log("hello")
                 this.setState({ loader: false })
-                Alert.alert("Email is not Formated")
+                Alert.alert("Error","Email is not Formated")
             } else {
                 console.log('else')
                 var file = {
@@ -242,7 +242,7 @@ let date = moment(dOB).format("YYYY-MM-DD")
 
                         if (successData.status) {
                             if (successData.status === true) {
-                                Alert.alert("Signup successful")
+                                Alert.alert("Success","Signup successful")
                                 this.setState({ loader: true })
 
                                 this.props.navigation.navigate("ProLogin")
@@ -250,7 +250,7 @@ let date = moment(dOB).format("YYYY-MM-DD")
                         } else {
                             this.setState({ loader: true })
 
-                            Alert.alert(successData.message)
+                            Alert.alert("Error",successData.message)
                         }
                         console.log("SUCCESS", successData, successData.status, successData.data)
                     })
@@ -510,11 +510,11 @@ let date = moment(dOB).format("YYYY-MM-DD")
                                
 
 
-                                {this.state.profilePic && <View style={{ display: "flex", flexDirection: "row", marginBottom: "3%", marginVertical: '3%' }}>
-                                    <Avatar onPress={this.openGallery} containerStyle={{ height: 40, width: 40, marginTop: "1%", borderRadius: 10 }} source={camicon} />
+                                {this.state.profilePic && <View style={{ display: "flex", flexDirection: "row", marginBottom: "3%", marginVertical: '3%' , alignSelf: 'flex-start' }}>
+                                    <Avatar onPress={this.openGallery} containerStyle={{ height: 40, width: 40, marginTop: "1%", borderRadius: 5, backgroundColor:'#bdbdbd' }} source={camicon} overlayContainerStyle={{ height: 40, width: 40, marginTop: "1%", borderRadius: 5 }} source={camicon} />
 
 
-                                    <TouchableOpacity style={{ borderRadius: 5 }} onPress={() => {
+                                    <TouchableOpacity style={{ height: 50, width: 50, borderTopLeftRadius: 5,borderBottomLeftRadius: 5, borderBottomRightRadius: 5,  }} onPress={() => {
 
                                         Alert.alert(
                                             'Profile',
@@ -536,7 +536,7 @@ let date = moment(dOB).format("YYYY-MM-DD")
                                         )
 
                                     }}>
-                                        <ImageBackground source={this.state.profilePic} style={{ height: 40, width: 40, borderRadius: 5, margin: 3, display: "flex", alignContent: "center", backgroundColor: "#bdbdbd" }}>
+                                        <ImageBackground source={this.state.profilePic} borderTopLeftRadius = {5}  borderBottomRightRadius= {5} borderBottomLeftRadius={5} style={{ height: 40, width: 40, margin: 3, display: "flex", backgroundColor: "lightgray",}}>
                                             <Text style={{ backgroundColor: "red", borderRadius: 100, color: "#fff", height: 20, width: 20, alignSelf: 'flex-end', textAlign: 'center', position: 'absolute', right: -7, top: -7 }}>X</Text>
                                         </ImageBackground>
                                     </TouchableOpacity>

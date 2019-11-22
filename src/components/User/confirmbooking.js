@@ -121,14 +121,14 @@ export default class ConfirmBooking extends Component {
                             if (successData.status === true) {
                                 // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
                                 this.setState({loader: false})
-                                console.log(" successData.data Add BOOKING", successData)
-                                Alert.alert("Booking Send Sucessfully")
+                                console.log("successData.data Add BOOKING", successData)
+                                Alert.alert("Success","Booking Send Sucessfully")
                                 this.props.navigation.navigate('UserHome')
 
                             } else {
                                 this.setState({loader: false})
                                 console.log("Else", successData)
-                                Alert.alert(successData.message)
+                                Alert.alert("Error",successData.message)
                             }
                         })
                         .catch(err => {
@@ -139,7 +139,8 @@ export default class ConfirmBooking extends Component {
 
                 } else {
                     console.log("Else", successData)
-                    Alert.alert(successData.message)
+                    this.setState({loader: false})
+                    Alert.alert("Error",successData.message)
                 }
             })
             .catch(err => console.log("err err ADD CART", err));
@@ -150,7 +151,7 @@ export default class ConfirmBooking extends Component {
         const { selectedSlot, cart, selectdate, profileData } = this.state
         // console.log('profileData', profileData)
         return (
-            <View style={{ flex: 1, height, width, marginTop: -80 }}>
+            <View style={{ flex: 1, height:'100%', width:'100%', marginTop: -80 }}>
                 <ImageBackground source={require('../../../assets/opacity.jpg')} style={{ height: "100%", width: "100%", opacity: 0.9, marginTop: 20 }}>
 
 
@@ -164,7 +165,7 @@ export default class ConfirmBooking extends Component {
                         </TouchableOpacity>}
                     />
 
-                    <View style={{ height, width, backgroundColor: "rgba(200, 165, 212, 0.7)", justifyContent: "center" }}>
+                    <View style={{flex: 1, height, width:'100%', backgroundColor: "rgba(200, 165, 212, 0.7)", justifyContent: "center" }}>
 
                         <ScrollView style={{ height: height }}>
 

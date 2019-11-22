@@ -22,7 +22,7 @@ export default class About extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1, height, width, marginTop: -80 }}>
+            <View style={{ flex: 1, height:'100%', width:'100%', marginTop: -80 }}>
                 <ImageBackground source={require('../../../assets/opacity100.png')} style={{ height: "100%", width: "100%", opacity: 0.9 }}>
 
                     <Header
@@ -37,7 +37,7 @@ export default class About extends Component {
 
 
 
-                    <View style={{ height, width, backgroundColor: "rgba(200, 165, 212, 0.5)", justifyContent: "center" }}>
+                    <View style={{flex: 1 ,height:'100%', width:'100%', backgroundColor: "rgba(200, 165, 212, 0.5)", justifyContent: "center" }}>
 
                         <ScrollView style={{ height: height }}>
 

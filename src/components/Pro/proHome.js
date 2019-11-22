@@ -62,7 +62,7 @@ class ProHome extends Component {
     
     render() {
         return (
-            <View style={{flex:1, height, width, marginTop: -80}}>
+            <View style={{flex:1, height:'100%', width:'100%', marginTop: -80}}>
                 <ImageBackground source={require('../../../assets/opacity.jpg')} style={{height:"100%", width:"100%",opacity:0.9}}> 
  
                  {/* <Header  style={{backgroundColor: '#fff', marginTop:80}}>
@@ -101,11 +101,12 @@ class ProHome extends Component {
                         />
 
 
-                <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
+                <View style={{height: '100%', width:'100%', backgroundColor:"rgba(200, 165, 212, 0.7)"}}>
                 
-                <View style={{height:"80%", width : width-20, backgroundColor:'#fff', borderWidth:1, alignSelf:"center",borderRadius: 10, opacity:0.75, marginTop:-70, borderColor:'#fff', borderWidth:1 }}>
+                <ScrollView contentContainerStyle={{  height, width: '100%', alignItems: 'center', marginVertical: '10%'}}>
 
-                    <ScrollView>
+                <View style={{height:"80%", width : "95%", backgroundColor:'#fff', borderWidth:1, alignSelf:"center",borderRadius: 10, opacity:0.75, borderColor:'#fff', borderWidth:1 }}>
+
 
                     <View style={{alignSelf:"center", alignContent:"center", alignItems:"center", marginTop:"10%"}}> 
                     <Image source={require('../../../assets/text.png')} style={{opacity: 2}} />
@@ -133,8 +134,9 @@ class ProHome extends Component {
 
                     </View>
 
-                    </ScrollView>     
                 </View>
+                    </ScrollView>     
+
                 </View>
                 </ImageBackground>
         </View>

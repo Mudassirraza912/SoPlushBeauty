@@ -92,7 +92,7 @@ export default class SelectedProfile extends Component {
 
         console.log("Date", date, month, year, sDate)
         return (
-            <View style={{ flex: 1, height, width, marginTop: -80 }}>
+            <View style={{ flex: 1, height:'100%', width:'100%', marginTop: -80 }}>
                 <ImageBackground source={require('../../../assets/opacity.jpg')} style={{ height: "100%", width: "100%", opacity: 0.9, marginTop: 20 }}>
 
 
@@ -105,11 +105,11 @@ export default class SelectedProfile extends Component {
                         </TouchableOpacity>}
                     />
 
-                    <View style={{ height, width, backgroundColor: "rgba(200, 165, 212, 0.7)", justifyContent: "center" }}>
+                    <View style={{ height:'100%', width:'100%', backgroundColor: "rgba(200, 165, 212, 0.7)", justifyContent: "center" }}>
 
                         <ScrollView style={{ height: height }}>
 
-                            <View style={{ justifyContent: "center", alignContent: "center", alignItems: "center", marginTop: 10 }}>
+                            <View style={{ justifyContent: "center", alignContent: "center", alignItems: "center", paddingVertical: 20 }}>
 
                                 {/* <View style={{backgroundColor:"#fff",borderRadius:10, width:"90%"}}> */}
 
@@ -285,7 +285,7 @@ export default class SelectedProfile extends Component {
 
 
 
-                                        <View style={{ flex: 1, height: Dimensions.get('window').height / 2, alignItems: 'center' }}>
+                                        <View style={{ flex: 1, height: Dimensions.get('window').height / 2, alignItems: 'center', marginTop: 15 }}>
                                             <Text style={{ width: "30%", marginLeft: 15, fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray", alignSelf: "flex-start" }}>
                                                 Work</Text>
                                             <FlatList style={{ flex: 1, marginTop: "3%" }}
@@ -401,7 +401,7 @@ export default class SelectedProfile extends Component {
                                             </LinearGradient> */}
 
 
-                                        <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
+                                        <View style={{ alignContent: "center", alignItems: "center", marginTop: -50, paddingVertical:30 }}>
                                             <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10 }}>
                                                 <TouchableOpacity onPress={() => {
                                                     // this.props.navigation.navigate('ConfirmBooking', {
@@ -439,7 +439,7 @@ export default class SelectedProfile extends Component {
 
 
                                                 }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
-                                                    <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: '8%', marginTop:-5 }}>
+                                                    <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: '6%'}}>
                                                         Book Now
                     </Text>
                                                 </TouchableOpacity>

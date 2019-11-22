@@ -235,7 +235,7 @@ export default class UserSignUp extends Component {
         if (email && password && name && phoneNo && address) {
             if (reg.test(email) === false) {
                 this.setState({ loader: false })
-                Alert.alert("Email is not formatted")
+                Alert.alert("Error","Email is not formatted")
             } else {
 
 
@@ -304,12 +304,12 @@ export default class UserSignUp extends Component {
 
                         if (successData.status) {
                             if (successData.status === true) {
-                                Alert.alert("Signup successful")
+                                Alert.alert("Success","Signup successful")
                                 this.setState({ loader: false })
                                 this.props.navigation.navigate("UserLogin")
                             }
                         } else {
-                            Alert.alert(successData.message)
+                            Alert.alert("Error",successData.message)
                             this.setState({ loader: false })
 
                         }
@@ -344,10 +344,13 @@ export default class UserSignUp extends Component {
             <View style={{ flex: 1, height: '100%', width:'100%', marginTop: -80 }}>
                 <ImageBackground source={require('../../../assets/opacity.jpg')} style={{ height: "100%", width: "100%", opacity: 0.9 }}>
 
-                    <ScrollView style={{ height }}>
 
 
-                        <View style={{ flex:1 , height, width, backgroundColor: "rgba(242, 201, 240, 0.7)", justifyContent: "center", marginTop: 80 }}>
+                <View style={{flex: 1 ,width: '100%', height: '100%' }}>
+                    <ScrollView>
+
+
+                        <View style={{ flex:1 , height, width: '100%', backgroundColor: "rgba(242, 201, 240, 0.7)", justifyContent: "center", marginTop: 80 }}>
 
                         <View style={{ alignSelf: "center", alignContent: "center", alignItems: "center", marginTop: -65 }}>
                                 <Image source={require('../../../assets/text.png')} style={{ opacity: 2, alignSelf:'center', width:240, height: 115 }} />
@@ -493,6 +496,7 @@ export default class UserSignUp extends Component {
 
                         </View>
                     </ScrollView>
+                    </View>
                 </ImageBackground>
             </View>
         )

@@ -78,7 +78,7 @@
 
 //                             this.props.navigation.navigate("Main")
 //                         } else {
-//                             Alert.alert("Email Or Password Incorrect")
+//                             Alert.alert("Email or Password is incorrect")
 //                             this.setState({loader: false})
 
 //                         }
@@ -308,12 +308,12 @@ export default class ProLogin extends Component {
         if (reg.test(email) === false) {
             this.setState({ loader: false })
 
-            Alert.alert("Email is required")
+            Alert.alert("Error","Email is required")
         }
         // 28638
         else if (password == '') {
             this.setState({ loader: false })
-            Alert.alert("Password is required")
+            Alert.alert("Error","Password is required")
         }else {
 
             // http://192.168.0.120/29-may-2019/rest_api_for_plant_client/login_signup.php?action=login_user
@@ -349,13 +349,13 @@ export default class ProLogin extends Component {
 
                             this.props.navigation.navigate("ProNavigator")
                         } else {
-                            Alert.alert("Email Or Password Incorrect")
+                            Alert.alert("Error","Email or Password is incorrect")
                             this.setState({loader: false})
 
                         }
                     } else {
                         this.setState({loader: false})
-                        Alert.alert("Email Or Password Incorrect")
+                        Alert.alert("Error","Email or Password is incorrect")
 
                     }
                     console.log("SUCCESS PRO", successData, successData.status, successData.data)
@@ -375,11 +375,11 @@ export default class ProLogin extends Component {
         const { email, password, loader } = this.state
         console.log(email, password)
         return (
-            <View style={{ flex: 1, height, width, marginTop: -80 }}>
+            <View style={{ flex: 1, height: "100%", width: '100%', marginTop: -80 }}>
                 <ImageBackground source={require('../../../assets/opacity100.png')} style={{ height: "100%", width: "100%", }}>
 
 
-
+                <View style={{ width: '100%', height: '100%' }}>
                     <ScrollView>
                         <Animated.View style={[{ justifyContent: 'center', alignItems: "center" }, { transform: [{ translateY: this.state.shift }] }]} >
                             <View style={{ marginTop: 100 }}>
@@ -457,12 +457,20 @@ export default class ProLogin extends Component {
                                 </View>
 
                               {!loader ?  <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
-                                    <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
+                                    {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                                         <Button onPress={this.login} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
                                             <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
                                                 LOGIN
                     </Text>
                                         </Button>
+                                    </LinearGradient> */}
+
+<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "100%", borderRadius: 10}}>
+                                        <TouchableOpacity  onPress={this.login} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
+                                            LOGIN
+                    </Text>
+                                        </TouchableOpacity>
                                     </LinearGradient>
                                 </View> :
                                 
@@ -477,22 +485,49 @@ export default class ProLogin extends Component {
 
                                 <View style={{ display: "flex", flexDirection: "row", alignContent: "center", alignItems: "center", marginTop: "5%", justifyContent: "space-between" }}>
 
-                                    <LinearGradient colors={['#fff', '#883cb6', '#883cb6']} style={{ width: "45%", borderRadius: 10 }}>
-                                        <Button style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
+                                    {/* <LinearGradient colors={['#fff', '#883cb6', '#883cb6']} style={{ width: "45%", borderRadius: 10 }}>
+                                        <Button onPress={() => {
+                                            Alert.alert("Warning!", "Will be implemented")
+                                        }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
                                             <Icon name="instagram" type="MaterialCommunityIcons" />
                                             <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, marginRight: "10%" }}>
                                                 Instagram
 </Text>
                                         </Button>
+                                    </LinearGradient> */}
+
+<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#c79de0', '#883cb6', '#883cb6']} style={{ width: "45%", borderRadius: 10}}>
+                                        <TouchableOpacity onPress={() => {
+                                            Alert.alert("Warning!", "Will be implemented")
+                                        }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{  justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, flexDirection:'row' }}>
+                                              <Icon style={{color:'#fff'}} name="instagram" type="MaterialCommunityIcons" />
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15, paddingHorizontal:5 }}>
+                                            Instagram
+                    </Text>
+                                        </TouchableOpacity>
                                     </LinearGradient>
 
-                                    <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "45%", borderRadius: 10 }}>
-                                        <Button style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
+                                    {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "45%", borderRadius: 10 }}>
+                                        <Button onPress={() => {
+                                            Alert.alert("Warning!", "Will be implemented")
+                                        }}  style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
                                             <Icon name="google" type="FontAwesome" />
                                             <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, marginRight: "10%" }}>
                                                 Gmail
 </Text>
                                         </Button>
+                                    </LinearGradient> */}
+
+
+<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "45%", borderRadius: 10}}>
+                                        <TouchableOpacity onPress={() => {
+                                            Alert.alert("Warning!", "Will be implemented")
+                                        }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{  justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, flexDirection:'row' }}>
+                                              <Icon style={{color:'#fff'}} name="google" type="FontAwesome" />
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15, paddingHorizontal:5 }}>
+                                              Gmail
+                    </Text>
+                                        </TouchableOpacity>
                                     </LinearGradient>
                                 </View>
 
@@ -512,6 +547,7 @@ export default class ProLogin extends Component {
                             </View>
                         </Animated.View>
                     </ScrollView>
+                    </View>
                 </ImageBackground>
             </View>
         )

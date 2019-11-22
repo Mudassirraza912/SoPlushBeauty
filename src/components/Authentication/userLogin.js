@@ -88,7 +88,7 @@
 //                                 this.props.navigation.navigate("UserHome")
 //                             }
 //                         } else {
-//                             Alert.alert("Email Or Password Incorrect")
+//                             Alert.alert("Email or Password is incorrect")
 //                             this.setState({loader: false})
 
 //                         }
@@ -475,13 +475,13 @@ export default class UserLogin extends Component {
                                 this.props.navigation.navigate("UserNavigator")
                             }
                         } else {
-                            Alert.alert("Email Or Password Incorrect")
+                            Alert.alert("Error","Email or Password is incorrect")
                             this.setState({ loader: false })
 
                         }
                     } else {
                         this.setState({ loader: false })
-                        Alert.alert("Email Or Password Incorrect")
+                        Alert.alert("Error","Email or Password is incorrect")
                     }
                 })
                 .catch(err => {
@@ -660,13 +660,21 @@ export default class UserLogin extends Component {
                                     </View>
 
                                     {!loader ? <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
-                                        <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
+                                        {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                                             <Button onPress={this.login} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
                                                 <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
                                                     LOGIN
                     </Text>
                                             </Button>
-                                        </LinearGradient>
+                                        </LinearGradient> */}
+
+<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10}}>
+                                        <TouchableOpacity onPress={this.login} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
+                                            LOGIN
+                    </Text>
+                                        </TouchableOpacity>
+                                    </LinearGradient>
                                     </View> :
                                         <Spinner color='#fc8b8c' />
                                     }
@@ -676,44 +684,53 @@ export default class UserLogin extends Component {
                                     </View>
 
 
-                                    <View style={{ display: "flex", flexDirection: "row", alignContent: "center", alignItems: "center", marginTop: "5%", justifyContent: 'space-evenly' }}>
+                                    <View style={{ display: "flex", flexDirection: "row", alignContent: "center", alignItems: "center", marginTop: "5%", justifyContent: "space-between" }}>
 
-                                        <LinearGradient colors={['#fff', '#883cb6', '#883cb6']} style={{ width: "45%", borderRadius: 10 }}>
-                                            <Button onPress={() => this.fbLogin()} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
-                                                <Icon name="instagram" type="MaterialCommunityIcons" />
-                                                <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, marginRight: "10%" }}>
-                                                    Instagram
-                    </Text>
-                                            </Button>
-                                            {/* <LoginButton
-          onLoginFinished={
-            (error, result) => {
-              if (error) {
-                console.log("login has error: " + result.error);
-              } else if (result.isCancelled) {
-                console.log("login is cancelled.");
-              } else {
-                AccessToken.getCurrentAccessToken().then(
-                  (data) => {
-                    console.log('data.accessToken.toString()',data)
-                  }
-                )
-                .catch((err) => console.log(err))
-              }
-            }
-          }
-          onLogoutFinished={() => console.log("logout.")}/> */}
-                                        </LinearGradient>
+{/* <LinearGradient colors={['#fff', '#883cb6', '#883cb6']} style={{ width: "45%", borderRadius: 10 }}>
+    <Button onPress={() => {
+        Alert.alert("Warning!", "Will be implemented")
+    }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
+        <Icon name="instagram" type="MaterialCommunityIcons" />
+        <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, marginRight: "10%" }}>
+            Instagram
+</Text>
+    </Button>
+</LinearGradient> */}
 
-                                        <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "45%", borderRadius: 10 }}>
-                                            <Button style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
-                                                <Icon name="google" type="FontAwesome" />
-                                                <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, marginRight: "10%" }}>
-                                                    Gmail
-                    </Text>
-                                            </Button>
-                                        </LinearGradient>
-                                    </View>
+<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#c79de0', '#883cb6', '#883cb6']} style={{ width: "45%", borderRadius: 10}}>
+    <TouchableOpacity onPress={() => {
+        Alert.alert("Warning!", "Will be implemented")
+    }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{  justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, flexDirection:'row' }}>
+          <Icon style={{color:"#fff"}} name="instagram" type="MaterialCommunityIcons" />
+        <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15, paddingHorizontal:5 }}>
+        Instagram
+</Text>
+    </TouchableOpacity>
+</LinearGradient>
+
+{/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "45%", borderRadius: 10 }}>
+    <Button onPress={() => {
+        Alert.alert("Warning!", "Will be implemented")
+    }}  style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
+        <Icon name="google" type="FontAwesome" />
+        <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, marginRight: "10%" }}>
+            Gmail
+</Text>
+    </Button>
+</LinearGradient> */}
+
+
+<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "45%", borderRadius: 10}}>
+    <TouchableOpacity onPress={() => {
+        Alert.alert("Warning!", "Will be implemented")
+    }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{  justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, flexDirection:'row' }}>
+          <Icon style={{color:"#fff"}} name="google" type="FontAwesome" />
+        <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15, paddingHorizontal:5 }}>
+          Gmail
+</Text>
+    </TouchableOpacity>
+</LinearGradient>
+</View>
 
                                     <View style={{ display: "flex", flexDirection: "row", alignContent: "center", alignItems: "center", marginTop: "5%", justifyContent: "center" }}>
 

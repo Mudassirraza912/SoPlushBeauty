@@ -76,6 +76,7 @@ export default class Home extends Component {
 
                         <View style={{ height: '100%', width: '100%', backgroundColor: "rgba(200, 165, 212, 0.7)" }}>
                             <ScrollView contentContainerStyle={{  height, width: '100%', alignItems: 'center', marginVertical: '10%' }}>
+                                
                                 <View style={{ height: "86%", width: width - 20, backgroundColor: '#fff', borderWidth: 1, borderRadius: 10, opacity: 0.75, borderColor: '#fff' }}>
 
                                     <View style={{ alignSelf: "center", alignContent: "center", alignItems: "center", marginTop: "15%" }}>

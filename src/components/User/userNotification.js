@@ -87,7 +87,7 @@ export default class UserNotification extends Component {
             mainItem = item.data
         } else { mainItem = `${item.data.substring(0, length)}...` }
         return(
-        <View style={{backgroundColor:"transparent", width:width}}>
+        <View style={{flex: 1,backgroundColor:"transparent", width:'100%'}}>
         <ListItem
         containerStyle={{backgroundColor:"transparent", width:"100%"}}
           title={mainItem}
@@ -115,7 +115,7 @@ export default class UserNotification extends Component {
     
     render() {
         return (
-            <View style={{flex:1, height, width, marginTop: -80}}>
+            <View style={{flex:1, height:'100%', width:'100%', marginTop: -80}}>
                 <ImageBackground source={require('../../../assets/opacity100.png')} style={{height:"100%", width:"100%",opacity:0.9}}> 
 
                 <Header
@@ -128,17 +128,17 @@ export default class UserNotification extends Component {
 
 
 
-                <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
+                <View style={{ flex:1,height:'100%', width:'100%', backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
 
                 <ScrollView style={{height: height}}>
 
                 {/* <View style={{backgroundColor:"#fff", width:"80%",justifyContent:"center", alignContent:"center", alignSelf:"center",borderRadius:10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', marginTop: '10%', marginBottom:'5%'}}> */}
                    
-                   <View style={{justifyContent:"center", alignContent:"center", alignItems:"center", marginTop:20}}>
+                   <View style={{flex: 1,justifyContent:"center", alignContent:"center", alignItems:"center", marginTop:20, width:'100%'}}>
 
-                <View style={{width:width}}>
+                <View style={{width:'100%'}}>
                 <FlatList
-                    style={{backgroundColor:"transparent", width:width}}
+                    style={{backgroundColor:"transparent", width:'100%'}}
                     keyExtractor={this.keyExtractor}
                     data={this.state.notifications}
                     renderItem={this.renderItem}

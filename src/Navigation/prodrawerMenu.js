@@ -257,8 +257,8 @@ class DrawerMenu extends Component {
                       <TouchableOpacity
                         style={styles.menuItem}
                         onPress={() =>
-                          this.props.navigation.navigate('Main')}
-  
+                          Alert.alert("Warning!","Will be impelmented")
+                        }
                       >
                       <View style={{marginLeft:10}}>
                       <Image source={require('../../assets/translation.png')} style={{height:30, width:30}} />

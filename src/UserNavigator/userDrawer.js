@@ -207,8 +207,9 @@ class DrawerMenu extends Component {
 
             <TouchableOpacity
                         style={styles.menuItem}
-                        // onPress={() =>
-                        //   this.props.navigation.navigate('LoyalityPoints')}
+                        onPress={() =>
+                          Alert.alert("Warning!","Will be impelmented")
+                        }
   
                       >
                       <View style={{marginLeft:10}}>
@@ -269,7 +270,8 @@ class DrawerMenu extends Component {
             <TouchableOpacity
               style={styles.menuItem}
               onPress={() =>
-                this.props.navigation.navigate('UserHome')}
+                Alert.alert("Warning!","Will be impelmented")
+              }
 
             >
               <View style={{ marginLeft: 10 }}>

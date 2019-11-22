@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert, TextInput } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert, TextInput , BackHandler } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Body, Right, Thumbnail, CheckBox, Button } from 'native-base';
 import { Avatar, Header, Icon, Card } from 'react-native-elements'
 import LinearGradient from 'react-native-linear-gradient'
+import { withNavigationFocus } from 'react-navigation';
 
 
 const { width, height } = Dimensions.get("window")
 var soplushData;
 var plushData;
-var filterplush;
-var filterSoplush;
+var filterplush = null;
+var filterSoplush = null;
 var category_name
 
 
@@ -83,6 +84,22 @@ export default class PersonalService extends Component {
         headerVisible: false,
         header: null,
     })
+
+
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+    }
+
+    handleBackButton = () => {
+        console.log('RUNNNING')
+        filterSoplush = null
+        filterplush = null
+    };
 
 
     // componentDidMount() {
@@ -329,13 +346,13 @@ export default class PersonalService extends Component {
     
                     } else {
                         console.log("Else", successData)
-                        Alert.alert(successData.message)
+                        Alert.alert("Error",successData.message)
                     }
                 })
                 .catch(err => console.log("err err SEARCH", err));
 
         }else {
-            Alert.alert('Please select services')
+            Alert.alert("Error",'Please select services')
         }
 
        
@@ -403,7 +420,14 @@ export default class PersonalService extends Component {
                     <Header
                         containerStyle={{ marginTop: 60, backgroundColor: "#fff" }}
                         placement="left"
-                        leftComponent={<Icon onPress={() => { this.props.navigation.goBack(), this.setState({ categoryId: "", image: "" }) }} name="arrow-back" color="#000" />}
+                        leftComponent={<Icon onPress={() => { 
+                        this.handleBackButton()
+                        filterplush = null
+                        filterSoplush = null
+                        this.props.navigation.goBack()
+                        this.setState({ categoryId: "", image: "" }) 
+                         }} 
+                        name="arrow-back" color="#000" />}
                         centerComponent={
                             <View style={{ alignContent: "center", alignItems: "center", alignSelf: "center" }}>
                         {!this.state.focusOn ? <Text style={{ alignSelf:'center',fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg", textTransform:'capitalize' }}>{category_name}</Text>
@@ -467,7 +491,7 @@ export default class PersonalService extends Component {
 
 
 
-                    <View style={{ width, backgroundColor: "rgba(200, 165, 212, 0.7)" }}>
+                    <View style={{ width:'100%', backgroundColor: "rgba(200, 165, 212, 0.7)" }}>
 
                         <ScrollView contentContainerStyle={{ alignItems: "center", alignContent: "center", width: "100%" }}>
 
@@ -475,7 +499,7 @@ export default class PersonalService extends Component {
                             <View style={{ width: "90%", alignItems: "center" }}>
 
 
-                                <Card key={1} containerStyle={{ width: "100%", padding: 0, borderRadius: 10, overflow: "hidden", alignContent: "space-between" }}>
+                                <Card key={1} containerStyle={{ width: "100%", padding: 0, borderRadius: 10, overflow: "hidden", alignContent: "space-between", borderColor:'none', borderWidth:0 }}>
 
                                     <View style={{ width: "100%", marginLeft: 0, marginRight: 0 }}>
                                         {/* <Image source={{uri:'https://cdn.vox-cdn.com/thumbor/XtwGXC-0GhXcDXiM0B0rjGAAxZE=/148x0:1768x1080/1200x800/filters:focal(148x0:1768x1080)/cdn.vox-cdn.com/uploads/chorus_image/image/45905674/3042430-poster-p-1-hello-barbie-talking-toy-toytalk.0.0.jpg'}} style={{ height: 200, width: "100%", }} /> */}

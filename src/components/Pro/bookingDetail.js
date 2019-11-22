@@ -49,7 +49,7 @@ export default class BookingDetail extends Component {
     //     services:  this.props.navigation.getParam('bookinDetail')
     // })
         return (
-            <View style={{flex:1, height, width, marginTop: -80}}>
+            <View style={{flex:1, height:'100%', width:'100%', marginTop: -80}}>
                 <ImageBackground source={require('../../../assets/map.png')} style={{height:"100%", width:"100%",opacity:0.9, marginTop: 20}}> 
 
                 <Header
@@ -69,7 +69,7 @@ export default class BookingDetail extends Component {
 
                 <View style={{backgroundColor:"#fff",borderRadius:10, width:"90%"}}>
                   
-                        <Card containerStyle={{backgroundColor:"transparent", borderColor:"#fff", borderWidth:3, borderRadius:10}}> 
+                        <Card containerStyle={{borderColor:"none", borderWidth:0, borderRadius:10,}}> 
                                 <View style={{display:"flex", flexDirection:"row"}}> 
                                     <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20 }}>Name</Text>
                                     <Text style={{marginLeft:"4%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20 }}>{varservices.username}</Text>
@@ -84,7 +84,7 @@ export default class BookingDetail extends Component {
                                                     {varservices.services.map((value, index) => {
                                                         console.log('value.service_name', value)
                                                         return(
-                                                            <Text style={{ marginLeft: "10%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20  }}>{value.service_name}</Text>
+                                                            <Text style={{ marginLeft: "10%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20  }}> {value.service_name}</Text>
                                                         )
                                                     })    
                                                     }
@@ -118,12 +118,21 @@ export default class BookingDetail extends Component {
 
                                 <View style={{display:"flex",  marginRight:"6%", marginTop:"5%", width:"100%"}}> 
 
-                                <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "100%", borderRadius: 10 }}>
+                                {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "100%", borderRadius: 10 }}>
                                         <Button onPress={() => this.props.navigation.navigate('BookingReq')} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
                                             <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, marginRight: "10%" }}>
                                                Ok
 </Text>
                                         </Button>
+                                    </LinearGradient> */}
+
+
+<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10}}>
+                                        <TouchableOpacity onPress={() => this.props.navigation.navigate('BookingReq')} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
+                                            Ok
+                    </Text>
+                                        </TouchableOpacity>
                                     </LinearGradient>
                                 </View>
                     </Card>

@@ -117,7 +117,8 @@
                 //     mainItem = item.data}
                 // } else { mainItem = `${item.data.substring(0, length)}...` }
                 return (
-                    <View style={{ backgroundColor: "transparent", width: width }}>
+                    <View style={{flex: 1 , backgroundColor: "transparent", width: '100%' }}>
+                        <ScrollView>
                         <TouchableOpacity   onPress={() => {
                             this.props.navigation.navigate('SelectedProfile', {
                                 selectedUser: item,
@@ -163,6 +164,7 @@
                         />
                         <Divider style={{ backgroundColor: 'black' }} />
                         </TouchableOpacity>
+                    </ScrollView>
                     </View>
                 )
             }
@@ -173,7 +175,7 @@
             render() {
                 // console.log("SelectBeautician", this.state.cart, this.state.selectDate)
                 return (
-                    <View style={{ flex: 1, height, width, marginTop: -80, backgroundColor: "rgb(200, 165, 212)" }}>
+                    <View style={{ flex: 1, height: '100%', width:'100%', marginTop: -80, backgroundColor: "rgb(200, 165, 212)" }}>
                         <ImageBackground source={require('../../../assets/opacity100.png')} style={{ height: "100%", width: "100%", opacity: 0.9 }}>
 
                             <Header
@@ -185,7 +187,7 @@
                             />
 
 
-                            <View style={{height, width, backgroundColor: "rgba(200, 165, 212, 0.4)", justifyContent: "center" }}>
+                            <View style={{height: '100%', width:'100%', backgroundColor: "rgba(200, 165, 212, 0.4)", justifyContent: "center" }}>
 
                                 <ScrollView style={{ height: height }}>
 
@@ -235,9 +237,9 @@
 
                                     <View style={{ justifyContent: "center", alignContent: "center", alignItems: "center", marginTop: 15 }}>
 
-                                        <View style={{ width: width }}>
+                                        <View style={{ width: '100%' }}>
                                             <FlatList
-                                                style={{ backgroundColor: "transparent", width: width }}
+                                                style={{ backgroundColor: "transparent", width: '100%' }}
                                                 keyExtractor={this.keyExtractor}
                                                 data={this.state.filerUser}
                                                 renderItem={this.renderItem}

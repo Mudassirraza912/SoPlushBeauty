@@ -22,7 +22,7 @@ export default class Term extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1, height, width, marginTop: -80 }}>
+            <View style={{ flex: 1, height:'100%', width:'100%', marginTop: -80 }}>
                 <ImageBackground source={require('../../../assets/opacity100.png')} style={{ height: "100%", width: "100%", opacity: 0.9 }}>
 
                     <Header
@@ -37,13 +37,13 @@ export default class Term extends Component {
 
 
 
-                    <View style={{ height, width, backgroundColor: "rgba(200, 165, 212, 0.5)", justifyContent: "center" }}>
+                    <View style={{flex: 1 ,height:'100%', width:'100%', backgroundColor: "rgba(200, 165, 212, 0.5)", justifyContent: "center" }}>
 
                         <ScrollView style={{ height: height }}>
 
                             {/* <View style={{backgroundColor:"#fff", width:"80%",justifyContent:"center", alignContent:"center", alignSelf:"center",borderRadius:10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', marginTop: '10%', marginBottom:'5%'}}> */}
 
-                            <View style={{ marginTop: 20, marginHorizontal: "3%" }}>
+                            <View style={{flex: 1 ,marginTop: 20, marginHorizontal: "3%" }}>
 
                                 <Text style={{ fontFamily: "svenings", marginTop: "3%", fontSize: 13, textAlign: "justify", fontStyle: "normal", color: "#48576f", lineHeight: 20}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
 

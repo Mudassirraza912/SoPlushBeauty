@@ -54,7 +54,7 @@ export default class AddService extends Component {
             // this.props.navigation.navigate("Main")
        
           }else {
-            Alert.alert(successData.message)
+            Alert.alert("Error",successData.message)
           }
         })
         .catch(err => console.log("Category err err",err));
@@ -87,7 +87,7 @@ export default class AddService extends Component {
 
         if (name === "" || cost === "" || selectedCategory === "") {
             this.setState({loader: false})
-            Alert.alert("please fill all given fileds below")
+            Alert.alert("Warning!","please fill all given fileds below")
         } else {
     var formData = new FormData()
     formData.append("name", name)
@@ -130,7 +130,7 @@ export default class AddService extends Component {
    
       }else {
         this.setState({loader: false})
-        Alert.alert(successData.message)
+        Alert.alert("Error",successData.message)
       }
     })
     .catch(err => {
@@ -159,13 +159,16 @@ export default class AddService extends Component {
                     <Header
                         containerStyle={{ marginTop: 40, backgroundColor: "#fff" }}
                         placement="left"
-                        leftComponent={<Icon onPress={() => { this.props.navigation.navigate('Main') }} name="arrow-back" color="#000" />}
+                        leftComponent={<Icon onPress={() => { 
+                        this.handleBackButton()
+                        this.props.navigation.navigate('Main')
+                         }} name="arrow-back" color="#000" />}
                         centerComponent={<Text style={{alignSelf:'center',fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>ADD SERVICE</Text>}
                     // rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("EditProfile")}}><Image source={require('../../../assets/edit.png')} style={{height:30, width:30}} /> 
                     // </TouchableOpacity> }
                     />
 
-                    <View style={{ height, width, backgroundColor: "rgba(200, 165, 212, 0.7)", justifyContent: "center" }}>
+                    <View style={{flex: 1 ,height:'100%', width:'100%', backgroundColor: "rgba(200, 165, 212, 0.7)", justifyContent: "center" }}>
 
                         <ScrollView style={{ height: height }}>
 
@@ -214,13 +217,21 @@ export default class AddService extends Component {
 
 
                                        {!this.state.loader ?     <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10, width: "100%" }}>
-                                            <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
+                                            {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                                                 <Button onPress={this.addCategory} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
                                                     <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
                                                     Ok
 </Text>
                                                 </Button>
-                                            </LinearGradient>
+                                            </LinearGradient> */}
+
+<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10}}>
+                                        <TouchableOpacity  onPress={this.addCategory} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, width:'100%' }}>
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
+                                            Submit
+                    </Text>
+                                        </TouchableOpacity>
+                                    </LinearGradient>
                                         </View> :  <Spinner color="#fc8b8c" />}
 
                                 </View>}

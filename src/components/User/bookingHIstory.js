@@ -214,7 +214,7 @@ export default class BookingHistory extends Component {
     render() {
         console.log('state',this.state.data)
         return (
-            <View style={{flex:1, height, width, marginTop: -80}}>
+            <View style={{flex:1, height:'100%', width:'100%', marginTop: -80}}>
                 <ImageBackground source={require('../../../assets/opacity.jpg')} style={{height:"100%", width:"100%",opacity:0.9}}> 
 
                 <Header
@@ -285,13 +285,13 @@ export default class BookingHistory extends Component {
 
 
 
-                <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
+                <View style={{flex: 1 ,height:'100%', width:'100%', backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
 
                 <ScrollView refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh} />} style={{height: height}}>
 
                 {/* <View style={{backgroundColor:"#fff", width:"80%",justifyContent:"center", alignContent:"center", alignSelf:"center",borderRadius:10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', marginTop: '10%', marginBottom:'5%'}}> */}
                    
-                   <View style={{justifyContent:"center", alignContent:"center", alignItems:"center", marginTop:20}}>
+                   <View style={{flexL:1 ,justifyContent:"center", alignContent:"center", alignItems:"center", marginTop:20}}>
 
                 <View style={{backgroundColor:"#fff",borderRadius:10, width:"90%"}}>
 

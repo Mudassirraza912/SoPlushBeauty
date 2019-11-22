@@ -99,7 +99,7 @@ export default class UserProfile extends Component {
                         console.log(" After Status SUCCESS USER", successData.data)
 
                             this.props.screenProps.fetchProfileData(successData.data)
-                            Alert.alert("Profile Updated Successfully")
+                            Alert.alert("Success","Profile Updated Successfully")
                             this.setState({loader: false})
                             this.setState({profilePic: false, fileUri:"", fileName:""})
                         this.props.navigation.navigate('UseHome')
@@ -107,12 +107,12 @@ export default class UserProfile extends Component {
                       
                     } else {
                         this.setState({loader: false})
-                        Alert.alert("Email Or Password Incorrect")
+                        Alert.alert("Error","Email or Password is incorrect")
                     }
                 } else {
                     this.setState({loader: false})
 
-                    Alert.alert(successData.message)
+                    Alert.alert("Error",successData.message)
                 }
                 console.log("SUCCESS USER", successData, successData.status, successData.data)
             })
@@ -152,7 +152,7 @@ export default class UserProfile extends Component {
     render() {
         console.log("USERPROFILE",this.state.profileData)
         return (
-            <View style={{flex:1, height, width, marginTop: -80}}>
+            <View style={{flex:1, height:'100%', width:'100%', marginTop: -80}}>
                 <ImageBackground source={require('../../../assets/opacity.jpg')} style={{height:"100%", width:"100%",opacity:0.9, marginTop: 20}}> 
 
               
@@ -165,7 +165,7 @@ export default class UserProfile extends Component {
                         // </TouchableOpacity> }
                         />
 
-                <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
+                <View style={{ height:'100%', width:'100%', backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
 
                 <ScrollView style={{height: height}}>
                    
@@ -221,13 +221,21 @@ export default class UserProfile extends Component {
 
 
                                 {!this.state.loader ? <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10 }}>
-                                            <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
+                                            {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                                                 <Button onPress={() => {this.updateProfile()}} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
                                                     <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
                                                     Update
 </Text>
                                                 </Button>
-                                            </LinearGradient>
+                                            </LinearGradient> */}
+
+<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "100%", borderRadius: 10}}>
+                                        <TouchableOpacity onPress={() => {this.updateProfile()}}style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
+                                            UPDATE
+                    </Text>
+                                        </TouchableOpacity>
+                                    </LinearGradient>
                                         </View> : <Spinner color="#fc8b8c" />}
                     </Card>
 

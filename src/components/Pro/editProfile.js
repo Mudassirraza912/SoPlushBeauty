@@ -6,7 +6,14 @@ import {Avatar, Header, Card, Divider} from 'react-native-elements'
 import ImagePicker from 'react-native-image-picker'
 import LinearGradient from 'react-native-linear-gradient'
 import camicon from '../../../assets/photo-camera.png'
-
+import user from '../../../assets/user.png'
+import home from '../../../assets/home.png'
+import phone from '../../../assets/phone-call.png'
+import envelop from '../../../assets/envelope.png'
+import lock from '../../../assets/lock.png'
+import cake from '../../../assets/cake.png'
+import museum from '../../../assets/museum.png'
+import atmcard from '../../../assets/atm-card.png'
 
 const {width, height} = Dimensions.get("window")
 const options = {
@@ -160,18 +167,18 @@ export default class EditProProfile extends Component {
                         this.setState({loader: false})
 
                             this.props.screenProps.fetchProfileData(successData.data)
-                            Alert.alert("Profile Updated Successfully")
+                            Alert.alert("Success","Profile Updated Successfully")
                             this.setState({profilePic: false, fileUri:"", fileName:""})
                         this.props.navigation.navigate('Main')
 
                       
                     } else {
                         this.setState({loader: false})
-                        Alert.alert("Email Or Password Incorrect")
+                        Alert.alert("Error","Email or Password is incorrect")
                     }
                 } else {
                     this.setState({loader: false})
-                    Alert.alert(successData.message)
+                    Alert.alert("Error",successData.message)
                 }
                 console.log("SUCCESS USER", successData, successData.status, successData.data)
             })
@@ -184,7 +191,7 @@ export default class EditProProfile extends Component {
     
     render() {
         return (
-            <View style={{flex:1, height, width, marginTop: -80}}>
+            <View style={{flex:1, height:'100%', width:'100%', marginTop: -80}}>
                 <ImageBackground source={require('../../../assets/opacity.jpg')} style={{height:"100%", width:"100%",opacity:0.9, marginTop: 20}}> 
 
               
@@ -197,11 +204,11 @@ export default class EditProProfile extends Component {
                         // </TouchableOpacity> }
                         />
 
-                <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
+                <View style={{flex: 1 ,height:'100%', width:'100%', backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
 
                 <ScrollView style={{height: height}}>
                    
-                   <View style={{justifyContent:"center", alignContent:"center", alignItems:"center", marginTop:20}}>
+                   <View style={{flex: 1 ,justifyContent:"center", alignContent:"center", alignItems:"center", marginTop:20}}>
 
                 {/* <View style={{backgroundColor:"#fff",borderRadius:10, width:"90%"}}> */}
                    
@@ -216,23 +223,23 @@ export default class EditProProfile extends Component {
                    </View>
                         
                         }
-                            <Item floatingLabel>
-                        <Icon active name='user' type="FontAwesome"  />
+                            <Item>
+                            <Image source={user} style={{ height: 22, width: 22 }} />
                         {/* <Label>Name</Label> */}
-                        <Input defaultValue={this.state.username} onChangeText={(e) => {this.setState({username:e})}} placeholder="Name" />
+                        <Input style={{padding:5}} defaultValue={this.state.username} onChangeText={(e) => {this.setState({username:e})}} placeholder="Name" />
                     </Item>
                     {/* <Item floatingLabel>
                         <Icon active name='home' type="FontAwesome" />
                         <Input defaultValue={this.state.address} onChangeText={(e) => {this.setState({address:e})}}  placeholder="Address" />
                     </Item> */}
                     
-                    <Item floatingLabel>
-                        <Icon active name='email' type="MaterialCommunityIcons" />
+                    <Item>
+                    <Image source={envelop} style={{ height: 22, width: 22 }} />
                         {/* <Label>Email Address</Label> */}
                         <Input defaultValue={this.state.email} onChangeText={(e) => {this.setState({email:e})}} placeholder="Email Address" />
                     </Item>
-                    <Item floatingLabel>
-                        <Icon active name='phone' type="MaterialCommunityIcons" />
+                    <Item >
+                    <Image source={phone} style={{ height: 22, width: 22 }} />
                         {/* <Label>Phone Number</Label> */}
                         <Input defaultValue={this.state.phoneNo} onChangeText={(e) => {this.setState({phoneNo:e})}} placeholder="Phone Number" />
                     </Item>
@@ -240,13 +247,13 @@ export default class EditProProfile extends Component {
                         <Icon active name='user' type="FontAwesome" />
                         <Input defaultValue={this.state.gender}  onChangeText={(e) => {this.setState({gender:e})}} placeholder="Gender" />
                     </Item> */}
-                    <Item floatingLabel>
-                        <Icon active name='code-greater-than-or-equal' type="MaterialCommunityIcons" />
+                    <Item >
+                    <Image source={atmcard} style={{ height: 22, width: 22 }} />
                         {/* <Label>Email Address</Label> */}
                         <Input defaultValue={this.state.expertise}  onChangeText={(e) => {this.setState({expertise:e})}} placeholder="Expertize" />
                     </Item>
-                    <Item floatingLabel>
-                        <Icon active name='information' type="MaterialCommunityIcons" />
+                    <Item >
+                    <Image source={user} style={{ height: 22, width: 22 }} />
                         {/* <Label>Email Address</Label> */}
                         <Input defaultValue={this.state.about}  onChangeText={(e) => {this.setState({about:e})}} placeholder="About me" />
                     </Item>
@@ -323,13 +330,20 @@ export default class EditProProfile extends Component {
 
 
                                {!this.state.loader ? <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10 }}>
-                                            <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
+                                            {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                                                 <Button onPress={() => {this.updateProfile()}} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
                                                     <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
                                                     Ok
 </Text>
                                                 </Button>
-                                            </LinearGradient>
+                                            </LinearGradient> */}
+                                              <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10}}>
+                                        <TouchableOpacity onPress={() => {this.updateProfile()}} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
+                                            Ok
+                    </Text>
+                                        </TouchableOpacity>
+                                    </LinearGradient>
                                         </View> :   <Spinner color="#fc8b8c" />   }      
 
 

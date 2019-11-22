@@ -58,7 +58,7 @@
 //                             this.props.navigation.goBack()
                           
 //                         } else {
-//                             Alert.alert("Email Or Password Incorrect")
+//                             Alert.alert("Email or Password is incorrect")
 //                             console.log(" ELSE", successData)
 
 //                         }
@@ -205,12 +205,12 @@ export default class Feedback extends Component {
                             this.props.navigation.goBack()
                           
                         } else {
-                            Alert.alert("Email Or Password Incorrect")
+                            Alert.alert("Error","Email or Password is incorrect")
                             console.log(" ELSE", successData)
 
                         }
                     } else {
-                        Alert.alert(successData.message)
+                        Alert.alert("Error",successData.message)
                     }
                 })
                 .catch(err => console.log("err UPDATEPROFILE", err));
@@ -270,12 +270,20 @@ export default class Feedback extends Component {
 
 
                 <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
-                                    <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "40%", borderRadius: 10 }}>
+                                    {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "40%", borderRadius: 10 }}>
                                         <Button onPress={this.submitReview} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
                                             <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
                                                 Submit
                     </Text>
                                         </Button>
+                                    </LinearGradient> */}
+
+<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "80%", borderRadius: 10}}>
+                                        <TouchableOpacity onPress={this.submitReview} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
+                                            SUBMIT
+                    </Text>
+                                        </TouchableOpacity>
                                     </LinearGradient>
                 </View>
 

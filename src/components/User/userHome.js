@@ -90,7 +90,7 @@ const { width, height } = Dimensions.get("window")
                         // this.props.navigation.navigate("Main")
 
                     } else {
-                        Alert.alert(successData.message)
+                        Alert.alert("Error",successData.message)
                     }
                 })
                 .catch(err => console.log("Category err err", err));
@@ -172,7 +172,7 @@ const { width, height } = Dimensions.get("window")
                         // this.props.navigation.navigate("Main")
 
                     } else {
-                        Alert.alert(successData.message)
+                        Alert.alert("Error",successData.message)
                     }
                 })
                 .catch(err => console.log("err err err", err));

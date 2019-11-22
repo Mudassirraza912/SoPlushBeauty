@@ -17,7 +17,7 @@ import {
   Image,
   BackHandler,
   Alert, 
-
+  ToastAndroid,
 } from 'react-native';
 
 import {
@@ -29,7 +29,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import WalkThrough from './src/components/Walk through/walkthrogh';
 import Navigator from './src/Navigation/navigator';
-// import NetInfo from '@react-native-community/netinfo '
+import NetInfo from  '@react-native-community/netinfo'
 import Splash from './src/components/Splash/splash' 
 
 export default class App extends Component {
@@ -46,13 +46,11 @@ export default class App extends Component {
       this.setState({ isLoading: false })
     }, 3000);
 
-    // NetInfo.addEventListener(state => {
-    //   if(!state.isConnected){
-    //     Alert.alert("Internet connection seems to be offline")
-    //   }
-    //   console.log("Connection type", state.type);
-    //   console.log("Is connected?", state.isConnected);
-    // })
+    NetInfo.addEventListener(state => {
+      if (!state.isConnected) {
+        ToastAndroid.show("Internet connection seems to be offline", ToastAndroid.SHORT)
+      }
+    })
   }
 
   fetchProfileData = (data) => {

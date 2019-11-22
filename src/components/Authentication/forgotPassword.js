@@ -121,11 +121,11 @@ export default class ForgotPassword extends Component {
                     var successData = resp
 
                     if (successData.status === true) {
-                        Alert.alert("Verification code sent successfully")
+                        Alert.alert("Success","Verification code sent successfully")
                         this.setState({ loader: false })
                         this.setState({ renderEMail: false, renderCode: true, renderPassword: false, startDate: moment(), endDate: moment().add(1.5, "M") })
                     } else {
-                        Alert.alert(successData.message)
+                        Alert.alert("Error",successData.message)
                         this.setState({ loader: false })
                     }
                     console.log("SUCCESS", successData, successData.status, successData.data)
@@ -177,11 +177,11 @@ export default class ForgotPassword extends Component {
                 var successData = resp
 
                 if (successData.status === true) {
-                    Alert.alert('Verification code sent successfully')
+                    Alert.alert("Success",'Verification code sent successfully')
                     this.countdown.state.until = 90
                     this.setState({ startDate: moment(), endDate: moment().add(1.5, "M"), resend: false, time: 90 })
                 } else {
-                    Alert.alert(successData.message)
+                    Alert.alert("Error",successData.message)
                     this.setState({ loader: false })
                 }
                 console.log("SUCCESS", successData, successData.status, successData.data)
@@ -204,7 +204,7 @@ export default class ForgotPassword extends Component {
         if (reg.test(email) === false) {
             this.setState({ loader: false })
 
-            Alert.alert("Email is not correct")
+            Alert.alert("Error","Email is not correct")
         } else {
 
             // http://192.168.0.120/29-may-2019/rest_api_for_plant_client/login_signup.php?action=login_user
@@ -233,10 +233,10 @@ export default class ForgotPassword extends Component {
 
                     if (successData.status === true) {
                         this.setState({ loader: false })
-                        Alert.alert("Code Matched")
+                        Alert.alert("Successs","Code Matched")
                         this.setState({ renderEMail: false, renderCode: false, renderPassword: true })
                     } else {
-                        Alert.alert(successData.message)
+                        Alert.alert("Error",successData.message)
                         this.setState({ loader: false })
                     }
                     console.log("SUCCESS", successData, successData.status, successData.data)
@@ -261,7 +261,7 @@ export default class ForgotPassword extends Component {
         // this.setState({renderEMail: false, renderCode: false, renderPassword:false})
         if (password != newPassword) {
             this.setState({ loader: false })
-            Alert.alert("Password not Matched")
+            Alert.alert("Error","Password not Matched")
         } else {
 
             // http://192.168.0.120/29-may-2019/rest_api_for_plant_client/login_signup.php?action=login_user
@@ -289,13 +289,13 @@ export default class ForgotPassword extends Component {
                     var successData = resp
 
                     if (successData.status === true) {
-                        Alert.alert("Password Changed Succesfully")
+                        Alert.alert("Success","Password Changed Succesfully")
                         this.setState({ loader: false })
                         // this.setState({renderEMail: false, renderCode: false, renderPassword:false}),
                         this.props.navigation.goBack()
                     } else {
                         this.setState({ loader: false })
-                        Alert.alert(successData.message)
+                        Alert.alert("Error",successData.message)
                     }
                     console.log("SUCCESS", successData, successData.status, successData.data)
                 })
@@ -315,7 +315,7 @@ export default class ForgotPassword extends Component {
             <View>
                 <View style={{ marginTop: "10%", alignContent: 'center', alignItems: "center" }}>
                     <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 30 }}>Email Verification</Text>
-                    <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, marginTop: "4%", opacity: 0.6, color: '#bdbdbd' }}>To Reset Your Password. Please Enter Your Email</Text>
+                    <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, marginTop: "4%", opacity: 0.6, color: '#bdbdbd' }}>To Reset Your Password, Please Enter Your Email</Text>
                 </View>
 
                 <View style={{ marginTop: "10%", alignContent: "center", alignSelf: "center", alignItems: "center", width: "90%", backgroundColor: "#fff", borderRadius: 10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', paddingVertical: "3%", overflow: "hidden" }}>
@@ -350,13 +350,20 @@ export default class ForgotPassword extends Component {
                 </View>
 
                 {!this.state.loader ? <View style={{ alignContent: "center", alignItems: "center", marginTop: "15%" }}>
-                    <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
+                    {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                         <Button onPress={this.codeMailFetch} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
                             <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
                                 CONTINUE
                     </Text>
                         </Button>
-                    </LinearGradient>
+                    </LinearGradient> */}
+                                    <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10}}>
+                                        <TouchableOpacity  onPress={this.codeMailFetch} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, width:'100%' }}>
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
+                                            CONTINUE
+                    </Text>
+                                        </TouchableOpacity>
+                                    </LinearGradient>
                 </View> : <Spinner color='#fc8b8c' />}
 
 
@@ -472,13 +479,20 @@ export default class ForgotPassword extends Component {
 
 
                 {!this.state.loader ? <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
-                    <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
+                    {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                         <Button onPress={this.codeChecker} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
                             <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
                                 Continue
                     </Text>
                         </Button>
-                    </LinearGradient>
+                    </LinearGradient> */}
+                    <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10}}>
+                                        <TouchableOpacity  onPress={this.codeChecker} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, width:'100%' }}>
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
+                                            CONTINUE
+                    </Text>
+                                        </TouchableOpacity>
+                                    </LinearGradient>
                 </View> : <Spinner color='#fc8b8c' />}
 
 
@@ -519,13 +533,20 @@ export default class ForgotPassword extends Component {
                 </View>
 
                 {!this.state.loader ? <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
-                    <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
+                    {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                         <Button onPress={this.changePassword} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
                             <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
                                 Submit
                     </Text>
                         </Button>
-                    </LinearGradient>
+                    </LinearGradient> */}
+                     <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10}}>
+                                        <TouchableOpacity  onPress={this.changePassword} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, width:'100%' }}>
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
+                                            Submit
+                    </Text>
+                                        </TouchableOpacity>
+                                    </LinearGradient>
                 </View> : <Spinner color='#fc8b8c' />}
 
 
