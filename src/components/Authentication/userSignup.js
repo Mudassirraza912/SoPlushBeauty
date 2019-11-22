@@ -53,7 +53,12 @@ export default class UserSignUp extends Component {
             profilePic: false,
             fileName: "",
             fileUri: "",
-            loader: false
+            loader: false,
+            emailErr: false,
+            passwordErr: false,
+            nameErr: false,
+            addressErr: false,
+            phoneNoErr: false,
 
         }
     }
@@ -65,6 +70,27 @@ export default class UserSignUp extends Component {
         header: null,
     })
 
+
+    checkField = (key) => {
+        if (key == "password") {
+            if (this.state.password.length > 5) {
+                this.setState({ passwordErr: false })
+            }
+            else {
+                this.setState({ passwordErr: true })
+            }
+        } else {
+            if (!this.state[key]) {
+                this.setState({
+                    [`${key}Err`]: true
+                })
+            } else {
+                this.setState({
+                    [`${key}Err`]: false
+                })
+            }
+        }
+    }
 
     openGallery = () => {
         ImagePicker.showImagePicker(options, (response) => {
@@ -96,6 +122,109 @@ export default class UserSignUp extends Component {
 
 
 
+    // signUp = () => {
+    //     this.setState({ loader: true })
+    //     const { email, password, name, phoneNo, address, profilePic, fileName, fileUri } = this.state
+    //     // this.props.successSign()
+    //     console.log("SIGN UP jksdajkfajkshjghj")
+    //     // this.props.navigation.navigate("UserLogin")
+    //     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    //     if (reg.test(email) === false) {
+    //         this.setState({ loader: false })
+    //         Alert.alert("Email is not correct")
+    //     } else {
+
+    //         const formData = new FormData();
+    //         if (fileUri != "") {
+    //             var file = {
+    //                 uri: fileUri,
+    //                 name: fileName,
+    //                 type: 'image/png'
+    //             }
+    //             formData.append("file_upload", file)
+
+    //         }
+    //         formData.append("email", email),
+    //             formData.append("password", password),
+    //             formData.append("address", address),
+    //             formData.append("name", name),
+    //             formData.append("phone_number", phoneNo),
+
+
+    //             console.log("email, password, address, name, phoneNo, profilePic", email, password, address, name, phoneNo, profilePic)
+
+    //         // axios.post("https://hnhtechsolutions.com/hassan/soplush/auth/signup.php?action=signup_customer",{
+    //         //     email: email,
+    //         //     password: password,
+    //         //     address: address,
+    //         //     name: name,
+    //         //     phone_number : phoneNo,
+    //         //     file_upload : file
+    //         //   })
+    //         //     .then((response) => {
+    //         //      console.log("SIGN_UP_PROCESSED response",response)
+    //         //     //   dispatch({type: "SIGN_UP_PROCESSED", payload: response.data});
+    //         //     })
+    //         //     .catch((err) => {
+    //         //      console.log("SIGN_UP_ERROR response",err)
+
+    //         //     //   dispatch({type: "ERROR", payload: 'An unexpected error occured!'});dispatch({type: "CLEAR_PROCESSING"});
+    //         //       // dispatch({type: "SIGN_UP_PROCESSED", payload: {error: 'An unexpected error occured!', status: 'error'}})
+    //         //     })
+    //         // }
+
+    //         //     axios.post("https://hnh-crypto.herokuapp.com/api/activities/get-activity",{
+    //         //   id: 1
+    //         // })
+    //         //   .then((response) => {
+    //         //     console.log("SIGN_UP_PROCESSED response",response)
+    //         //   })
+    //         //   .catch((err) => {
+    //         //     console.log("SIGN_UP_ERROR response",err)
+    //         //     // dispatch({type: "ACTIVITIES_PROCESSED", payload: {error: 'An unexpected error occured!', status: 'error'}})
+    //         //   })
+
+
+
+    //         fetch("https://hnhtechsolutions.com/hassan/soplush/auth/signup.php?action=signup_customer", {
+    //             method: 'POST',
+    //             // dataType: "json",
+    //             headers: {
+    //                 'Accept': 'application/json',
+    //                 'Content-Type': 'multipart/form-data'
+    //             },
+    //             body: formData
+    //         }).then(res => res.json())
+    //             .then(resp => {
+    //                 console.log(JSON.stringify(resp))
+    //                 var successData = resp
+
+    //                 if (successData.status) {
+    //                     if (successData.status === true) {
+    //                         Alert.alert("Signup successful")
+    //                         this.setState({ loader: false })
+    //                         this.props.navigation.navigate("UserLogin")
+    //                     }
+    //                 } else {
+    //                     Alert.alert(successData.message)
+    //                     this.setState({ loader: false })
+
+    //                 }
+    //                 console.log("SUCCESS", successData, successData.status, successData.data)
+    //             })
+    //             .catch(err => {
+    //                 // Alert.alert(err)
+    //                 Alert.alert('Try Later')
+    //                 console.log("err err err", err)
+    //                 this.setState({ loader: false })
+
+    //             });
+    //     }
+    // }
+
+
+
     signUp = () => {
         this.setState({ loader: true })
         const { email, password, name, phoneNo, address, profilePic, fileName, fileUri } = this.state
@@ -103,103 +232,113 @@ export default class UserSignUp extends Component {
         console.log("SIGN UP jksdajkfajkshjghj")
         // this.props.navigation.navigate("UserLogin")
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (email && password && name && phoneNo && address) {
+            if (reg.test(email) === false) {
+                this.setState({ loader: false })
+                Alert.alert("Email is not formatted")
+            } else {
 
-        if (reg.test(email) === false) {
-            this.setState({ loader: false })
-            Alert.alert("Email is not correct")
-        } else {
 
-            const formData = new FormData();
-            if (fileUri != "") {
+
                 var file = {
                     uri: fileUri,
                     name: fileName,
                     type: 'image/png'
                 }
-                formData.append("file_upload", file)
 
-            }
-            formData.append("email", email),
-                formData.append("password", password),
-                formData.append("address", address),
-                formData.append("name", name),
-                formData.append("phone_number", phoneNo),
+                const formData = new FormData();
+                formData.append("email", email),
+                    formData.append("password", password),
+                    formData.append("address", address),
+                    formData.append("name", name),
+                    formData.append("phone_number", phoneNo),
+                    formData.append("file_upload", file),
 
+                    console.log("email, password, address, name, phoneNo, profilePic", email, password, address, name, phoneNo, profilePic)
 
-                console.log("email, password, address, name, phoneNo, profilePic", email, password, address, name, phoneNo, profilePic)
+                // axios.post("https://hnhtechsolutions.com/hassan/soplush/auth/signup.php?action=signup_customer",{
+                //     email: email,
+                //     password: password,
+                //     address: address,
+                //     name: name,
+                //     phone_number : phoneNo,
+                //     file_upload : file
+                //   })
+                //     .then((response) => {
+                //      console.log("SIGN_UP_PROCESSED response",response)
+                //     //   dispatch({type: "SIGN_UP_PROCESSED", payload: response.data});
+                //     })
+                //     .catch((err) => {
+                //      console.log("SIGN_UP_ERROR response",err)
 
-            // axios.post("https://hnhtechsolutions.com/hassan/soplush/auth/signup.php?action=signup_customer",{
-            //     email: email,
-            //     password: password,
-            //     address: address,
-            //     name: name,
-            //     phone_number : phoneNo,
-            //     file_upload : file
-            //   })
-            //     .then((response) => {
-            //      console.log("SIGN_UP_PROCESSED response",response)
-            //     //   dispatch({type: "SIGN_UP_PROCESSED", payload: response.data});
-            //     })
-            //     .catch((err) => {
-            //      console.log("SIGN_UP_ERROR response",err)
+                //     //   dispatch({type: "ERROR", payload: 'An unexpected error occured!'});dispatch({type: "CLEAR_PROCESSING"});
+                //       // dispatch({type: "SIGN_UP_PROCESSED", payload: {error: 'An unexpected error occured!', status: 'error'}})
+                //     })
+                // }
 
-            //     //   dispatch({type: "ERROR", payload: 'An unexpected error occured!'});dispatch({type: "CLEAR_PROCESSING"});
-            //       // dispatch({type: "SIGN_UP_PROCESSED", payload: {error: 'An unexpected error occured!', status: 'error'}})
-            //     })
-            // }
-
-            //     axios.post("https://hnh-crypto.herokuapp.com/api/activities/get-activity",{
-            //   id: 1
-            // })
-            //   .then((response) => {
-            //     console.log("SIGN_UP_PROCESSED response",response)
-            //   })
-            //   .catch((err) => {
-            //     console.log("SIGN_UP_ERROR response",err)
-            //     // dispatch({type: "ACTIVITIES_PROCESSED", payload: {error: 'An unexpected error occured!', status: 'error'}})
-            //   })
-
+                //     axios.post("https://hnh-crypto.herokuapp.com/api/activities/get-activity",{
+                //   id: 1
+                // })
+                //   .then((response) => {
+                //     console.log("SIGN_UP_PROCESSED response",response)
+                //   })
+                //   .catch((err) => {
+                //     console.log("SIGN_UP_ERROR response",err)
+                //     // dispatch({type: "ACTIVITIES_PROCESSED", payload: {error: 'An unexpected error occured!', status: 'error'}})
+                //   })
 
 
-            fetch("https://hnhtechsolutions.com/hassan/soplush/auth/signup.php?action=signup_customer", {
-                method: 'POST',
-                // dataType: "json",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'multipart/form-data'
-                },
-                body: formData
-            }).then(res => res.json())
-                .then(resp => {
-                    console.log(JSON.stringify(resp))
-                    var successData = resp
 
-                    if (successData.status) {
-                        if (successData.status === true) {
-                            Alert.alert("Signup successful")
+                fetch("https://hnhtechsolutions.com/hassan/soplush/auth/signup.php?action=signup_customer", {
+                    method: 'POST',
+                    // dataType: "json",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'multipart/form-data'
+                    },
+                    body: formData
+                }).then(res => res.json())
+                    .then(resp => {
+                        console.log(JSON.stringify(resp))
+                        var successData = resp
+
+                        if (successData.status) {
+                            if (successData.status === true) {
+                                Alert.alert("Signup successful")
+                                this.setState({ loader: false })
+                                this.props.navigation.navigate("UserLogin")
+                            }
+                        } else {
+                            Alert.alert(successData.message)
                             this.setState({ loader: false })
-                            this.props.navigation.navigate("UserLogin")
+
                         }
-                    } else {
-                        Alert.alert(successData.message)
+                        console.log("SUCCESS", successData, successData.status, successData.data)
+                    })
+                    .catch(err => {
+                        // Alert.alert(err)
+                        Alert.alert('Try Later')
+                        console.log("err err err", err)
                         this.setState({ loader: false })
 
-                    }
-                    console.log("SUCCESS", successData, successData.status, successData.data)
-                })
-                .catch(err => {
-                    // Alert.alert(err)
-                    Alert.alert('Try Later')
-                    console.log("err err err", err)
-                    this.setState({ loader: false })
-
-                });
+                    });
+            }
+        } if (!email) {
+            this.setState({ emailErr: true, loader: false })
+        } if (!name) {
+            this.setState({ nameErr: true, loader: false })
+        } if (!address) {
+            this.setState({ addressErr: true, loader: false })
+        } if (!phoneNo) {
+            this.setState({ phoneNoErr: true, loader: false })
+        }
+        if (password.length < 6) {
+            this.setState({ passwordErr: true, loader: false })
         }
     }
 
-
     render() {
-        const { email, password, name, address, phoneNo, loader } = this.state
+        const { email, password, name, address, phoneNo, loader, emailErr, passwordErr, nameErr, addressErr, phoneNoErr } = this.state
         console.log(email, password, name, address, phoneNo)
         return (
             <View style={{ flex: 1, height: '100%', width:'100%', marginTop: -80 }}>
@@ -223,50 +362,71 @@ export default class UserSignUp extends Component {
                                     <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 22, fontWeight: 'bold' }}>CREATE ACCOUNT</Text>
                                 </View>
 
-                                <Item>
-                                    {/* <Icon active name='user' type="FontAwesome"  /> */}
+                                {/* <Item>
                                     <Image source={user} style={{ height: 22, width: 22 }} />
-                                    {/* <Label>Name</Label> */}
                                     <Input placeholderTextColor="#bdbdbd" onChangeText={(e) => { this.setState({ name: e }) }} placeholder=" Name" />
                                 </Item>
                                 <Item>
                                     <Image source={home} style={{ height: 22, width: 22 }} />
-                                    {/* <Icon active name='home' type="FontAwesome" /> */}
-                                    {/* <Label>Address</Label> */}
+                                   
                                     <Input placeholderTextColor="#bdbdbd" onChangeText={(e) => { this.setState({ address: e }) }} placeholder="Address" />
                                 </Item>
                                 <Item>
                                     <Image source={phone} style={{ height: 22, width: 22 }} />
-                                    {/* <Icon active name='phone' type="MaterialCommunityIcons" /> */}
-                                    {/* <Label>Phone Number</Label> */}
                                     <Input onChangeText={(e) => { this.setState({ phoneNo: e }) }} placeholder="Phone Number" />
                                 </Item>
                                 <Item>
                                     <Image source={envelop} style={{ height: 22, width: 22 }} />
-                                    {/* <Icon active name='email' type="MaterialCommunityIcons" /> */}
-                                    {/* <Label>Email Address</Label> */}
                                     <Input placeholderTextColor="#bdbdbd" onChangeText={(e) => { this.setState({ email: e }) }} placeholder="Email Address" />
                                 </Item>
 
                                 <Item>
                                     <Image source={lock} style={{ height: 22, width: 22 }} />
-                                    {/* <Icon active name='lock' type="MaterialCommunityIcons" /> */}
-                                    {/* <Label>Password</Label> */}
-                                    {/* <Input placeholderTextColor="#bdbdbd" onChangeText={(e) => { this.setState({ password: e }) }} placeholder="Password" secureTextEntry={true} /> */}
+                                    
                                     <Input style={{fontSize:20}}  placeholderTextColor="#bdbdbd" onChangeText={(e) => this.setState({ password: e })} placeholder="Password"secureTextEntry />
                                 </Item>
 
                                 <Item onPress={this.openGallery}>
                                     <Image source={camicon} style={{ height: 30, width: 30 }} />
-                                    {/* <Icon active name='camera' type="FontAwesome" /> */}
                                     <Input placeholderTextColor="#bdbdbd" disabled keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Upload Pictures" />
                                 </Item>
+ */}
 
-
-                                {/* <Item  onPress={this.openGallery} style={{marginBottom:"3%", width: "100%"}}> 
-                        <Icon active name='camera' type="MaterialCommunityIcons" />
-                        <Input disabled  placeholder=" Upload" secureTextEntry={true} />
-                    </Item> */}
+<Item error={nameErr} >
+<Image source={user} style={{ height: 22, width: 22 }} />
+                                    {/* <Label>Name</Label> */}
+                                    <Input onChangeText={(e) => { this.setState({ name: e }) }} onBlur={() => this.checkField("name")} placeholder=" Name" />
+                                </Item>
+                                {nameErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
+                                <Item error={addressErr} >
+                                <Image source={home} style={{ height: 22, width: 22 }} />
+                                    {/* <Label>Address</Label> */}
+                                    <Input onBlur={() => this.checkField("address")} onChangeText={(e) => { this.setState({ address: e }) }} placeholder="Address" />
+                                </Item>
+                                {addressErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
+                                <Item error={phoneNoErr} >
+                                <Image source={phone} style={{ height: 22, width: 22 }} />
+                                    {/* <Label>Phone Number</Label> */}
+                                    {/* 28644 */}
+                                    <Input keyboardType="number-pad" onBlur={() => this.checkField("phoneNo")} onChangeText={(e) => { this.setState({ phoneNo: e }) }} placeholder="Phone Number" />
+                                </Item>
+                                {phoneNoErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
+                                <Item error={emailErr} >
+                                <Image source={envelop} style={{ height: 22, width: 22 }} />
+                                    {/* <Label>Email Address</Label> */}
+                                    <Input onBlur={() => this.checkField("email")} onChangeText={(e) => { this.setState({ email: e }) }} placeholder="Email Address" />
+                                </Item>
+                                {emailErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
+                                <Item error={passwordErr} >
+                                <Image source={lock} style={{ height: 22, width: 22 }} />
+                                    {/* <Label>Password</Label> */}
+                                    <Input style={{fontSize:20}}  onBlur={() => this.checkField("password")} onChangeText={(e) => { this.setState({ password: e }) }} placeholder="Password" secureTextEntry={true} />
+                                </Item>
+                                {passwordErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >min 6 letters</Text>}
+                                <Item onPress={this.openGallery} >
+                                <Image source={camicon} style={{ height: 30, width: 30 }} />
+                                    <Input disabled keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Upload" />
+                                </Item>
 
                                 {this.state.profilePic && <View style={{ display: "flex", flexDirection: "row", marginBottom: "3%", marginVertical: '3%', alignSelf: 'flex-start' }}>
                                     <Avatar onPress={this.openGallery} containerStyle={{ height: 40, width: 40, marginTop: "1%", borderRadius: 10 }} source={camicon} overlayContainerStyle={{ height: 40, width: 40, marginTop: "1%", borderRadius: 5 }} />
@@ -315,7 +475,7 @@ export default class UserSignUp extends Component {
                                         <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "100%", borderRadius: 10 }}>
                                             <TouchableOpacity onPress={this.signUp} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
                                                 <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 , paddingVertical: '7%', marginTop:-5}}>
-                                                    Sign Up
+                                                SIGN UP
 </Text>
                                             </TouchableOpacity>
                                         </LinearGradient>

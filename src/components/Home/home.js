@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity,BackHandler, Alert } from 'react-native'
 import { Avatar, Header, Card, Divider, Icon } from 'react-native-elements'
 import Navigator from '../../Navigation/navigator'
 import UserNavigator from '../../UserNavigator/userNavigator'
@@ -36,6 +36,29 @@ export default class Home extends Component {
     })
 
 
+    // 28629
+    handleClose = () => {
+        Alert.alert(
+            'Exit App',
+            'Exiting the application?',
+            [
+                {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel'
+                },
+                {
+                    text: 'OK',
+                    onPress: () => BackHandler.exitApp()
+                }
+            ],
+            {
+                cancelable: false
+            }
+        );
+    }
+
+
 
 
     render() {
@@ -45,7 +68,7 @@ export default class Home extends Component {
                 <View style={{ flex: 1, height: '100%', width: '100%', marginTop: -80 }}>
                     <ImageBackground source={require('../../../assets/opacity.jpg')} style={{ height: "100%", width: "100%", opacity: 0.9 }}>
                         <Header
-                            leftComponent={<Icon name="arrow-back" color="#000" />}
+                            leftComponent={<Icon name="arrow-back" color="#000" onPress={this.handleClose}/>}
                             containerStyle={{ marginTop: 60, backgroundColor: "#fff" }}
                             placement="left"
                             centerComponent={<Text style={{ alignSelf:'center', fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>HOME</Text>}

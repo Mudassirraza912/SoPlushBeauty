@@ -17,7 +17,7 @@ export default class ForgotPassword extends Component {
             renderEMail: true,
             renderCode: false,
             renderPassword: false,
-            email: "razamudassir912@gmail.com",
+            email: "",
             code: "",
             password: "",
             newPassword: "",
@@ -121,7 +121,7 @@ export default class ForgotPassword extends Component {
                     var successData = resp
 
                     if (successData.status === true) {
-                        Alert.alert("Mail Send successful")
+                        Alert.alert("Verification code sent successfully")
                         this.setState({ loader: false })
                         this.setState({ renderEMail: false, renderCode: true, renderPassword: false, startDate: moment(), endDate: moment().add(1.5, "M") })
                     } else {
@@ -177,7 +177,7 @@ export default class ForgotPassword extends Component {
                 var successData = resp
 
                 if (successData.status === true) {
-                    Alert.alert("Mail Send successful")
+                    Alert.alert('Verification code sent successfully')
                     this.countdown.state.until = 90
                     this.setState({ startDate: moment(), endDate: moment().add(1.5, "M"), resend: false, time: 90 })
                 } else {

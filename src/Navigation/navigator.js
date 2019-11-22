@@ -5,6 +5,7 @@ import { Container, Header, Content, Item, Input, Icon, Label, Form, Body } from
 import {Avatar, Button} from 'react-native-elements'
 import {View, Text, TouchableOpacity,} from 'react-native'
 
+import Splash from '../components/Splash/splash'
 import ProLogin from '../components/Authentication/proLogin'
 import ProSignUp from '../components/Authentication/proSignup'
 import ForgotPassword from '../components/Authentication/forgotPassword'
@@ -405,6 +406,7 @@ const AuthStack = createStackNavigator({
 
 
 const SwitchNavigator = createSwitchNavigator({
+    Splash: Splash,
     WalkThrough: Walkthrogh,
     Authentication: {
         screen: AuthStack

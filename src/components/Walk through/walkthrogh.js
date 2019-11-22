@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, Image, BackHandler, Alert } from 'react-native'
+import { Text, View, StyleSheet, Image, BackHandler, Alert, AsyncStorage } from 'react-native'
 import AppIntroSlider from 'react-native-app-intro-slider';
 // import Navigator from '../../Navigation/navigator'
 // import Home from '../Home/home'
@@ -34,6 +34,8 @@ const styles = StyleSheet.create({
     resizeMode: 'contain'
   }
 });
+
+
 
 
 
@@ -101,12 +103,20 @@ export default class Walkthrogh extends Component {
     })
   }
 
+  
+
   on_Done_all_slides = () => {
     this.setState({ show_Main_App: true });
+    AsyncStorage.setItem("alreadyOpen", "true")
+    .then((succ) => console.log(succ))
+    .catch(err => console.log(err))
   };
   on_Skip_slides = () => {
     this.setState({ show_Main_App: true });
     this.props.navigation.navigate("Home")
+    AsyncStorage.setItem("alreadyOpen", "true")
+    .then((succ) => console.log(succ))
+    .catch(err => console.log(err))
   };
 
 

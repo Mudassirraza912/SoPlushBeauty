@@ -116,7 +116,7 @@ class ProHome extends Component {
                         <TouchableOpacity onPress={() => {this.props.navigation.navigate("ServiceList")}}>
                         <View style={{alignContent:"center",alignItems:"center",alignSelf:"center",backgroundColor:"transparent",width:143, height:139, borderRadius: 5, borderColor:"#000", borderWidth: 1, justifyContent:"space-evenly" }}>
 
-                            <Image source={require('../../../assets/makeUp.png')} style={{height:60, width:80, marginTop:"10%"}}/>
+                            <Image source={require('../../../assets/icon2.png')} style={{height:60, width:60, marginTop:"10%"}}/>
                             <Text style={{fontFamily: 'MrEavesXLModNarOT-Reg', fontWeight:"bold"}}>Services</Text>
 
                         </View>

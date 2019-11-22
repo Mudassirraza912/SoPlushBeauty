@@ -42,7 +42,15 @@ export default class ProSignUp extends Component {
             accountNo: "",
             fileName: "",
             fileUri: "",
-            loader: false
+            loader: false,
+            emailErr: false,
+            passwordErr: false,
+            phoneNoErr: false,
+            addressErr: false,
+            dOBErr: false,
+            bankErr: false,
+            accountNoErr: false,
+            nameErr: false
         }
     }
 
@@ -79,108 +87,246 @@ export default class ProSignUp extends Component {
     }
 
 
+    // signUp = () => {
+    //     this.setState({ loader: true })
+    //     const { email, password, name, phoneNo, address, profilePic, fileName, fileUri, dOB, bank, accountNo } = this.state
+    //     // this.props.successSign()
+    //     console.log("SIGN UP jksdajkfajkshjghj")
+
+    //     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    //     // this.props.navigation.navigate("ProLogin")
+    //     if (reg.test(email) === false) {
+    //         this.setState({ loader: false })
+
+    //         Alert.alert("Email is not correct")
+    //     } else {
+
+
+    //         const formData = new FormData();
+    //         if (fileUri != "") {
+    //             var file = {
+    //                 uri: fileUri,
+    //                 name: fileName,
+    //                 type: 'image/png'
+    //             }
+    //             formData.append("file_upload", file)
+
+    //         }
+
+    //         formData.append("email", email),
+    //             formData.append("password", password),
+    //             formData.append("address", address),
+    //             formData.append("name", name),
+    //             formData.append("phone_number", phoneNo),
+    //             formData.append("date_of_birth", dOB),
+    //             formData.append("bank_number", accountNo),
+    //             formData.append("bank_name", bank),
+
+
+
+
+    //             console.log("email, password, address, name, phoneNo, profilePic", email, password, address, name, phoneNo, profilePic)
+
+    //         // axios.post("https://hnhtechsolutions.com/hassan/soplush/auth/signup.php?action=signup_customer",{
+    //         //     email: email,
+    //         //     password: password,
+    //         //     address: address,
+    //         //     name: name,
+    //         //     phone_number : phoneNo,
+    //         //     file_upload : file
+    //         //   })
+    //         //     .then((response) => {
+    //         //      console.log("SIGN_UP_PROCESSED response",response)
+    //         //     //   dispatch({type: "SIGN_UP_PROCESSED", payload: response.data});
+    //         //     })
+    //         //     .catch((err) => {
+    //         //      console.log("SIGN_UP_ERROR response",err)
+
+    //         //     //   dispatch({type: "ERROR", payload: 'An unexpected error occured!'});dispatch({type: "CLEAR_PROCESSING"});
+    //         //       // dispatch({type: "SIGN_UP_PROCESSED", payload: {error: 'An unexpected error occured!', status: 'error'}})
+    //         //     })
+    //         // }
+
+
+
+
+    //         fetch("https://hnhtechsolutions.com/hassan/soplush/auth/signup.php?action=signup_beautician", {
+    //             method: 'POST',
+    //             dataType: "json",
+    //             headers: {
+    //                 'Accept': 'application/json',
+    //                 'Content-Type': 'multipart/form-data'
+    //             },
+    //             body: formData
+    //         }).then(res => res.json())
+    //             .then(resp => {
+    //                 console.log(JSON.stringify(resp))
+    //                 var successData = resp
+
+    //                 if (successData.status) {
+    //                     if (successData.status === true) {
+    //                         Alert.alert("Signup successful")
+    //                         this.setState({ loader: false })
+
+    //                         this.props.navigation.navigate("ProLogin")
+    //                     }
+    //                 } else {
+    //                     this.setState({ loader: false })
+
+    //                     Alert.alert(successData.message)
+    //                 }
+    //                 console.log("SUCCESS", successData, successData.status, successData.data)
+    //             })
+    //             .catch(err => {
+    //                 this.setState({ loader: false })
+    //                 // Alert.alert('Try Later')
+    //                 console.log("err err err", err)
+    //             });
+    //     }
+    // }
+
+
+
     signUp = () => {
         this.setState({ loader: true })
-        const { email, password, name, phoneNo, address, profilePic, fileName, fileUri, dOB, bank, accountNo } = this.state
+        const { email, password, name, phoneNo, address, profilePic, fileName, fileUri, dOB, bank, accountNo,
+            emailErr, passwordErr, nameErr, phoneNoErr, dOBErr, bankErr, accountNoErr,
+
+        } = this.state
         // this.props.successSign()
-        console.log("SIGN UP jksdajkfajkshjghj")
+        console.log("SIGN UP jksdajkfajkshjghj", email, password, name, phoneNo, dOB, bank, accountNo)
+let date = moment(dOB).format("YYYY-MM-DD")
 
-        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         // this.props.navigation.navigate("ProLogin")
-        if (reg.test(email) === false) {
-            this.setState({ loader: false })
-
-            Alert.alert("Email is not correct")
-        } else {
-
-
-            const formData = new FormData();
-            if (fileUri != "") {
+        if (email && password && name && phoneNo && dOB && bank && accountNo) {
+            let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (reg.test(email) === false) {
+                console.log("hello")
+                this.setState({ loader: false })
+                Alert.alert("Email is not Formated")
+            } else {
+                console.log('else')
                 var file = {
                     uri: fileUri,
                     name: fileName,
                     type: 'image/png'
                 }
-                formData.append("file_upload", file)
 
-            }
-
-            formData.append("email", email),
-                formData.append("password", password),
-                formData.append("address", address),
-                formData.append("name", name),
-                formData.append("phone_number", phoneNo),
-                formData.append("date_of_birth", dOB),
-                formData.append("bank_number", accountNo),
-                formData.append("bank_name", bank),
-
+                const formData = new FormData();
+                formData.append("email", email),
+                    formData.append("password", password),
+                    formData.append("address", address),
+                    formData.append("name", name),
+                    formData.append("phone_number", phoneNo),
+                    formData.append("date_of_birth", date),
+                    formData.append("bank_number", accountNo),
+                    formData.append("bank_name", bank),
+                    formData.append("file_upload", file),
 
 
 
-                console.log("email, password, address, name, phoneNo, profilePic", email, password, address, name, phoneNo, profilePic)
+                    console.log("email, password, address, name, phoneNo, profilePic", email, password, address, name, phoneNo, profilePic)
 
-            // axios.post("https://hnhtechsolutions.com/hassan/soplush/auth/signup.php?action=signup_customer",{
-            //     email: email,
-            //     password: password,
-            //     address: address,
-            //     name: name,
-            //     phone_number : phoneNo,
-            //     file_upload : file
-            //   })
-            //     .then((response) => {
-            //      console.log("SIGN_UP_PROCESSED response",response)
-            //     //   dispatch({type: "SIGN_UP_PROCESSED", payload: response.data});
-            //     })
-            //     .catch((err) => {
-            //      console.log("SIGN_UP_ERROR response",err)
+                fetch("https://hnhtechsolutions.com/hassan/soplush/auth/signup.php?action=signup_beautician", {
+                    method: 'POST',
+                    dataType: "json",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'multipart/form-data'
+                    },
+                    body: formData
+                }).then(res => res.json())
+                    .then(resp => {
+                        console.log(JSON.stringify(resp))
+                        var successData = resp
 
-            //     //   dispatch({type: "ERROR", payload: 'An unexpected error occured!'});dispatch({type: "CLEAR_PROCESSING"});
-            //       // dispatch({type: "SIGN_UP_PROCESSED", payload: {error: 'An unexpected error occured!', status: 'error'}})
-            //     })
-            // }
+                        if (successData.status) {
+                            if (successData.status === true) {
+                                Alert.alert("Signup successful")
+                                this.setState({ loader: true })
 
+                                this.props.navigation.navigate("ProLogin")
+                            }
+                        } else {
+                            this.setState({ loader: true })
 
-
-
-            fetch("https://hnhtechsolutions.com/hassan/soplush/auth/signup.php?action=signup_beautician", {
-                method: 'POST',
-                dataType: "json",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'multipart/form-data'
-                },
-                body: formData
-            }).then(res => res.json())
-                .then(resp => {
-                    console.log(JSON.stringify(resp))
-                    var successData = resp
-
-                    if (successData.status) {
-                        if (successData.status === true) {
-                            Alert.alert("Signup successful")
-                            this.setState({ loader: false })
-
-                            this.props.navigation.navigate("ProLogin")
+                            Alert.alert(successData.message)
                         }
-                    } else {
+                        console.log("SUCCESS", successData, successData.status, successData.data)
+                    })
+                    .catch(err => {
                         this.setState({ loader: false })
+                        Alert.alert('Try Later')
+                        console.log("err err err", err)
+                    });
+            }
+        } if (!email) {
+            this.setState({ emailErr: true, loader: false })
+        } if (!name) {
+            this.setState({ nameErr: true, loader: false })
+        } if (!address) {
+            this.setState({ addressErr: true, loader: false })
+        } if (!phoneNo) {
+            this.setState({ phoneNoErr: true, loader: false })
+        } if (!bank) {
+            this.setState({ bankErr: true, loader: false })
+        } if (!dOB) {
+            this.setState({ dOBErr: true, loader: false })
+        } if (password.length < 6) {
+            this.setState({ passwordErr: true, loader: false })
+        } if (!accountNo) {
+            this.setState({ accountNoErr: true, loader: false })
+        }
 
-                        Alert.alert(successData.message)
-                    }
-                    console.log("SUCCESS", successData, successData.status, successData.data)
+
+        // axios.post("https://hnhtechsolutions.com/hassan/soplush/auth/signup.php?action=signup_customer",{
+        //     email: email,
+        //     password: password,
+        //     address: address,
+        //     name: name,
+        //     phone_number : phoneNo,
+        //     file_upload : file
+        //   })
+        //     .then((response) => {
+        //      console.log("SIGN_UP_PROCESSED response",response)
+        //     //   dispatch({type: "SIGN_UP_PROCESSED", payload: response.data});
+        //     })
+        //     .catch((err) => {
+        //      console.log("SIGN_UP_ERROR response",err)
+
+        //     //   dispatch({type: "ERROR", payload: 'An unexpected error occured!'});dispatch({type: "CLEAR_PROCESSING"});
+        //       // dispatch({type: "SIGN_UP_PROCESSED", payload: {error: 'An unexpected error occured!', status: 'error'}})
+        //     })
+        // }
+
+    }
+
+
+    checkField = (key) => {
+        if (key == "password") {
+            if (this.state.password.length > 5) {
+                this.setState({ passwordErr: false })
+            }
+            else {
+                this.setState({ passwordErr: true })
+            }
+        } else {
+            if (!this.state[key]) {
+                this.setState({
+                    [`${key}Err`]: true
                 })
-                .catch(err => {
-                    this.setState({ loader: false })
-                    // Alert.alert('Try Later')
-                    console.log("err err err", err)
-                });
+            } else {
+                this.setState({
+                    [`${key}Err`]: false
+                })
+            }
         }
     }
 
 
-
     render() {
-        const { email, password, name, address, phoneNo, bank, accountNo, loader } = this.state
+        const { email, password, name, address, phoneNo, bank, accountNo, loader,  nameErr, emailErr, accountNoErr, addressErr, bankErr, passwordErr, phoneNoErr, dOBErr
+        } = this.state
         console.log(email, password, name, address, phoneNo, bank, accountNo)
         return (
             <View style={{ flex: 1, height: '100%', width: '100%', marginTop: -80 }}>
@@ -205,49 +351,34 @@ export default class ProSignUp extends Component {
                                 </View>
 
 
-
+{/* 
                                 <Item>
-                                    {/* <Icon active name='user' type="FontAwesome" style={{borderColor: "#000", }}  color="white"/> */}
                                     <Image source={user} style={{ height: 22, width: 22 }} />
-                                    {/* <Label>Name</Label> */}
                                     <Input placeholderTextColor="#bdbdbd" onChangeText={(e) => this.setState({ name: e })} placeholder=" Name" />
                                 </Item>
                                 <Item>
                                     <Image source={home} style={{ height: 22, width: 22 }} />
-                                    {/* <Icon active name='home' type="FontAwesome" /> */}
-                                    {/* <Label>Address</Label> */}
                                     <Input placeholderTextColor="#bdbdbd" onChangeText={(e) => this.setState({ address: e })} placeholder="Address" />
                                 </Item>
                                 <Item>
                                     <Image source={phone} style={{ height: 22, width: 22 }} />
-
-                                    {/* <Icon active name='phone' type="MaterialCommunityIcons" /> */}
-                                    {/* <Label>Phone Number</Label> */}
                                     <Input placeholderTextColor="#bdbdbd" keyboardType="number-pad" onChangeText={(e) => this.setState({ phoneNo: e })} placeholder="Phone Number" />
                                 </Item>
                                 <Item>
                                     <Image source={envelop} style={{ height: 22, width: 22 }} />
-                                    {/* <Icon active name='email' type="MaterialCommunityIcons" /> */}
-                                    {/* <Label>Email Address</Label> */}
                                     <Input placeholderTextColor="#bdbdbd" onChangeText={(e) => this.setState({ email: e })} placeholder="Email Address" />
                                 </Item>
 
                                 <Item >
                                     <Image source={lock} style={{ height: 22, width: 22 }} />
-                                    {/* <Icon active name='lock' type="MaterialCommunityIcons" /> */}
-                                    {/* <Label>Password</Label> */}
-                                    {/* <Input placeholderTextColor="#bdbdbd" secureTextEntry={true} onChangeText={(e) => this.setState({ password: e })} placeholder="Password" /> */}
                                     <Input style={{ fontSize: 20 }} placeholderTextColor="#bdbdbd" onChangeText={(e) => this.setState({ password: e })} placeholder="Password" secureTextEntry />
                                 </Item>
 
                                 <View style={{ flexDirection: "row", marginTop: 10, width: "100%", borderBottomWidth: 0.5, borderBottomColor: '#bdbdbd' }}>
-                                    {/* <Icon active name='birthday-cake' type="FontAwesome" /> */}
                                     <Image source={cake} style={{ height: 22, width: 22 }} />
                                     <DatePicker
                                         ref={ref => this.datePicker = ref}
-                                        // date={this.state.date} //initial date from state
-                                        //  defaultDate={new Date(year, month, date)}
-                                        // defaultDate={"1/23/3"}
+                                       aultDate={"1/23/3"}
                                         mode="date" //The enum of date, datetime and time
                                         placeHolderTextStyle={{ color: "#bdbdbd" }}
                                         placeHolderText="Date Of Birth"
@@ -278,27 +409,105 @@ export default class ProSignUp extends Component {
                                 </View>
 
                                 <Item>
-                                    {/* <Icon active name='university' type="FontAwesome"  /> */}
                                     <Image source={museum} style={{ height: 22, width: 22 }} />
                                     <Input placeholderTextColor="#bdbdbd" onChangeText={(e) => this.setState({ bank: e })} placeholder="Bank Name" />
                                 </Item>
 
                                 <Item>
-                                    {/* <Icon active name="address-card" type="FontAwesome" /> */}
                                     <Image source={atmcard} style={{ height: 22, width: 22 }} />
                                     <Input placeholderTextColor="#bdbdbd" keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Account Number" />
                                 </Item>
 
                                 <Item onPress={this.openGallery}>
-                                    {/* <Icon active name='camera' type="FontAwesome" /> */}
                                     <Image source={camicon} style={{ height: 30, width: 30 }} />
                                     <Input placeholderTextColor="#bdbdbd" disabled keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Upload Pictures" />
                                 </Item>
+                                
+                                */}
 
-                                {/* <Item onPress={this.openGallery} style={{ marginBottom: "3%", width: "100%" }}>
-                                    <Icon active name='camera' type="MaterialCommunityIcons" />
-                                    <Input disabled keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder=" Upload" />
-                                </Item> */}
+
+
+
+<Item error={nameErr}  >
+<Image source={user} style={{ height: 22, width: 22 }} />
+                                    {/* <Label>Name</Label> */}
+                                    <Input placeholderTextColor="#bdbdbd"  onBlur={() => this.checkField("name")} onChangeText={(e) => this.setState({ name: e })} placeholder=" Name" />
+                                </Item>
+                                {nameErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
+                                <Item error={addressErr}  >
+                                <Image source={home} style={{ height: 22, width: 22 }} />
+                                    {/* <Label>Address</Label> */}
+                                    <Input placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("address")} onChangeText={(e) => this.setState({ address: e })} placeholder="Address" />
+                                </Item>
+                                {addressErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
+                                <Item error={phoneNoErr}  >
+                                <Image source={phone} style={{ height: 22, width: 22 }} />
+                                    {/* <Label>Phone Number</Label> */}
+                                    <Input placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("phoneNo")} keyboardType="number-pad" onChangeText={(e) => this.setState({ phoneNo: e })} placeholder="Phone Number" />
+                                </Item>
+                                {phoneNoErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
+                                <Item error={emailErr}  >
+                                <Image source={envelop} style={{ height: 22, width: 22 }} />
+                                    {/* <Label>Email Address</Label> */}
+                                    <Input placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("email")} onChangeText={(e) => this.setState({ email: e })} placeholder="Email Address" />
+                                </Item>
+                                {emailErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
+                                <Item error={passwordErr}  >
+                                <Image source={lock} style={{ height: 22, width: 22 }} />
+                                    {/* <Label>Password</Label> */}
+                                    <Input placeholderTextColor="#bdbdbd" style={{ fontSize: 20 }} onBlur={() => this.checkField("password")} secureTextEntry={true} onChangeText={(e) => this.setState({ password: e })} placeholder="Password" />
+                                </Item>
+                                {passwordErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >min 6 letters</Text>}
+                                <View style={{ flexDirection: "row", marginTop: 10, width: "100%", borderBottomWidth: 0.5, borderBottomColor: '#bdbdbd'  }}>
+                                <Image source={cake} style={{ height: 22, width: 22, marginBottom:-5 }} />
+                                <DatePicker
+                                        ref={ref => this.datePicker = ref}
+                                       aultDate={"1/23/3"}
+                                        mode="date" //The enum of date, datetime and time
+                                        placeHolderTextStyle={{ color: "#bdbdbd" }}
+                                        placeHolderText="Date Of Birth"
+                                        format="DD-MM-YYYY"
+                                        minDate="01-01-2019"
+                                        maxDate="01-01-2050"
+                                        confirmBtnText="Confirm"
+                                        cancelBtnText="Cancel"
+                                        customStyles={{
+                                            dateIcon: {
+                                                position: 'absolute',
+                                                left: 0,
+                                                top: 4,
+                                                marginLeft: 0
+                                            },
+                                            dateInput: {
+                                                marginLeft: 36
+                                            }
+                                        }}
+                                        onDateChange={(date) => {
+                                            var newdate = moment(date.toString().substr(4, 12)).format("YYYY-MM-DD")
+                                            //  this.state.profileData.birthdate = newdate
+
+                                            this.setState({ dOB: newdate })
+
+                                        }}
+                                        underlineColorAndroid="#f55f2a" />
+                                </View>
+                                {dOBErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
+                                <Item error={bankErr}  >
+                                <Image source={museum} style={{ height: 22, width: 22 }} />
+                                    <Input placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("bank")} onChangeText={(e) => this.setState({ bank: e })} placeholder="Bank Name" />
+                                </Item>
+                                {bankErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
+                                <Item error={accountNoErr}  >
+                                <Image source={atmcard} style={{ height: 22, width: 22 }} />
+                                    <Input placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("accountNo")} keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Account Number" />
+                                </Item>
+                                {accountNoErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
+                                <Item onPress={this.openGallery}  >
+                                <Image source={camicon} style={{ height: 30, width: 30 }} />
+                                    <Input placeholderTextColor="#bdbdbd" disabled keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Upload" />
+                                </Item>
+
+                               
 
 
                                 {this.state.profilePic && <View style={{ display: "flex", flexDirection: "row", marginBottom: "3%", marginVertical: '3%' }}>
@@ -367,7 +576,7 @@ export default class ProSignUp extends Component {
                                         <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "100%", borderRadius: 10 }}>
                                             <TouchableOpacity onPress={this.signUp} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
                                                 <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: '7%', marginTop: -5 }}>
-                                                    Sign Up
+                                                    SIGN UP
 </Text>
                                             </TouchableOpacity>
                                         </LinearGradient>

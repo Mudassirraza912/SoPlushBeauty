@@ -94,6 +94,7 @@ export default class EditProProfile extends Component {
         this.setState({loader: true})
         const {profileData, username, phoneNo, address,userId,fileName, fileUri, gender,expertise, about,bankName,accountNumber} = this.state
         const formData = new FormData()
+        const khalid = new FormData()
         
         if  (fileUri != "") {
             var file = {
@@ -102,7 +103,8 @@ export default class EditProProfile extends Component {
                 type: 'image/png'
             }
         formData.append('file_upload',file)
-
+            // khalid.append('file_upload',file)
+            // khalid.append('action','upload')
         }
         
         formData.append('name',username)
@@ -115,7 +117,27 @@ export default class EditProProfile extends Component {
         formData.append('bank_name',bankName)
         formData.append('account_number',accountNumber)
 
-        console.log("profileData", formData)
+        // console.log("profileData", khalid)
+
+        // https://mobileappstore.co.uk/khalid/rest_api.php
+
+
+        // fetch("https://mobileappstore.co.uk/khalid/rest_api.php", {
+        //     method: 'POST',
+        //     // dataType: "json",
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'multipart/form-data'
+        //     },
+        //     body: khalid
+        // }).then(res => res.json())
+        //     .then(resp => {
+        //         console.log("KHALID KHALID",JSON.stringify(resp))
+        //         // var successData = resp
+
+        //     })
+        //     .catch(err => {
+        //         console.log("err UPDATEPROFILE KhALID BHAI", err)});
 
 
         fetch("https://hnhtechsolutions.com/hassan/soplush/user/user.php?action=update_profile", {

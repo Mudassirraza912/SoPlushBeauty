@@ -30,6 +30,7 @@ import {
 import WalkThrough from './src/components/Walk through/walkthrogh';
 import Navigator from './src/Navigation/navigator';
 // import NetInfo from '@react-native-community/netinfo '
+import Splash from './src/components/Splash/splash' 
 
 export default class App extends Component {
   constructor(props) {
@@ -61,17 +62,15 @@ export default class App extends Component {
   }
 
   render() {
-    if (this.state.isLoading) {
-      return <View style={{ flex: 1 }} >
-        <Image style={{ width: '100%', height: '100%' }} source={require('./assets/splash.png')} />
-      </View>
-    } else {
+    // if (this.state.isLoading) {
+    //   return <Splash />
+    // } else {
       return (
         <View style={{ flex: 1 }}>
           <Navigator screenProps={{ fetchProfileData: this.fetchProfileData, profileData: this.state.profileData }} />
         </View>
       );
-    }
+    // }
   }
 };
 

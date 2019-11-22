@@ -278,8 +278,8 @@ export default class ProLogin extends Component {
         super(props)
         this.state = {
             shift: new Animated.Value(0),
-            email: "Jenny@gmail.com",
-            password: "12345",
+            email: "",
+            password: "",
             loader: false
         }
     }
@@ -306,10 +306,15 @@ export default class ProLogin extends Component {
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
         if (reg.test(email) === false) {
-            this.setState({loader: false})
+            this.setState({ loader: false })
 
-            Alert.alert("Email is not correct")
-        } else {
+            Alert.alert("Email is required")
+        }
+        // 28638
+        else if (password == '') {
+            this.setState({ loader: false })
+            Alert.alert("Password is required")
+        }else {
 
             // http://192.168.0.120/29-may-2019/rest_api_for_plant_client/login_signup.php?action=login_user
 
@@ -339,7 +344,7 @@ export default class ProLogin extends Component {
                         // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
                         if (successData.data[0].role_id == 3) {
                             this.props.screenProps.fetchProfileData(successData.data[0])
-                            Alert.alert("Login successful")
+                            Alert.alert("Success","Login successful")
                             this.setState({loader: false})
 
                             this.props.navigation.navigate("ProNavigator")
@@ -350,7 +355,7 @@ export default class ProLogin extends Component {
                         }
                     } else {
                         this.setState({loader: false})
-                        Alert.alert('Invalid email or password')
+                        Alert.alert("Email Or Password Incorrect")
 
                     }
                     console.log("SUCCESS PRO", successData, successData.status, successData.data)
@@ -447,7 +452,7 @@ export default class ProLogin extends Component {
 
                                 <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
                                     <TouchableOpacity onPress={() => { this.props.navigation.navigate("ForgotPassword", { from: "ProLogin" }) }}>
-                                        <Text style={{ fontFamily: 'MrEavesXLModNarOT-Reg', fontSize: 20 }}>Forgot Password</Text>
+                                        <Text style={{ fontFamily: 'MrEavesXLModNarOT-Reg', fontSize: 20 , color:'#bdbdbd' }}>Forgot Password</Text>
                                     </TouchableOpacity>
                                 </View>
 
@@ -455,7 +460,7 @@ export default class ProLogin extends Component {
                                     <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                                         <Button onPress={this.login} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
                                             <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
-                                                Login
+                                                LOGIN
                     </Text>
                                         </Button>
                                     </LinearGradient>
@@ -466,7 +471,7 @@ export default class ProLogin extends Component {
                                 }
 
                                 <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
-                                    <Text style={{ fontFamily: 'MrEavesXLModNarOT-Reg', fontSize: 20 }}>Or Sign Up Using</Text>
+                                    <Text style={{ fontFamily: 'MrEavesXLModNarOT-Reg', fontSize: 20, color:'#bdbdbd' }}>Or Sign Up Using</Text>
                                 </View>
 
 
@@ -493,7 +498,7 @@ export default class ProLogin extends Component {
 
                                 <View style={{ display: "flex", flexDirection: "row", alignContent: "center", alignItems: "center", marginTop: "5%", justifyContent: "center" }}>
 
-                                    <Text style={{ alignSelf: "center", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                    <Text style={{ alignSelf: "center", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 , color:'#bdbdbd'}}>
                                         New to Soplush Beauty
                     </Text>
                                     <TouchableOpacity onPress={() => { this.props.navigation.navigate("ProSignUp") }} style={{ marginLeft: "3%" }}>

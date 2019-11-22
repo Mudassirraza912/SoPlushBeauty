@@ -399,8 +399,8 @@ export default class UserLogin extends Component {
         super(props)
         this.state = {
             shift: new Animated.Value(0),
-            email: "John@gmail.com",
-            password: "123456",
+            email: "",
+            password: "",
             loader: false
         }
     }
@@ -430,8 +430,13 @@ export default class UserLogin extends Component {
         if (reg.test(email) === false) {
             this.setState({ loader: false })
 
-            Alert.alert("Email is not correct")
-        } else {
+            Alert.alert("Email is required")
+        }
+        // 28638
+        else if (password == '') {
+            this.setState({ loader: false })
+            Alert.alert("Password is required")
+        }else {
 
             // http://192.168.0.120/29-may-2019/rest_api_for_plant_client/login_signup.php?action=login_user
 
@@ -465,7 +470,7 @@ export default class UserLogin extends Component {
                             if (successData.data[0].role_id == 2) {
                                 console.log(" After ROLE ID SUCCESS USER", this.props)
                                 this.props.screenProps.fetchProfileData(successData.data[0])
-                                Alert.alert("Login successful")
+                                Alert.alert("Success","Login successful")
                                 this.setState({ loader: false })
                                 this.props.navigation.navigate("UserNavigator")
                             }
@@ -476,7 +481,7 @@ export default class UserLogin extends Component {
                         }
                     } else {
                         this.setState({ loader: false })
-                        Alert.alert('Invalid email or password')
+                        Alert.alert("Email Or Password Incorrect")
                     }
                 })
                 .catch(err => {
@@ -658,7 +663,7 @@ export default class UserLogin extends Component {
                                         <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                                             <Button onPress={this.login} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
                                                 <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
-                                                    Login
+                                                    LOGIN
                     </Text>
                                             </Button>
                                         </LinearGradient>
@@ -671,7 +676,7 @@ export default class UserLogin extends Component {
                                     </View>
 
 
-                                    <View style={{ display: "flex", flexDirection: "row", alignContent: "center", alignItems: "center", marginTop: "5%", justifyContent: "space-between" }}>
+                                    <View style={{ display: "flex", flexDirection: "row", alignContent: "center", alignItems: "center", marginTop: "5%", justifyContent: 'space-evenly' }}>
 
                                         <LinearGradient colors={['#fff', '#883cb6', '#883cb6']} style={{ width: "45%", borderRadius: 10 }}>
                                             <Button onPress={() => this.fbLogin()} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
