@@ -71,7 +71,7 @@ export default class BookingDetail extends Component {
                   
                         <Card containerStyle={{borderColor:"none", borderWidth:0, borderRadius:10,}}> 
                                 <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20 }}>Name</Text>
+                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, color:'#aaaaaa' }}>Name</Text>
                                     <Text style={{marginLeft:"4%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20 }}>{varservices.username}</Text>
                                     {/* <TouchableOpacity>
                                     <Text  style={{marginLeft:"30%", color:"#fc8b8c", borderBottomColor:"#fc8b8c", borderBottomWidth:1, fontFamily:"MrEavesXLModNarOT-Reg", width:50}}>VIEW DETAILS</Text>
@@ -79,7 +79,7 @@ export default class BookingDetail extends Component {
                                 </View>
 
                                 <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20 }}>Service</Text>
+                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, color:'#aaaaaa' }}>Service</Text>
                                    {varservices && <View>
                                                     {varservices.services.map((value, index) => {
                                                         console.log('value.service_name', value)
@@ -92,7 +92,7 @@ export default class BookingDetail extends Component {
                                 </View>
 
                                 <View style={{ display: "flex", flexDirection: "row" }}>
-                                                    <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20 }}>Time</Text>
+                                                    <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20 , color:'#aaaaaa'}}>Time</Text>
                                                     <Text style={{ marginLeft: "4%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20  }}>{varservices.time_slot}</Text>
                                     </View>
 {/* 
@@ -102,20 +102,22 @@ export default class BookingDetail extends Component {
                                 </View> */}
 
                                  <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20 }}>Date</Text>
+                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, color:'#aaaaaa' }}>Date</Text>
                                     <Text style={{marginLeft:"4%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20 }}>{varservices.service_date}</Text>
                                 </View>
 
-                                <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20 }}>Address</Text>
-                                    <Text style={{marginLeft:"4%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20 }}>v{varservices.address}</Text>
-                                </View>
-
                                 <View style={{display:"flex", flexDirection:"row", overflow:"hidden"}}> 
-                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20 }}>Mobile </Text>
+                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, color:'#aaaaaa' }}>Mobile </Text>
                                     <Text style={{marginLeft:"4%", fontFamily:"MrEavesXLModNarOT-Reg", width:"60%", fontSize:20 }}>{varservices.mobile}</Text>
                                 </View>
 
+
+                                <View style={{display:"flex", flexDirection:"row"}}> 
+                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, color:'#aaaaaa' }}>Address</Text>
+                                    <Text style={{marginLeft:"4%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20 }}>{varservices.address}</Text>
+                                </View>
+
+                               
                                 <View style={{display:"flex",  marginRight:"6%", marginTop:"5%", width:"100%"}}> 
 
                                 {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "100%", borderRadius: 10 }}>

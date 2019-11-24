@@ -96,7 +96,7 @@
 
 
 
-//                 <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.5)"}}>
+//                 <View style={{ height, width, backgroundColor:"rgba(246, 232, 232, 0.5)"}}>
 
 //                 {/* <ScrollView style={{height: height}}>
 
@@ -243,7 +243,7 @@ export default class Feedback extends Component {
 
 
 
-                <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.5)"}}>
+                <View style={{ height, width, backgroundColor:"rgba(246, 232, 232, 0.5)"}}>
 
                 {/* <ScrollView style={{height: height}}>
 

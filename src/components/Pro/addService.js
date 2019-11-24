@@ -16,10 +16,11 @@ export default class AddService extends Component {
             profileData:  this.props.screenProps.profileData,
             add: true,
             category:[],
-            selectedCategory:"",
+            selectedCategory:"1",
             name: "",
             cost: "",
-            loader: false
+            loader: false,
+
         }
     }
 
@@ -168,7 +169,7 @@ export default class AddService extends Component {
                     // </TouchableOpacity> }
                     />
 
-                    <View style={{flex: 1 ,height:'100%', width:'100%', backgroundColor: "rgba(200, 165, 212, 0.7)", justifyContent: "center" }}>
+                    <View style={{flex: 1 ,height:'100%', width:'100%', backgroundColor: "rgba(246, 232, 232, 0.7)", justifyContent: "center" }}>
 
                         <ScrollView style={{ height: height }}>
 

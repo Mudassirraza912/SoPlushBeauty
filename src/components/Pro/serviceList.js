@@ -351,7 +351,7 @@ export default class ServiceList extends Component {
 
 
 
-                <View style={{flex: 1 ,height: '100%', width:'100%', backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
+                <View style={{flex: 1 ,height: '100%', width:'100%', backgroundColor:"rgba(246, 232, 232, 0.7)",justifyContent:"center"}}>
 
                 <ScrollView refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh} />}  style={{height: '100%'}} contentContainerStyle={{ justifyContent:'center', alignContent:'center', paddingVertical:"5%", top: '3%'}}>
 

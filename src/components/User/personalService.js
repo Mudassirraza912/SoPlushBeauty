@@ -491,7 +491,7 @@ export default class PersonalService extends Component {
 
 
 
-                    <View style={{ width:'100%', backgroundColor: "rgba(200, 165, 212, 0.7)" }}>
+                    <View style={{ width:'100%', backgroundColor: "rgba(246, 232, 232, 0.7)" }}>
 
                         <ScrollView contentContainerStyle={{ alignItems: "center", alignContent: "center", width: "100%" }}>
 

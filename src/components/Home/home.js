@@ -74,7 +74,7 @@ export default class Home extends Component {
                             centerComponent={<Text style={{ alignSelf:'center', fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>HOME</Text>}
                         />
 
-                        <View style={{ height: '100%', width: '100%', backgroundColor: "rgba(200, 165, 212, 0.7)" }}>
+                        <View style={{ height: '100%', width: '100%', backgroundColor: "rgba(246, 232, 232, 0.7)" }}>
                             <ScrollView contentContainerStyle={{  height, width: '100%', alignItems: 'center', marginVertical: '10%' }}>
                                 
                                 <View style={{ height: "86%", width: width - 20, backgroundColor: '#fff', borderWidth: 1, borderRadius: 10, opacity: 0.75, borderColor: '#fff' }}>

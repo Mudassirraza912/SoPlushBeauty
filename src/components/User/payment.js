@@ -46,7 +46,7 @@ export default class Payment extends Component {
                         centerComponent={<Text style={{alignSelf:'center',fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>PAYMENT</Text>}
                     />
 
-                    <View style={{ height, width, backgroundColor: "rgba(200, 165, 212, 0.7)"}}>
+                    <View style={{ height, width, backgroundColor: "rgba(246, 232, 232, 0.7)"}}>
 
                         <ScrollView style={{ height: height }}>
 

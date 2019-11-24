@@ -30,7 +30,7 @@ class DrawerMenu extends Component {
       return (
      
         <View style={{flex: 1, justifyContent:"center", alignContent: "center", height:'100%', backgroundColor:'#fff'}}>
-        <Header style={{ height: 100, backgroundColor: '#fff', marginBottom:'10%',borderBottomColor:'#000', borderBottomWidth: 1 }}>
+        <Header style={{ height: 100, backgroundColor: '#fff', marginBottom:'0%',borderBottomColor:'#fff', borderBottomWidth: 1}}>
           <View style={{display:"flex", flexDirection:"row", marginTop:20, marginRight:25}}>
   
              <View >
@@ -265,7 +265,7 @@ class DrawerMenu extends Component {
                         </View>
   
                         <View style={{marginLeft:20}}>
-                        <Text style={styles.menuItemText}>English - عربي</Text>
+                        <Text style={styles.menuItemText}> عربي - English </Text>
                         </View>
   
   
@@ -289,7 +289,7 @@ class DrawerMenu extends Component {
                         </View>
   
                         <View style={{marginLeft:20}}>
-                        <Text style={styles.menuItemText}>Term & Condition</Text>
+                        <Text style={styles.menuItemText}>Terms & Conditions</Text>
                         </View>
   
   

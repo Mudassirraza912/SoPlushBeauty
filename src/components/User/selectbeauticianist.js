@@ -187,7 +187,7 @@
                             />
 
 
-                            <View style={{height: '100%', width:'100%', backgroundColor: "rgba(200, 165, 212, 0.4)", justifyContent: "center" }}>
+                            <View style={{height: '100%', width:'100%', backgroundColor: "rgba(246, 232, 232, 0.4)", justifyContent: "center" }}>
 
                                 <ScrollView style={{ height: height }}>
 

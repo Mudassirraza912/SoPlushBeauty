@@ -165,7 +165,7 @@ export default class ConfirmBooking extends Component {
                         </TouchableOpacity>}
                     />
 
-                    <View style={{flex: 1, height, width:'100%', backgroundColor: "rgba(200, 165, 212, 0.7)", justifyContent: "center" }}>
+                    <View style={{flex: 1, height, width:'100%', backgroundColor: "rgba(246, 232, 232, 0.7)", justifyContent: "center" }}>
 
                         <ScrollView style={{ height: height }}>
 
@@ -178,13 +178,13 @@ export default class ConfirmBooking extends Component {
                                     
 
                                     <View style={{ display: "flex", flexDirection: "column", marginTop: 15 }}>
-                                        <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 22, color: "#bdbdbd" }}>Booking Time</Text>
+                                        <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 22, color: "#bdbdbd" }}>Booking Time</Text>
                                         <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 18 }}>{this.state.selectedSlot.time}</Text>
                                         {/* <Divider style={{ backgroundColor: 'lightgray' }} /> */}
                                     </View>
 
                                     <View style={{ display: "flex", flexDirection: "column", marginTop: 15 }}>
-                                        <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 22,color: "#bdbdbd" }}>Booking Day</Text>
+                                        <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 22,color: "#bdbdbd" }}>Booking Day</Text>
                                         <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 18 }}>{this.state.selectdate}</Text>
                                         {/* <Divider style={{ backgroundColor: 'lightgray' }} /> */}
                                     </View>

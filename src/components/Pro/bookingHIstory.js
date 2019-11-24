@@ -140,7 +140,7 @@
 
 
 
-//                 <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
+//                 <View style={{ height, width, backgroundColor:"rgba(246, 232, 232, 0.7)",justifyContent:"center"}}>
 
 //                 <ScrollView style={{height: height}}>
 
@@ -549,7 +549,7 @@ export default class BookingHistory extends Component {
 
 
 
-                <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
+                <View style={{ height, width, backgroundColor:"rgba(246, 232, 232, 0.7)",justifyContent:"center"}}>
 
         <ScrollView refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh} />}style={{height: height}}>
 
@@ -562,18 +562,18 @@ export default class BookingHistory extends Component {
                         // console.log('VALUE VALUE VALUE', value)
                         var formatDate = `${moment(value.service_date).format('dddd')} - ${ moment(value.service_date).format('DD/MM/YYYY')}`
                         return(
-                            <View key={index} style={{width:'90%', padding: 10, alignSelf:'center', borderBottomColor:"#000", borderBottomWidth:1}}>
+                            <View key={index} style={{width:'100%', padding: 20, alignSelf:'center', borderBottomColor:"#bdbdbd", borderBottomWidth:1}}>
                                 {/* <View style={{display:"flex", flexDirection:"row"}}> 
                                     <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 20}}>Name</Text>
                                     <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 20}}>{value.username}</Text>
                                    
                                 </View> */}
                                  <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", color:"#fc8b8c", fontSize:25}}>{formatDate}</Text>
+                                    <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", color:"#ff8385", fontSize:25}}>{formatDate}</Text>
                                 </View>
 
                                 <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 20}}>Service Name</Text>
+                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 20, color:'#aaaaaa' }}>Service Name</Text>
                                     <Text style={{marginLeft:"20%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 20}}>{value.services[0].service_name}</Text>
                                 </View>
 {/* 
@@ -584,13 +584,13 @@ export default class BookingHistory extends Component {
 
                                 {value.services[0].s_checked  == 1 ? 
                                  <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Cost</Text>
+                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, color:'#aaaaaa' }}>Cost</Text>
                                     <Text style={{marginLeft:"20%",  fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>${value.services[0].plush_cost}</Text>
                                 </View>  
                                 
                             :
                             <View style={{display:"flex", flexDirection:"row"}}> 
-                            <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Cost</Text>
+                            <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, color:'#aaaaaa' }}>Cost</Text>
                             <Text style={{marginLeft:"20%",  fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>${value.services[0].soplush_cost}</Text>
                             </View>  
                             
@@ -599,7 +599,7 @@ export default class BookingHistory extends Component {
 
 
                                  <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 20}}>Beauticianist Name</Text>
+                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 20, color:'#aaaaaa' }}>Beauticianist Name</Text>
                                     <Text style={{marginLeft:"20%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 20}}>{this.state.beauticianName}</Text>
                                 </View>
 

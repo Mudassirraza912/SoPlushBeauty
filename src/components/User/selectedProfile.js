@@ -171,11 +171,11 @@ export default class SelectedProfile extends Component {
 
 
 
-                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10 }}>
+                                        {/* <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10 }}>
                                             <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Gender</Text>
                                             <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>{this.state.profileData.gender}</Text>
                                             <Divider style={{ backgroundColor: 'lightgray' }} />
-                                        </View>
+                                        </View> */}
 
 
 
@@ -285,15 +285,15 @@ export default class SelectedProfile extends Component {
 
 
 
-                                        <View style={{ flex: 1, height: Dimensions.get('window').height / 2, alignItems: 'center', marginTop: 15 }}>
+                                        <View style={{ flex: 1,  alignItems: 'center', marginTop: 15 }}>
                                             <Text style={{ width: "30%", marginLeft: 15, fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray", alignSelf: "flex-start" }}>
                                                 Work</Text>
                                             <FlatList style={{ flex: 1, marginTop: "3%" }}
                                                 data={this.state.works}
                                                 renderItem={({ item }) => (
-                                                    <View style={{ flexDirection: "column", margin: 2, height: 90, width: 90, borderRadius: 10, alignContent: "center", alignItems: "center", alignSelf: "center" }}>
-                                                        <TouchableOpacity style={{ borderRadius: 10 }}>
-                                                            <Image style={{ height: 80, width: 80, borderRadius: 10 }} source={item} />
+                                                    <View style={{ flexDirection: "column", margin: 2, height: 100, width: 100, borderRadius: 5, alignContent: "center", alignItems: "center", alignSelf: "center" }}>
+                                                        <TouchableOpacity style={{ borderRadius: 10, }}>
+                                                            <Image style={{ height: 90, width: 90, borderRadius: 5 }} source={item} />
                                                         </TouchableOpacity>
                                                     </View>
                                                 )}
@@ -401,7 +401,7 @@ export default class SelectedProfile extends Component {
                                             </LinearGradient> */}
 
 
-                                        <View style={{ alignContent: "center", alignItems: "center", marginTop: -50, paddingVertical:30 }}>
+                                        <View style={{ alignContent: "center", alignItems: "center", marginTop: -10, paddingVertical:30 }}>
                                             <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10 }}>
                                                 <TouchableOpacity onPress={() => {
                                                     // this.props.navigation.navigate('ConfirmBooking', {
@@ -665,7 +665,7 @@ export default class SelectedProfile extends Component {
 
 
 
-                                        <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
+                                        <View style={{alignContent: "center", alignItems: "center", marginTop: "15%" }}>
                                             <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10 }}>
                                                 <TouchableOpacity onPress={() => {
 

@@ -311,7 +311,7 @@
 
 
 
-//                 <View style={{ height, width, backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
+//                 <View style={{ height, width, backgroundColor:"rgba(246, 232, 232, 0.7)",justifyContent:"center"}}>
 
 //         <ScrollView refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh} />}style={{height: height}}>
 
@@ -848,7 +848,7 @@ export default class ViewBooking extends Component {
 
 
 
-                    <View style={{flex: 1 ,height:'100%', width:'100%', backgroundColor: "rgba(200, 165, 212, 0.7)", justifyContent: "center" }}>
+                    <View style={{flex: 1 ,height:'100%', width:'100%', backgroundColor: "rgba(246, 232, 232, 0.7)", justifyContent: "center" }}>
 
                         <ScrollView style={{ height: height }}>
 
@@ -861,7 +861,7 @@ export default class ViewBooking extends Component {
                                         return (
                                             <View key={index} style={{width:'90%', padding: 10, alignSelf:'center'}}>
                                                 <View style={{ display: "flex", flexDirection: "row" }}>
-                                                    <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:18 }}>Name</Text>
+                                                    <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:18, color:'#aaaaaa' }}>Name</Text>
                                                     <Text style={{ marginLeft: "3%", fontFamily: "MrEavesXLModNarOT-Reg" , fontSize:18}}>{value.username}</Text>
                                                     {/* <TouchableOpacity onPress={() => {
                                                         this.props.navigation.navigate('BookingDetail', {
@@ -873,17 +873,17 @@ export default class ViewBooking extends Component {
                                                 </View>
 
                                                 <View style={{ display: "flex", flexDirection: "row" }}>
-                                                    <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg" , fontSize:18}}>Service</Text>
+                                                    <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg" , fontSize:18, color:'#aaaaaa'}}>Service</Text>
                                                     <Text style={{ marginLeft: "3%", fontFamily: "MrEavesXLModNarOT-Reg" , fontSize:18}}>{value.services[0].service_name}</Text>
                                                 </View>
 
                                                 <View style={{ display: "flex", flexDirection: "row" }}>
-                                                    <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg" , fontSize:18}}>Time</Text>
+                                                    <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg" , fontSize:18, color:'#aaaaaa'}}>Time</Text>
                                                     <Text style={{ marginLeft: "3%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:18 }}>{value.time_slot}</Text>
                                                 </View>
 
                                                 <View style={{ display: "flex", flexDirection: "row" }}>
-                                                    <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:18 }}>Date</Text>
+                                                    <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:18 , color:'#aaaaaa'}}>Date</Text>
                                                     <Text style={{ marginLeft: "3%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:18 }}>{value.service_date}</Text>
                                                 </View>
 

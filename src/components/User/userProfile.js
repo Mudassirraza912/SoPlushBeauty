@@ -165,7 +165,7 @@ export default class UserProfile extends Component {
                         // </TouchableOpacity> }
                         />
 
-                <View style={{ height:'100%', width:'100%', backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
+                <View style={{ height:'100%', width:'100%', backgroundColor:"rgba(246, 232, 232, 0.7)",justifyContent:"center"}}>
 
                 <ScrollView style={{height: height}}>
                    
@@ -184,24 +184,24 @@ export default class UserProfile extends Component {
                    </View>
                         
                         }
-                            <Item floatingLabel>
-                        <Icon active name='user' type="FontAwesome" />
+                            <Item>
+                        <Icon style={{paddingVertical:"7%"}} active name='user' type="FontAwesome" />
                         {/* <Label>Name</Label> */}
-                        <Input defaultValue={this.state.username} onChangeText={(e) => {this.setState({username:e})}} placeholder="Name" />
+                        <Input  defaultValue={this.state.username} onChangeText={(e) => {this.setState({username:e})}} placeholder="Name" />
                     </Item>
                     
                     <Item floatingLabel>
-                        <Icon active name='phone' type="MaterialCommunityIcons" />
+                        <Icon style={{paddingVertical:"7%"}} active name='phone' type="MaterialCommunityIcons" />
                         {/* <Label>Phone Number</Label> */}
                         <Input defaultValue={this.state.phoneNo} onChangeText={(e) => {this.setState({phoneNo:e})}} placeholder="Phone Number" />
                     </Item>
                     <Item floatingLabel>
-                        <Icon active name='email' type="MaterialCommunityIcons" />
+                        <Icon style={{paddingVertical:"5%"}} active name='email' type="MaterialCommunityIcons" />
                         {/* <Label>Email Address</Label> */}
                         <Input disabled defaultValue={this.state.email} onChangeText={(e) => {this.setState({email:e})}} placeholder="Email Address" />
                     </Item>
                     <Item floatingLabel>
-                        <Icon active name='home' type="FontAwesome" />
+                        <Icon style={{paddingVertical:"7%"}} active name='home' type="FontAwesome" />
                         {/* <Label>Address</Label> */}
                         <Input defaultValue={this.state.address} onChangeText={(e) => {this.setState({address:e})}}  placeholder="Address" />
                     </Item>

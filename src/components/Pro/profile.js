@@ -47,7 +47,7 @@ export default class ProProfile extends Component {
                         </TouchableOpacity> }
                         />
 
-                <View style={{flex: 1 ,height:'100%', width:'100%', backgroundColor:"rgba(200, 165, 212, 0.7)",justifyContent:"center"}}>
+                <View style={{flex: 1 ,height:'100%', width:'100%', backgroundColor:"rgba(246, 232, 232, 0.7)",justifyContent:"center"}}>
 
                 <ScrollView style={{height: height}}>
                    
@@ -65,31 +65,31 @@ export default class ProProfile extends Component {
 
 
                                 <View style={{display:"flex", flexDirection:"column", marginTop: 15, marginLeft: 15}}> 
-                                    <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:22, color: "#bdbdbd"}}>Name</Text>
+                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:22, color: "#bdbdbd"}}>Name</Text>
                                     <Text style={{ fontFamily:"MrEavesXLModNarOT-Reg", fontSize:18}}>{this.state.profileData.username}</Text>
                                     <Divider style={{ backgroundColor: 'light#bdbdbd' }} />
                                 </View>
 
                                 <View style={{display:"flex", flexDirection:"column", marginTop: 15, marginLeft: 15}}> 
-                                    <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:22, color: "#bdbdbd"}}>Email address</Text>
+                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:22, color: "#bdbdbd"}}>Email address</Text>
                                     <Text style={{ fontFamily:"MrEavesXLModNarOT-Reg", fontSize:18}}>{this.state.profileData.email}</Text>
                                     <Divider style={{ backgroundColor: 'light#bdbdbd' }} />
                                 </View>
 
                                 <View style={{display:"flex", flexDirection:"column", marginTop: 15, marginLeft: 15}}> 
-                                    <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:22, color: "#bdbdbd"}}>Mobile Number</Text>
+                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:22, color: "#bdbdbd"}}>Mobile Number</Text>
                                     <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize:18}}>{this.state.profileData.phone_number}</Text>
                                     <Divider style={{ backgroundColor: 'light#bdbdbd' }} />
                                 </View>
 
                                  <View style={{display:"flex", flexDirection:"column", marginTop: 15, marginLeft: 15}}> 
-                                    <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:22, color: "#bdbdbd"}}>Gender</Text>
+                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:22, color: "#bdbdbd"}}>Gender</Text>
                                     <Text style={{ fontFamily:"MrEavesXLModNarOT-Reg", fontSize:18}}>{this.state.profileData.gender}</Text>
                                     <Divider style={{ backgroundColor: 'light#bdbdbd' }} />
                                 </View>
 
                                 <View style={{display:"flex", flexDirection:"column", marginTop: 15, marginLeft: 15}}> 
-                                    <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:22, color: "#bdbdbd"}}>About me</Text>
+                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:22, color: "#bdbdbd"}}>About me</Text>
                                     <Text style={{ fontFamily:"MrEavesXLModNarOT-Reg", fontSize:18}}>{this.state.profileData.address}</Text>
                                     <Divider style={{ backgroundColor: 'light#bdbdbd' }} />
                                 </View>
