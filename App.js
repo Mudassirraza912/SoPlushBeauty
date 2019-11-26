@@ -65,6 +65,7 @@ export default class App extends Component {
     // } else {
       return (
         <View style={{ flex: 1 }}>
+          {/* <StatusBar backgroundColor= "rgba(246, 232, 232, 0.7)" barStyle="light-content" /> */}
           <Navigator screenProps={{ fetchProfileData: this.fetchProfileData, profileData: this.state.profileData }} />
         </View>
       );

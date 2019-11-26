@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, FlatList, TextInput } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, FlatList, TextInput, Alert } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button, DatePicker, Item, Label, Input } from 'native-base';
 import { Avatar, Header, Icon, Card, Divider } from 'react-native-elements'
@@ -101,11 +101,11 @@ export default class SelectedProfile extends Component {
                         placement="left"
                         leftComponent={<Icon onPress={() => { this.props.navigation.goBack() }} name="arrow-back" color="#000" />}
                         centerComponent={<Text style={{ alignSelf: 'center', fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>PROFILE</Text>}
-                        rightComponent={<TouchableOpacity onPress={() => { console.log('asfds') }}><Image source={require('../../../assets/edit.png')} style={{ height: 30, width: 30 }} />
+                        rightComponent={<TouchableOpacity onPress={() => {Alert.alert("Warning!", "Will be implemented")}}><Image source={require('../../../assets/edit.png')} style={{ height: 30, width: 30 }} />
                         </TouchableOpacity>}
                     />
 
-                    <View style={{ height:'100%', width:'100%', backgroundColor: "rgba(200, 165, 212, 0.7)", justifyContent: "center" }}>
+                    <View style={{ height:'100%', width:'100%', backgroundColor: "rgba(246, 232, 232, 0.7)", justifyContent: "center" }}>
 
                         <ScrollView style={{ height: height }}>
 
@@ -115,7 +115,7 @@ export default class SelectedProfile extends Component {
 
                                 {this.state.selectedUser !== null ?
 
-                                    <Card containerStyle={{ backgroundColor: "#fff", borderRadius: 10, width: "90%", padding: 0 }}>
+                                    <Card containerStyle={{ backgroundColor: "#fff", borderRadius: 20, width: "90%", padding: 0 }}>
                                         {/* <View style={{ width: "100%" }}>
                                             <Image resizeMode="cover" style={{ width: "100%", height: 300, borderRadius: 10 }} source={{ uri: `https://hnhtechsolutions.com/hassan/soplush/profile_pics/${this.state.profileData.profile_pic}` }} />
                                         </View> */}
@@ -123,13 +123,13 @@ export default class SelectedProfile extends Component {
                                             <Image source={{ uri: `https://hnhtechsolutions.com/hassan/soplush/profile_pics/${this.state.profileData.profile_pic}` }} style={{ height: 200, width: "100%", borderTopRightRadius: 10, borderTopLeftRadius: 10 }} />
                                         </View>
 
-                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10 }}>
+                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10, padding: 3  }}>
                                             <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Name</Text>
                                             <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>{this.state.profileData.username}</Text>
                                             <Divider style={{ backgroundColor: 'lightgray' }} />
                                         </View>
 
-                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10 }}>
+                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10, padding: 3  }}>
                                             <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Email</Text>
                                             <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>{this.state.profileData.email}</Text>
                                             <Divider style={{ backgroundColor: 'lightgray' }} />
@@ -187,7 +187,7 @@ export default class SelectedProfile extends Component {
                                                 </Item> */}
 
 
-                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10 }}>
+                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10 , padding: 3 }}>
                                             <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Select Date</Text>
                                             <DatePicker
                                                 // date={this.state.date} //initial date from state
@@ -236,18 +236,18 @@ export default class SelectedProfile extends Component {
                                                 <FlatList style={{ flex: 1, marginTop: "3%" }}
                                                     data={this.state.dateSlot}
                                                     renderItem={({ item, index }) => (
-                                                        <View style={{ flexDirection: "column", margin: 2, height: 60, width: "30%", borderRadius: 10, alignContent: "center", alignItems: "center", alignSelf: "center" }}>
+                                                        <View style={{ flexDirection: "column", margin: 2,width: "30%", borderRadius: 20, alignContent: "center", alignItems: "center", alignSelf: "center", padding: 3 }}>
 
                                                             {selectedSlot.time == item.time ?
                                                                 <TouchableOpacity style={{ width: "100%", }} onPress={() => { this.workFunction(item) }}>
-                                                                    <View style={{ backgroundColor: "#fc8b8c", height: 30, width: "100%", borderRadius: 10, alignSelf: "center", justifyContent: "center", alignContent: "center", alignItems: "center" }}>
+                                                                    <View style={{ backgroundColor: "#fc8b8c", height: 30, width: "100%", borderRadius: 20, alignSelf: "center", justifyContent: "center", alignContent: "center", alignItems: "center" }}>
                                                                         <Text style={{ color: "#fff" }}>{item.time}</Text>
                                                                     </View>
                                                                 </TouchableOpacity>
 
                                                                 :
                                                                 <TouchableOpacity style={{ width: "100%", }} onPress={() => { this.workFunction(item) }}>
-                                                                    <View style={{ backgroundColor: "lightgray", height: 30, width: "100%", borderRadius: 10, alignSelf: "center", justifyContent: "center", alignContent: "center", alignItems: "center" }}>
+                                                                    <View style={{ backgroundColor: "lightgray", height: 30, width: "100%", borderRadius: 20, alignSelf: "center", justifyContent: "center", alignContent: "center", alignItems: "center" }}>
                                                                         <Text style={{ color: "#000" }}>{item.time}</Text>
                                                                     </View>
                                                                 </TouchableOpacity>
@@ -265,7 +265,7 @@ export default class SelectedProfile extends Component {
 
 
 
-                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10 }}>
+                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10, padding: 3  }}>
                                             <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Expertise</Text>
                                             <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>{this.state.profileData.expertise}</Text>
                                             <Divider style={{ backgroundColor: 'lightgray' }} />
@@ -273,7 +273,7 @@ export default class SelectedProfile extends Component {
 
 
 
-                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10 }}>
+                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10, padding: 3  }}>
                                             <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>About me</Text>
                                             <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>{this.state.profileData.about}</Text>
                                             <Divider style={{ backgroundColor: 'lightgray' }} />
@@ -285,15 +285,15 @@ export default class SelectedProfile extends Component {
 
 
 
-                                        <View style={{ flex: 1,  alignItems: 'center', marginTop: 15 }}>
+                                        <View style={{ flex: 1,  alignItems: 'center', marginTop: 15, padding: 3, width:'100%'  }}>
                                             <Text style={{ width: "30%", marginLeft: 15, fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray", alignSelf: "flex-start" }}>
                                                 Work</Text>
                                             <FlatList style={{ flex: 1, marginTop: "3%" }}
                                                 data={this.state.works}
                                                 renderItem={({ item }) => (
-                                                    <View style={{ flexDirection: "column", margin: 2, height: 100, width: 100, borderRadius: 5, alignContent: "center", alignItems: "center", alignSelf: "center" }}>
-                                                        <TouchableOpacity style={{ borderRadius: 10, }}>
-                                                            <Image style={{ height: 90, width: 90, borderRadius: 5 }} source={item} />
+                                                    <View style={{ flexDirection: "column", padding:'1%', height: 125, width: "33%", borderRadius: 5, alignContent: "center", alignItems: "center", alignSelf: "center", paddingVertical: 7}}>
+                                                        <TouchableOpacity style={{ borderRadius: 5, width:'100%', height:'100%' }}>
+                                                            <Image style={{ height: "100%", width: "100%", borderRadius: 5 }} source={item} />
                                                         </TouchableOpacity>
                                                     </View>
                                                 )}

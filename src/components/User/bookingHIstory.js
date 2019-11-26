@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView,TextInput, RefreshControl, Alert } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button } from 'native-base';
-import {Avatar, Header, Icon, Card} from 'react-native-elements'
+import {Avatar, Header, Icon, Card, Divider} from 'react-native-elements'
 import moment from 'moment'
 
 const {width, height} = Dimensions.get("window")
@@ -293,34 +293,31 @@ export default class BookingHistory extends Component {
                    
                    <View style={{flexL:1 ,justifyContent:"center", alignContent:"center", alignItems:"center", marginTop:20}}>
 
-                <View style={{backgroundColor:"#fff",borderRadius:10, width:"90%"}}>
+                <View style={{backgroundColor:"#fff",borderRadius:20, width:"90%"}}>
 
-                {this.state.data.length > 0 ?       <View> 
+                {this.state.data.length > 0 ?       <View style={{ backgroundColor: "#fff", borderRadius: 20, width: "100%"}}> 
                     {this.state.data.map((value, index) => {
                         console.log("DAY NAME DAY NAME", )
                         var formatDate = `${moment(value.service_date).format('dddd')} - ${ moment(value.service_date).format('DD/MM/YYYY')}`
                         // console.log("DAY NAME DAY NAME", `${formatDate, moment(value.service_date).format('MMMM')} ${formatDate, moment(value.service_date).format('YYYY') }`  )
 
                         return(
-                        <Card key={index} containerStyle={{ borderColor:"#fff", borderWidth:3, borderRadius:10}}> 
+                        <View key={index} style={{backgroundColor:'#fff', padding: 10}}> 
 
-                           <View style={{display:"flex", flexDirection:"row", paddingVertical:"5%"}}> 
+                           <View style={{display:"flex", flexDirection:"row", paddingVertical:"5%", justifyContent:'space-between'}}> 
                                     <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", color:"#fc8b8c", fontSize:25}}>{formatDate}</Text>
                                 </View>
 
 
 
 
-                                <View style={{ display: "flex", flexDirection: "row" }}>
+                                <View style={{ display: "flex", flexDirection: "row" , justifyContent:'space-between'}}>
                                                     <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20, color: '#bdbdbd' }}>Service Name</Text>
                                                     <Text style={{ marginLeft: "5%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20  }}>{value.services[0].service_name}</Text>
                                     </View>
 
 
-                                <View style={{display:"flex", flexDirection:"row"}}> 
-                                <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20, color: '#bdbdbd' }}>Beauticainist Name</Text>
-                                                    <Text style={{ marginLeft: "5%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20  }}>{value.beautician}</Text>
-                                </View>
+                              
 
                                 
 {/* 
@@ -334,21 +331,28 @@ export default class BookingHistory extends Component {
                                     <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.service_date}</Text>
                                 </View> */}
 
-                                <View style={{display:"flex", flexDirection:"row"}}> 
+                                <View style={{display:"flex", flexDirection:"row", justifyContent:'space-between'}}> 
                                 <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20, color: '#bdbdbd' }}>Cost</Text>
                                                     <Text style={{ marginLeft: "5%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20  }}>$ {value.services[0].service_cost}</Text>
                                 </View>
 
-                                {value.is_reviewed == '0' && 
+
+                                <View style={{display:"flex", flexDirection:"row", justifyContent:'space-between'}}> 
+                                <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20, color: '#bdbdbd' }}>Beauticainist Name</Text>
+                                                    <Text style={{ marginLeft: "5%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20  }}>{value.beautician}</Text>
+                                </View>
+
+                                <Divider style={{backgroundColor:'#bdbdbd', top: 10, width:'95%'}} />
+                                {/* {value.is_reviewed == '0' && 
                                 <TouchableOpacity onPress={() => {
                                     this.props.navigation.navigate('Feedback', {
                                         bokingdetails : value
                                     })
                                 }} style={{alignContent:'center',alignItems:'center', alignSelf:'center'}}>
                                 <Text style={{color:"#fc8b8c", fontSize:15, paddingVertical:5}}>Click Here to Rating</Text> 
-                                </TouchableOpacity>}
+                                </TouchableOpacity>} */}
 
-                    </Card>
+                    </View>
 
                         )
                     })}

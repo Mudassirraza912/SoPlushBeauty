@@ -182,14 +182,14 @@
                                 containerStyle={{ marginTop: 60, backgroundColor: "#fff" }}
                                 placement="left"
                                 leftComponent={<Icon onPress={() => { this.props.navigation.goBack() }} name="arrow-back" color="#000" />}
-                                centerComponent={<Text style={{alignSelf:'center',fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>SELECT BEAUTICIAN</Text>}
+                                centerComponent={<Text style={{alignSelf:'center',fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>SELECT BEAUTICIANIST</Text>}
                                 // rightComponent={<Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />}
                             />
 
 
-                            <View style={{height: '100%', width:'100%', backgroundColor: "rgba(246, 232, 232, 0.4)", justifyContent: "center" }}>
+                            <View style={{ flex: 1, height: '100%', width:'100%', backgroundColor: "rgba(246, 232, 232, 0.4)", justifyContent: "center" }}>
 
-                                <ScrollView style={{ height: height }}>
+                                <ScrollView style={{  }}>
 
                                     <View style={{
                                         backgroundColor: "transparent",

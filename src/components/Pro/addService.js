@@ -161,8 +161,9 @@ export default class AddService extends Component {
                         containerStyle={{ marginTop: 40, backgroundColor: "#fff" }}
                         placement="left"
                         leftComponent={<Icon onPress={() => { 
-                        this.handleBackButton()
-                        this.props.navigation.navigate('Main')
+                            this.setState({add: true})
+                        // this.handleBackButton()
+                        // this.props.navigation.navigate('Main')
                          }} name="arrow-back" color="#000" />}
                         centerComponent={<Text style={{alignSelf:'center',fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>ADD SERVICE</Text>}
                     // rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("EditProfile")}}><Image source={require('../../../assets/edit.png')} style={{height:30, width:30}} /> 

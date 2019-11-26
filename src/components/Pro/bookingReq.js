@@ -461,15 +461,17 @@ export default class BookingReq extends Component {
                                     {this.state.data.map((value, index) => {
                                         return (
                                             <View key={index} style={{width:'90%', padding: 10, alignSelf:'center'}}>
-                                                <View style={{ display: "flex", flexDirection: "row" }}>
+                                                <View style={{ display: "flex", flexDirection: "row", width: "100%" }}>
                                                     <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:18, color:'#aaaaaa' }}>Name</Text>
-                                                    <Text style={{ marginLeft: "3%", fontFamily: "MrEavesXLModNarOT-Reg" , fontSize:18}}>{value.username}</Text>
+                                                    <Text style={{ marginLeft: "3%", fontFamily: "MrEavesXLModNarOT-Reg" , fontSize:18, width: '30%'}}>{value.username}</Text>
                                                     <TouchableOpacity onPress={() => {
                                                         this.props.navigation.navigate('BookingDetail', {
                                                             bookinDetail: value,
                                                         })
-                                                    }}>
-                                                        <Text style={{ marginLeft: "30%", color: "#fc8b8c", borderBottomColor: "#ff8385", borderBottomWidth: 1, fontFamily: "MrEavesXLModNarOT-Reg", width: '40%', textAlign: "center", fontSize:15 }}>VIEW DETAILS</Text>
+                                                    }}
+                                                    style={{ width: '40%', alignItems: 'flex-end', justifyContent: 'flex-end', alignContent: 'flex-end' }}
+                                                    >
+                                                        <Text style={{  color: "#fc8b8c", borderBottomColor: "#ff8385", borderBottomWidth: 1, fontFamily: "MrEavesXLModNarOT-Reg", textAlign: "right", fontSize:15, alignSelf: 'flex-end', justifyContent: 'flex-end' }}>VIEW DETAILS</Text>
                                                     </TouchableOpacity>
                                                 </View>
 
@@ -507,8 +509,8 @@ export default class BookingReq extends Component {
                                                 </Button>
                                             </LinearGradient> */}
 
-<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "100%", borderRadius: 10}}>
-                                        <TouchableOpacity onPress={() => { this.changeStatus('accepted', value, index) }}  style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
+<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 5}}>
+                                        <TouchableOpacity onPress={() => { this.changeStatus('accepted', value, index) }}  style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 5 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 5 }}>
                                             <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
                                             ACCEPT
                     </Text>
@@ -517,12 +519,12 @@ export default class BookingReq extends Component {
                                         </View>
                                                     
 
-                                                    <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
-                                                        <Button onPress={() => { this.changeStatus('rejected', value, index) }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#ffff", width: "90%", borderRadius: 5, opacity: 0.7, borderColor: "#fc8b8c", borderWidth: 1 }}>
-                                                            <Text style={{ alignSelf: "center", color: "#000", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                    <View style={{flex: 1 ,alignContent: "center", alignItems: "center", marginTop: "5%" }}>
+                                                        <TouchableOpacity onPress={() => { this.changeStatus('rejected', value, index) }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#fff", width: "90%", borderRadius: 5, opacity: 0.7, borderColor: "#fc8b8c", borderWidth: 1 }}>
+                                                            <Text style={{ alignSelf: "center", color: "#000", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 , paddingVertical: 15}}>
                                                                 REJECT
                                             </Text>
-                                                        </Button>
+                                                        </TouchableOpacity>
                                                     </View>
                                                 </View>
                                             </View>

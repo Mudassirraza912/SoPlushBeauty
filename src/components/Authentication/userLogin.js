@@ -584,7 +584,7 @@ export default class UserLogin extends Component {
         console.log(email, password)
         return (
             <View style={{ flex: 1, height: "100%", width: '100%', marginTop: -80 }}>
-                <ImageBackground source={require('../../../assets/opacity100.png')} style={{ height: "100%", width: "100%" }}>
+                <ImageBackground source={require('../../../assets/background.jpg')} style={{ height: "100%", width: "100%" }}>
                     <View style={{ width: '100%', height: '100%' }}>
                         <ScrollView>
                             <Animated.View style={[{ justifyContent: 'center', alignItems: "center", width: '100%', height: "100%" }, { transform: [{ translateY: this.state.shift }] }]} >
@@ -634,7 +634,7 @@ export default class UserLogin extends Component {
                                                 </View>
                                                 <Item stackedLabel style={{ width: '80%', borderBottomWidth: 0 }}>
                                                     <Label style={{ marginLeft: 3, color: 'lightgray' }}>Email Address</Label>
-                                                    <Input value={this.state.email} placeholder="something@gmail.com" style={{ color: 'gray' }} onChangeText={(e) => { this.setState({ email: e }) }} />
+                                                    <Input value={this.state.email} placeholder="something@gmail.com" style={{ color: 'gray', width: '100%'}} onChangeText={(e) => { this.setState({ email: e }) }} />
                                                 </Item>
                                             </View>
 
@@ -645,7 +645,7 @@ export default class UserLogin extends Component {
                                                 </View>
                                                 <Item stackedLabel style={{ width: '80%', borderBottomWidth: 0 }}>
                                                     <Label style={{ marginLeft: 3, color: 'lightgray' }}>Password</Label>
-                                                    <Input secureTextEntry value={this.state.password} placeholder="*******" style={{ color: 'gray' }} onChangeText={(e) => { this.setState({ password: e }) }} />
+                                                    <Input secureTextEntry value={this.state.password} placeholder="*******" style={{ color: 'gray' , width: '100%' }} onChangeText={(e) => { this.setState({ password: e }) }} />
                                                 </Item>
                                             </View>
 
@@ -668,7 +668,7 @@ export default class UserLogin extends Component {
                                             </Button>
                                         </LinearGradient> */}
 
-<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10}}>
+<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "95%", borderRadius: 10}}>
                                         <TouchableOpacity onPress={this.login} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
                                             <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
                                             LOGIN
@@ -684,7 +684,7 @@ export default class UserLogin extends Component {
                                     </View>
 
 
-                                    <View style={{ display: "flex", flexDirection: "row", alignContent: "center", alignItems: "center", marginTop: "5%", justifyContent: "space-between" }}>
+                                    <View style={{ display: "flex", flexDirection: "row", alignContent: "center", alignItems: "center", marginTop: "5%", justifyContent: "space-between", width: '80%', alignSelf: 'center' }}>
 
 {/* <LinearGradient colors={['#fff', '#883cb6', '#883cb6']} style={{ width: "45%", borderRadius: 10 }}>
     <Button onPress={() => {
@@ -697,7 +697,7 @@ export default class UserLogin extends Component {
     </Button>
 </LinearGradient> */}
 
-<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#c79de0', '#883cb6', '#883cb6']} style={{ width: "45%", borderRadius: 10}}>
+<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#c79de0', '#883cb6', '#883cb6']} style={{ width: "48%", borderRadius: 10}}>
     <TouchableOpacity onPress={() => {
         Alert.alert("Warning!", "Will be implemented")
     }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{  justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, flexDirection:'row' }}>
@@ -720,7 +720,7 @@ export default class UserLogin extends Component {
 </LinearGradient> */}
 
 
-<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "45%", borderRadius: 10}}>
+<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "48%", borderRadius: 10}}>
     <TouchableOpacity onPress={() => {
         Alert.alert("Warning!", "Will be implemented")
     }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{  justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, flexDirection:'row' }}>
@@ -755,6 +755,7 @@ export default class UserLogin extends Component {
                                 </View>
                             </Animated.View>
                         </ScrollView>
+                        <Text></Text>
                     </View>
                 </ImageBackground>
             </View>

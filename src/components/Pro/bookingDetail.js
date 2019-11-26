@@ -108,7 +108,7 @@ export default class BookingDetail extends Component {
 
                                 <View style={{display:"flex", flexDirection:"row", overflow:"hidden"}}> 
                                     <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, color:'#aaaaaa' }}>Mobile </Text>
-                                    <Text style={{marginLeft:"4%", fontFamily:"MrEavesXLModNarOT-Reg", width:"60%", fontSize:20 }}>{varservices.mobile}</Text>
+                                    <Text style={{marginLeft:"4%", fontFamily:"MrEavesXLModNarOT-Reg", width:"60%", fontSize:20 }}>{varservices.customer_phone_number}</Text>
                                 </View>
 
 

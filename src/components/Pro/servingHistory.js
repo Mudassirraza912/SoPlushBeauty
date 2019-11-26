@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert, RefreshControl, TextInput } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button } from 'native-base';
-import {Avatar, Header, Icon, Card} from 'react-native-elements'
+import {Avatar, Header, Icon, Card, Divider} from 'react-native-elements'
 import LinearGradient from 'react-native-linear-gradient'
-
+import moment from 'moment'
 
 const {width, height} = Dimensions.get("window")
 
@@ -330,6 +330,9 @@ export default class ServingHistory extends Component {
 {this.state.services ?
                 <View style={{backgroundColor:"#fff",borderRadius:10, width:"90%"}}>
                     {this.state.data.map((value, index) => {
+                        console.log('value',value)
+                        var date = moment(value.service_date).format('DD/MM/YYYY')
+                        var formatDate = `${moment(value.service_date).format('dddd')} - ${ moment(value.service_date).format('DD/MM/YYYY')}`
                         return(
                             <View key={index} style={{width:'90%', padding: 10, alignSelf:'center'}}>
 
@@ -337,10 +340,14 @@ export default class ServingHistory extends Component {
                                     <Text style={{marginLeft:"20%", fontFamily:"MrEavesXLModNarOT-Reg", color:"#fc8b8c", fontSize:25}}>{value.dateTime}</Text>
                                 </View> */}
 
+<View style={{display:"flex", flexDirection:"row", paddingVertical: 5}}> 
+                                    <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", color:"#ff8385", fontSize:25}}>{formatDate}</Text>
+                                </View>
 
 
 
-                                <View style={{display:"flex", flexDirection:"row"}}> 
+
+                                <View style={{display:"flex", flexDirection:"row", justifyContent:'space-between'}}> 
                                     <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Service Name</Text>
                                     <Text style={{marginLeft:"20%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, textAlign:"right"}}>{value.services[0].service_name}</Text>
                                 </View>
@@ -350,17 +357,17 @@ export default class ServingHistory extends Component {
 
                                 
 
-                                <View style={{display:"flex", flexDirection:"row",}}> 
+                                <View style={{display:"flex", flexDirection:"row", justifyContent:'space-between'}}> 
                                     <Text style={{width:"50%",fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Time</Text>
                                     <Text style={{marginLeft:"20%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, textAlign:"right", justifyContent:"flex-end"}}>{value.time_slot}</Text>
                                 </View>
 
-                                 <View style={{display:"flex", flexDirection:"row"}}> 
+                                 <View style={{display:"flex", flexDirection:"row", justifyContent:'space-between'}}> 
                                     <Text style={{width:"66%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Date</Text>
-                                    <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.service_date}</Text>
+                                    <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{date}</Text>
                                 </View>
 
-                                <View style={{display:"flex", flexDirection:"row"}}> 
+                                <View style={{display:"flex", flexDirection:"row", justifyContent:'space-between'}}> 
                                     <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>User Name</Text>
                                     <Text style={{marginLeft:"20%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, textAlign:"right"}}>{value.username}</Text>
                                     {/* <TouchableOpacity onPress={() => {this.props.navigation.navigate('BookingDetail')}}>
@@ -369,13 +376,13 @@ export default class ServingHistory extends Component {
                                 </View>
 
                               {value.services[0].s_checked  == 1 ? 
-                                 <View style={{display:"flex", flexDirection:"row"}}> 
+                                 <View style={{display:"flex", flexDirection:"row", justifyContent:'space-between'}}> 
                                     <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Cost</Text>
-                                    <Text style={{marginLeft:"20%",  fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>${value.services[0].plush_cost}</Text>
+                                    <Text style={{marginLeft:"20%",  fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, textAlign:'left'}}>${value.services[0].plush_cost}</Text>
                                 </View>  
                                 
                             :
-                            <View style={{display:"flex", flexDirection:"row"}}> 
+                            <View style={{display:"flex", flexDirection:"row", justifyContent:'space-between'}}> 
                             <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Cost</Text>
                             <Text style={{marginLeft:"20%",  fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>${value.services[0].soplush_cost}</Text>
                             </View>  
@@ -401,7 +408,7 @@ export default class ServingHistory extends Component {
                                                 </Button>
                                             </LinearGradient> */}
 
-<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10}}>
+<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "100%", borderRadius: 10}}>
                                         <TouchableOpacity onPress={() => {this.markAsCompelet('completed', value, index)}}  style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
                                             <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
                                             Mark As Compelete
@@ -433,6 +440,8 @@ export default class ServingHistory extends Component {
 
                                         </View> 
                                 </View>
+
+                            <Divider style={{backgroundColor:"#bdbdbd", top: 15}} />
                     </View>
 
                         )

@@ -313,9 +313,9 @@ export default class ForgotPassword extends Component {
     RenderEnterEmial = () => {
         return (
             <View>
-                <View style={{ marginTop: "10%", alignContent: 'center', alignItems: "center" }}>
+                <View style={{ marginTop: "10%", alignContent: 'center', alignItems: "center", width:'100%' }}>
                     <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 30 }}>Email Verification</Text>
-                    <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, marginTop: "4%", opacity: 0.6, color: '#bdbdbd' }}>To Reset Your Password, Please Enter Your Email</Text>
+                    <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, marginTop: "4%", opacity: 0.6, color: '#bdbdbd', width:'80%', textAlign:'center' }}>To reset your password, Please enter your email</Text>
                 </View>
 
                 <View style={{ marginTop: "10%", alignContent: "center", alignSelf: "center", alignItems: "center", width: "90%", backgroundColor: "#fff", borderRadius: 10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', paddingVertical: "3%", overflow: "hidden" }}>
@@ -339,7 +339,7 @@ export default class ForgotPassword extends Component {
                         </View>
                         <Item stackedLabel style={{ width: '80%', borderBottomWidth: 0 }}>
                             <Label style={{ marginLeft: 3, color: 'lightgray' }}>Email Address</Label>
-                            <Input value={this.state.email} placeholder="something@gmail.com" style={{ color: 'gray' }} onChangeText={(e) => { this.setState({ email: e }) }} />
+                            <Input value={this.state.email} placeholder="something@gmail.com" style={{ color: 'gray', width:'100%' }} onChangeText={(e) => { this.setState({ email: e }) }} />
                         </Item>
                     </View>
 
@@ -377,9 +377,9 @@ export default class ForgotPassword extends Component {
     RenderCode = () => {
         return (
             <View>
-                <View style={{ marginTop: "10%" }}>
+                <View style={{ marginTop: "10%", width:'100%' }}>
                     <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 30, marginLeft: "10%", textAlign: "center" }}>Email Verification</Text>
-                    <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", marginLeft: "10%", fontSize: 20, marginTop: "4%", opacity: 0.6, textAlign: "center" }}>To vrify your email . Please Enter 4 digit code</Text>
+                    <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", marginLeft: "10%", fontSize: 20, marginTop: "4%", opacity: 0.6, textAlign: "center", width:'80%' }}>To vrify your email . Please Enter 4 digit code</Text>
                 </View>
 
                 <View style={{ marginTop: "10%", alignContent: "center", alignSelf: "center", alignItems: "center", width: "90%", backgroundColor: "#fff", borderRadius: 10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', paddingVertical: "4%", marginBottom: "5%", justifyContent: "center" }}>
@@ -398,7 +398,7 @@ export default class ForgotPassword extends Component {
                         size={30}
                         onFulfill={(isValid) => { this.setState({ code: isValid }) }}
                         containerStyle={{ marginTop: 30 }}
-                        codeInputStyle={{ borderWidth: 1.5, borderColor: "rgba(242, 201, 240, 0.7)", borderRadius: 5, color: "#000", marginLeft: 10 }}
+                        codeInputStyle={{ borderWidth: 1.5, borderColor: "rgba(246, 232, 232, 0.7)", borderRadius: 5, color: "#000", marginLeft: 10 }}
                     />
 
                 </View>
@@ -464,6 +464,8 @@ export default class ForgotPassword extends Component {
 
                 </View>
 
+                <View style={{ marginTop: 10 }}>
+
                 {this.state.resend ? <View>
                     <TouchableOpacity onPress={() => { this.resendCode() }} style={{ marginLeft: "3%", marginBottom: "5%" }}>
                         <Text style={{ alignSelf: "center", color: "#fc8b8c", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, borderBottomWidth: 1, borderBottomColor: "#fc8b8c" }}>Resend Code</Text>
@@ -476,7 +478,7 @@ export default class ForgotPassword extends Component {
                         </View>
                     </View>
                 }
-
+</View>
 
                 {!this.state.loader ? <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
                     {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
@@ -506,14 +508,14 @@ export default class ForgotPassword extends Component {
         const from = this.props.navigation.getParam("from")
         return (
             <View>
-                <View style={{ marginTop: "10%" }}>
-                    <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 30, marginLeft: "10%", textAlign: "center" }}>Change Password</Text>
-                    <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", marginLeft: "10%", fontSize: 20, marginTop: "4%", opacity: 0.6, textAlign: "center" }}>Enter your new Password to Login Your Account</Text>
+                <View style={{ marginTop: "10%", alignSelf:'center', alignItems:'center', alignContent:"center", width:"100%" }}>
+                    <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 30, textAlign: "center" }}>Change Password</Text>
+                    <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, marginTop: "4%", opacity: 0.6, textAlign: "center" , width:'80%'}}>Enter your new Password to Login Your Account</Text>
                 </View>
 
-                <View style={{ marginTop: "10%", alignContent: "center", alignSelf: "center", alignItems: "center", width: "90%", backgroundColor: "#fff", borderRadius: 10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', paddingVertical: "8%", padding: "4%" }}>
+                <View style={{ marginTop: "10%", alignContent: "center", alignSelf: "center", alignItems: "center", width: "90%", backgroundColor: "#fff", borderRadius: 10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', paddingVertical: "1%", padding: "4%" }}>
                     {/* // Text input box with icon aligned to the left */}
-                    <Item floatingLabel>
+                    {/* <Item floatingLabel>
                         <Icon active name='lock-outline' type="MaterialCommunityIcons" />
                         <Label>Password</Label>
                         <Input onChangeText={(e) => { this.setState({ password: e }) }} secureTextEntry={true} />
@@ -523,7 +525,30 @@ export default class ForgotPassword extends Component {
                         <Icon active name='lock-outline' type="MaterialCommunityIcons" />
                         <Label>Confirm Password</Label>
                         <Input onChangeText={(e) => { this.setState({ newPassword: e }) }} secureTextEntry={true} />
-                    </Item>
+                    </Item> */}
+
+
+
+<View style={{ display: 'flex', flexDirection: 'row', width: '100%' }} >
+                        <View style={{ width: '20%', alignItems: 'center', justifyContent: 'center', alignContent: 'center' }}>
+                            <Image source={require("../../../assets/lock.png")} style={{ height: 25, width: 25 }} />
+                        </View>
+                        <Item stackedLabel style={{ width: '80%', borderBottomWidth: 0 }}>
+                            <Label style={{ marginLeft: 3, color: 'lightgray' }}>Password</Label>
+                            <Input secureTextEntry value={this.state.password} placeholder="*********" style={{ color: 'gray' , width:'100%' }} onChangeText={(e) => { this.setState({ password: e }) }} />
+                        </Item>
+                    </View>
+
+
+                    <View style={{ display: 'flex', flexDirection: 'row', width: '100%' }} >
+                        <View style={{ width: '20%', alignItems: 'center', justifyContent: 'center', alignContent: 'center' }}>
+                            <Image source={require("../../../assets/lock.png")} style={{ height: 25, width: 25 }} />
+                        </View>
+                        <Item stackedLabel style={{ width: '80%', borderBottomWidth: 0 }}>
+                            <Label style={{ marginLeft: 3, color: 'lightgray' }}>Confirm Password</Label>
+                            <Input secureTextEntry  value={this.state.newPassword} placeholder="*********" style={{ color: 'gray', width:'100%' }} onChangeText={(e) => { this.setState({ newPassword: e }) }} />
+                        </Item>
+                    </View>
 
 
 
@@ -562,18 +587,20 @@ export default class ForgotPassword extends Component {
         // console.log(email, password, newPassword, code)
         return (
             <View style={{ flex: 1, height: '100%', width: '100%', marginTop: -80 }}>
-                <ImageBackground source={require('../../../assets/opacity100.png')} style={{ height: "100%", width: "100%", }}>
-                    <ScrollView style={{ backgroundColor: "rgba(242, 201, 240, 0.5)" }}>
+                <ImageBackground source={require('../../../assets/background.jpg')} style={{ height: "100%", width: "100%", }}>
+                    <ScrollView style={{ 
+                        // backgroundColor: "rgba(246, 232, 232, 0.5)"
+                         }}>
                         <Animated.View style={[{ justifyContent: 'center', alignItems: "center" }, { transform: [{ translateY: this.state.shift }] }]} >
                             <View style={{ marginTop: 100 }}>
                                 <View style={{ alignContent: "center", alignSelf: "center", alignItems: "center" }}>
-                                    <Image source={require('../../../assets/text.png')} style={this.state.keyboardPopup && { height: 80, width: 150 }} />
+                                    <Image source={require('../../../assets/text.png')} style={this.state.keyboardPopup && { height: 70, width: 150 }} />
                                 </View>
 
                                 {renderEMail && <this.RenderEnterEmial />}
                                 {renderPassword && <this.RenderChangePassword />}
                                 {renderCode && <this.RenderCode />}
-
+                                {/* <this.RenderChangePassword /> */}
 
 
 

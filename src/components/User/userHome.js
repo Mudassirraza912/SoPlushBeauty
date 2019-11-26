@@ -321,13 +321,13 @@ const { width, height } = Dimensions.get("window")
 
 
 
-                        <View style={{ flex: 1, width: Dimensions.get('window').width, height: "100%", alignItems: 'center' }}>
+                        <View style={{ flex: 1, width: "100%", height: "100%", alignItems: 'center', marginLeft:5, }}>
                             <FlatList style={{ flex: 1 }}
                                 data={this.state.data}
                                 renderItem={({ item }) => {
                                     console.log("FlatList FlatList", `https://hnhtechsolutions.com/hassan/soplush/images/${item.image}`)
                                     return (<View style={{ flexDirection: "column", marginVertical: 6, height: '90%', width: "50%", alignContent: "center", alignItems: "center", alignSelf: "center", }}>
-                                        <TouchableOpacity onPress={() => this.navigatingToOther(item)}>
+                                        <TouchableOpacity style={{width:'100%'}} onPress={() => this.navigatingToOther(item)}>
                                             <Image style={styles.imageThumbnail} source={{ uri: `https://hnhtechsolutions.com/hassan/soplush/images/${item.image}` }} />
                                         </TouchableOpacity>
                                         <Text style={{ fontSize: 20, color: "#000", opacity: 0.6, fontFamily: "MrEavesXLModNarOT-Reg", textTransform: 'capitalize', fontWeight:'900', marginVertical:5 }}>{item.category_name}</Text>
@@ -404,8 +404,9 @@ const styles = StyleSheet.create({
         //   justifyContent: 'center',
         //   alignItems: 'center',
         height: 160,
-        width: 170,
-        borderRadius: 5
+        width: "93%",
+        borderRadius: 5,
+        
     },
 
 })

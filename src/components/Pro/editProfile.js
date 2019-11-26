@@ -243,10 +243,10 @@ export default class EditProProfile extends Component {
                         {/* <Label>Phone Number</Label> */}
                         <Input defaultValue={this.state.phoneNo} onChangeText={(e) => {this.setState({phoneNo:e})}} placeholder="Phone Number" />
                     </Item>
-                    {/* <Item floatingLabel>
-                        <Icon active name='user' type="FontAwesome" />
+                    <Item >
+                    <Image source={user} style={{ height: 22, width: 22 }} />
                         <Input defaultValue={this.state.gender}  onChangeText={(e) => {this.setState({gender:e})}} placeholder="Gender" />
-                    </Item> */}
+                    </Item>
                     <Item >
                     <Image source={atmcard} style={{ height: 22, width: 22 }} />
                         {/* <Label>Email Address</Label> */}
@@ -258,38 +258,42 @@ export default class EditProProfile extends Component {
                         <Input defaultValue={this.state.about}  onChangeText={(e) => {this.setState({about:e})}} placeholder="About me" />
                     </Item>
 
-                    <View style={{ display: "flex", flexDirection: "row", marginBottom: "3%",marginVertical:'3%' }}>
+                    <View style={{ display: "flex", flexDirection: "row", marginBottom: "3%",marginVertical:'3%', padding:5 }}>
                         
                         <View style={{ backgroundColor:'lightgray', height: 80, width: 80, borderRadius:5, justifyContent:'center', alignItems:"center"}}>
-                                    <Avatar onPress={this.openGallery} containerStyle={{  height: 40, width: 40, marginTop: "1%", borderRadius: 10 }} source={camicon} />
+                                    <Avatar 
+                                    // onPress={this.openGallery} 
+                                    containerStyle={{  height: 40, width: 40, marginTop: "1%", borderRadius: 10 }} source={camicon} />
                           </View>
                                    
-                            <TouchableOpacity style={{borderRadius:5}}  onPress={() => 
-                                {
+                            <TouchableOpacity style={{borderRadius:5, marginHorizontal: 20}} 
+                            //  onPress={() => 
+                            //     {
 
-                                    Alert.alert(
-                                        'Profile',
-                                        'Are you sure you want to remove picture?',
-                                        [
-                                          {
-                                            text: 'No',
-                                            onPress: () => console.log('Cancel Pressed'),
-                                            style: 'cancel',
-                                          },
-                                          {
-                                            text: 'yes',
-                                            onPress: () =>  this.setState({ profilePic: false })
-                                            ,
-                                            style: 'cancel',
-                                          },
-                                          {cancelable:  false}
-                                        ]
-                                      )
+                            //         Alert.alert(
+                            //             'Profile',
+                            //             'Are you sure you want to remove picture?',
+                            //             [
+                            //               {
+                            //                 text: 'No',
+                            //                 onPress: () => console.log('Cancel Pressed'),
+                            //                 style: 'cancel',
+                            //               },
+                            //               {
+                            //                 text: 'yes',
+                            //                 onPress: () =>  this.setState({ profilePic: false })
+                            //                 ,
+                            //                 style: 'cancel',
+                            //               },
+                            //               {cancelable:  false}
+                            //             ]
+                            //           )
                                    
-                            }}>
+                            // }}
+                            >
 
                            <View style={{flexDirection:'column'}}>   
-                             <ImageBackground source={this.state.profilePic}  style={{height:80, width:80,borderRadius:5,margin:3, display:"flex", alignContent:"center", backgroundColor:"lightgray", flexDirection:'column'}}> 
+                             <ImageBackground source={this.state.profilePic}  style={{height:80, width:80,borderRadius:5,marginLeft:3, display:"flex", alignContent:"center", backgroundColor:"lightgray", flexDirection:'column'}}> 
                              <Text style={{fontSize:50, textAlign:'center', justifyContent:'center', color:'#fff'}}>+</Text>
 
                      </ImageBackground>

@@ -93,14 +93,14 @@ export default class ServiceList extends Component {
 
 
 
-        fetch("https://hnhtechsolutions.com/hassan/soplush/beautician/beautician_service.php?action=select_service", {
-            method: 'POST',
-            // dataType: "json",
-            headers: {
-                'Accept' : 'application/json',
-                'Content-Type': 'multipart/form-data'
-            },
-            body: formData
+        fetch(`https://hnhtechsolutions.com/hassan/soplush/beautician/beautician_service.php?action=get_beautician_services&beautician_id=${profileData.user_id}`, {
+            // method: 'POST',
+            // // dataType: "json",
+            // headers: {
+            //     'Accept' : 'application/json',
+            //     'Content-Type': 'multipart/form-data'
+            // },
+            // body: formData
         }).then(res => res.json())
         .then(resp =>{
           console.log(JSON.stringify(resp))
@@ -142,20 +142,20 @@ export default class ServiceList extends Component {
         const {profileData} = this.state
         console.log("user_id", profileData.user_id)
         const formData = new FormData();
-        formData.append("id", profileData.user_id),
+        formData.append("beautician_id", profileData.user_id),
        
 
         // console.log("email, password, address, name, phoneNo, profilePic", email, password)
 
 
-        fetch("https://hnhtechsolutions.com/hassan/soplush/beautician/beautician_service.php?action=select_service", {
-            method: 'POST',
-            // dataType: "json",
-            headers: {
-                'Accept' : 'application/json',
-                'Content-Type': 'multipart/form-data'
-            },
-            body: formData
+        fetch(`https://hnhtechsolutions.com/hassan/soplush/beautician/beautician_service.php?action=get_beautician_services&beautician_id=${profileData.user_id}`, {
+            // method: 'POST',
+            // // dataType: "json",
+            // headers: {
+            //     'Accept' : 'application/json',
+            //     'Content-Type': 'multipart/form-data'
+            // },
+            // body: formData
         }).then(res => res.json())
         .then(resp =>{
           console.log(JSON.stringify(resp))

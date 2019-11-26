@@ -12,6 +12,7 @@ import {
 import { NavigationActions } from "react-navigation";
 import { Container, Header, Body, Content } from 'native-base'
 import { Avatar, Button, Icon } from "react-native-elements"
+import backgound from "../background";
 // import { LinearGradient } from 'expo-linear-gradient';
 
 class DrawerMenu extends Component {
@@ -28,8 +29,9 @@ class DrawerMenu extends Component {
     console.log("Drawer DrawerDrawer  Drawer", `https://hnhtechsolutions.com/hassan/soplush/profile_pics/${this.props.screenProps.profileData.profile_pic}`)
     return (
 
-      <View style={{ flex: 1, justifyContent: "center", alignContent: "center", height: '100%', backgroundColor: '#fff' }}>
-        <Header style={{ height: 100, backgroundColor: '#fff', borderBottomColor: '#fff', borderBottomWidth: 1 }}>
+      <View style={{ flex: 1, justifyContent: "center", alignContent: "center", height: '100%', backgroundColor: 'rgba(246, 232, 232, 0.5)' }}>
+        <Header style={{ height: 100, backgroundColor: 'rgba(246, 232, 232, 0.5)', borderBottomColor: 'rgba(246, 232, 232, 0.5)', borderBottomWidth: 1 }}>
+        <TouchableOpacity onPress={() => {this.props.navigation.navigate('UserProfile')}}>
           <View style={{ display: "flex", flexDirection: "row", marginTop: 20, marginRight: 20 }}>
 
             <View >
@@ -62,6 +64,7 @@ class DrawerMenu extends Component {
             </View>
 
           </View>
+          </TouchableOpacity>
         </Header>
 
 
@@ -69,7 +72,7 @@ class DrawerMenu extends Component {
         {/* <Vie style={{ backgroundColor: 'blue', marginTop: 0, height:'100%', padding: 0 }}> */}
 
 
-        <ImageBackground source={require('../../assets/opacity100.png')} style={{ height: "100%", width: "100%", flex: 1, backgroundColor: "#fff", }} resizeMethod="auto">
+        <ImageBackground source={require('../../assets/background.jpg')} style={{ height: "100%", width: "100%", flex: 1, backgroundColor: "#fff", }} resizeMethod="auto">
           <ScrollView>
 
 
@@ -170,7 +173,7 @@ class DrawerMenu extends Component {
 
             >
               <View style={{ marginLeft: 10 }}>
-                <Image source={require('../../assets/more.png')} style={{ height: 30, width: 30 }} />
+                <Image source={require('../../assets/hist.png')} style={{ height: 35, width: 30 }} />
               </View>
 
               <View style={{ marginLeft: 20 }}>
@@ -193,7 +196,7 @@ class DrawerMenu extends Component {
 
             >
               <View style={{ marginLeft: 10 }}>
-                <Image source={require('../../assets/information.png')} style={{ height: 30, width: 30 }} />
+                <Image source={require('../../assets/info1.png')} style={{ height: 30, width: 30 }} />
               </View>
 
               <View style={{ marginLeft: 20 }}>
@@ -213,7 +216,7 @@ class DrawerMenu extends Component {
   
                       >
                       <View style={{marginLeft:10}}>
-                      <Image source={require('../../assets/lock.png')} style={{height:30, width:30}} />
+                      <Image source={require('../../assets/loyal1.png')} style={{height:30, width:30}} />
                         </View>
   
                         <View style={{marginLeft:20}}>
@@ -275,7 +278,7 @@ class DrawerMenu extends Component {
 
             >
               <View style={{ marginLeft: 10 }}>
-                <Image source={require('../../assets/translation.png')} style={{ height: 30, width: 30 }} />
+                <Image source={require('../../assets/trans1.png')} style={{ height: 30, width: 32 }} />
               </View>
 
               <View style={{ marginLeft: 20 }}>

@@ -107,6 +107,7 @@ export default class Walkthrogh extends Component {
 
   on_Done_all_slides = () => {
     this.setState({ show_Main_App: true });
+    this.props.navigation.navigate("Home")
     AsyncStorage.setItem("alreadyOpen", "true")
     .then((succ) => console.log(succ))
     .catch(err => console.log(err))
@@ -134,7 +135,7 @@ export default class Walkthrogh extends Component {
       <View style={{ marginTop: "10%" }}>
         <Text style={{ fontSize: 30 }}>{item.text1} <Text style={{ fontWeight: "bold" }}>{item.text2}</Text></Text>
       </View>
-      <View style={{ width: "80%", marginTop: "5%", alignItems: 'center', justifyContent: 'center', alignContent: 'center' }}>
+      <View style={{ width: "70%", marginTop: "5%", alignItems: 'center', justifyContent: 'center', alignContent: 'center' }}>
         <Text style={{ fontSize: 17, textAlign: 'center' }} >{item.text}</Text>
       </View>
     </View>

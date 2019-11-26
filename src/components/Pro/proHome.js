@@ -105,7 +105,7 @@ class ProHome extends Component {
                 
                 <ScrollView contentContainerStyle={{  height, width: '100%', alignItems: 'center', marginVertical: '10%'}}>
 
-                <View style={{height:"80%", width : "95%", backgroundColor:'#fff', borderWidth:1, alignSelf:"center",borderRadius: 10, opacity:0.75, borderColor:'#fff', borderWidth:1 }}>
+                <View style={{height:"90%", width : "95%", backgroundColor:'#fff', borderWidth:1, alignSelf:"center",borderRadius: 10, opacity:0.75, borderColor:'#fff', borderWidth:1 }}>
 
 
                     <View style={{alignSelf:"center", alignContent:"center", alignItems:"center", marginTop:"10%"}}> 

@@ -136,15 +136,15 @@ export default class UserSignUp extends Component {
     //     } else {
 
     //         const formData = new FormData();
-    //         if (fileUri != "") {
-    //             var file = {
-    //                 uri: fileUri,
-    //                 name: fileName,
-    //                 type: 'image/png'
-    //             }
-    //             formData.append("file_upload", file)
+            // if (fileUri != "") {
+            //     var file = {
+            //         uri: fileUri,
+            //         name: fileName,
+            //         type: 'image/png'
+            //     }
+            //     formData.append("file_upload", file)
 
-    //         }
+            // }
     //         formData.append("email", email),
     //             formData.append("password", password),
     //             formData.append("address", address),
@@ -238,12 +238,14 @@ export default class UserSignUp extends Component {
                 Alert.alert("Error","Email is not formatted")
             } else {
 
-
-
-                var file = {
-                    uri: fileUri,
-                    name: fileName,
-                    type: 'image/png'
+                if (fileUri != "") {
+                    var file = {
+                        uri: fileUri,
+                        name: fileName,
+                        type: 'image/png'
+                    }
+                    formData.append("file_upload", file)
+    
                 }
 
                 const formData = new FormData();
@@ -252,7 +254,7 @@ export default class UserSignUp extends Component {
                     formData.append("address", address),
                     formData.append("name", name),
                     formData.append("phone_number", phoneNo),
-                    formData.append("file_upload", file),
+                    // formData.append("file_upload", file),
 
                     console.log("email, password, address, name, phoneNo, profilePic", email, password, address, name, phoneNo, profilePic)
 
@@ -341,8 +343,8 @@ export default class UserSignUp extends Component {
         const { email, password, name, address, phoneNo, loader, emailErr, passwordErr, nameErr, addressErr, phoneNoErr } = this.state
         console.log(email, password, name, address, phoneNo)
         return (
-            <View style={{ flex: 1, height: '100%', width:'100%', marginTop: -80 }}>
-                <ImageBackground source={require('../../../assets/opacity.jpg')} style={{ height: "100%", width: "100%", opacity: 0.9 }}>
+            <View style={{ flex: 1, height: '100%', width:'100%' }}>
+                <ImageBackground source={require('../../../assets/background.jpg')} style={{ height: "100%", width: "100%", opacity: 0.9 }}>
 
 
 
@@ -350,9 +352,9 @@ export default class UserSignUp extends Component {
                     <ScrollView>
 
 
-                        <View style={{ flex:1 , height, width: '100%', backgroundColor: "rgba(242, 201, 240, 0.7)", justifyContent: "center", marginTop: 80 }}>
+                        <View style={{ flex:1 , height, width: '100%', justifyContent: "center" }}>
 
-                        <View style={{ alignSelf: "center", alignContent: "center", alignItems: "center", marginTop: -65 }}>
+                        <View style={{ alignSelf: "center", alignContent: "center", alignItems: "center"}}>
                                 <Image source={require('../../../assets/text.png')} style={{ opacity: 2, alignSelf:'center', width:240, height: 115 }} />
                             </View>
 
@@ -361,7 +363,7 @@ export default class UserSignUp extends Component {
 
                             <View style={{ marginTop: "5%", alignContent: "center", alignSelf: "center", alignItems: "center", width: "80%", backgroundColor: "#fff", borderRadius: 10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', paddingHorizontal: "5%", paddingVertical: 5 }}>
 
-                                <View style={{marginVertical:10}}>
+                                <View style={{marginVertical:10, marginTop: "5%"}}>
                                     <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 22, fontWeight: 'bold' }}>CREATE ACCOUNT</Text>
                                 </View>
 
@@ -400,35 +402,35 @@ export default class UserSignUp extends Component {
                                     {/* <Label>Name</Label> */}
                                     <Input onChangeText={(e) => { this.setState({ name: e }) }} onBlur={() => this.checkField("name")} placeholder=" Name" />
                                 </Item>
-                                {nameErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
+                                {nameErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Username is required</Text>}
                                 <Item error={addressErr} >
                                 <Image source={home} style={{ height: 22, width: 22 }} />
                                     {/* <Label>Address</Label> */}
-                                    <Input onBlur={() => this.checkField("address")} onChangeText={(e) => { this.setState({ address: e }) }} placeholder="Address" />
+                                    <Input style={{width: '100%'}} onBlur={() => this.checkField("address")} onChangeText={(e) => { this.setState({ address: e }) }} placeholder="Address" />
                                 </Item>
-                                {addressErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
+                                {addressErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} > Address is required</Text>}
                                 <Item error={phoneNoErr} >
                                 <Image source={phone} style={{ height: 22, width: 22 }} />
                                     {/* <Label>Phone Number</Label> */}
                                     {/* 28644 */}
-                                    <Input keyboardType="number-pad" onBlur={() => this.checkField("phoneNo")} onChangeText={(e) => { this.setState({ phoneNo: e }) }} placeholder="Phone Number" />
+                                    <Input style={{width: '100%'}} keyboardType="number-pad" onBlur={() => this.checkField("phoneNo")} onChangeText={(e) => { this.setState({ phoneNo: e }) }} placeholder="Phone Number" />
                                 </Item>
-                                {phoneNoErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
+                                {phoneNoErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Phone number is required</Text>}
                                 <Item error={emailErr} >
                                 <Image source={envelop} style={{ height: 22, width: 22 }} />
                                     {/* <Label>Email Address</Label> */}
-                                    <Input onBlur={() => this.checkField("email")} onChangeText={(e) => { this.setState({ email: e }) }} placeholder="Email Address" />
+                                    <Input style={{width: '100%'}} onBlur={() => this.checkField("email")} onChangeText={(e) => { this.setState({ email: e }) }} placeholder="Email Address" />
                                 </Item>
-                                {emailErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
+                                {emailErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Email address is required</Text>}
                                 <Item error={passwordErr} >
                                 <Image source={lock} style={{ height: 22, width: 22 }} />
                                     {/* <Label>Password</Label> */}
-                                    <Input style={{fontSize:20}}  onBlur={() => this.checkField("password")} onChangeText={(e) => { this.setState({ password: e }) }} placeholder="Password" secureTextEntry={true} />
+                                    <Input style={{width: '100%'}} style={{fontSize:20}}  onBlur={() => this.checkField("password")} onChangeText={(e) => { this.setState({ password: e }) }} placeholder="Password" secureTextEntry={true} />
                                 </Item>
                                 {passwordErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >min 6 letters</Text>}
                                 <Item onPress={this.openGallery} >
                                 <Image source={camicon} style={{ height: 30, width: 30 }} />
-                                    <Input disabled keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Upload" />
+                                    <Input style={{width: '100%'}} disabled keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Upload Pictures" />
                                 </Item>
 
                                 {this.state.profilePic && <View style={{ display: "flex", flexDirection: "row", marginBottom: "3%", marginVertical: '3%', alignSelf: 'flex-start' }}>

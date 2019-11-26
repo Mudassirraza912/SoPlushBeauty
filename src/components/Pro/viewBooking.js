@@ -400,8 +400,8 @@
 import React, { Component } from 'react'
 import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert, TextInput } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
-import { Container, Content, List, ListItem, Left, Right, Button } from 'native-base';
-import { Avatar, Header, Icon, Card } from 'react-native-elements'
+import { Container, Content, List, ListItem, Left, Right, Button, } from 'native-base';
+import { Avatar, Header, Icon, Card,Divider } from 'react-native-elements'
 import Dialog, { DialogFooter, DialogButton, DialogContent, DialogTitle } from 'react-native-popup-dialog';
 import constants from 'jest-haste-map/build/constants';
 // import { thisExpression } from '@babel/types';
@@ -883,11 +883,11 @@ export default class ViewBooking extends Component {
                                                 </View>
 
                                                 <View style={{ display: "flex", flexDirection: "row" }}>
-                                                    <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:18 , color:'#aaaaaa'}}>Date</Text>
+                                                    <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:18 , color:'#aaaaaa'}}> Date</Text>
                                                     <Text style={{ marginLeft: "3%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:18 }}>{value.service_date}</Text>
                                                 </View>
 
-                                                <View style={{ display: "flex", flexDirection: "row", marginRight: "6%", width:'100%' }}>
+                                                <View style={{ display: "flex", flexDirection: "row", marginRight: "6%", width:'100%', borderBottomColor:'#bdbdbd', borderBottomWidth: 0.2, paddingVertical: 15 }}>
 
                                                     {/* <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
                                                         <Button onPress={() => { this.changeStatus('accepted', value, index) }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#fc8b8c", width: "90%", borderRadius: 10, opacity: 0.7 }}>
@@ -897,7 +897,7 @@ export default class ViewBooking extends Component {
                                                         </Button>
                                                     </View> */}
 
-<View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10,width: '50%' }}>
+<View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10,width: '50%'}}>
                                             {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                                                 <Button onPress={() => { this.props.navigation.navigate('BookingReq')}} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 5 }}>
                                                     <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
@@ -906,8 +906,8 @@ export default class ViewBooking extends Component {
                                                 </Button>
                                             </LinearGradient> */}
 
-<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10}}>
-                                        <TouchableOpacity  onPress={() => { this.props.navigation.navigate('BookingReq')}}  style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, width:'100%' }}>
+<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 5}}>
+                                        <TouchableOpacity  onPress={() => { this.props.navigation.navigate('BookingReq')}}  style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 5 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 5, width:'100%' }}>
                                             <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
                                             DONE
                     </Text>
@@ -916,12 +916,12 @@ export default class ViewBooking extends Component {
                                         </View>
                                                     
 
-                                                    <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
-                                                        <Button style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#ffff", width: "90%", borderRadius: 5, opacity: 0.7, borderColor: "#fc8b8c", borderWidth: 1 }}>
+                                                    <View style={{flex: 1 ,lignContent: "center", alignItems: "center", marginTop: "5%" }}>
+                                                        <TouchableOpacity style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#ffff", width: "90%", borderRadius: 5, opacity: 0.7, borderColor: "#fc8b8c", borderWidth: 1, paddingVertical: 15 }}>
                                                             <Text style={{ alignSelf: "center", color: "#000", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
                                                                 CANCEL
                                             </Text>
-                                                        </Button>
+                                                        </TouchableOpacity>
                                                     </View>
                                                 </View>
                                             </View>

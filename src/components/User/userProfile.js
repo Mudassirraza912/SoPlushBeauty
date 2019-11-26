@@ -185,26 +185,28 @@ export default class UserProfile extends Component {
                         
                         }
                             <Item>
-                        <Icon style={{paddingVertical:"7%"}} active name='user' type="FontAwesome" />
+                        <Icon  active name='user' type="FontAwesome" />
                         {/* <Label>Name</Label> */}
                         <Input  defaultValue={this.state.username} onChangeText={(e) => {this.setState({username:e})}} placeholder="Name" />
                     </Item>
+
+                    <Item >
+                        <Icon active name='email' type="MaterialCommunityIcons" />
+                        {/* <Label>Email Address</Label> */}
+                        {/* <Input disabled  defaultValue={this.state.email} onChangeText={(e) => {this.setState({email:e})}} placeholder="Email Address" /> */}
+                        <Text style={{paddingVertical:15, fontSize:15}}>{this.state.email}</Text>
+                    </Item>
                     
                     <Item floatingLabel>
-                        <Icon style={{paddingVertical:"7%"}} active name='phone' type="MaterialCommunityIcons" />
+                        <Icon active name='phone' type="MaterialCommunityIcons" />
                         {/* <Label>Phone Number</Label> */}
                         <Input defaultValue={this.state.phoneNo} onChangeText={(e) => {this.setState({phoneNo:e})}} placeholder="Phone Number" />
                     </Item>
-                    <Item floatingLabel>
-                        <Icon style={{paddingVertical:"5%"}} active name='email' type="MaterialCommunityIcons" />
-                        {/* <Label>Email Address</Label> */}
-                        <Input disabled defaultValue={this.state.email} onChangeText={(e) => {this.setState({email:e})}} placeholder="Email Address" />
-                    </Item>
-                    <Item floatingLabel>
-                        <Icon style={{paddingVertical:"7%"}} active name='home' type="FontAwesome" />
-                        {/* <Label>Address</Label> */}
+                   
+                    {/* <Item floatingLabel>
+                        <Icon active name='home' type="FontAwesome" />
                         <Input defaultValue={this.state.address} onChangeText={(e) => {this.setState({address:e})}}  placeholder="Address" />
-                    </Item>
+                    </Item> */}
                 
 
                                 {/* <View> 

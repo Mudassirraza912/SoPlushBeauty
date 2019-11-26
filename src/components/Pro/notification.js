@@ -106,7 +106,7 @@ export default class Notification extends Component {
           }}
           
         />
-        <Divider style={{ backgroundColor: 'gray' }} />
+        <Divider style={{ backgroundColor: '#bdbdbd', height: 0.2 }} />
         </View>
       )}
 

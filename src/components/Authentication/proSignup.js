@@ -206,10 +206,14 @@ let date = moment(dOB).format("YYYY-MM-DD")
                 Alert.alert("Error","Email is not Formated")
             } else {
                 console.log('else')
-                var file = {
-                    uri: fileUri,
-                    name: fileName,
-                    type: 'image/png'
+                if (fileUri != "") {
+                    var file = {
+                        uri: fileUri,
+                        name: fileName,
+                        type: 'image/png'
+                    }
+                    formData.append("file_upload", file)
+    
                 }
 
                 const formData = new FormData();
@@ -221,7 +225,7 @@ let date = moment(dOB).format("YYYY-MM-DD")
                     formData.append("date_of_birth", date),
                     formData.append("bank_number", accountNo),
                     formData.append("bank_name", bank),
-                    formData.append("file_upload", file),
+                    // formData.append("file_upload", file),
 
 
 
@@ -330,12 +334,12 @@ let date = moment(dOB).format("YYYY-MM-DD")
         console.log(email, password, name, address, phoneNo, bank, accountNo)
         return (
             <View style={{ flex: 1, height: '100%', width: '100%', marginTop: -80 }}>
-                <ImageBackground source={require('../../../assets/opacity.jpg')} style={{ height: "100%", width: "100%", opacity: 0.9 }}>
+                <ImageBackground source={require('../../../assets/background.jpg')} style={{ height: "100%", width: "100%", opacity: 0.9 }}>
 
                     <ScrollView style={{ height: height }}>
 
 
-                        <View style={{ height: "100%", width: '100%', backgroundColor: "rgba(242, 201, 240, 0.7)", justifyContent: "center", marginTop: 80 }}>
+                        <View style={{ height: "100%", width: '100%', justifyContent: "center", marginTop: 80 }}>
 
                             <View style={{ alignSelf: "center", alignContent: "center", alignItems: "center", marginTop: -65 }}>
                                 <Image source={require('../../../assets/text.png')} style={{ opacity: 2, alignSelf: 'center', width: 240, height: 115 }} />
@@ -431,31 +435,31 @@ let date = moment(dOB).format("YYYY-MM-DD")
 <Item error={nameErr}  >
 <Image source={user} style={{ height: 22, width: 22 }} />
                                     {/* <Label>Name</Label> */}
-                                    <Input placeholderTextColor="#bdbdbd"  onBlur={() => this.checkField("name")} onChangeText={(e) => this.setState({ name: e })} placeholder=" Name" />
+                                    <Input style={{width:"100%"}} placeholderTextColor="#bdbdbd"  onBlur={() => this.checkField("name")} onChangeText={(e) => this.setState({ name: e })} placeholder=" Name" />
                                 </Item>
-                                {nameErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
+                                {nameErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Username is required</Text>}
                                 <Item error={addressErr}  >
                                 <Image source={home} style={{ height: 22, width: 22 }} />
                                     {/* <Label>Address</Label> */}
-                                    <Input placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("address")} onChangeText={(e) => this.setState({ address: e })} placeholder="Address" />
+                                    <Input style={{width:"100%"}} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("address")} onChangeText={(e) => this.setState({ address: e })} placeholder="Address" />
                                 </Item>
-                                {addressErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
+                                {addressErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Address is required</Text>}
                                 <Item error={phoneNoErr}  >
                                 <Image source={phone} style={{ height: 22, width: 22 }} />
                                     {/* <Label>Phone Number</Label> */}
-                                    <Input placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("phoneNo")} keyboardType="number-pad" onChangeText={(e) => this.setState({ phoneNo: e })} placeholder="Phone Number" />
+                                    <Input style={{width:"100%"}} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("phoneNo")} keyboardType="number-pad" onChangeText={(e) => this.setState({ phoneNo: e })} placeholder="Phone Number" />
                                 </Item>
-                                {phoneNoErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
+                                {phoneNoErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Phone no is required</Text>}
                                 <Item error={emailErr}  >
                                 <Image source={envelop} style={{ height: 22, width: 22 }} />
                                     {/* <Label>Email Address</Label> */}
-                                    <Input placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("email")} onChangeText={(e) => this.setState({ email: e })} placeholder="Email Address" />
+                                    <Input style={{width:"100%"}} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("email")} onChangeText={(e) => this.setState({ email: e })} placeholder="Email Address" />
                                 </Item>
                                 {emailErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
                                 <Item error={passwordErr}  >
                                 <Image source={lock} style={{ height: 22, width: 22 }} />
                                     {/* <Label>Password</Label> */}
-                                    <Input placeholderTextColor="#bdbdbd" style={{ fontSize: 20 }} onBlur={() => this.checkField("password")} secureTextEntry={true} onChangeText={(e) => this.setState({ password: e })} placeholder="Password" />
+                                    <Input style={{width:"100%"}} placeholderTextColor="#bdbdbd" style={{ fontSize: 20 }} onBlur={() => this.checkField("password")} secureTextEntry={true} onChangeText={(e) => this.setState({ password: e })} placeholder="Password" />
                                 </Item>
                                 {passwordErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >min 6 letters</Text>}
                                 <View style={{ flexDirection: "row", marginTop: 10, width: "100%", borderBottomWidth: 0.5, borderBottomColor: '#bdbdbd'  }}>
@@ -494,17 +498,17 @@ let date = moment(dOB).format("YYYY-MM-DD")
                                 {dOBErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
                                 <Item error={bankErr}  >
                                 <Image source={museum} style={{ height: 22, width: 22 }} />
-                                    <Input placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("bank")} onChangeText={(e) => this.setState({ bank: e })} placeholder="Bank Name" />
+                                    <Input style={{width:"100%"}} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("bank")} onChangeText={(e) => this.setState({ bank: e })} placeholder="Bank Name" />
                                 </Item>
                                 {bankErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
                                 <Item error={accountNoErr}  >
                                 <Image source={atmcard} style={{ height: 22, width: 22 }} />
-                                    <Input placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("accountNo")} keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Account Number" />
+                                    <Input style={{width:"100%"}} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("accountNo")} keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Account Number" />
                                 </Item>
                                 {accountNoErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
                                 <Item onPress={this.openGallery}  >
                                 <Image source={camicon} style={{ height: 30, width: 30 }} />
-                                    <Input placeholderTextColor="#bdbdbd" disabled keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Upload" />
+                                    <Input style={{width:"100%"}} placeholderTextColor="#bdbdbd" disabled keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Upload Pictures" />
                                 </Item>
 
                                

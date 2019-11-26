@@ -69,7 +69,9 @@ export default class UserAppointment extends Component {
           <View style={{ display: "flex", flexDirection: "row", marginTop: -20, alignItems: 'center', alignContent: 'center', width: '100%' }}>
 
             <View style={{ display: "flex", flexDirection: "column", borderRightWidth: 1, borderRightColor: "#000", height: 35, width: "25%", justifyContent: "center", alignContent: "center", alignItems: "center" }}>
-              <TouchableOpacity style={{ alignItems: 'center' }}>
+              <TouchableOpacity style={{ alignItems: 'center' }} onPress={() =>
+                Alert.alert("Warning!","Will be impelmented")
+              }>
                 <Image source={require('../../../assets/envelope.png')} style={{ height: 22, width: 22 }} />
                 {/* <Icon name="call" /> */}
                 <Text>
@@ -79,7 +81,9 @@ export default class UserAppointment extends Component {
             </View>
 
             <View style={{ display: "flex", flexDirection: "column", borderRightWidth: 1, borderRightColor: "#000", height: 35, width: "25%", justifyContent: "center", alignContent: "center", alignItems: "center" }}>
-              <TouchableOpacity style={{ alignItems: 'center' }}  >
+              <TouchableOpacity style={{ alignItems: 'center' }} onPress={() =>
+                Alert.alert("Warning!","Will be impelmented")
+              } >
                 <Image source={require('../../../assets/phone-call.png')} style={{ height: 22, width: 22 }} />
                 {/* <Icon name="call" /> */}
                 <Text>
@@ -100,7 +104,9 @@ export default class UserAppointment extends Component {
             </View>
 
             <View style={{ height: 35, width: "25%", justifyContent: "center", alignContent: "center", alignItems: "center" }}>
-              <TouchableOpacity style={{ alignItems: 'center' }}>
+              <TouchableOpacity style={{ alignItems: 'center' }} onPress={() =>
+                Alert.alert("Warning!","Will be impelmented")
+              }>
                 {/* <Icon name="call" /> */}
                 <Image source={require('../../../assets/placeholder.png')} style={{ height: 22, width: 22 }} />
                 <Text>
