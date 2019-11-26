@@ -59,20 +59,20 @@ export default class PassChange extends Component {
                     <View style={{backgroundColor:"#fff", borderRadius:10, width:"90%",padding: 10}}> 
 
                         
-                    <Item floatingLabel>
-                        <Icon active name='lock-outline' type="MaterialCommunityIcons" />   
+                    <Item >
+                    <Image source={require("../../../assets/lockopen.png")} style={{ height: 20, width: 15 }} />
                         {/* <Label>Email Address</Label> */}
                         <Input secureTextEntry={true} onChangeText={(e) => {this.setState({email:e})}} placeholder="Current Password" style={{fontSize:15}}/>
                     </Item>
                     
-                    <Item floatingLabel>
-                        <Icon active name='lock-outline' type="MaterialCommunityIcons" />
+                    <Item>
+                    <Image source={require("../../../assets/lockopen.png")} style={{ height: 20, width: 15 }} />
                         {/* <Label>Password</Label> */}
                         <Input  style={{fontSize:15}} onChangeText={(e) => {this.setState({password:e})}} placeholder="New Password" secureTextEntry={true} />
                     </Item>
 
-                    <Item floatingLabel>
-                        <Icon active name='lock-outline' type="MaterialCommunityIcons" />
+                    <Item >
+                    <Image source={require("../../../assets/lockopen.png")} style={{ height: 20, width: 15 }} />
                         {/* <Label>Password</Label> */}
                         <Input  style={{fontSize:15}}  onChangeText={(e) => {this.setState({password:e})}} placeholder="Confirm Password" secureTextEntry={true} />
                     </Item>

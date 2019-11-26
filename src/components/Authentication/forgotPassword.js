@@ -531,7 +531,7 @@ export default class ForgotPassword extends Component {
 
 <View style={{ display: 'flex', flexDirection: 'row', width: '100%' }} >
                         <View style={{ width: '20%', alignItems: 'center', justifyContent: 'center', alignContent: 'center' }}>
-                            <Image source={require("../../../assets/lock.png")} style={{ height: 25, width: 25 }} />
+                            <Image source={require("../../../assets/lockopen.png")} style={{ height: 20, width: 15 }}  />
                         </View>
                         <Item stackedLabel style={{ width: '80%', borderBottomWidth: 0 }}>
                             <Label style={{ marginLeft: 3, color: 'lightgray' }}>Password</Label>
@@ -542,7 +542,7 @@ export default class ForgotPassword extends Component {
 
                     <View style={{ display: 'flex', flexDirection: 'row', width: '100%' }} >
                         <View style={{ width: '20%', alignItems: 'center', justifyContent: 'center', alignContent: 'center' }}>
-                            <Image source={require("../../../assets/lock.png")} style={{ height: 25, width: 25 }} />
+                            <Image source={require("../../../assets/lockopen.png")} style={{ height: 20, width: 15 }}  />
                         </View>
                         <Item stackedLabel style={{ width: '80%', borderBottomWidth: 0 }}>
                             <Label style={{ marginLeft: 3, color: 'lightgray' }}>Confirm Password</Label>

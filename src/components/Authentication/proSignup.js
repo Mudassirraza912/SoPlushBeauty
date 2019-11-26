@@ -12,7 +12,7 @@ import user from '../../../assets/user.png'
 import home from '../../../assets/home.png'
 import phone from '../../../assets/phone-call.png'
 import envelop from '../../../assets/envelope.png'
-import lock from '../../../assets/lock.png'
+import lock from '../../../assets/lockopen.png'
 import cake from '../../../assets/cake.png'
 import museum from '../../../assets/museum.png'
 import atmcard from '../../../assets/atm-card.png'
@@ -457,7 +457,7 @@ export default class ProSignUp extends Component {
                                 </Item>
                                 {emailErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
                                 <Item error={passwordErr}  >
-                                    <Image source={lock} style={{ height: 20, width: 20 }} />
+                                    <Image source={lock} style={{ height: 19, width: 14 }} />
                                     {/* <Label>Password</Label> */}
                                     <Input style={{ width: "100%", fontSize: 15 }} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("password")} secureTextEntry={true} onChangeText={(e) => this.setState({ password: e })} placeholder="Password" />
                                 </Item>
@@ -497,7 +497,7 @@ export default class ProSignUp extends Component {
                                 </View>
                                 {dOBErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
                                 <Item error={bankErr}  >
-                                    <Image source={museum} style={{ height: 15, width: 20 }} />
+                                    <Image source={museum} style={{ height: 17, width: 18 }} />
                                     <Input style={{ width: "100%", fontSize: 15 }} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("bank")} onChangeText={(e) => this.setState({ bank: e })} placeholder="Bank Name" />
                                 </Item>
                                 {bankErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}

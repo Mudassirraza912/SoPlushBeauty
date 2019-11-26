@@ -80,7 +80,7 @@ class DrawerMenu extends Component {
                         onPress={() =>  this.props.navigation.navigate('Main')}
                       >
   
-                        <View style={{marginLeft:10, width:40}}>
+                        <View style={{marginLeft:10, width: 30}}>
                         <Image source={require('../../assets/home.png')} style={{height:30, width:30}} />
                         </View>
   
@@ -100,7 +100,7 @@ class DrawerMenu extends Component {
                           this.props.navigation.navigate('ProProfile')}
   
                       >
-                      <View style={{marginLeft:10, width:40}}>
+                      <View style={{marginLeft:10, width: 30}}>
                         <Image source={require('../../assets/user.png')} style={{height:30, width:30}} />
                         </View>
   
@@ -122,7 +122,7 @@ class DrawerMenu extends Component {
                         this.props.navigation.navigate('Notification')}
   
                       >
-                      <View style={{marginLeft:10, width:40}}>
+                      <View style={{marginLeft:10, width: 30}}>
                       <Image source={require('../../assets/notification.png')} style={{height:26, width:20}} />
                         </View>
   
@@ -152,7 +152,7 @@ class DrawerMenu extends Component {
                           this.props.navigation.navigate('ServingHistory')}
   
                       >
-                      <View style={{marginLeft:10, width:40}}> 
+                      <View style={{marginLeft:10, width: 30}}> 
                       <Image source={require('../../assets/history.png')} style={{height:30, width:30}} />
                         </View>
   
@@ -176,7 +176,7 @@ class DrawerMenu extends Component {
                           this.props.navigation.navigate('AddService')}
   
                       >
-                      <View style={{marginLeft:10, width:40}}>
+                      <View style={{marginLeft:10, width: 30}}>
                       <Image source={require('../../assets/more.png')} style={{height:30, width:30}} />
                         </View>
   
@@ -199,7 +199,7 @@ class DrawerMenu extends Component {
                           this.props.navigation.navigate('About')}
   
                       >
-                      <View style={{marginLeft:10, width:40}}>
+                      <View style={{marginLeft:10, width: 30}}>
                       <Image source={require('../../assets/info1.png')} style={{height:30, width:30}} />
                         </View>
   
@@ -221,7 +221,7 @@ class DrawerMenu extends Component {
                           this.props.navigation.navigate('ViewBooking')}
   
                       >
-                      <View style={{marginLeft:10, width:40}}>
+                      <View style={{marginLeft:10, width: 30}}>
                       <Image source={require('../../assets/hist.png')} style={{height:30, width:26}} />
                         </View>
   
@@ -242,7 +242,7 @@ class DrawerMenu extends Component {
                           this.props.navigation.navigate('PassChange')}
   
                       >
-                      <View style={{marginLeft:10, width:40}}>
+                      <View style={{marginLeft:10, width: 30}}>
                       <Image source={require('../../assets/lockopen.png')} style={{height:26, width:20}} />
                         </View>
   
@@ -263,7 +263,7 @@ class DrawerMenu extends Component {
                           Alert.alert("Warning!","Will be impelmented")
                         }
                       >
-                      <View style={{marginLeft:10, width:40}}>
+                      <View style={{marginLeft:10, width: 30}}>
                       <Image source={require('../../assets/trans1.png')} style={{height:20, width:26}} />
                         </View>
   
@@ -287,7 +287,7 @@ class DrawerMenu extends Component {
                           this.props.navigation.navigate('Term')}
   
                       >
-                      <View style={{marginLeft:10, width:40}}>
+                      <View style={{marginLeft:10, width: 30}}>
                       <Image source={require('../../assets/accept.png')} style={{height:25, width:20}} />
                         </View>
   
@@ -328,7 +328,7 @@ class DrawerMenu extends Component {
                         }}
   
                       >
-                      <View style={{marginLeft:10, width:40}}>
+                      <View style={{marginLeft:10, width: 30}}>
                       <Image source={require('../../assets/logout.png')} style={{height:30, width:30}} />
                         </View>
   

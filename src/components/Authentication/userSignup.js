@@ -14,7 +14,7 @@ import user from '../../../assets/user.png'
 import home from '../../../assets/home.png'
 import phone from '../../../assets/phone-call.png'
 import envelop from '../../../assets/envelope.png'
-import lock from '../../../assets/lock.png'
+import lock from '../../../assets/lockopen.png'
 import cake from '../../../assets/cake.png'
 import museum from '../../../assets/museum.png'
 import atmcard from '../../../assets/atm-card.png'
@@ -423,7 +423,7 @@ export default class UserSignUp extends Component {
                                 </Item>
                                 {emailErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Email address is required</Text>}
                                 <Item error={passwordErr} >
-                                <Image source={lock} style={{ height: 20, width: 20 }} />
+                                <Image source={lock} style={{  height: 19, width: 14}} />
                                     {/* <Label>Password</Label> */}
                                     <Input style={{width: '100%', fontSize: 15}}  onBlur={() => this.checkField("password")} onChangeText={(e) => { this.setState({ password: e }) }} placeholder="Password" secureTextEntry={true} />
                                 </Item>
