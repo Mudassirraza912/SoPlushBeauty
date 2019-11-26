@@ -319,7 +319,7 @@ export default class UserSignUp extends Component {
                     })
                     .catch(err => {
                         // Alert.alert(err)
-                        Alert.alert('Try Later')
+                        Alert.alert("Error",'Try Later')
                         console.log("err err err", err)
                         this.setState({ loader: false })
 
@@ -344,7 +344,7 @@ export default class UserSignUp extends Component {
         console.log(email, password, name, address, phoneNo)
         return (
             <View style={{ flex: 1, height: '100%', width:'100%' }}>
-                <ImageBackground source={require('../../../assets/background.jpg')} style={{ height: "100%", width: "100%", opacity: 0.9 }}>
+                <ImageBackground source={require('../../../assets/inner.png')} style={{ height: "100%", width: "100%" }}>
 
 
 
@@ -355,7 +355,7 @@ export default class UserSignUp extends Component {
                         <View style={{ flex:1 , height, width: '100%', justifyContent: "center" }}>
 
                         <View style={{ alignSelf: "center", alignContent: "center", alignItems: "center"}}>
-                                <Image source={require('../../../assets/text.png')} style={{ opacity: 2, alignSelf:'center', width:240, height: 115 }} />
+                                <Image source={require('../../../assets/text.png')} style={{  alignSelf:'center', width:240, height: 115 }} />
                             </View>
 
 
@@ -364,29 +364,29 @@ export default class UserSignUp extends Component {
                             <View style={{ marginTop: "5%", alignContent: "center", alignSelf: "center", alignItems: "center", width: "80%", backgroundColor: "#fff", borderRadius: 10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', paddingHorizontal: "5%", paddingVertical: 5 }}>
 
                                 <View style={{marginVertical:10, marginTop: "5%"}}>
-                                    <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 22, fontWeight: 'bold' }}>CREATE ACCOUNT</Text>
+                                    <Text style={{ fontFamily: "Poppins-Regular_0", fontSize: 20, fontWeight: 'bold' }}>CREATE ACCOUNT</Text>
                                 </View>
 
                                 {/* <Item>
-                                    <Image source={user} style={{ height: 22, width: 22 }} />
+                                    <Image source={user} style={{ height: 15, width: 20 }} />
                                     <Input placeholderTextColor="#bdbdbd" onChangeText={(e) => { this.setState({ name: e }) }} placeholder=" Name" />
                                 </Item>
                                 <Item>
-                                    <Image source={home} style={{ height: 22, width: 22 }} />
+                                    <Image source={home} style={{ height: 15, width: 20 }} />
                                    
                                     <Input placeholderTextColor="#bdbdbd" onChangeText={(e) => { this.setState({ address: e }) }} placeholder="Address" />
                                 </Item>
                                 <Item>
-                                    <Image source={phone} style={{ height: 22, width: 22 }} />
+                                    <Image source={phone} style={{ height: 15, width: 20 }} />
                                     <Input onChangeText={(e) => { this.setState({ phoneNo: e }) }} placeholder="Phone Number" />
                                 </Item>
                                 <Item>
-                                    <Image source={envelop} style={{ height: 22, width: 22 }} />
+                                    <Image source={envelop} style={{ height: 15, width: 20 }} />
                                     <Input placeholderTextColor="#bdbdbd" onChangeText={(e) => { this.setState({ email: e }) }} placeholder="Email Address" />
                                 </Item>
 
                                 <Item>
-                                    <Image source={lock} style={{ height: 22, width: 22 }} />
+                                    <Image source={lock} style={{ height: 15, width: 20 }} />
                                     
                                     <Input style={{fontSize:20}}  placeholderTextColor="#bdbdbd" onChangeText={(e) => this.setState({ password: e })} placeholder="Password"secureTextEntry />
                                 </Item>
@@ -398,39 +398,39 @@ export default class UserSignUp extends Component {
  */}
 
 <Item error={nameErr} >
-<Image source={user} style={{ height: 22, width: 22 }} />
+<Image source={user} style={{ height: 20, width: 17 }} />
                                     {/* <Label>Name</Label> */}
                                     <Input onChangeText={(e) => { this.setState({ name: e }) }} onBlur={() => this.checkField("name")} placeholder=" Name" />
                                 </Item>
                                 {nameErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Username is required</Text>}
                                 <Item error={addressErr} >
-                                <Image source={home} style={{ height: 22, width: 22 }} />
+                                <Image source={home} style={{ height: 20, width: 17 }} />
                                     {/* <Label>Address</Label> */}
-                                    <Input style={{width: '100%'}} onBlur={() => this.checkField("address")} onChangeText={(e) => { this.setState({ address: e }) }} placeholder="Address" />
+                                    <Input style={{width: '100%', fontSize: 15}} onBlur={() => this.checkField("address")} onChangeText={(e) => { this.setState({ address: e }) }} placeholder="Address" />
                                 </Item>
                                 {addressErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} > Address is required</Text>}
                                 <Item error={phoneNoErr} >
-                                <Image source={phone} style={{ height: 22, width: 22 }} />
+                                <Image source={phone} style={{ height: 20, width: 18 }} />
                                     {/* <Label>Phone Number</Label> */}
                                     {/* 28644 */}
-                                    <Input style={{width: '100%'}} keyboardType="number-pad" onBlur={() => this.checkField("phoneNo")} onChangeText={(e) => { this.setState({ phoneNo: e }) }} placeholder="Phone Number" />
+                                    <Input style={{width: '100%', fontSize: 15}} keyboardType="number-pad" onBlur={() => this.checkField("phoneNo")} onChangeText={(e) => { this.setState({ phoneNo: e }) }} placeholder="Phone Number" />
                                 </Item>
                                 {phoneNoErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Phone number is required</Text>}
                                 <Item error={emailErr} >
-                                <Image source={envelop} style={{ height: 22, width: 22 }} />
+                                <Image source={envelop} style={{ height: 15, width: 20 }} />
                                     {/* <Label>Email Address</Label> */}
-                                    <Input style={{width: '100%'}} onBlur={() => this.checkField("email")} onChangeText={(e) => { this.setState({ email: e }) }} placeholder="Email Address" />
+                                    <Input style={{width: '100%', fontSize: 15}} onBlur={() => this.checkField("email")} onChangeText={(e) => { this.setState({ email: e }) }} placeholder="Email Address" />
                                 </Item>
                                 {emailErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Email address is required</Text>}
                                 <Item error={passwordErr} >
-                                <Image source={lock} style={{ height: 22, width: 22 }} />
+                                <Image source={lock} style={{ height: 20, width: 20 }} />
                                     {/* <Label>Password</Label> */}
-                                    <Input style={{width: '100%'}} style={{fontSize:20}}  onBlur={() => this.checkField("password")} onChangeText={(e) => { this.setState({ password: e }) }} placeholder="Password" secureTextEntry={true} />
+                                    <Input style={{width: '100%', fontSize: 15}}  onBlur={() => this.checkField("password")} onChangeText={(e) => { this.setState({ password: e }) }} placeholder="Password" secureTextEntry={true} />
                                 </Item>
                                 {passwordErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >min 6 letters</Text>}
                                 <Item onPress={this.openGallery} >
-                                <Image source={camicon} style={{ height: 30, width: 30 }} />
-                                    <Input style={{width: '100%'}} disabled keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Upload Pictures" />
+                                <Image source={camicon} style={{ height: 15, width: 18 }} />
+                                    <Input style={{width: '100%', fontSize: 15}} disabled keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Upload Pictures" />
                                 </Item>
 
                                 {this.state.profilePic && <View style={{ display: "flex", flexDirection: "row", marginBottom: "3%", marginVertical: '3%', alignSelf: 'flex-start' }}>
@@ -467,7 +467,7 @@ export default class UserSignUp extends Component {
 
 
                                 {/* <Button onPress={this.signUp} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
-                    <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
+                    <Text style={{alignSelf:"center",color:"#fff", fontFamily:"Poppins-Regular_0", fontSize:20}}>
                         Sign Up
                     </Text>
                 </Button> */}
@@ -479,7 +479,7 @@ export default class UserSignUp extends Component {
                                     <View style={{ alignContent: "center", alignItems: "center", width: '100%',  paddingVertical:'5%' }}>
                                         <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "100%", borderRadius: 10 }}>
                                             <TouchableOpacity onPress={this.signUp} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
-                                                <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 , paddingVertical: '7%', marginTop:-5}}>
+                                                <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20 , paddingVertical: '7%', marginTop:-5}}>
                                                 SIGN UP
 </Text>
                                             </TouchableOpacity>

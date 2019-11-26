@@ -24,7 +24,7 @@ export default class SelectedProfile extends Component {
             cart: this.props.navigation.getParam('cart'),
             selectdate: this.props.navigation.getParam('selectDate'),
             works: [Cover1, Cover2, Cover3, Cover4, Cover1, Cover3, Cover2, Cover4],
-            dateSlot: [{ id: 1, time: "11: 10 AM" }, { id: 2, time: "11: 15 AM" }, { id: 3, time: "11: 020 AM" }, { id: 4, time: "11: 25 AM" }],
+            dateSlot: [{ id: 1, time: "11: 00 AM" }, { id: 2, time: "11: 30 AM" }, { id: 3, time: "12: 00 AM" }, { id: 4, time: "01: 00 PM" }, { id: 4, time: "02: 00 AM" }],
             note: ''
 
 
@@ -93,19 +93,19 @@ export default class SelectedProfile extends Component {
         console.log("Date", date, month, year, sDate)
         return (
             <View style={{ flex: 1, height:'100%', width:'100%', marginTop: -80 }}>
-                <ImageBackground source={require('../../../assets/opacity.jpg')} style={{ height: "100%", width: "100%", opacity: 0.9, marginTop: 20 }}>
+                <ImageBackground source={require('../../../assets/inner.png')} style={{ height: "100%", width: "100%", marginTop: 20 }}>
 
 
                     <Header
                         containerStyle={{ marginTop: 40, backgroundColor: "#fff" }}
                         placement="left"
                         leftComponent={<Icon onPress={() => { this.props.navigation.goBack() }} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{ alignSelf: 'center', fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>PROFILE</Text>}
-                        rightComponent={<TouchableOpacity onPress={() => {Alert.alert("Warning!", "Will be implemented")}}><Image source={require('../../../assets/edit.png')} style={{ height: 30, width: 30 }} />
+                        centerComponent={<Text style={{ alignSelf: 'center', fontSize: 20, fontFamily: "Poppins-Regular_0" }}>PROFILE</Text>}
+                        rightComponent={<TouchableOpacity onPress={() => {Alert.alert("Warning!", "Will be implemented")}}><Image source={require('../../../assets/edit.png')} style={{height:20, width:20}} />
                         </TouchableOpacity>}
                     />
 
-                    <View style={{ height:'100%', width:'100%', backgroundColor: "rgba(246, 232, 232, 0.7)", justifyContent: "center" }}>
+                    <View style={{ height:'100%', width:'100%', justifyContent: "center" }}>
 
                         <ScrollView style={{ height: height }}>
 
@@ -115,7 +115,7 @@ export default class SelectedProfile extends Component {
 
                                 {this.state.selectedUser !== null ?
 
-                                    <Card containerStyle={{ backgroundColor: "#fff", borderRadius: 20, width: "90%", padding: 0 }}>
+                                    <View style={{ backgroundColor: "#fff", borderRadius: 20, width: "90%", padding: 0 }}>
                                         {/* <View style={{ width: "100%" }}>
                                             <Image resizeMode="cover" style={{ width: "100%", height: 300, borderRadius: 10 }} source={{ uri: `https://hnhtechsolutions.com/hassan/soplush/profile_pics/${this.state.profileData.profile_pic}` }} />
                                         </View> */}
@@ -123,16 +123,16 @@ export default class SelectedProfile extends Component {
                                             <Image source={{ uri: `https://hnhtechsolutions.com/hassan/soplush/profile_pics/${this.state.profileData.profile_pic}` }} style={{ height: 200, width: "100%", borderTopRightRadius: 10, borderTopLeftRadius: 10 }} />
                                         </View>
 
-                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10, padding: 3  }}>
-                                            <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Name</Text>
-                                            <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>{this.state.profileData.username}</Text>
-                                            <Divider style={{ backgroundColor: 'lightgray' }} />
+                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10, padding: 5 }}>
+                                            <Text style={{ width: "30%", fontFamily: "Poppins-Regular_0", fontSize: 15, color: "gray" }}>Name</Text>
+                                            <Text style={{ fontFamily: "Poppins-Regular_0", fontSize: 15 }}>{this.state.profileData.username}</Text>
+                                            <Divider style={{ backgroundColor: 'lightgray' , width:"95%"}} />
                                         </View>
 
-                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10, padding: 3  }}>
-                                            <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Email</Text>
-                                            <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>{this.state.profileData.email}</Text>
-                                            <Divider style={{ backgroundColor: 'lightgray' }} />
+                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10, padding: 5 }}>
+                                            <Text style={{ width: "30%", fontFamily: "Poppins-Regular_0", fontSize: 15, color: "gray" }}>Email</Text>
+                                            <Text style={{ fontFamily: "Poppins-Regular_0", fontSize: 15 }}>{this.state.profileData.email}</Text>
+                                            <Divider style={{ backgroundColor: 'lightgray', width:"95%" }} />
                                         </View>
 
                                         {/* <View style={{
@@ -171,11 +171,11 @@ export default class SelectedProfile extends Component {
 
 
 
-                                        {/* <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10 }}>
-                                            <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Gender</Text>
-                                            <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>{this.state.profileData.gender}</Text>
-                                            <Divider style={{ backgroundColor: 'lightgray' }} />
-                                        </View> */}
+                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10, padding: 5}}>
+                                            <Text  style={{ width: "30%", fontFamily: "Poppins-Regular_0", fontSize: 15, color: "gray" }}>Gender</Text>
+                                            <Text style={{ fontFamily: "Poppins-Regular_0", fontSize: 15 }}>{this.state.profileData.gender}</Text>
+                                            <Divider style={{ backgroundColor: 'lightgray', width:"95%" }} />
+                                        </View>
 
 
 
@@ -187,8 +187,8 @@ export default class SelectedProfile extends Component {
                                                 </Item> */}
 
 
-                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10 , padding: 3 }}>
-                                            <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Select Date</Text>
+                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10 , padding: 5}}>
+                                            <Text style={{ width: "30%", fontFamily: "Poppins-Regular_0", fontSize: 15, color: "gray" }}>Select Date</Text>
                                             <DatePicker
                                                 // date={this.state.date} //initial date from state
                                                 defaultDate={new Date()}
@@ -220,23 +220,23 @@ export default class SelectedProfile extends Component {
 
                                                 }}
                                                 underlineColorAndroid="#f55f2a" />
-                                            {/* <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize:15}}>
+                                            {/* <Text style={{fontFamily:"Poppins-Regular_0", fontSize:15}}>
                                     {this.state.profileData.birthdate}</Text> */}
-                                            <Divider style={{ backgroundColor: 'lightgray' }} />
+                                            <Divider style={{ backgroundColor: 'lightgray', width:"95%" }} />
                                         </View>
 
 
 
 
 
-                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10 }}>
-                                            <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Available Slot</Text>
+                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10, padding: 5}}>
+                                            <Text style={{ width: "30%", fontFamily: "Poppins-Regular_0", fontSize: 15, color: "gray" }}>Available Slot</Text>
 
-                                            <View style={{ flexDirection: "row", width: "100%", marginLeft: 10 }}>
+                                            <View style={{ flexDirection: "row", width: "100%" }}>
                                                 <FlatList style={{ flex: 1, marginTop: "3%" }}
                                                     data={this.state.dateSlot}
                                                     renderItem={({ item, index }) => (
-                                                        <View style={{ flexDirection: "column", margin: 2,width: "30%", borderRadius: 20, alignContent: "center", alignItems: "center", alignSelf: "center", padding: 3 }}>
+                                                        <View style={{ flexDirection: "column", margin: 2,width: "30%", borderRadius: 20, alignContent: "center", alignItems: "center", alignSelf: "center",}}>
 
                                                             {selectedSlot.time == item.time ?
                                                                 <TouchableOpacity style={{ width: "100%", }} onPress={() => { this.workFunction(item) }}>
@@ -260,23 +260,23 @@ export default class SelectedProfile extends Component {
                                                     keyExtractor={(item, index) => index}
                                                 />
                                             </View>
-                                            <Divider style={{ backgroundColor: 'lightgray' }} />
+                                            <Divider style={{ backgroundColor: 'lightgray', width:"95%" }} />
                                         </View>
 
 
 
-                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10, padding: 3  }}>
-                                            <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Expertise</Text>
-                                            <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>{this.state.profileData.expertise}</Text>
-                                            <Divider style={{ backgroundColor: 'lightgray' }} />
+                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10, padding: 5 }}>
+                                            <Text style={{ width: "30%", fontFamily: "Poppins-Regular_0", fontSize: 15, color: "gray" }}>Expertise</Text>
+                                            <Text style={{ fontFamily: "Poppins-Regular_0", fontSize: 15 }}>{this.state.profileData.expertise}</Text>
+                                            <Divider style={{ backgroundColor: 'lightgray' , width:"95%"}} />
                                         </View>
 
 
 
-                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10, padding: 3  }}>
-                                            <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>About me</Text>
-                                            <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>{this.state.profileData.about}</Text>
-                                            <Divider style={{ backgroundColor: 'lightgray' }} />
+                                        <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10, padding: 5 }}>
+                                            <Text style={{ width: "30%", fontFamily: "Poppins-Regular_0", fontSize: 15, color: "gray" }}>About me</Text>
+                                            <Text style={{ fontFamily: "Poppins-Regular_0", fontSize: 15 }}>{this.state.profileData.about}</Text>
+                                            <Divider style={{ backgroundColor: 'lightgray', width:"95%" }} />
                                         </View>
 
 
@@ -286,7 +286,7 @@ export default class SelectedProfile extends Component {
 
 
                                         <View style={{ flex: 1,  alignItems: 'center', marginTop: 15, padding: 3, width:'100%'  }}>
-                                            <Text style={{ width: "30%", marginLeft: 15, fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray", alignSelf: "flex-start" }}>
+                                            <Text style={{ width: "30%", marginLeft: 15, fontFamily: "Poppins-Regular_0", fontSize: 15, color: "gray", alignSelf: "flex-start" }}>
                                                 Work</Text>
                                             <FlatList style={{ flex: 1, marginTop: "3%" }}
                                                 data={this.state.works}
@@ -346,7 +346,7 @@ export default class SelectedProfile extends Component {
 
 
                                                 }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#fc8b8c", width: "90%", borderRadius: 10, opacity: 0.7 }}>
-                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 15 }}>
                                                         Book Now
 </Text>
                                                 </Button>
@@ -394,7 +394,7 @@ export default class SelectedProfile extends Component {
 
 
                                                 }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10, width:'100%' }}>
-                                                <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 15 }}>
                                                         Book Now
 </Text>
                                                 </Button>
@@ -411,6 +411,8 @@ export default class SelectedProfile extends Component {
                                                     //     selectdate: this.state.selectdate,
                                                     //     note: this.state.note
                                                     // })
+
+                                                    if(this.state.selectedSlot != "") {
 
 
                                                     if (this.state.selectdate == undefined) {
@@ -436,17 +438,21 @@ export default class SelectedProfile extends Component {
 
                                                     }
 
+                                                }else{
+                                                    Alert.alert("Error", "Please select time slot")
+                                                }
+
 
 
                                                 }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
-                                                    <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: '6%'}}>
-                                                        Book Now
+                                                    <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 15, paddingVertical: '6%'}}>
+                                                        BOOK NOW
                     </Text>
                                                 </TouchableOpacity>
                                             </LinearGradient>
                                         </View>
                                         {/* </View> */}
-                                    </Card>
+                                    </View>
 
                                     :
 
@@ -490,7 +496,7 @@ export default class SelectedProfile extends Component {
                                                 </Item> */}
 
                                         <View style={{ display: "flex", flexDirection: "column", marginTop: 15 }}>
-                                            <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Selected Date</Text>
+                                            <Text style={{ width: "30%", fontFamily: "Poppins-Regular_0", fontSize: 15, color: "gray" }}>Selected Date</Text>
                                             <DatePicker
                                                 // date={this.state.date} //initial date from state
                                                 defaultDate={new Date(year, month, date)}
@@ -522,14 +528,14 @@ export default class SelectedProfile extends Component {
 
                                                 }}
                                                 underlineColorAndroid="#f55f2a" />
-                                            {/* <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize:15}}>
+                                            {/* <Text style={{fontFamily:"Poppins-Regular_0", fontSize:15}}>
                                     {this.state.profileData.birthdate}</Text> */}
                                             <Divider style={{ backgroundColor: 'lightgray' }} />
                                         </View>
 
 
                                         <View style={{ display: "flex", flexDirection: "column", marginTop: 15 }}>
-                                            <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "gray" }}>Available Slot</Text>
+                                            <Text style={{ width: "30%", fontFamily: "Poppins-Regular_0", fontSize: 15, color: "gray" }}>Available Slot</Text>
 
                                             <View style={{ flexDirection: "row", width: "100%" }}>
                                                 <FlatList style={{ flex: 1, marginTop: "3%" }}
@@ -606,7 +612,7 @@ export default class SelectedProfile extends Component {
 
 
                                                 }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#fc8b8c", width: "90%", borderRadius: 10, opacity: 0.7 }}>
-                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 15 }}>
                                                         Book Now
                                             </Text>
                                                 </Button>
@@ -656,7 +662,7 @@ export default class SelectedProfile extends Component {
 
 
                                                 }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
-                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 15 }}>
                                                         Book Now
 </Text>
                                                 </Button>
@@ -705,7 +711,7 @@ export default class SelectedProfile extends Component {
 
 
                                                 }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
-                                                    <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
+                                                    <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 15, paddingVertical: 15 }}>
                                                         Book Now
                     </Text>
                                                 </TouchableOpacity>

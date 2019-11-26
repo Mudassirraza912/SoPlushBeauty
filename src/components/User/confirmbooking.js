@@ -152,20 +152,20 @@ export default class ConfirmBooking extends Component {
         // console.log('profileData', profileData)
         return (
             <View style={{ flex: 1, height:'100%', width:'100%', marginTop: -80 }}>
-                <ImageBackground source={require('../../../assets/opacity.jpg')} style={{ height: "100%", width: "100%", opacity: 0.9, marginTop: 20 }}>
+                <ImageBackground source={require('../../../assets/inner.png')} style={{ height: "100%", width: "100%", marginTop: 20 }}>
 
 
                     <Header
                         containerStyle={{ marginTop: 40, backgroundColor: "#fff" }}
                         placement="left"
                         leftComponent={<Icon onPress={() => { this.props.navigation.goBack() }} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{alignSelf:'center',fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>CONFIRM BOOKING</Text>}
+                        centerComponent={<Text style={{alignSelf:'center',fontSize: 20, fontFamily: "Poppins-Regular_0" }}>CONFIRM BOOKING</Text>}
                         rightComponent={<TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
-                            <Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />
+                            <Image source={require('../../../assets/notification.png')} style={{ height:26, width:20 }} />
                         </TouchableOpacity>}
                     />
 
-                    <View style={{flex: 1, height, width:'100%', backgroundColor: "rgba(246, 232, 232, 0.7)", justifyContent: "center" }}>
+                    <View style={{flex: 1, height, width:'100%', justifyContent: "center" }}>
 
                         <ScrollView style={{ height: height }}>
 
@@ -173,45 +173,45 @@ export default class ConfirmBooking extends Component {
 
                                 {/* <View style={{backgroundColor:"#fff",borderRadius:10, width:"90%"}}> */}
 
-                                <Card containerStyle={{ backgroundColor: "#fff", borderRadius: 10, width: "90%", }}>
+                                <View style={{ backgroundColor: "#fff", borderRadius: 10, width: "90%", padding:10, paddingHorizontal:"5%"}}>
 
                                     
 
                                     <View style={{ display: "flex", flexDirection: "column", marginTop: 15 }}>
-                                        <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 22, color: "#bdbdbd" }}>Booking Time</Text>
-                                        <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 18 }}>{this.state.selectedSlot.time}</Text>
+                                        <Text style={{ width: "50%", fontFamily: "Poppins-Regular_0", fontSize: 16, color: "#bdbdbd" }}>Booking Time</Text>
+                                        <Text style={{ fontFamily: "Poppins-Regular_0", fontSize: 14 }}>{this.state.selectedSlot.time}</Text>
                                         {/* <Divider style={{ backgroundColor: 'lightgray' }} /> */}
                                     </View>
 
-                                    <View style={{ display: "flex", flexDirection: "column", marginTop: 15 }}>
-                                        <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 22,color: "#bdbdbd" }}>Booking Day</Text>
-                                        <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 18 }}>{this.state.selectdate}</Text>
+                                    <View style={{ display: "flex", flexDirection: "column", marginTop: 20 }}>
+                                        <Text style={{ width: "50%", fontFamily: "Poppins-Regular_0", fontSize: 16,color: "#bdbdbd" }}>Booking Date</Text>
+                                        <Text style={{ fontFamily: "Poppins-Regular_0", fontSize: 14 }}>{this.state.selectdate}</Text>
                                         {/* <Divider style={{ backgroundColor: 'lightgray' }} /> */}
                                     </View>
 
 
-                                    <View style={{ display: "flex", flexDirection: "column", marginTop: 15 }}>
+                                    <View style={{ display: "flex", flexDirection: "column", marginTop: 20 }}>
 
-                                        <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 22,color: "#bdbdbd" }}>Provider Name</Text>
+                                        <Text style={{ width: "50%", fontFamily: "Poppins-Regular_0", fontSize: 16,color: "#bdbdbd" }}>Provider Name</Text>
                                         {this.state.profileData !== null ?
-                                            <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 18 }}>{this.state.profileData.username}</Text>
+                                            <Text style={{ fontFamily: "Poppins-Regular_0", fontSize: 14 }}>{this.state.profileData.username}</Text>
                                             :
-                                            <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 18 }}>UnSelecteds</Text>
+                                            <Text style={{ fontFamily: "Poppins-Regular_0", fontSize: 14 }}>UnSelecteds</Text>
                                         }
                                         {/* <Divider style={{ backgroundColor: 'lightgray' }} /> */}
                                     </View>
 
 
-                                    <View style={{ display: "flex", flexDirection: "column", marginTop: 15 }}>
-                                        <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 22,color: "#bdbdbd"}}>Service</Text>
+                                    <View style={{ display: "flex", flexDirection: "column", marginTop: 20 }}>
+                                        <Text style={{ width: "30%", fontFamily: "Poppins-Regular_0", fontSize: 16,color: "#bdbdbd"}}>Service</Text>
                                         {
                                             this.state.cart.map((value, index) => {
                                                 return (
                                                     <View>
-                                                        <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>{value.service_name}</Text>
+                                                        <Text style={{ fontFamily: "Poppins-Regular_0", fontSize: 16 }}>{value.service_name}</Text>
                                                         <View style={{ flexDirection: "row", width: "100%" }}>
                                                             <View style={{ width: "50%" }}>
-                                                                <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color: "#fc8b8c" }}>${value.service_cost}</Text>
+                                                                <Text style={{ fontFamily: "Poppins-Regular_0", fontSize: 16, color: "#fc8b8c" }}>${value.service_cost}</Text>
                                                             </View>
 
                                                             <View style={{ width: "50%", alignSelf: "center", alignItems: "center" }}>
@@ -247,21 +247,21 @@ export default class ConfirmBooking extends Component {
 
 
 
-                                    <View style={{ marginRight: "6%" }}>
+                                    <View style={{ marginRight: "6%", marginTop: "10%", paddingVertical:"5%", width:'100%' }}>
 
-                                        <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
-                                            <Button onPress={() => { this.props.navigation.navigate('PersonalService') }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#ffff", width: "100%", borderRadius: 10, opacity: 0.7, borderColor: "#fc8b8c", borderWidth: 1 }}>
-                                                <Text style={{ alignSelf: "center", color: "#000", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                        <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", width:"100%" }}>
+                                            <TouchableOpacity onPress={() => { this.props.navigation.navigate('PersonalService') }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#ffff", width: "100%", borderRadius: 10, opacity: 0.7, borderColor: "#fc8b8c", borderWidth: 1 }}>
+                                                <Text style={{ alignSelf: "center", color: "#000", fontFamily: "Poppins-Regular_0", fontSize: 14, padding: 15 }}>
                                                    ADD MORE SERVICES
                                             </Text>
-                                            </Button>
+                                            </TouchableOpacity>
                                         </View>
 
 
 
                                         {/* <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
                                             <Button onPress={() => { this.fetchconfirmBooking() }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#fc8b8c", width: "100%", borderRadius: 10, opacity: 0.7 }}>
-                                                <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20 }}>
                                                     Proceed to Payment
                                             </Text>
                                             </Button>
@@ -272,7 +272,7 @@ export default class ConfirmBooking extends Component {
 //                                     <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10 ,width: "100%" }}>
 //                                             <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "100%", borderRadius: 10 }}>
 //                                                 <Button onPress={() => { this.fetchconfirmBooking() }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 , width:'100%'}}>
-//                                                     <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+//                                                     <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20 }}>
 //                                                     PROCEES TO PAYMENT
 // </Text>
 //                                                 </Button>
@@ -282,7 +282,7 @@ export default class ConfirmBooking extends Component {
 <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
                                     <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "100%", borderRadius: 10}}>
                                         <TouchableOpacity onPress={() => { this.fetchconfirmBooking() }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
-                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 14, paddingVertical: 15 }}>
                                             PROCEES TO PAYMENT
                     </Text>
                                         </TouchableOpacity>
@@ -293,15 +293,15 @@ export default class ConfirmBooking extends Component {
 
 
                                         <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
-                                            <Button onPress={() => { this.props.navigation.navigate('UserHome') }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#ffff", width: "100%", borderRadius: 10, opacity: 0.7, borderColor: "#fc8b8c", borderWidth: 1 }}>
-                                                <Text style={{ alignSelf: "center", color: "#000", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                            <TouchableOpacity onPress={() => { this.props.navigation.navigate('UserHome') }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#ffff", width: "100%", borderRadius: 10, opacity: 0.7, borderColor: "#fc8b8c", borderWidth: 1 }}>
+                                                <Text style={{ alignSelf: "center", color: "#000", fontFamily: "Poppins-Regular_0", fontSize: 14 , paddingVertical:15}}>
                                                     CANCEL
                                             </Text>
-                                            </Button>
+                                            </TouchableOpacity>
                                         </View>
 
                                     </View>
-                                </Card>
+                                </View>
 
 
 

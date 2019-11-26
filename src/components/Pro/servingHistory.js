@@ -157,7 +157,7 @@ export default class ServingHistory extends Component {
 
                                                     } else {
                                                         console.log("Else", successData)
-                                                        Alert.alert(successData.message)
+                                                        Alert.alert("Error",successData.message)
                                                     }
                                                 })
                                                 .catch(err => console.log("err err SEARCH", err));
@@ -184,7 +184,7 @@ export default class ServingHistory extends Component {
                         
 
                         } else {
-                            Alert.alert(successData.message)
+                            Alert.alert("Error",successData.message)
                         }
                     })
                     .catch(err => console.log("Category err err", err));
@@ -218,7 +218,7 @@ export default class ServingHistory extends Component {
                         
 
                         } else {
-                            Alert.alert(successData.message)
+                            Alert.alert("Error",successData.message)
                             this.setState({
                         refreshing: false
                     })
@@ -253,7 +253,7 @@ export default class ServingHistory extends Component {
         // console.log(this.state.services)
         return (
             <View style={{flex:1, height:'100%', width:'100%', marginTop: -80}}>
-                <ImageBackground source={require('../../../assets/opacity.jpg')} style={{height:"100%", width:"100%",opacity:0.9}}> 
+                <ImageBackground source={require('../../../assets/inner.png')} style={{height:"100%", width:"100%",}}> 
 
                 <Header
                         containerStyle={{marginTop:60, backgroundColor:"#fff"}}
@@ -261,7 +261,7 @@ export default class ServingHistory extends Component {
                         leftComponent={<Icon onPress={() => {this.props.navigation.navigate('Main')}} name="arrow-back" color="#000" />}
                         centerComponent={
                             <View style={{ alignItems:"center", alignSelf:"center"}}>
-                      {!this.state.focusOn  ? <Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>SERVICE HISTORY</Text> 
+                      {!this.state.focusOn  ? <Text style={{ alignSelf: "center", fontSize: 20, fontFamily: "Poppins-Regular_0" }}>SERVICE HISTORY</Text> 
                       :
     
                       <View style={{
@@ -313,14 +313,14 @@ export default class ServingHistory extends Component {
                         </TouchableOpacity>}
                         
                         {/* <TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
-                            <Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />
+                            <Image source={require('../../../assets/notification.png')} style={{ height:26, width:20 }} />
                         </TouchableOpacity> */}
                         </View>}
                         />
 
 
 
-                <View style={{flex: 1 ,height:'100%', width:'100%', backgroundColor:"rgba(246, 232, 232, 0.7)",justifyContent:"center"}}>
+                <View style={{flex: 1 ,height:'100%', width:'100%',justifyContent:"center"}}>
 
                 <ScrollView refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh} />} style={{height: height}}>
 
@@ -337,19 +337,19 @@ export default class ServingHistory extends Component {
                             <View key={index} style={{width:'90%', padding: 10, alignSelf:'center'}}>
 
                            {/* <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{marginLeft:"20%", fontFamily:"MrEavesXLModNarOT-Reg", color:"#fc8b8c", fontSize:25}}>{value.dateTime}</Text>
+                                    <Text style={{marginLeft:"20%", fontFamily:"Poppins-Regular_0", color:"#fc8b8c", fontSize:25}}>{value.dateTime}</Text>
                                 </View> */}
 
 <View style={{display:"flex", flexDirection:"row", paddingVertical: 5}}> 
-                                    <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", color:"#ff8385", fontSize:25}}>{formatDate}</Text>
+                                    <Text style={{fontFamily:"Poppins-Regular_0", color:"#ff8385", fontSize:18}}>{formatDate}</Text>
                                 </View>
 
 
 
 
-                                <View style={{display:"flex", flexDirection:"row", justifyContent:'space-between'}}> 
-                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Service Name</Text>
-                                    <Text style={{marginLeft:"20%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, textAlign:"right"}}>{value.services[0].service_name}</Text>
+                                <View style={{display:"flex", flexDirection:"row", justifyContent:'space-between', width:'100%'}}> 
+                                    <Text style={{width:"50%", fontFamily:"Poppins-Regular_0", fontSize:17}}>Service Name</Text>
+                                    <Text style={{ fontFamily:"Poppins-Regular_0", fontSize:15, textAlign:"right", width:'50%'}}>{value.services[0].service_name}</Text>
                                 </View>
 
 
@@ -358,33 +358,33 @@ export default class ServingHistory extends Component {
                                 
 
                                 <View style={{display:"flex", flexDirection:"row", justifyContent:'space-between'}}> 
-                                    <Text style={{width:"50%",fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Time</Text>
-                                    <Text style={{marginLeft:"20%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, textAlign:"right", justifyContent:"flex-end"}}>{value.time_slot}</Text>
+                                    <Text style={{width:"50%",fontFamily:"Poppins-Regular_0", fontSize:17}}>Time</Text>
+                                    <Text style={{marginLeft:"20%", fontFamily:"Poppins-Regular_0", fontSize:15, textAlign:"right", justifyContent:"flex-end"}}>{value.time_slot}</Text>
                                 </View>
 
                                  <View style={{display:"flex", flexDirection:"row", justifyContent:'space-between'}}> 
-                                    <Text style={{width:"66%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Date</Text>
-                                    <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{date}</Text>
+                                    <Text style={{width:"66%", fontFamily:"Poppins-Regular_0", fontSize:17}}>Date</Text>
+                                    <Text style={{marginLeft:"3%", fontFamily:"Poppins-Regular_0", fontSize:15}}>{date}</Text>
                                 </View>
 
                                 <View style={{display:"flex", flexDirection:"row", justifyContent:'space-between'}}> 
-                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>User Name</Text>
-                                    <Text style={{marginLeft:"20%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, textAlign:"right"}}>{value.username}</Text>
+                                    <Text style={{width:"50%", fontFamily:"Poppins-Regular_0", fontSize:18}}>User Name</Text>
+                                    <Text style={{marginLeft:"20%", fontFamily:"Poppins-Regular_0", fontSize:15, textAlign:"right"}}>{value.username}</Text>
                                     {/* <TouchableOpacity onPress={() => {this.props.navigation.navigate('BookingDetail')}}>
-                                    <Text  style={{marginLeft:"30%", color:"#fc8b8c", borderBottomColor:"#fc8b8c", borderBottomWidth:1, fontFamily:"MrEavesXLModNarOT-Reg", width:50}}>VIEW DETAILS</Text>
+                                    <Text  style={{marginLeft:"30%", color:"#fc8b8c", borderBottomColor:"#fc8b8c", borderBottomWidth:1, fontFamily:"Poppins-Regular_0", width:50}}>VIEW DETAILS</Text>
                                     </TouchableOpacity> */}
                                 </View>
 
                               {value.services[0].s_checked  == 1 ? 
                                  <View style={{display:"flex", flexDirection:"row", justifyContent:'space-between'}}> 
-                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Cost</Text>
-                                    <Text style={{marginLeft:"20%",  fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, textAlign:'left'}}>${value.services[0].plush_cost}</Text>
+                                    <Text style={{width:"50%", fontFamily:"Poppins-Regular_0", fontSize:18}}>Cost</Text>
+                                    <Text style={{marginLeft:"20%",  fontFamily:"Poppins-Regular_0", fontSize:15, textAlign:'left'}}>${value.services[0].plush_cost}</Text>
                                 </View>  
                                 
                             :
                             <View style={{display:"flex", flexDirection:"row", justifyContent:'space-between'}}> 
-                            <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Cost</Text>
-                            <Text style={{marginLeft:"20%",  fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>${value.services[0].soplush_cost}</Text>
+                            <Text style={{width:"50%", fontFamily:"Poppins-Regular_0", fontSize:18}}>Cost</Text>
+                            <Text style={{marginLeft:"20%",  fontFamily:"Poppins-Regular_0", fontSize:15}}>${value.services[0].soplush_cost}</Text>
                             </View>  
                             
                             }
@@ -393,7 +393,7 @@ export default class ServingHistory extends Component {
 
                                         {/* <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
                                             <Button onPress={() => {this.markAsCompelet('completed', value, index)}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"100%", borderRadius: 10, opacity:0.7}}> 
-                                            <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
+                                            <Text style={{alignSelf:"center",color:"#fff", fontFamily:"Poppins-Regular_0", fontSize:20}}>
                                             Mark As Compelete
                                             </Text>   
                                             </Button>
@@ -402,7 +402,7 @@ export default class ServingHistory extends Component {
                                          <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%",width: "90%"}}>
                                             {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "100%", borderRadius: 10 }}>
                                                 <Button onPress={() => {this.markAsCompelet('completed', value, index)}} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 5 }}>
-                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20 }}>
                                                     Mark As Compelete
 </Text>
                                                 </Button>
@@ -410,8 +410,8 @@ export default class ServingHistory extends Component {
 
 <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "100%", borderRadius: 10}}>
                                         <TouchableOpacity onPress={() => {this.markAsCompelet('completed', value, index)}}  style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
-                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
-                                            Mark As Compelete
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 17, paddingVertical: 15 }}>
+                                            MARK COMPELETE
                     </Text>
                                         </TouchableOpacity>
                                     </LinearGradient>
@@ -462,7 +462,7 @@ export default class ServingHistory extends Component {
                   {/* <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
                     <Button onPress={() => {this.setState({renderEMail: false, renderCode: false, renderPassword:false}),
                 this.props.navigation.navigate(from)}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
-                     <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
+                     <Text style={{alignSelf:"center",color:"#fff", fontFamily:"Poppins-Regular_0", fontSize:20}}>
                        Submit
                     </Text>   
                      </Button>

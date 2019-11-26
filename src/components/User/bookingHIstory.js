@@ -140,7 +140,7 @@ export default class BookingHistory extends Component {
                         
 
                         } else {
-                            Alert.alert(successData.message)
+                            Alert.alert("Error",successData.message)
                             console.log("successData.data[0].role_id === 3", successData)
 
                         }
@@ -170,7 +170,7 @@ export default class BookingHistory extends Component {
                 
 
                 } else {
-                    Alert.alert(successData.message)
+                    Alert.alert("Error",successData.message)
                     this.setState({
                         refreshing: false
                     })
@@ -215,7 +215,7 @@ export default class BookingHistory extends Component {
         console.log('state',this.state.data)
         return (
             <View style={{flex:1, height:'100%', width:'100%', marginTop: -80}}>
-                <ImageBackground source={require('../../../assets/opacity.jpg')} style={{height:"100%", width:"100%",opacity:0.9}}> 
+                <ImageBackground source={require('../../../assets/inner.png')} style={{height:"100%", width:"100%"}}> 
 
                 <Header
                         containerStyle={{marginTop:60, backgroundColor:"#fff"}}
@@ -223,7 +223,7 @@ export default class BookingHistory extends Component {
                         leftComponent={<Icon onPress={() => {this.props.navigation.navigate('UserHome')}} name="arrow-back" color="#000" />}
                         centerComponent={
                             <View style={{alignContent:"center", alignItems:"center", alignSelf:"center"}}>
-                      {!this.state.focusOn  ? <Text style={{alignSelf:'center', fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>BOOKING HISTORY</Text> 
+                      {!this.state.focusOn  ? <Text style={{alignSelf:'center', fontSize: 20, fontFamily: "Poppins-Regular_0" }}>BOOKING HISTORY</Text> 
                       :
     
                       <View style={{
@@ -263,35 +263,28 @@ export default class BookingHistory extends Component {
                     }
                         </View>
                     }
-                    // rightComponent={
-                    //     <View style={{flexDirection:"row"}}>
-                    //    {!this.state.focusOn && <TouchableOpacity style={{right: 20}} onPress={() => {this.setState({focusOn: true})
-                    // //  this.input.focus()
-                    //     }}>
-                    //         <Icon style={{
-                    //         color: 'gray',
-                    //         justifyContent: 'flex-end'
-                    //     }} type="EvilIcons" name="search" size={24} />
-                    //     </TouchableOpacity>}
-                        
-                    //     {/* <TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
-                    //         <Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />
-                    //     </TouchableOpacity> */}
-                    //     </View>}
+                    rightComponent={
+                        <View style={{flexDirection:"row"}}>
+
+                     
+                        <TouchableOpacity onPress={() => {Alert.alert("Warning", "Will be implemented")}}>
+                            <Image source={require('../../../assets/filter.png')} style={{ height: 20, width: 20 }} />
+                        </TouchableOpacity>
+                        </View>}
 
 
-                    rightComponent={<Icon name="filter" type = "material-community" containerStyle={{borderColor: "#000", }}  color="white" size={30}/>}
+                    // rightComponent={<Icon name="filter" type = "material-community" containerStyle={{borderColor: "#000", }}  color="white" size={30}/>}
                         />
 
 
 
-                <View style={{flex: 1 ,height:'100%', width:'100%', backgroundColor:"rgba(246, 232, 232, 0.7)",justifyContent:"center"}}>
+                <View style={{flex: 1 ,height:'100%', width:'100%',justifyContent:"center"}}>
 
                 <ScrollView refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh} />} style={{height: height}}>
 
                 {/* <View style={{backgroundColor:"#fff", width:"80%",justifyContent:"center", alignContent:"center", alignSelf:"center",borderRadius:10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', marginTop: '10%', marginBottom:'5%'}}> */}
                    
-                   <View style={{flexL:1 ,justifyContent:"center", alignContent:"center", alignItems:"center", marginTop:20}}>
+                   <View style={{flexL:1 ,justifyContent:"center", alignContent:"center", alignItems:"center", marginTop:20, borderRadius:20}}>
 
                 <View style={{backgroundColor:"#fff",borderRadius:20, width:"90%"}}>
 
@@ -302,18 +295,18 @@ export default class BookingHistory extends Component {
                         // console.log("DAY NAME DAY NAME", `${formatDate, moment(value.service_date).format('MMMM')} ${formatDate, moment(value.service_date).format('YYYY') }`  )
 
                         return(
-                        <View key={index} style={{backgroundColor:'#fff', padding: 10}}> 
+                        <View key={index} style={{backgroundColor:'#fff', padding: 10,borderRadius:20}}> 
 
                            <View style={{display:"flex", flexDirection:"row", paddingVertical:"5%", justifyContent:'space-between'}}> 
-                                    <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", color:"#fc8b8c", fontSize:25}}>{formatDate}</Text>
+                                    <Text style={{fontFamily:"Poppins-Regular_0", color:"#ff8385", fontSize:17}}>{formatDate}</Text>
                                 </View>
 
 
 
 
                                 <View style={{ display: "flex", flexDirection: "row" , justifyContent:'space-between'}}>
-                                                    <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20, color: '#bdbdbd' }}>Service Name</Text>
-                                                    <Text style={{ marginLeft: "5%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20  }}>{value.services[0].service_name}</Text>
+                                                    <Text style={{ width: "50%", fontFamily: "Poppins-Regular_0", fontSize:16, color: '#bdbdbd' }}>Service Name</Text>
+                                                    <Text style={{ marginLeft: "5%", fontFamily: "Poppins-Regular_0", fontSize:15  }}>{value.services[0].service_name}</Text>
                                     </View>
 
 
@@ -322,24 +315,24 @@ export default class BookingHistory extends Component {
                                 
 {/* 
                                 <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Time</Text>
-                                    <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.time_slot}</Text>
+                                    <Text style={{width:"30%", fontFamily:"Poppins-Regular_0", fontSize:20}}>Time</Text>
+                                    <Text style={{marginLeft:"3%", fontFamily:"Poppins-Regular_0", fontSize:20}}>{value.time_slot}</Text>
                                 </View>
 
                                  <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Date</Text>
-                                    <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.service_date}</Text>
+                                    <Text style={{width:"30%", fontFamily:"Poppins-Regular_0", fontSize:20}}>Date</Text>
+                                    <Text style={{marginLeft:"3%", fontFamily:"Poppins-Regular_0", fontSize:20}}>{value.service_date}</Text>
                                 </View> */}
 
                                 <View style={{display:"flex", flexDirection:"row", justifyContent:'space-between'}}> 
-                                <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20, color: '#bdbdbd' }}>Cost</Text>
-                                                    <Text style={{ marginLeft: "5%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20  }}>$ {value.services[0].service_cost}</Text>
+                                <Text style={{ width: "50%", fontFamily: "Poppins-Regular_0", fontSize:16, color: '#bdbdbd' }}>Cost</Text>
+                                                    <Text style={{ marginLeft: "5%", fontFamily: "Poppins-Regular_0", fontSize:15  }}>$ {value.services[0].service_cost}</Text>
                                 </View>
 
 
                                 <View style={{display:"flex", flexDirection:"row", justifyContent:'space-between'}}> 
-                                <Text style={{ width: "50%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20, color: '#bdbdbd' }}>Beauticainist Name</Text>
-                                                    <Text style={{ marginLeft: "5%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:20  }}>{value.beautician}</Text>
+                                <Text style={{ width: "50%", fontFamily: "Poppins-Regular_0", fontSize:16, color: '#bdbdbd' }}>Beauticainist Name</Text>
+                                                    <Text style={{ marginLeft: "5%", fontFamily: "Poppins-Regular_0", fontSize:15  }}>{value.beautician}</Text>
                                 </View>
 
                                 <Divider style={{backgroundColor:'#bdbdbd', top: 10, width:'95%'}} />
@@ -372,7 +365,7 @@ export default class BookingHistory extends Component {
                   {/* <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
                     <Button onPress={() => {this.setState({renderEMail: false, renderCode: false, renderPassword:false}),
                 this.props.navigation.navigate(from)}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
-                     <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
+                     <Text style={{alignSelf:"center",color:"#fff", fontFamily:"Poppins-Regular_0", fontSize:20}}>
                        Submit
                     </Text>   
                      </Button>

@@ -72,7 +72,7 @@ export default class ServiceList extends Component {
             // this.props.navigation.navigate("Main")
        
           }else {
-            Alert.alert(successData.message)
+            Alert.alert("Error",successData.message)
           }
         })
         .catch(err => console.log("Category err err",err));
@@ -126,7 +126,7 @@ export default class ServiceList extends Component {
             // this.props.navigation.navigate("Main")
        
           }else {
-            Alert.alert(successData.message)
+            Alert.alert("Error",successData.message)
             this.setState({refreshing: false})
           }
         })
@@ -178,7 +178,7 @@ export default class ServiceList extends Component {
             // this.props.navigation.navigate("Main")
        
           }else {
-            Alert.alert(successData.message)
+            Alert.alert("Error",successData.message)
           }
         })
         .catch(err => console.log("err err err",err));
@@ -187,7 +187,7 @@ export default class ServiceList extends Component {
 //         // headerBackTitle: null,
 //         title:"SERVICES LIST",
 //         headerTitleStyle: {
-//             fontFamily:"MrEavesXLModNarOT-Reg",
+//             fontFamily:"Poppins-Regular_0",
 //             fontSize:30
 //         }
 //         // headerStyle: {
@@ -205,7 +205,7 @@ export default class ServiceList extends Component {
     //     title:"SERVICES LIST",
     //     headerTintColor: 'white',
     //     headerTitleStyle: {
-    //         fontFamily:"MrEavesXLModNarOT-Reg",
+    //         fontFamily:"Poppins-Regular_0",
     //         fontSize:30
     //     },
     //     // title: "Service List",
@@ -260,9 +260,9 @@ export default class ServiceList extends Component {
                                              
                         services.splice(index, 1)
                         this.setState({services})
-                        Alert.alert(successData.message)
+                        Alert.alert("Success",successData.message)
                       }else {
-                        Alert.alert(successData.message)
+                        Alert.alert("Error",successData.message)
                       }
                     })
                     .catch(err => console.log("Category err err",err));
@@ -314,9 +314,9 @@ export default class ServiceList extends Component {
                         value.service_cost = cost
                          services.splice(index, 1, value)
                         this.setState({services, edit: false, service:'', cost:'', value:'', index:''})
-                        Alert.alert(successData.message)
+                        Alert.alert("Success",successData.message)
                       }else {
-                        Alert.alert(successData.message)
+                        Alert.alert("Error",successData.message)
                       }
                     })
                     .catch(err => console.log("Category err err",err));
@@ -339,25 +339,25 @@ export default class ServiceList extends Component {
         console.log(this.state.service, this.state.cost)
         return (
             <View style={{flex:1, height: '100%', width: '100%', marginTop: -80}}>
-                <ImageBackground source={require('../../../assets/opacity.jpg')} style={{height:"100%", width:"100%",opacity:0.9}}> 
+                <ImageBackground source={require('../../../assets/inner.png')} style={{height:"100%", width:"100%"}}> 
 
                 <Header
                         containerStyle={{marginTop:60, backgroundColor:"#fff"}}
                         placement="left"
-                        leftComponent={<Icon onPress={() => {this.props.navigation.toggleDrawer()}} name="menu" color="#000" />}
-                        centerComponent={<Text style={{alignSelf:'center',fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>SERVICES LIST</Text>}
+                        leftComponent={<Icon onPress={() => {this.props.navigation.toggleDrawer()}} name="arrow-back" color="#000" />}
+                        centerComponent={<Text style={{alignSelf:'center',fontSize:20, fontFamily:"Poppins-Regular_0"}}>SERVICES LIST</Text>}
                         // rightComponent={{ icon: 'home', color: '#000' }}
                         />
 
 
 
-                <View style={{flex: 1 ,height: '100%', width:'100%', backgroundColor:"rgba(246, 232, 232, 0.7)",justifyContent:"center"}}>
+                <View style={{flex: 1 ,height: '100%', width:'100%', justifyContent:"center"}}>
 
                 <ScrollView refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh} />}  style={{height: '100%'}} contentContainerStyle={{ justifyContent:'center', alignContent:'center', paddingVertical:"5%", top: '3%'}}>
 
-               <View style={{flex: 1,alignItems:'center', justifyContent:'center', alignContent:'center'}}>     
+               <View style={{flex: 1,alignItems:'center', justifyContent:'center', alignContent:'center', }}>     
 
-              {!this.state.edit ? <View style={{backgroundColor:"#fff", width:"90%",justifyContent:"center", alignContent:"center",borderRadius:10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)'}}>
+              {!this.state.edit ? <View style={{backgroundColor:"#fff", width:"90%",justifyContent:"center", alignContent:"center",borderRadius:10}}>
                    
 
             {this.state.services.length > 0 ?   <View style={{flex: 1}}>
@@ -366,7 +366,7 @@ export default class ServiceList extends Component {
                         <List style={{flex:1, marginRight:18 }}> 
                             <ListItem>
                             <Left>
-                                <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.service_name}</Text>
+                                <Text style={{fontFamily:"Poppins-Regular_0", fontSize:16}}>{value.service_name}</Text>
                             </Left>
                             <Right >
                             
@@ -393,7 +393,7 @@ export default class ServiceList extends Component {
                              }}  color='#fc8b8c' type="EvilIcons" name="delete" size={20} />
                             </TouchableOpacity> */}
 
-                            <Text style={{color:"#fc8b8c", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>${value.service_cost}</Text>
+                            <Text style={{color:"#fc8b8c", fontFamily:"Poppins-Regular_0", fontSize:16}}>${value.service_cost}</Text>
                             </Right>
                             </ListItem>
                     </List>
@@ -416,8 +416,8 @@ export default class ServiceList extends Component {
                                             <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']}  style={{ width: "90%", borderRadius: 5 }}>
                                                 <TouchableOpacity onPress={() => {this.setState({renderEMail: false, renderCode: false, renderPassword:false}),
                 this.props.navigation.navigate('Main')}} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 5 }}>
-                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 20, marginTop: -5  }}>
-                                                    Save Service
+                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 17, paddingVertical: 20, marginTop: -5  }}>
+                                                    SAVE SERVICE
 </Text>
                                                 </TouchableOpacity>
                                             </LinearGradient>
@@ -427,7 +427,7 @@ export default class ServiceList extends Component {
                   {/* <View style={{alignContent:"center", alignItems:"center", marginTop:"5%", paddingBottom:"5%"}}>
                     <Button onPress={() => {this.setState({renderEMail: false, renderCode: false, renderPassword:false}),
                 this.props.navigation.navigate('Main')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
-                     <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
+                     <Text style={{alignSelf:"center",color:"#fff", fontFamily:"Poppins-Regular_0", fontSize:20}}>
                        Save Service
                     </Text>   
                      </Button>
@@ -464,13 +464,13 @@ export default class ServiceList extends Component {
             {/* <View style={{alignContent:"center", alignItems:'center'}}>
 
                     <Button onPress={this.editService} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"80%", borderRadius: 10, opacity:0.7, marginTop:"5%"}}> 
-                    <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
+                    <Text style={{alignSelf:"center",color:"#fff", fontFamily:"Poppins-Regular_0", fontSize:20}}>
                     Ok
                     </Text>   
                     </Button>
 
                     <Button onPress={() => { this.setState({edit:false})}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"80%", borderRadius: 10, opacity:0.7, marginTop:"5%"}}> 
-                    <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
+                    <Text style={{alignSelf:"center",color:"#fff", fontFamily:"Poppins-Regular_0", fontSize:20}}>
                     Cancel
                     </Text>   
                     </Button>
@@ -482,7 +482,7 @@ export default class ServiceList extends Component {
 <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10,width: '50%' }}>
                                             <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                                                 <Button onPress={this.editService} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
-                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 17 }}>
                                                         Ok
 </Text>
                                                 </Button>
@@ -492,7 +492,7 @@ export default class ServiceList extends Component {
 
 <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
     <Button onPress={() => { this.setState({edit:false})}} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#ffff", width: "90%", borderRadius: 10, opacity: 0.7, borderColor: "#fc8b8c", borderWidth: 1 }}>
-        <Text style={{ alignSelf: "center", color: "#000", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+        <Text style={{ alignSelf: "center", color: "#000", fontFamily: "Poppins-Regular_0", fontSize: 17 }}>
         Cancel
 </Text>
     </Button>

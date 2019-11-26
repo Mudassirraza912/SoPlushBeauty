@@ -61,7 +61,7 @@ export default class UserAppointment extends Component {
           leftContainerStyle={{ marginTop: 10 }}
           centerContainerStyle={{ marginTop: 10 }}
           leftComponent={<Icon onPress={() => { this.props.navigation.navigate('UserHome') }} name="arrow-back" color="#000" />}
-          centerComponent={<Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>BOOK APPOINTMENT</Text>}
+          centerComponent={<Text style={{ alignSelf: "center", fontSize: 20, fontFamily: "Poppins-Regular_0" }}>BOOK APPOINTMENT</Text>}
         />
 
         <Header containerStyle={{ backgroundColor: "#fff", height: 60, width: '100%' }}
@@ -95,7 +95,7 @@ export default class UserAppointment extends Component {
 
             <View style={{ display: "flex", flexDirection: "column", borderRightWidth: 1, borderRightColor: "#000", height: 35, width: "25%", justifyContent: "center", alignContent: "center", alignItems: "center" }}>
               <TouchableOpacity style={{ alignItems: 'center' }} onPress={() => { this.props.navigation.navigate('BookingHistory') }}>
-                <Image source={require('../../../assets/history.png')} style={{ height: 22, width: 22, transform: [{ rotate: "120deg" }] }} />
+                <Image source={require('../../../assets/Apphistory.png')} style={{ height: 22, width: 22, transform: [{ rotate: "120deg" }] }} />
                 {/* <Icon name="call" /> */}
                 <Text>
                   History
@@ -120,7 +120,7 @@ export default class UserAppointment extends Component {
           </View>
         </Header>
 
-        <View style={{ flex: 1, width: '100%', backgroundColor: "rgba(190, 144, 212, 0.7)", justifyContent: "center" }}>
+        <View style={{ flex: 1, width: '100%', backgroundColor: "rgba(246, 232, 232, 0.7)", justifyContent: "center" }}>
 
           <ScrollView style={{  }}>
 
@@ -277,7 +277,7 @@ export default class UserAppointment extends Component {
                   <View style={{ flexDirection: "row", justifyContent: 'space-between', width: '100%', paddingHorizontal: 15 }}>
 
                     <View style={{ width: '60%' }} >
-                      <Text style={{ fontSize: 23, fontFamily: "MrEavesXLModNarOT-Reg", marginTop: 15, color: 'gray' }}>
+                      <Text style={{ fontSize: 18, fontFamily: "Poppins-Regular_0", marginTop: 15, color: 'gray' }}>
                         Available Time
                                               </Text>
                     </View>
@@ -306,15 +306,15 @@ export default class UserAppointment extends Component {
                         <Picker
                           selectedValue={this.state.language}
                           style={{ width: '100%', borderBottomColor: "#fc8b8c", borderBottomWidth: 1, backgroundColor: 'transparent', color: '#FE7678' }}
-                          itemStyle={{ backgroundColor: "grey", color: "blue", fontSize: 17, borderBottomColor: "#fc8b8c", borderBottomWidth: 1 }}
+                          itemStyle={{ backgroundColor: "grey", color: "blue", fontSize: 15, borderBottomColor: "#fc8b8c", borderBottomWidth: 1 }}
                           onValueChange={(itemValue, itemIndex) =>
                             this.setState({ language: itemValue })
                           }>
-                          <Picker.Item label="11:00 AM" value="11:00 AM" />
-                          <Picker.Item label="11:30 AM" value="11:30 AM" />
-                          <Picker.Item label="12:00 AM" value="12:00 AM" />
-                          <Picker.Item label="01:00 PM" value="01:00 PM" />
-                          <Picker.Item label="02:00 PM" value="02:00 PM" />
+                          <Picker.Item label="11:00 am" value="11:00 am" />
+                          <Picker.Item label="11:30 am" value="11:30 am" />
+                          <Picker.Item label="12:00 am" value="12:00 am" />
+                          <Picker.Item label="01:00 pm" value="01:00 pm" />
+                          <Picker.Item label="02:00 pm" value="02:00 pm" />
                         </Picker>
                       </View>
                     </View>

@@ -205,8 +205,8 @@
 //                                 </View>
 
 //                                 <View style={{ marginTop: "10%" }}>
-//                                     <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 30, marginLeft: "10%" }}>Sign In</Text>
-//                                     <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", marginLeft: "10%", fontSize: 20, marginTop: "4%", opacity: 0.6 }}>Sign in with your email ID and Password</Text>
+//                                     <Text style={{ fontFamily: "Poppins-Regular_0", fontSize: 30, marginLeft: "10%" }}>Sign In</Text>
+//                                     <Text style={{ fontFamily: "Poppins-Regular_0", marginLeft: "10%", fontSize: 20, marginTop: "4%", opacity: 0.6 }}>Sign in with your email ID and Password</Text>
 //                                 </View>
 
 //                                 <View style={{ marginTop: "10%", alignContent: "center", alignSelf: "center", alignItems: "center", width: "80%", backgroundColor: "#fff", borderRadius: 10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', paddingVertical: "1%", overflow: "hidden" }}>
@@ -245,14 +245,14 @@
 
 //                                 <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
 //                                     <TouchableOpacity onPress={() => { this.props.navigation.navigate("ForgotPassword", { from: "UserLogin" }) }}>
-//                                         <Text style={{ fontFamily: 'MrEavesXLModNarOT-Reg', fontSize: 20 }}>Forgot Password</Text>
+//                                         <Text style={{ fontFamily: 'Poppins-Regular_0', fontSize: 20 }}>Forgot Password</Text>
 //                                     </TouchableOpacity>
 //                                 </View>
 
 //                              {!loader ?   <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
 //                                     <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
 //                                         <Button onPress={this.login} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
-//                                             <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+//                                             <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20 }}>
 //                                                 Login
 //                     </Text>
 //                                         </Button>
@@ -262,7 +262,7 @@
 //                                  }
 
 //                                 <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
-//                                     <Text style={{ fontFamily: 'MrEavesXLModNarOT-Reg', fontSize: 20 }}>Or Sign Up Using</Text>
+//                                     <Text style={{ fontFamily: 'Poppins-Regular_0', fontSize: 20 }}>Or Sign Up Using</Text>
 //                                 </View>
 
 
@@ -271,7 +271,7 @@
 //                                     <LinearGradient colors={['#fff', '#883cb6', '#883cb6']} style={{ width: "45%", borderRadius: 10 }}>
 //                                         <Button onPress={() => this.fbLogin()} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
 //                                             <Icon name="instagram" type="MaterialCommunityIcons" />
-//                                             <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, marginRight: "10%" }}>
+//                                             <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20, marginRight: "10%" }}>
 //                                                 Instagram
 //                     </Text>
 //                                         </Button>
@@ -298,7 +298,7 @@
 //                                     <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "45%", borderRadius: 10 }}>
 //                                         <Button style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
 //                                             <Icon name="google" type="FontAwesome" />
-//                                             <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, marginRight: "10%" }}>
+//                                             <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20, marginRight: "10%" }}>
 //                                                 Gmail
 //                     </Text>
 //                                         </Button>
@@ -307,11 +307,11 @@
 
 //                                 <View style={{ display: "flex", flexDirection: "row", alignContent: "center", alignItems: "center", marginTop: "5%", justifyContent: "center" }}>
 
-//                                     <Text style={{ alignSelf: "center", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+//                                     <Text style={{ alignSelf: "center", fontFamily: "Poppins-Regular_0", fontSize: 20 }}>
 //                                         New to Soplush Beauty?
 //                     </Text>
 //                                     <TouchableOpacity onPress={() => { this.props.navigation.navigate("UserSignUp") }} style={{ marginLeft: "3%" }}>
-//                                         <Text style={{ alignSelf: "center", color: "#fc8b8c", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, borderBottomWidth: 1, borderBottomColor: "#fc8b8c" }}>Create Account</Text>
+//                                         <Text style={{ alignSelf: "center", color: "#fc8b8c", fontFamily: "Poppins-Regular_0", fontSize: 20, borderBottomWidth: 1, borderBottomColor: "#fc8b8c" }}>Create Account</Text>
 //                                     </TouchableOpacity>
 
 //                                     {/* <GoogleSigninButton
@@ -430,12 +430,12 @@ export default class UserLogin extends Component {
         if (reg.test(email) === false) {
             this.setState({ loader: false })
 
-            Alert.alert("Email is required")
+            Alert.alert("Error","Email is required")
         }
         // 28638
         else if (password == '') {
             this.setState({ loader: false })
-            Alert.alert("Password is required")
+            Alert.alert("Error","Password is required")
         }else {
 
             // http://192.168.0.120/29-may-2019/rest_api_for_plant_client/login_signup.php?action=login_user
@@ -568,9 +568,9 @@ export default class UserLogin extends Component {
 
     _responseInfoCallback = (error, result) => {
         if (error) {
-            alert('Error fetching data: ' + error.toString());
+            Alert.alert("Error",'Error fetching data: ' + error.toString());
         } else {
-            alert('Result Name: ' + result.name);
+            Alert.alert("Success",'Result Name: ' + result.name);
             console.log('Result ', result)
         }
     }
@@ -584,7 +584,7 @@ export default class UserLogin extends Component {
         console.log(email, password)
         return (
             <View style={{ flex: 1, height: "100%", width: '100%', marginTop: -80 }}>
-                <ImageBackground source={require('../../../assets/background.jpg')} style={{ height: "100%", width: "100%" }}>
+                <ImageBackground source={require('../../../assets/login.png')} style={{ height: "100%", width: "100%" }}>
                     <View style={{ width: '100%', height: '100%' }}>
                         <ScrollView>
                             <Animated.View style={[{ justifyContent: 'center', alignItems: "center", width: '100%', height: "100%" }, { transform: [{ translateY: this.state.shift }] }]} >
@@ -593,12 +593,12 @@ export default class UserLogin extends Component {
                                         <Image source={require('../../../assets/text.png')} />
                                     </View>
 
-                                    <View style={{ marginTop: "10%" }}>
-                                        <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 30, marginLeft: "10%" }}>Sign In</Text>
-                                        <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", marginLeft: "10%", fontSize: 20, marginTop: "4%", opacity: 0.6 }}>Sign in with your email ID and Password</Text>
+                                    <View style={{ marginTop: "10%", width: '80%', alignSelf: 'center' }}>
+                                        <Text style={{ fontFamily: "Poppins-Bold_0", fontSize: 20, fontWeight: 'bold', }}>Sign In</Text>
+                                        <Text style={{ fontFamily: "Poppins-Regular_0", marginTop: "4%", opacity: 0.6 }}>Sign in with your email ID and Password</Text>
                                     </View>
 
-                                    <View style={{ marginTop: "10%", alignContent: "center", alignSelf: "center", alignItems: "center", width: "80%", backgroundColor: "#fff", borderRadius: 10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', paddingVertical: "1%", overflow: "hidden" }}>
+                                    <View style={{ marginTop: "5%", alignContent: "center", alignSelf: "center", alignItems: "center", width: "80%", backgroundColor: "#fff", borderRadius: 10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', paddingVertical: "1%", overflow: "hidden" }}>
                                         {/* // Text input box with icon aligned to the left */}
                                         <View >
                                             {/* <List style={{ paddingVertical: "2%", borderBottomColor: 'lightgray', borderBottomWidth: 0.5 }}>
@@ -628,13 +628,13 @@ export default class UserLogin extends Component {
                                                 </ListItem>
                                             </List> */}
 
-                                            <View style={{ display: 'flex', flexDirection: 'row', borderBottomColor: '#bdbdbd', borderBottomWidth: 0.5, width: '100%', paddingVertical: 3 }} >
+                                            <View style={{ display: 'flex', flexDirection: 'row', borderBottomColor: '#bdbdbd', borderBottomWidth: 0.5, width: '100%', paddingVertical: 1 }} >
                                                 <View style={{ width: '20%', alignItems: 'center', justifyContent: 'center', alignContent: 'center' }}>
-                                                    <Image source={require("../../../assets/envelope.png")} style={{ height: 25, width: 25 }} />
+                                                    <Image source={require("../../../assets/envelope.png")} style={{ height: 15, width: 20 }} />
                                                 </View>
                                                 <Item stackedLabel style={{ width: '80%', borderBottomWidth: 0 }}>
-                                                    <Label style={{ marginLeft: 3, color: 'lightgray' }}>Email Address</Label>
-                                                    <Input value={this.state.email} placeholder="something@gmail.com" style={{ color: 'gray', width: '100%'}} onChangeText={(e) => { this.setState({ email: e }) }} />
+                                                    <Label style={{ marginLeft: 3, color: 'lightgray', fontSize: 12, marginTop: 10 }}>Email Address</Label>
+                                                    <Input value={this.state.email} placeholder="something@gmail.com" style={{ color: 'gray', width: '100%', marginBottom: 5}} onChangeText={(e) => { this.setState({ email: e }) }} />
                                                 </Item>
                                             </View>
 
@@ -644,8 +644,8 @@ export default class UserLogin extends Component {
                                                     <Image source={require("../../../assets/lock.png")} style={{ height: 25, width: 25 }} />
                                                 </View>
                                                 <Item stackedLabel style={{ width: '80%', borderBottomWidth: 0 }}>
-                                                    <Label style={{ marginLeft: 3, color: 'lightgray' }}>Password</Label>
-                                                    <Input secureTextEntry value={this.state.password} placeholder="*******" style={{ color: 'gray' , width: '100%' }} onChangeText={(e) => { this.setState({ password: e }) }} />
+                                                    <Label style={{ marginLeft: 3, color: 'lightgray', fontSize: 12, marginTop: 10 }}>Password</Label>
+                                                    <Input secureTextEntry value={this.state.password} placeholder="*******" style={{ color: 'gray' , width: '100%', marginBottom: 5 }} onChangeText={(e) => { this.setState({ password: e }) }} />
                                                 </Item>
                                             </View>
 
@@ -655,22 +655,22 @@ export default class UserLogin extends Component {
 
                                     <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
                                         <TouchableOpacity onPress={() => { this.props.navigation.navigate("ForgotPassword", { from: "UserLogin" }) }}>
-                                            <Text style={{ fontFamily: 'MrEavesXLModNarOT-Reg', fontSize: 20, color:'#bdbdbd' }}>Forgot Password</Text>
+                                            <Text style={{ fontFamily: 'Poppins-Regular_0' , opacity: 0.6}}>Forgot Password</Text>
                                         </TouchableOpacity>
                                     </View>
 
                                     {!loader ? <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
                                         {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                                             <Button onPress={this.login} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
-                                                <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20 }}>
                                                     LOGIN
                     </Text>
                                             </Button>
                                         </LinearGradient> */}
 
-<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "95%", borderRadius: 10}}>
+<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "95%", borderRadius: 5}}>
                                         <TouchableOpacity onPress={this.login} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
-                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular_0", paddingVertical: 15 }}>
                                             LOGIN
                     </Text>
                                         </TouchableOpacity>
@@ -679,8 +679,8 @@ export default class UserLogin extends Component {
                                         <Spinner color='#fc8b8c' />
                                     }
 
-                                    <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
-                                        <Text style={{ fontFamily: 'MrEavesXLModNarOT-Reg', fontSize: 20,color:'#bdbdbd' }}>Or Sign Up Using</Text>
+                                    <View style={{ alignContent: "center", alignItems: "center", paddingVertical: 5 }}>
+                                        <Text style={{ fontFamily: 'Poppins-Regular_0', opacity: 0.6 }}>Or Sign Up Using</Text>
                                     </View>
 
 
@@ -691,18 +691,18 @@ export default class UserLogin extends Component {
         Alert.alert("Warning!", "Will be implemented")
     }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
         <Icon name="instagram" type="MaterialCommunityIcons" />
-        <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, marginRight: "10%" }}>
+        <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20, marginRight: "10%" }}>
             Instagram
 </Text>
     </Button>
 </LinearGradient> */}
 
-<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#c79de0', '#883cb6', '#883cb6']} style={{ width: "48%", borderRadius: 10}}>
+<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#c79de0', '#883cb6', '#883cb6']} style={{ width: "48%", borderRadius: 5}}>
     <TouchableOpacity onPress={() => {
         Alert.alert("Warning!", "Will be implemented")
     }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{  justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, flexDirection:'row' }}>
           <Icon style={{color:"#fff"}} name="instagram" type="MaterialCommunityIcons" />
-        <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15, paddingHorizontal:5 }}>
+        <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular_0", paddingVertical: 10, paddingHorizontal:5 }}>
         Instagram
 </Text>
     </TouchableOpacity>
@@ -713,19 +713,19 @@ export default class UserLogin extends Component {
         Alert.alert("Warning!", "Will be implemented")
     }}  style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
         <Icon name="google" type="FontAwesome" />
-        <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, marginRight: "10%" }}>
+        <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20, marginRight: "10%" }}>
             Gmail
 </Text>
     </Button>
 </LinearGradient> */}
 
 
-<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "48%", borderRadius: 10}}>
+<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "48%", borderRadius: 5}}>
     <TouchableOpacity onPress={() => {
         Alert.alert("Warning!", "Will be implemented")
     }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{  justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, flexDirection:'row' }}>
           <Icon style={{color:"#fff"}} name="google" type="FontAwesome" />
-        <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15, paddingHorizontal:5 }}>
+        <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular_0", paddingVertical: 10, paddingHorizontal:5 }}>
           Gmail
 </Text>
     </TouchableOpacity>
@@ -734,11 +734,11 @@ export default class UserLogin extends Component {
 
                                     <View style={{ display: "flex", flexDirection: "row", alignContent: "center", alignItems: "center", marginTop: "5%", justifyContent: "center" }}>
 
-                                        <Text style={{ alignSelf: "center", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, color:'#bdbdbd' }}>
+                                        <Text style={{ alignSelf: "center", fontFamily: "Poppins-Regular_0",  opacity: 0.6}}>
                                             New to Soplush Beauty?
                     </Text>
                                         <TouchableOpacity onPress={() => { this.props.navigation.navigate("UserSignUp") }} style={{ marginLeft: "3%" }}>
-                                            <Text style={{ alignSelf: "center", color: "#fc8b8c", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, borderBottomWidth: 1, borderBottomColor: "#fc8b8c" }}>Create Account</Text>
+                                            <Text style={{ alignSelf: "center", color: "#fc8b8c", fontFamily: "Poppins-Regular_0", borderBottomWidth: 1, borderBottomColor: "#fc8b8c" }}>Create Account</Text>
                                         </TouchableOpacity>
 
                                         {/* <GoogleSigninButton

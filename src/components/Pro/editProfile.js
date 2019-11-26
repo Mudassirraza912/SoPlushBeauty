@@ -6,7 +6,7 @@ import {Avatar, Header, Card, Divider} from 'react-native-elements'
 import ImagePicker from 'react-native-image-picker'
 import LinearGradient from 'react-native-linear-gradient'
 import camicon from '../../../assets/photo-camera.png'
-import user from '../../../assets/user.png'
+import user from '../../../assets/user1.png'
 import home from '../../../assets/home.png'
 import phone from '../../../assets/phone-call.png'
 import envelop from '../../../assets/envelope.png'
@@ -192,19 +192,19 @@ export default class EditProProfile extends Component {
     render() {
         return (
             <View style={{flex:1, height:'100%', width:'100%', marginTop: -80}}>
-                <ImageBackground source={require('../../../assets/opacity.jpg')} style={{height:"100%", width:"100%",opacity:0.9, marginTop: 20}}> 
+                <ImageBackground source={require('../../../assets/inner.png')} style={{height:"100%", width:"100%", marginTop: 20}}> 
 
               
                 <Header
                         containerStyle={{marginTop:40, backgroundColor:"#fff"}}
                         placement="left"
                         leftComponent={<Icon onPress={() => {this.props.navigation.navigate('Main')}} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{alignSelf:'center',fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>EDIT PROFILE</Text>}
+                        centerComponent={<Text style={{alignSelf:'center',fontSize:20, fontFamily:"Poppins-Regular_0"}}>EDIT PROFILE</Text>}
                         // rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("EditProfile")}}><Image source={require('../../../assets/edit.png')} style={{height:30, width:30}} /> 
                         // </TouchableOpacity> }
                         />
 
-                <View style={{flex: 1 ,height:'100%', width:'100%', backgroundColor:"rgba(246, 232, 232, 0.7)",justifyContent:"center"}}>
+                <View style={{flex: 1 ,height:'100%', width:'100%',justifyContent:"center"}}>
 
                 <ScrollView style={{height: height}}>
                    
@@ -212,9 +212,9 @@ export default class EditProProfile extends Component {
 
                 {/* <View style={{backgroundColor:"#fff",borderRadius:10, width:"90%"}}> */}
                    
-                        <Card containerStyle={{backgroundColor:"#fff", borderRadius:10, width:"90%",}}> 
+                        <View style={{backgroundColor:"#fff", borderRadius:10, width:"90%", padding: 10}}> 
 
-                       {!this.state.profilePic ? <View style={{justifyContent:"center", alignContent:"center", alignItems:"center"}}>
+                       {!this.state.profilePic ? <View style={{justifyContent:"center", alignContent:"center", alignItems:"center", paddingVertical:15, marginBottom:10}}>
                              <Avatar  onPress={this.openGallery} onEditPress={this.openGallery} containerStyle={{backgroundColor:"#fc8b8c",}} showEditButton  rounded size="xlarge" editButton={{name:"camera",type:"font-awesome", size:25, iconStyle:{marginTop:10} ,containerStyle:{backgroundColor:"#fc8b8c", borderRadius:50, height: 45, width: 45, borderColor:'#fff' , borderWidth:2 ,marginRight:60}, color:"#fff", underlayColor:"#fc8b8c", reverseColor:"#fc8b8c", }}  source={{uri:`https://hnhtechsolutions.com/hassan/soplush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}} />
                         </View> 
                         :
@@ -226,7 +226,7 @@ export default class EditProProfile extends Component {
                             <Item>
                             <Image source={user} style={{ height: 22, width: 22 }} />
                         {/* <Label>Name</Label> */}
-                        <Input style={{padding:5}} defaultValue={this.state.username} onChangeText={(e) => {this.setState({username:e})}} placeholder="Name" />
+                        <Input style={{padding:5, fontSize:15}} defaultValue={this.state.username} onChangeText={(e) => {this.setState({username:e})}} placeholder="Name" />
                     </Item>
                     {/* <Item floatingLabel>
                         <Icon active name='home' type="FontAwesome" />
@@ -236,26 +236,26 @@ export default class EditProProfile extends Component {
                     <Item>
                     <Image source={envelop} style={{ height: 22, width: 22 }} />
                         {/* <Label>Email Address</Label> */}
-                        <Input defaultValue={this.state.email} onChangeText={(e) => {this.setState({email:e})}} placeholder="Email Address" />
+                        <Input style={{fontSize:15}} defaultValue={this.state.email} onChangeText={(e) => {this.setState({email:e})}} placeholder="Email Address" />
                     </Item>
                     <Item >
                     <Image source={phone} style={{ height: 22, width: 22 }} />
                         {/* <Label>Phone Number</Label> */}
-                        <Input defaultValue={this.state.phoneNo} onChangeText={(e) => {this.setState({phoneNo:e})}} placeholder="Phone Number" />
+                        <Input style={{fontSize:15}} defaultValue={this.state.phoneNo} onChangeText={(e) => {this.setState({phoneNo:e})}} placeholder="Phone Number" />
                     </Item>
                     <Item >
                     <Image source={user} style={{ height: 22, width: 22 }} />
-                        <Input defaultValue={this.state.gender}  onChangeText={(e) => {this.setState({gender:e})}} placeholder="Gender" />
+                        <Input style={{fontSize:15}} defaultValue={this.state.gender}  onChangeText={(e) => {this.setState({gender:e})}} placeholder="Gender" />
                     </Item>
                     <Item >
                     <Image source={atmcard} style={{ height: 22, width: 22 }} />
                         {/* <Label>Email Address</Label> */}
-                        <Input defaultValue={this.state.expertise}  onChangeText={(e) => {this.setState({expertise:e})}} placeholder="Expertize" />
+                        <Input style={{fontSize:15}} defaultValue={this.state.expertise}  onChangeText={(e) => {this.setState({expertise:e})}} placeholder="Expertize" />
                     </Item>
                     <Item >
                     <Image source={user} style={{ height: 22, width: 22 }} />
                         {/* <Label>Email Address</Label> */}
-                        <Input defaultValue={this.state.about}  onChangeText={(e) => {this.setState({about:e})}} placeholder="About me" />
+                        <Input style={{fontSize:15}} defaultValue={this.state.about}  onChangeText={(e) => {this.setState({about:e})}} placeholder="About me" />
                     </Item>
 
                     <View style={{ display: "flex", flexDirection: "row", marginBottom: "3%",marginVertical:'3%', padding:5 }}>
@@ -324,7 +324,7 @@ export default class EditProProfile extends Component {
 
                                         <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
                                             <Button onPress={() => {this.updateProfile()}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
-                                            <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
+                                            <Text style={{alignSelf:"center",color:"#fff", fontFamily:"Poppins-Regular_0", fontSize:20}}>
                                             Update
                                             </Text>   
                                             </Button>
@@ -336,14 +336,14 @@ export default class EditProProfile extends Component {
                                {!this.state.loader ? <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10 }}>
                                             {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                                                 <Button onPress={() => {this.updateProfile()}} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
-                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20 }}>
                                                     Ok
 </Text>
                                                 </Button>
                                             </LinearGradient> */}
                                               <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10}}>
                                         <TouchableOpacity onPress={() => {this.updateProfile()}} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
-                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 17, paddingVertical: 15 }}>
                                             Ok
                     </Text>
                                         </TouchableOpacity>
@@ -352,7 +352,7 @@ export default class EditProProfile extends Component {
 
 
                                 
-                    </Card>
+                    </View>
 
                        
                          

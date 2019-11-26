@@ -23,21 +23,21 @@ export default class About extends Component {
     render() {
         return (
             <View style={{ flex: 1, height:'100%', width:'100%', marginTop: -80 }}>
-                <ImageBackground source={require('../../../assets/opacity100.png')} style={{ height: "100%", width: "100%", opacity: 0.9 }}>
+                <ImageBackground source={require('../../../assets/inner.png')} style={{ height: "100%", width: "100%" }}>
 
                     <Header
                         containerStyle={{ marginTop: 60, backgroundColor: "#fff" }}
                         placement="left"
                         leftComponent={<Icon onPress={() => { this.props.navigation.navigate('UserHome') }} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{ alignSelf: "center", fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>ABOUT</Text>}
-                        rightComponent={<TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
-                            <Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />
-                        </TouchableOpacity>}
+                        centerComponent={<Text style={{ alignSelf: "center", fontSize: 20, fontFamily: "Poppins-Regular_0" }}>ABOUT</Text>}
+                        // rightComponent={<TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
+                        //     <Image source={require('../../../assets/notification.png')} style={{ height:26, width:20 }} />
+                        // </TouchableOpacity>}
                     />
 
 
 
-                    <View style={{flex: 1 ,height:'100%', width:'100%', backgroundColor: "rgba(246, 232, 232, 0.5)", justifyContent: "center" }}>
+                    <View style={{flex: 1 ,height:'100%', width:'100%', justifyContent: "center" }}>
 
                         <ScrollView style={{ height: height }}>
 
@@ -45,11 +45,11 @@ export default class About extends Component {
 
                             <View style={{flex: 1 ,marginTop: 20, marginHorizontal: "3%" }}>
 
-                                <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 30 }}>About Us</Text>
-                                <Text style={{ fontFamily: "svenings", marginTop: "3%", fontSize: 13, textAlign: "justify", fontStyle: "normal", color: "#48576f", lineHeight: 20  }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
+                                <Text style={{ fontFamily: "Poppins-Regular_0", fontSize: 20 }}>About Us</Text>
+                                <Text style={{ fontFamily: "Poppins-Regular_0", marginTop: "3%", fontSize: 13, textAlign: "justify", fontStyle: "normal", color: "#48576f", lineHeight: 20  }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
 
-                                <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 30, marginTop: "6%" }}>Who We Are?</Text>
-                                <Text style={{ fontFamily: "svenings", marginTop: "3%", fontSize: 13, textAlign: "justify", fontStyle: "normal", color: "#48576f", lineHeight: 20 }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                <Text style={{ fontFamily: "Poppins-Regular_0", fontSize: 20, marginTop: "6%" }}>Who We Are?</Text>
+                                <Text style={{ fontFamily: "Poppins-Regular_0", marginTop: "3%", fontSize: 13, textAlign: "justify", fontStyle: "normal", color: "#48576f", lineHeight: 20 }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </Text>

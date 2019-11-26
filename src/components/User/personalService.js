@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert, TextInput, BackHandler } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Body, Right, Thumbnail, CheckBox, Button } from 'native-base';
-import { Avatar, Header, Icon, Card } from 'react-native-elements'
+import { Avatar, Header, Icon, Card, Divider } from 'react-native-elements'
 import LinearGradient from 'react-native-linear-gradient'
 import { withNavigationFocus } from 'react-navigation';
 
@@ -420,7 +420,7 @@ export default class PersonalService extends Component {
         // }
         return (
             <View style={{ flex: 1, height: "100%", width: "100%", marginTop: -80 }}>
-                <ImageBackground source={require('../../../assets/opacity.jpg')} style={{ height: "100%", width: "100%", opacity: 0.9 }}>
+                <ImageBackground source={require('../../../assets/inner.png')} style={{ height: "100%", width: "100%" }}>
 
                     <Header
                         containerStyle={{ marginTop: 60, backgroundColor: "#fff" }}
@@ -435,7 +435,8 @@ export default class PersonalService extends Component {
                             name="arrow-back" color="#000" />}
                         centerComponent={
                             <View style={{ alignContent: "center", alignItems: "center", alignSelf: "center" }}>
-                                {!this.state.focusOn ? <Text style={{ alignSelf: 'center', fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg", textTransform: 'capitalize' }}>{category_name}</Text>
+                                {!this.state.focusOn ? <Text style={{ alignSelf: 'center', 
+                                fontSize: 20, fontFamily: "Poppins-Regular_0", textTransform:"uppercase" }}>{category_name}</Text>
                                     :
 
                                     <View style={{
@@ -488,7 +489,7 @@ export default class PersonalService extends Component {
                                 </TouchableOpacity>}
 
                                 <TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
-                                    <Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />
+                                    <Image source={require('../../../assets/notification.png')} style={{ height:26, width:20 }} />
                                 </TouchableOpacity>
                             </View>}
                     />
@@ -496,7 +497,7 @@ export default class PersonalService extends Component {
 
 
 
-                    <View style={{ width: '100%', backgroundColor: "rgba(246, 232, 232, 0.7)" }}>
+                    <View style={{ width: '100%' }}>
 
                         <ScrollView contentContainerStyle={{ alignItems: "center", alignContent: "center", width: "100%" }}>
 
@@ -504,7 +505,7 @@ export default class PersonalService extends Component {
                             <View style={{ width: "90%", alignItems: "center" }}>
 
 
-                                <Card key={1} containerStyle={{ width: "100%", padding: 0, borderRadius: 10, overflow: "hidden", alignContent: "space-between", borderColor: 'none', borderWidth: 0 }}>
+                                <View key={1} style={{ width: "100%", padding: 0, borderRadius: 10, overflow: "hidden", alignContent: "space-between", borderColor: 'none', borderWidth: 0, backgroundColor:"#fff" }}>
 
                                     <View style={{ width: "100%", marginLeft: 0, marginRight: 0 }}>
                                         {/* <Image source={{uri:'https://cdn.vox-cdn.com/thumbor/XtwGXC-0GhXcDXiM0B0rjGAAxZE=/148x0:1768x1080/1200x800/filters:focal(148x0:1768x1080)/cdn.vox-cdn.com/uploads/chorus_image/image/45905674/3042430-poster-p-1-hello-barbie-talking-toy-toytalk.0.0.jpg'}} style={{ height: 200, width: "100%", }} /> */}
@@ -591,13 +592,13 @@ export default class PersonalService extends Component {
 
                                     {this.state.plush ? <View>
                                         {soplushData !== undefined ?
-                                            <View style={{ top: '5%' }}>
+                                            <View style={{ marginTop: '5%' }}>
                                                 {filterplush.map((value, index) => {
                                                     if (value.p_checked === 0) {
                                                         var checked = false
                                                     }
                                                     return (
-                                                        <List style={{ width: '90%', borderBottomWidth: 0.5, borderBottomColor: 'gray', alignSelf: 'center', justifyContent: 'center', height: 60 }}>
+                                                        <List style={{ width: '100%', borderBottomWidth: 0, borderBottomColor:"#bdbdbd", alignSelf: 'center', justifyContent: 'center', height: 60, padding: 5 }}>
                                                             <ListItem key={index} avatar>
                                                                 {/* <Left style={{marginTop:'5%'}}>
                                                                     <CheckBox style={{ borderRadius: 5 }} checked={value.p_checked} color="pink" />
@@ -615,7 +616,7 @@ export default class PersonalService extends Component {
                                                                     <View style={{ flex: 1, flexDirection: 'row' }}>
 
                                                                         <View>
-                                                                            <CheckBox onPress={() => this.workFunction(value, "plush", index)} style={{ borderRadius: 5 }} checked={value.p_checked} color="pink" />
+                                                                            <CheckBox onPress={() => this.workFunction(value, "plush", index)} style={{ borderRadius: 5, marginRight:"4%" }} checked={value.p_checked} color="pink"  />
                                                                         </View>
 
                                                                         <View style={{ marginLeft: '4%' }}>
@@ -630,6 +631,8 @@ export default class PersonalService extends Component {
 
                                                                 </View>
                                                             </ListItem>
+                                                            <Divider style={{backgroundColor:'#bdbdbd', width:'90%', marginLeft: '4%'}} />
+
                                                         </List>)
                                                 })}
 
@@ -652,7 +655,7 @@ export default class PersonalService extends Component {
                                                 <View style={{ marginTop: '5%' }}>
                                                     {filterSoplush.map((value, index) => {
                                                         return (
-                                                            <List style={{ width: '90%', borderBottomWidth: 0.5, borderBottomColor: 'gray', alignSelf: 'center', justifyContent: 'center', height: 60 }}>
+                                                            <List style={{ width: '100%', borderBottomWidth: 0, borderBottomColor: '#bdbdbd', alignSelf: 'center', justifyContent: 'center', height: 60, padding:5 }}>
                                                                 <ListItem key={index} avatar>
                                                                     {/* <Left style={{ top: "8%" }}>
                                                                         <CheckBox style={{ borderRadius: 5 }} checked={value.s_checked} color="pink" />
@@ -688,6 +691,7 @@ export default class PersonalService extends Component {
 
                                                                     </View>
                                                                 </ListItem>
+                                                                 <Divider style={{backgroundColor:'#bdbdbd', width:'90%', marginLeft: '4%'}} />
                                                             </List>)
                                                     })}
                                                 </View> :
@@ -713,7 +717,7 @@ export default class PersonalService extends Component {
                                         //                                         <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10 }}>
                                         //                                             <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                                         //                                                 <Button onPress={() => this.FilterBeautician()} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
-                                        //                                                     <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                        //                                                     <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20 }}>
                                         //                                                         Next
                                         // </Text>
                                         //                                                 </Button>
@@ -725,8 +729,8 @@ export default class PersonalService extends Component {
                                             <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", }}>
                                                 <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10 }}>
                                                     <TouchableOpacity onPress={() => this.FilterBeautician()} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
-                                                        <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
-                                                            Next
+                                                        <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 16, paddingVertical: 15 }}>
+                                                            NEXT
                     </Text>
                                                     </TouchableOpacity>
                                                 </LinearGradient>
@@ -742,7 +746,7 @@ export default class PersonalService extends Component {
                                     }
 
 
-                                </Card>
+                                </View>
 
 
                                 <View>

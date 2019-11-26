@@ -195,7 +195,7 @@ export default class ProSignUp extends Component {
         } = this.state
         // this.props.successSign()
         console.log("SIGN UP jksdajkfajkshjghj", email, password, name, phoneNo, dOB, bank, accountNo)
-let date = moment(dOB).format("YYYY-MM-DD")
+        let date = moment(dOB).format("YYYY-MM-DD")
 
         // this.props.navigation.navigate("ProLogin")
         if (email && password && name && phoneNo && dOB && bank && accountNo) {
@@ -203,7 +203,7 @@ let date = moment(dOB).format("YYYY-MM-DD")
             if (reg.test(email) === false) {
                 console.log("hello")
                 this.setState({ loader: false })
-                Alert.alert("Error","Email is not Formated")
+                Alert.alert("Error", "Email is not Formated")
             } else {
                 console.log('else')
                 if (fileUri != "") {
@@ -213,7 +213,7 @@ let date = moment(dOB).format("YYYY-MM-DD")
                         type: 'image/png'
                     }
                     formData.append("file_upload", file)
-    
+
                 }
 
                 const formData = new FormData();
@@ -246,7 +246,7 @@ let date = moment(dOB).format("YYYY-MM-DD")
 
                         if (successData.status) {
                             if (successData.status === true) {
-                                Alert.alert("Success","Signup successful")
+                                Alert.alert("Success", "Signup successful")
                                 this.setState({ loader: true })
 
                                 this.props.navigation.navigate("ProLogin")
@@ -254,13 +254,13 @@ let date = moment(dOB).format("YYYY-MM-DD")
                         } else {
                             this.setState({ loader: true })
 
-                            Alert.alert("Error",successData.message)
+                            Alert.alert("Error", successData.message)
                         }
                         console.log("SUCCESS", successData, successData.status, successData.data)
                     })
                     .catch(err => {
                         this.setState({ loader: false })
-                        Alert.alert('Try Later')
+                        Alert.alert("Error",'Try Later')
                         console.log("err err err", err)
                     });
             }
@@ -329,12 +329,12 @@ let date = moment(dOB).format("YYYY-MM-DD")
 
 
     render() {
-        const { email, password, name, address, phoneNo, bank, accountNo, loader,  nameErr, emailErr, accountNoErr, addressErr, bankErr, passwordErr, phoneNoErr, dOBErr
+        const { email, password, name, address, phoneNo, bank, accountNo, loader, nameErr, emailErr, accountNoErr, addressErr, bankErr, passwordErr, phoneNoErr, dOBErr
         } = this.state
         console.log(email, password, name, address, phoneNo, bank, accountNo)
         return (
             <View style={{ flex: 1, height: '100%', width: '100%', marginTop: -80 }}>
-                <ImageBackground source={require('../../../assets/background.jpg')} style={{ height: "100%", width: "100%", opacity: 0.9 }}>
+                <ImageBackground source={require('../../../assets/inner.png')} style={{ height: "100%", width: "100%" }}>
 
                     <ScrollView style={{ height: height }}>
 
@@ -350,12 +350,12 @@ let date = moment(dOB).format("YYYY-MM-DD")
 
                             <View style={{ marginTop: "5%", alignContent: "center", alignSelf: "center", alignItems: "center", width: "80%", backgroundColor: "#fff", borderRadius: 10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', padding: "5%" }}>
 
-                                <View style={{ marginVertical: 10 }}>
-                                    <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 22, fontWeight: "bold" }}>CREATE ACCOUNT</Text>
+                                <View style={{ marginVertical: 5 }}>
+                                    <Text style={{ fontFamily: "Poppins-Regular_0", fontSize: 20, fontWeight: "bold" }}>CREATE ACCOUNT</Text>
                                 </View>
 
 
-{/* 
+                                {/* 
                                 <Item>
                                     <Image source={user} style={{ height: 22, width: 22 }} />
                                     <Input placeholderTextColor="#bdbdbd" onChangeText={(e) => this.setState({ name: e })} placeholder=" Name" />
@@ -432,43 +432,43 @@ let date = moment(dOB).format("YYYY-MM-DD")
 
 
 
-<Item error={nameErr}  >
-<Image source={user} style={{ height: 22, width: 22 }} />
+                                <Item error={nameErr}  >
+                                    <Image source={user} style={{ height: 20, width: 16 }} />
                                     {/* <Label>Name</Label> */}
-                                    <Input style={{width:"100%"}} placeholderTextColor="#bdbdbd"  onBlur={() => this.checkField("name")} onChangeText={(e) => this.setState({ name: e })} placeholder=" Name" />
+                                    <Input style={{ width: "100%", fontSize: 15 }} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("name")} onChangeText={(e) => this.setState({ name: e })} placeholder=" Name" />
                                 </Item>
                                 {nameErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Username is required</Text>}
                                 <Item error={addressErr}  >
-                                <Image source={home} style={{ height: 22, width: 22 }} />
+                                    <Image source={home} style={{ height: 20, width: 16 }} />
                                     {/* <Label>Address</Label> */}
-                                    <Input style={{width:"100%"}} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("address")} onChangeText={(e) => this.setState({ address: e })} placeholder="Address" />
+                                    <Input style={{ width: "100%", fontSize: 15 }} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("address")} onChangeText={(e) => this.setState({ address: e })} placeholder="Address" />
                                 </Item>
                                 {addressErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Address is required</Text>}
                                 <Item error={phoneNoErr}  >
-                                <Image source={phone} style={{ height: 22, width: 22 }} />
+                                    <Image source={phone} style={{ height: 20, width: 18 }} />
                                     {/* <Label>Phone Number</Label> */}
-                                    <Input style={{width:"100%"}} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("phoneNo")} keyboardType="number-pad" onChangeText={(e) => this.setState({ phoneNo: e })} placeholder="Phone Number" />
+                                    <Input style={{ width: "100%", fontSize: 15 }} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("phoneNo")} keyboardType="number-pad" onChangeText={(e) => this.setState({ phoneNo: e })} placeholder="Phone Number" />
                                 </Item>
                                 {phoneNoErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Phone no is required</Text>}
                                 <Item error={emailErr}  >
-                                <Image source={envelop} style={{ height: 22, width: 22 }} />
+                                    <Image source={envelop} style={{ height: 15, width: 20 }} />
                                     {/* <Label>Email Address</Label> */}
-                                    <Input style={{width:"100%"}} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("email")} onChangeText={(e) => this.setState({ email: e })} placeholder="Email Address" />
+                                    <Input style={{ width: "100%", fontSize: 15 }} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("email")} onChangeText={(e) => this.setState({ email: e })} placeholder="Email Address" />
                                 </Item>
                                 {emailErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
                                 <Item error={passwordErr}  >
-                                <Image source={lock} style={{ height: 22, width: 22 }} />
+                                    <Image source={lock} style={{ height: 20, width: 20 }} />
                                     {/* <Label>Password</Label> */}
-                                    <Input style={{width:"100%"}} placeholderTextColor="#bdbdbd" style={{ fontSize: 20 }} onBlur={() => this.checkField("password")} secureTextEntry={true} onChangeText={(e) => this.setState({ password: e })} placeholder="Password" />
+                                    <Input style={{ width: "100%", fontSize: 15 }} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("password")} secureTextEntry={true} onChangeText={(e) => this.setState({ password: e })} placeholder="Password" />
                                 </Item>
                                 {passwordErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >min 6 letters</Text>}
-                                <View style={{ flexDirection: "row", marginTop: 10, width: "100%", borderBottomWidth: 0.5, borderBottomColor: '#bdbdbd'  }}>
-                                <Image source={cake} style={{ height: 22, width: 22, marginBottom:-5 }} />
-                                <DatePicker
+                                <View style={{ flexDirection: "row", marginTop: 10, width: "100%", borderBottomWidth: 0.5, borderBottomColor: '#bdbdbd' }}>
+                                    <Image source={cake} style={{ height: 15, width: 20, marginTop: 12 }} />
+                                    <DatePicker
                                         ref={ref => this.datePicker = ref}
-                                       aultDate={"1/23/3"}
+                                        aultDate={"1/23/3"}
                                         mode="date" //The enum of date, datetime and time
-                                        placeHolderTextStyle={{ color: "#bdbdbd" }}
+                                        placeHolderTextStyle={{ color: "#bdbdbd", fontSize: 15 }}
                                         placeHolderText="Date Of Birth"
                                         format="DD-MM-YYYY"
                                         minDate="01-01-2019"
@@ -476,15 +476,15 @@ let date = moment(dOB).format("YYYY-MM-DD")
                                         confirmBtnText="Confirm"
                                         cancelBtnText="Cancel"
                                         customStyles={{
-                                            dateIcon: {
-                                                position: 'absolute',
-                                                left: 0,
-                                                top: 4,
-                                                marginLeft: 0
-                                            },
-                                            dateInput: {
-                                                marginLeft: 36
-                                            }
+                                            // dateIcon: {
+                                            //     position: 'absolute',
+                                            //     left: 0,
+                                            //     top: 4,
+                                            //     marginLeft: 0
+                                            // },
+                                            // dateInput: {
+                                            //     marginLeft: 36
+                                            // }
                                         }}
                                         onDateChange={(date) => {
                                             var newdate = moment(date.toString().substr(4, 12)).format("YYYY-MM-DD")
@@ -497,28 +497,28 @@ let date = moment(dOB).format("YYYY-MM-DD")
                                 </View>
                                 {dOBErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
                                 <Item error={bankErr}  >
-                                <Image source={museum} style={{ height: 22, width: 22 }} />
-                                    <Input style={{width:"100%"}} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("bank")} onChangeText={(e) => this.setState({ bank: e })} placeholder="Bank Name" />
+                                    <Image source={museum} style={{ height: 15, width: 20 }} />
+                                    <Input style={{ width: "100%", fontSize: 15 }} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("bank")} onChangeText={(e) => this.setState({ bank: e })} placeholder="Bank Name" />
                                 </Item>
                                 {bankErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
                                 <Item error={accountNoErr}  >
-                                <Image source={atmcard} style={{ height: 22, width: 22 }} />
-                                    <Input style={{width:"100%"}} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("accountNo")} keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Account Number" />
+                                    <Image source={atmcard} style={{ height: 15, width: 20 }} />
+                                    <Input style={{ width: "100%", fontSize: 15 }} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("accountNo")} keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Account Number" />
                                 </Item>
                                 {accountNoErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
                                 <Item onPress={this.openGallery}  >
-                                <Image source={camicon} style={{ height: 30, width: 30 }} />
-                                    <Input style={{width:"100%"}} placeholderTextColor="#bdbdbd" disabled keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Upload Pictures" />
+                                    <Image source={camicon} style={{ height: 15, width: 20 }} />
+                                    <Input style={{ width: "100%", fontSize: 15 }} placeholderTextColor="#bdbdbd" disabled keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Upload Pictures" />
                                 </Item>
 
-                               
 
 
-                                {this.state.profilePic && <View style={{ display: "flex", flexDirection: "row", marginBottom: "3%", marginVertical: '3%' , alignSelf: 'flex-start' }}>
-                                    <Avatar onPress={this.openGallery} containerStyle={{ height: 40, width: 40, marginTop: "1%", borderRadius: 5, backgroundColor:'#bdbdbd' }} source={camicon} overlayContainerStyle={{ height: 40, width: 40, marginTop: "1%", borderRadius: 5 }} source={camicon} />
+
+                                {this.state.profilePic && <View style={{ display: "flex", flexDirection: "row", marginBottom: "3%", marginVertical: '3%', alignSelf: 'flex-start' }}>
+                                    <Avatar onPress={this.openGallery} containerStyle={{ height: 15, width: 20, marginTop: "1%", borderRadius: 5, backgroundColor: '#bdbdbd' }} source={camicon} overlayContainerStyle={{ height: 40, width: 40, marginTop: "1%", borderRadius: 5 }} source={camicon} />
 
 
-                                    <TouchableOpacity style={{ height: 50, width: 50, borderTopLeftRadius: 5,borderBottomLeftRadius: 5, borderBottomRightRadius: 5,  }} onPress={() => {
+                                    <TouchableOpacity style={{ height: 50, width: 50, borderTopLeftRadius: 5, borderBottomLeftRadius: 5, borderBottomRightRadius: 5, }} onPress={() => {
 
                                         Alert.alert(
                                             'Profile',
@@ -540,7 +540,7 @@ let date = moment(dOB).format("YYYY-MM-DD")
                                         )
 
                                     }}>
-                                        <ImageBackground source={this.state.profilePic} borderTopLeftRadius = {5}  borderBottomRightRadius= {5} borderBottomLeftRadius={5} style={{ height: 40, width: 40, margin: 3, display: "flex", backgroundColor: "lightgray",}}>
+                                        <ImageBackground source={this.state.profilePic} borderTopLeftRadius={5} borderBottomRightRadius={5} borderBottomLeftRadius={5} style={{ height: 40, width: 40, margin: 3, display: "flex", backgroundColor: "lightgray", }}>
                                             <Text style={{ backgroundColor: "red", borderRadius: 100, color: "#fff", height: 20, width: 20, alignSelf: 'flex-end', textAlign: 'center', position: 'absolute', right: -7, top: -7 }}>X</Text>
                                         </ImageBackground>
                                     </TouchableOpacity>
@@ -549,7 +549,7 @@ let date = moment(dOB).format("YYYY-MM-DD")
                                 {/* 
                  <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
                     <Button style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
-                     <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
+                     <Text style={{alignSelf:"center",color:"#fff", fontFamily:"Poppins-Regular_0", fontSize:20}}>
                         Login    
                     </Text>   
                      </Button>
@@ -557,7 +557,7 @@ let date = moment(dOB).format("YYYY-MM-DD")
 
 
                                 {/* <Button onPress={this.signUp} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#fc8b8c", width: "90%", borderRadius: 10, opacity: 0.7 }}>
-                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20 }}>
                                         Sign Up
                     </Text>
                                 </Button> */}
@@ -569,7 +569,7 @@ let date = moment(dOB).format("YYYY-MM-DD")
                                     //                                 <View style={{ alignContent: "center", alignItems: "center", marginBottom:5, width:'100%', marginVertical:'5%' }}>
                                     //                                 <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                                     //                                     <Button onPress={this.signUp} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
-                                    //                                         <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 , paddingVertical: '8%', marginTop:-5}}>
+                                    //                                         <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20 , paddingVertical: '8%', marginTop:-5}}>
                                     //                                         Sign Up
                                     // </Text>
                                     //                                     </Button>
@@ -579,7 +579,7 @@ let date = moment(dOB).format("YYYY-MM-DD")
                                     <View style={{ alignContent: "center", alignItems: "center", width: '100%', paddingVertical: '5%' }}>
                                         <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "100%", borderRadius: 10 }}>
                                             <TouchableOpacity onPress={this.signUp} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
-                                                <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: '7%', marginTop: -5 }}>
+                                                <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20, paddingVertical: '7%', marginTop: -5 }}>
                                                     SIGN UP
 </Text>
                                             </TouchableOpacity>

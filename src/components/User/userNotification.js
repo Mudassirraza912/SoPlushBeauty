@@ -92,11 +92,11 @@ export default class UserNotification extends Component {
         containerStyle={{backgroundColor:"transparent", width:"100%"}}
           title={mainItem}
           subtitle={item.time}
-          titleStyle = {{fontFamily:"MrEavesXLModNarOT-Reg", textAlignVertical: "top", fontSize: 16}}
-          subtitleStyle={{color:"red", fontFamily:"MrEavesXLModNarOT-Reg", textAlignVertical: "bottom", marginTop: 8}}
+          titleStyle = {{fontFamily:"Poppins-Regular_0", textAlignVertical: "top", fontSize: 14}}
+          subtitleStyle={{color:"red", fontFamily:"Poppins-Regular_0", textAlignVertical: "bottom", marginTop: 8}}
           leftAvatar={{
             source: item.icon &&  item.icon ,
-            titleStyle:{fontFamily:"MrEavesXLModNarOT-Reg"},
+            titleStyle:{fontFamily:"Poppins-Regular_0"},
             title: item.data[0],
             rounded:false,
             size:"medium",
@@ -116,19 +116,19 @@ export default class UserNotification extends Component {
     render() {
         return (
             <View style={{flex:1, height:'100%', width:'100%', marginTop: -80}}>
-                <ImageBackground source={require('../../../assets/opacity100.png')} style={{height:"100%", width:"100%",opacity:0.9}}> 
+                <ImageBackground source={require('../../../assets/inner.png')} style={{height:"100%", width:"100%"}}> 
 
                 <Header
                     containerStyle={{marginTop:60, backgroundColor:"#fff"}}
                     placement="left"
                     leftComponent={<Icon onPress={() => {this.props.navigation.navigate('UserHome')}} name="arrow-back" color="#000" />}
-                    centerComponent={<Text style={{alignSelf:"center",fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>NOTIFICATION</Text>}
+                    centerComponent={<Text style={{alignSelf:"center",fontSize:20, fontFamily:"Poppins-Regular_0"}}>NOTIFICATION</Text>}
                     // rightComponent={  <Image source={require('../../../assets/notification.png')} style={{height:20, width:20}} />}
                     />
 
 
 
-                <View style={{ flex:1,height:'100%', width:'100%', backgroundColor:"rgba(246, 232, 232, 0.7)",justifyContent:"center"}}>
+                <View style={{ flex:1,height:'100%', width:'100%',justifyContent:"center"}}>
 
                 <ScrollView style={{height: height}}>
 

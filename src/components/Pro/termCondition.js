@@ -23,16 +23,16 @@ export default class Term extends Component {
     render() {
         return (
             <View style={{ flex: 1, height:'100%', width:'100%', marginTop: -80 }}>
-                <ImageBackground source={require('../../../assets/opacity100.png')} style={{ height: "100%", width: "100%", opacity: 0.9 }}>
+                <ImageBackground source={require('../../../assets/opacity100.png')} style={{ height: "100%", width: "100%"}}>
 
                     <Header
                         containerStyle={{ marginTop: 60, backgroundColor: "#fff" }}
                         placement="left"
-                        leftComponent={<Icon onPress={() => { this.props.navigation.navigate('UserHome') }} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{ alignSelf: "center", fontSize: 25, fontFamily: "MrEavesXLModNarOT-Reg" }}>TERM&CONDITION</Text>}
-                        rightComponent={<TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
-                            <Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />
-                        </TouchableOpacity>}
+                        leftComponent={<Icon onPress={() => { this.props.navigation.goBack() }} name="arrow-back" color="#000" />}
+                        centerComponent={<Text style={{ alignSelf: "center", fontSize: 20, fontFamily: "Poppins-Regular_0" }}>TERM&CONDITION</Text>}
+                        // rightComponent={<TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
+                        //     <Image source={require('../../../assets/notification.png')} style={{ height:26, width:20 }} />
+                        // </TouchableOpacity>}
                     />
 
 
@@ -45,15 +45,15 @@ export default class Term extends Component {
 
                             <View style={{ marginTop: 20, marginHorizontal: "3%" }}>
 
-                                <Text style={{ fontFamily: "svenings", marginTop: "3%", fontSize: 13, textAlign: "justify", fontStyle: "normal", color: "#48576f", lineHeight: 20}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
+                                <Text style={{ fontFamily: "Poppins-Regular_0", marginTop: "3%", fontSize: 13, textAlign: "justify", fontStyle: "normal", color: "#48576f", lineHeight: 20}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
 
 
 
-                            <Text style={{ fontFamily: "svenings", marginTop: "3%", fontSize: 13, textAlign: "justify", fontStyle: "normal", color: "#48576f", lineHeight: 20 }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
+                            <Text style={{ fontFamily: "Poppins-Regular_0", marginTop: "3%", fontSize: 13, textAlign: "justify", fontStyle: "normal", color: "#48576f", lineHeight: 20 }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
 
 
 
-                            <Text style={{ fontFamily: "svenings", marginTop: "3%", fontSize: 13, textAlign: "justify", fontStyle: "normal", color: "#48576f", lineHeight: 20 }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            <Text style={{ fontFamily: "Poppins-Regular_0", marginTop: "3%", fontSize: 13, textAlign: "justify", fontStyle: "normal", color: "#48576f", lineHeight: 20 }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </Text>

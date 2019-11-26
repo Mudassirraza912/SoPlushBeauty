@@ -40,8 +40,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"HOME",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 header:null
         }),
@@ -52,8 +52,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"Service List",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 headerMode: 'none',
                 headerVisible: false,
@@ -67,8 +67,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"Booking Request",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 headerMode: 'none',
                 headerVisible: false,
@@ -81,8 +81,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"Booking Request",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 headerMode: 'none',
                 headerVisible: false,
@@ -95,8 +95,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"Booking Request",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 headerMode: 'none',
                 headerVisible: false,
@@ -110,8 +110,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"Booking Request",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 headerMode: 'none',
                 headerVisible: false,
@@ -125,8 +125,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"Booking Request",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 headerMode: 'none',
                 headerVisible: false,
@@ -140,8 +140,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"Booking Request",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 headerMode: 'none',
                 headerVisible: false,
@@ -155,8 +155,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"Booking Request",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 headerMode: 'none',
                 headerVisible: false,
@@ -170,8 +170,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"Booking Request",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 headerMode: 'none',
                 headerVisible: false,
@@ -185,8 +185,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"Booking Request",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 headerMode: 'none',
                 headerVisible: false,
@@ -200,8 +200,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"About",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 headerMode: 'none',
                 headerVisible: false,
@@ -215,8 +215,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"About",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 headerMode: 'none',
                 headerVisible: false,
@@ -230,8 +230,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"Booking History",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 headerMode: 'none',
                 headerVisible: false,

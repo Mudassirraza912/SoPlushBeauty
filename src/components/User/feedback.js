@@ -88,7 +88,7 @@
 //                         containerStyle={{marginTop:60, backgroundColor:"#fff"}}
 //                         placement="left"
 //                         leftComponent={<Icon onPress={() => {this.props.navigation.navigate('UserHome')}} name="arrow-back" color="#000" />}
-//                         centerComponent={<Text style={{alignSelf:'center',fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>Feed Back</Text>}
+//                         centerComponent={<Text style={{alignSelf:'center',fontSize:30, fontFamily:"Poppins-Regular_0"}}>Feed Back</Text>}
 //                         // rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("Notification")}}>
 //                         //     <Image source={require('../../../assets/notification.png')} style={{height:20, width:20}} />
 //                         // </TouchableOpacity>}
@@ -124,7 +124,7 @@
 //                 <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
 //                                     <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
 //                                         <Button onPress={this.submitReview} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
-//                                             <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+//                                             <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20 }}>
 //                                                 Submit
 //                     </Text>
 //                                         </Button>
@@ -229,13 +229,13 @@ export default class Feedback extends Component {
         console.log(' bokingdetails  bokingdetails',this.state.bokingdetails)
         return (
             <View style={{flex:1, height, width, marginTop: -80}}>
-                <ImageBackground source={require('../../../assets/opacity100.png')} style={{height:"100%", width:"100%",opacity:0.9}}> 
+                <ImageBackground source={require('../../../assets/inner.png')} style={{height:"100%", width:"100%"}}> 
 
                 <Header
                         containerStyle={{marginTop:60, backgroundColor:"#fff"}}
                         placement="left"
                         leftComponent={<Icon onPress={() => {this.props.navigation.navigate('UserHome')}} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>Feed Back</Text>}
+                        centerComponent={<Text style={{alignSelf:"center", fontSize:20, fontFamily:"Poppins-Regular_0"}}>Feed Back</Text>}
                         // rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("Notification")}}>
                         //     <Image source={require('../../../assets/notification.png')} style={{height:20, width:20}} />
                         // </TouchableOpacity>}
@@ -243,7 +243,7 @@ export default class Feedback extends Component {
 
 
 
-                <View style={{ height, width, backgroundColor:"rgba(246, 232, 232, 0.5)"}}>
+                <View style={{ height, width}}>
 
                 {/* <ScrollView style={{height: height}}>
 
@@ -272,7 +272,7 @@ export default class Feedback extends Component {
                 <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
                                     {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "40%", borderRadius: 10 }}>
                                         <Button onPress={this.submitReview} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
-                                            <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                            <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20 }}>
                                                 Submit
                     </Text>
                                         </Button>
@@ -280,7 +280,7 @@ export default class Feedback extends Component {
 
 <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "80%", borderRadius: 10}}>
                                         <TouchableOpacity onPress={this.submitReview} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
-                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 16, paddingVertical: 15 }}>
                                             SUBMIT
                     </Text>
                                         </TouchableOpacity>

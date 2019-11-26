@@ -148,11 +148,11 @@
                                 selectedStar={(rating) => this.setState({ starCount: rating })}
                                 emptyStarColor="pink"
                             />}
-                            titleStyle={{ fontFamily: "MrEavesXLModNarOT-Reg", fontWeight:'bold' }}
-                            subtitleStyle={{ color: "red", fontFamily: "MrEavesXLModNarOT-Reg" }}
+                            titleStyle={{ fontFamily: "Poppins-Regular_0", fontWeight:'bold' }}
+                            subtitleStyle={{ color: "red", fontFamily: "Poppins-Regular_0" }}
                             leftAvatar={{
                                 source: item.profile_pic && { uri: `https://hnhtechsolutions.com/hassan/soplush/profile_pics/${item.profile_pic}` },
-                                titleStyle: { fontFamily: "MrEavesXLModNarOT-Reg" },
+                                titleStyle: { fontFamily: "Poppins-Regular_0" },
                                 // title: item.data[0],
                                 rounded: true,
                                 size: "medium",
@@ -176,14 +176,14 @@
                 // console.log("SelectBeautician", this.state.cart, this.state.selectDate)
                 return (
                     <View style={{ flex: 1, height: '100%', width:'100%', marginTop: -80, backgroundColor: "rgb(200, 165, 212)" }}>
-                        <ImageBackground source={require('../../../assets/opacity100.png')} style={{ height: "100%", width: "100%", opacity: 0.9 }}>
+                        <ImageBackground source={require('../../../assets/inner.png')} style={{ height: "100%", width: "100%" }}>
 
                             <Header
                                 containerStyle={{ marginTop: 60, backgroundColor: "#fff" }}
                                 placement="left"
                                 leftComponent={<Icon onPress={() => { this.props.navigation.goBack() }} name="arrow-back" color="#000" />}
-                                centerComponent={<Text style={{alignSelf:'center',fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>SELECT BEAUTICIANIST</Text>}
-                                // rightComponent={<Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />}
+                                centerComponent={<Text style={{alignSelf:'center',fontSize: 20, fontFamily: "Poppins-Regular_0" }}>SELECT BEAUTICIANIST</Text>}
+                                // rightComponent={<Image source={require('../../../assets/notification.png')} style={{ height:26, width:20 }} />}
                             />
 
 
@@ -227,7 +227,7 @@
                                     selectDate: this.state.selectDate
                                     })}} 
                             style={{justifyContent:"center",alignContent:"center", alignItems:"center",width:"40%", borderRadius: 10, backgroundColor:"transparent", borderBottomColor:"#000", borderBottomWidth:3}}> 
-                                                        <Text style={{alignSelf:"center",color:"#000", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
+                                                        <Text style={{alignSelf:"center",color:"#000", fontFamily:"Poppins-Regular_0", fontSize:20}}>
                                                             Skip
                                                         </Text>   
                                                         </Button>

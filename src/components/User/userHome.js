@@ -39,8 +39,8 @@ const { width, height } = Dimensions.get("window")
         // headerBackTitle: null,
         title: "HOME",
         headerTitleStyle: {
-            fontFamily: "MrEavesXLModNarOT-Reg",
-            fontSize: 30
+            fontFamily: "Poppins-Regular_0",
+            // fontSize: 30
         },
         headerMode: 'none',
         headerVisible: false,
@@ -215,7 +215,7 @@ const { width, height } = Dimensions.get("window")
                     leftComponent={<Icon onPress={() => { Keyboard.dismiss(), this.props.navigation.toggleDrawer() }} name="menu" color="#000" />}
                     centerComponent={
                         <View style={{ alignContent: "center", alignItems: "center", alignSelf: "center" }}>
-                           <Text style={{alignSelf:'center',fontFamily: "MrEavesXLModNarOT-Reg",fontSize:30}}>HOME</Text>
+                           <Text style={{alignSelf:'center',fontFamily: "Poppins-Regular_0",fontSize:20, fontWeight: "bold"}}>HOME</Text>
 
                                 {/* <View style={{
                                     backgroundColor: "transparent",
@@ -267,7 +267,7 @@ const { width, height } = Dimensions.get("window")
                             </TouchableOpacity>} */}
 
                             <TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
-                                <Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />
+                                <Image source={require('../../../assets/notificationheader.png')} style={{ height: 20, width: 20 }} />
                             </TouchableOpacity>
                         </View>}
                 />
@@ -284,7 +284,7 @@ const { width, height } = Dimensions.get("window")
                         </View>
 
                         <View style={{ width: width, marginVertical: "2%", marginLeft: "5%" }}>
-                            <Text style={{ fontSize: 20, fontFamily: "MrEavesXLModNarOT-Reg", fontWeight: "bold" }}>SERVICES</Text>
+                            <Text style={{ fontSize: 16, fontFamily: "Poppins-Regular_0", fontWeight: "bold" }}>SERVICES</Text>
                         </View>
 
 
@@ -330,7 +330,7 @@ const { width, height } = Dimensions.get("window")
                                         <TouchableOpacity style={{width:'100%'}} onPress={() => this.navigatingToOther(item)}>
                                             <Image style={styles.imageThumbnail} source={{ uri: `https://hnhtechsolutions.com/hassan/soplush/images/${item.image}` }} />
                                         </TouchableOpacity>
-                                        <Text style={{ fontSize: 20, color: "#000", opacity: 0.6, fontFamily: "MrEavesXLModNarOT-Reg", textTransform: 'capitalize', fontWeight:'900', marginVertical:5 }}>{item.category_name}</Text>
+                                        <Text style={{ fontSize: 17, color: "#000", opacity: 0.6, fontFamily: "Poppins-Regular_0", textTransform: 'capitalize', fontWeight:'900', marginVertical:5 }}>{item.category_name}</Text>
                                     </View>
                                     )
                                 }

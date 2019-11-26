@@ -43,7 +43,7 @@ export default class Payment extends Component {
                         containerStyle={{ marginTop: 40, backgroundColor: "#fff" }}
                         placement="left"
                         leftComponent={<Icon onPress={() => { this.props.navigation.navigate('Main') }} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{alignSelf:'center',fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>PAYMENT</Text>}
+                        centerComponent={<Text style={{alignSelf:'center',fontSize: 20, fontFamily: "Poppins-Regular_0" }}>PAYMENT</Text>}
                     />
 
                     <View style={{ height, width, backgroundColor: "rgba(246, 232, 232, 0.7)"}}>
@@ -54,7 +54,7 @@ export default class Payment extends Component {
                             <View style={{width:width}}>
 
                             <View style={{marginTop:"15%"}}>
-                                <Text style={{alignSelf:"center",color:"#000", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:30}}>
+                                <Text style={{alignSelf:"center",color:"#000", fontFamily:"Poppins-Regular_0", fontSize:20}}>
                                     ENTER CARD DETAILS
                                 </Text>
                             </View>
@@ -94,7 +94,7 @@ export default class Payment extends Component {
                                         ],
                                         {cancelable: false},
                                         )}}}  style={{backgroundColor:"#fc8b8c", width:"100%", borderRadius: 10, opacity:0.7, marginTop:"5%", alignContent:"center", justifyContent:"center"}}> 
-                                                    <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
+                                                    <Text style={{alignSelf:"center",color:"#fff", fontFamily:"Poppins-Regular_0", fontSize:16}}>
                                                    PROCEED TO PAYMENT
                                             </Text>   
                                             </Button>

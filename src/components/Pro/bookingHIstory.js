@@ -132,7 +132,7 @@
 //                         containerStyle={{marginTop:60, backgroundColor:"#fff"}}
 //                         placement="left"
 //                         leftComponent={<Icon onPress={() => {this.props.navigation.navigate('Main')}} name="arrow-back" color="#000" />}
-//                         centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>BOOKING HISTORY</Text>}
+//                         centerComponent={<Text style={{alignSelf:"center", fontSize:30, fontFamily:"Poppins-Regular_0"}}>BOOKING HISTORY</Text>}
 //                         // rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("Notification")}}>
 //                         //     <Image source={require('../../../assets/notification.png')} style={{height:20, width:20}} />
 //                         // </TouchableOpacity>}
@@ -154,38 +154,38 @@
 //                         <Card key={index} containerStyle={{backgroundColor:"transparent", borderColor:"#fff", borderWidth:3, borderRadius:10}}> 
 
 //                            <View style={{display:"flex", flexDirection:"row"}}> 
-//                                     <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", color:"#fc8b8c", fontSize:25}}>{value.dateTime}</Text>
+//                                     <Text style={{marginLeft:"3%", fontFamily:"Poppins-Regular_0", color:"#fc8b8c", fontSize:25}}>{value.dateTime}</Text>
 //                                 </View>
 
 
 
 
 //                                 <View style={{display:"flex", flexDirection:"row"}}> 
-//                                     <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Service Name</Text>
-//                                     <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.service}</Text>
+//                                     <Text style={{width:"50%", fontFamily:"Poppins-Regular_0", fontSize:20}}>Service Name</Text>
+//                                     <Text style={{marginLeft:"3%", fontFamily:"Poppins-Regular_0", fontSize:20}}>{value.service}</Text>
 //                                 </View>
 
 
 //                                 <View style={{display:"flex", flexDirection:"row"}}> 
-//                                     <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>User Name</Text>
-//                                     <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.name}</Text>
+//                                     <Text style={{width:"30%", fontFamily:"Poppins-Regular_0", fontSize:20}}>User Name</Text>
+//                                     <Text style={{marginLeft:"3%", fontFamily:"Poppins-Regular_0", fontSize:20}}>{value.name}</Text>
 //                                 </View>
 
                                 
 
 //                                 <View style={{display:"flex", flexDirection:"row"}}> 
-//                                     <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Time</Text>
-//                                     <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.time}</Text>
+//                                     <Text style={{width:"30%", fontFamily:"Poppins-Regular_0", fontSize:20}}>Time</Text>
+//                                     <Text style={{marginLeft:"3%", fontFamily:"Poppins-Regular_0", fontSize:20}}>{value.time}</Text>
 //                                 </View>
 
 //                                  <View style={{display:"flex", flexDirection:"row"}}> 
-//                                     <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Date</Text>
-//                                     <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.date}</Text>
+//                                     <Text style={{width:"30%", fontFamily:"Poppins-Regular_0", fontSize:20}}>Date</Text>
+//                                     <Text style={{marginLeft:"3%", fontFamily:"Poppins-Regular_0", fontSize:20}}>{value.date}</Text>
 //                                 </View>
 
 //                                 <View style={{display:"flex", flexDirection:"row"}}> 
-//                                     <Text style={{width:"30%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>Cost</Text>
-//                                     <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>{value.cost}</Text>
+//                                     <Text style={{width:"30%", fontFamily:"Poppins-Regular_0", fontSize:20}}>Cost</Text>
+//                                     <Text style={{marginLeft:"3%", fontFamily:"Poppins-Regular_0", fontSize:20}}>{value.cost}</Text>
 //                                 </View>
 
 //                     </Card>
@@ -199,7 +199,7 @@
 //                   {/* <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
 //                     <Button onPress={() => {this.setState({renderEMail: false, renderCode: false, renderPassword:false}),
 //                 this.props.navigation.navigate(from)}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
-//                      <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
+//                      <Text style={{alignSelf:"center",color:"#fff", fontFamily:"Poppins-Regular_0", fontSize:20}}>
 //                        Submit
 //                     </Text>   
 //                      </Button>
@@ -379,7 +379,7 @@ export default class BookingHistory extends Component {
 //         // headerBackTitle: null,
 //         title:"SERVICES LIST",
 //         headerTitleStyle: {
-//             fontFamily:"MrEavesXLModNarOT-Reg",
+//             fontFamily:"Poppins-Regular_0",
 //             fontSize:30
 //         }
 //         // headerStyle: {
@@ -397,7 +397,7 @@ export default class BookingHistory extends Component {
     //     title:"SERVICES LIST",
     //     headerTintColor: 'white',
     //     headerTitleStyle: {
-    //         fontFamily:"MrEavesXLModNarOT-Reg",
+    //         fontFamily:"Poppins-Regular_0",
     //         fontSize:30
     //     },
     //     // title: "Service List",
@@ -480,8 +480,8 @@ export default class BookingHistory extends Component {
     
     render() {
         return (
-            <View style={{flex:1, height, width, marginTop: -80}}>
-                <ImageBackground source={require('../../../assets/opacity.jpg')} style={{height:"100%", width:"100%",opacity:0.9}}> 
+            <View style={{flex:1, height:'100%', width:'100%', marginTop: -80}}>
+                <ImageBackground source={require('../../../assets/inner.png')} style={{height:"100%", width:"100%",opacity:0.9}}> 
 
                 <Header
                         containerStyle={{marginTop:60, backgroundColor:"#fff"}}
@@ -489,7 +489,7 @@ export default class BookingHistory extends Component {
                         leftComponent={<Icon onPress={() => {this.props.navigation.navigate('Main')}} name="arrow-back" color="#000" />}
                         centerComponent={
                             <View style={{alignContent:"center", alignItems:"center", alignSelf:"center"}}>
-                      {!this.state.focusOn  ? <Text style={{ alignSelf:'center',fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>BOOKING HISTORY</Text> 
+                      {!this.state.focusOn  ? <Text style={{ alignSelf:'center',fontSize: 20, fontFamily: "Poppins-Regular_0" }}>BOOKING HISTORY</Text> 
                       :
     
                       <View style={{
@@ -508,7 +508,9 @@ export default class BookingHistory extends Component {
                         paddingVertical: 10,
                         marginBottom: 10,
     
-                    }}>
+                    }}
+                    
+                    >
                         <TextInput style={{
                             height: 45,
                             flex: 1,
@@ -541,57 +543,64 @@ export default class BookingHistory extends Component {
                     //     </TouchableOpacity>}
                         
                     //     {/* <TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
-                    //         <Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />
+                    //         <Image source={require('../../../assets/notification.png')} style={{ height:26, width:20 }} />
                     //     </TouchableOpacity> */}
                     //     </View>}
-                    rightComponent={<Icon name="filter" type = "material-community" containerStyle={{borderColor: "#000", }}  color="white" size={30}/>}
+                    rightComponent={
+                        <View style={{flexDirection:"row"}}>
+
+                     
+                        <TouchableOpacity onPress={() => {Alert.alert("Warning", "Will be implemented")}}>
+                            <Image source={require('../../../assets/filter.png')} style={{ height: 20, width: 20 }} />
+                        </TouchableOpacity>
+                        </View>}
                         />
 
 
 
-                <View style={{ height, width, backgroundColor:"rgba(246, 232, 232, 0.7)",justifyContent:"center"}}>
+                <View style={{flex: 1 ,height:'100%', width:'100%',justifyContent:"center"}}>
 
         <ScrollView refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh} />}style={{height: height}}>
 
             
                    
-                   <View style={{justifyContent:"center", alignContent:"center", alignItems:"center", marginTop:20}}>
+                   <View style={{flex: 1 ,justifyContent:"center", alignContent:"center", alignItems:"center", marginTop:20}}>
 
               {this.state.data.length > 0 ?  <View style={{backgroundColor:"#fff",borderRadius:10, width:"90%"}}>
                     {this.state.data.map((value, index) => {
                         // console.log('VALUE VALUE VALUE', value)
                         var formatDate = `${moment(value.service_date).format('dddd')} - ${ moment(value.service_date).format('DD/MM/YYYY')}`
                         return(
-                            <View key={index} style={{width:'100%', padding: 20, alignSelf:'center', borderBottomColor:"#bdbdbd", borderBottomWidth:1}}>
+                            <View key={index} style={{width:'100%', padding: 20, alignSelf:'center', borderBottomColor:"#bdbdbd", borderBottomWidth:0.2}}>
                                 {/* <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 20}}>Name</Text>
-                                    <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 20}}>{value.username}</Text>
+                                    <Text style={{width:"50%", fontFamily:"Poppins-Regular_0"}}>Name</Text>
+                                    <Text style={{marginLeft:"3%", fontFamily:"Poppins-Regular_0", fontSize: 20}}>{value.username}</Text>
                                    
                                 </View> */}
-                                 <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", color:"#ff8385", fontSize:25}}>{formatDate}</Text>
+                                 <View style={{display:"flex", flexDirection:"row", paddingVertical: 10}}> 
+                                    <Text style={{fontFamily:"Poppins-Regular_0", color:"#ff8385", fontSize:15}}>{formatDate}</Text>
                                 </View>
 
                                 <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 20, color:'#aaaaaa' }}>Service Name</Text>
-                                    <Text style={{marginLeft:"20%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 20}}>{value.services[0].service_name}</Text>
+                                    <Text style={{width:"50%", fontFamily:"Poppins-Regular_0", color:'#aaaaaa' }}>Service Name</Text>
+                                    <Text style={{width:"50%", fontFamily:"Poppins-Regular_0", textAlign: 'right'}}>{value.services[0].service_name}</Text>
                                 </View>
 {/* 
                                 <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 20}}>Time</Text>
-                                    <Text style={{marginLeft:"3%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 20}}>{value.time_slot}</Text>
+                                    <Text style={{width:"50%", fontFamily:"Poppins-Regular_0"}}>Time</Text>
+                                    <Text style={{marginLeft:"3%", fontFamily:"Poppins-Regular_0"}}>{value.time_slot}</Text>
                                 </View> */}
 
                                 {value.services[0].s_checked  == 1 ? 
                                  <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, color:'#aaaaaa' }}>Cost</Text>
-                                    <Text style={{marginLeft:"20%",  fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>${value.services[0].plush_cost}</Text>
+                                    <Text style={{width:"50%", fontFamily:"Poppins-Regular_0", color:'#aaaaaa' }}>Cost</Text>
+                                    <Text style={{width:"50%",  fontFamily:"Poppins-Regular_0", textAlign: 'right'}}>${value.services[0].plush_cost}</Text>
                                 </View>  
                                 
                             :
                             <View style={{display:"flex", flexDirection:"row"}}> 
-                            <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20, color:'#aaaaaa' }}>Cost</Text>
-                            <Text style={{marginLeft:"20%",  fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>${value.services[0].soplush_cost}</Text>
+                            <Text style={{width:"50%", fontFamily:"Poppins-Regular_0", color:'#aaaaaa' }}>Cost</Text>
+                            <Text style={{width:"50%",  fontFamily:"Poppins-Regular_0", textAlign: 'right'}}>${value.services[0].soplush_cost}</Text>
                             </View>  
                             
                             }
@@ -599,8 +608,8 @@ export default class BookingHistory extends Component {
 
 
                                  <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"50%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 20, color:'#aaaaaa' }}>Beauticianist Name</Text>
-                                    <Text style={{marginLeft:"20%", fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 20}}>{this.state.beauticianName}</Text>
+                                    <Text style={{width:"50%", fontFamily:"Poppins-Regular_0", color:'#aaaaaa' }}>Beauticianist Name</Text>
+                                    <Text style={{width:"50%", fontFamily:"Poppins-Regular_0", textAlign: 'right'}}>{this.state.beauticianName}</Text>
                                 </View>
 
                                 

@@ -37,51 +37,51 @@ export default class PassChange extends Component {
     render() {
         return (
             <View style={{flex:1, height:'100%', width:'100%', marginTop: -80}}>
-                <ImageBackground source={require('../../../assets/opacity.jpg')} style={{height:"100%", width:"100%",opacity:0.9, marginTop: 20}}> 
+                <ImageBackground source={require('../../../assets/inner.png')} style={{height:"100%", width:"100%", marginTop: 20}}> 
 
               
                 <Header
                         containerStyle={{marginTop:40, backgroundColor:"#fff"}}
                         placement="left"
                         leftComponent={<Icon onPress={() => {this.props.navigation.navigate('UserHome')}} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{ alignSelf:'center',fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>CHANGE PASSWORD</Text>}
+                        centerComponent={<Text style={{ alignSelf:'center',fontSize:20, fontFamily:"Poppins-Regular_0"}}>CHANGE PASSWORD</Text>}
                         // rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("EditProfile")}}><Image source={require('../../../assets/edit.png')} style={{height:30, width:30}} /> 
                         // </TouchableOpacity> }
                         />
 
-                <View style={{flex:1 ,height:'100%', width:'100%', backgroundColor:"rgba(246, 232, 232, 0.7)",justifyContent:"center"}}>
+                <View style={{flex:1 ,height:'100%', width:'100%',justifyContent:"center"}}>
 
                 <ScrollView style={{height: height}}>
                    
                    <View style={{flex: 1 , justifyContent:"center", alignContent:"center", alignItems:"center", marginTop:20}}>
             
             
-                    <Card containerStyle={{backgroundColor:"#fff", borderRadius:10, width:"90%",}}> 
+                    <View style={{backgroundColor:"#fff", borderRadius:10, width:"90%", padding:10}}> 
 
                         
-                    <Item floatingLabel>
+                    <Item floatingLabel style={{width:"80%"}}>
                         <Icon active name='lock-outline' type="MaterialCommunityIcons" />   
                         {/* <Label>Email Address</Label> */}
-                        <Input onChangeText={(e) => {this.setState({email:e})}} placeholder="Current Password" />
+                        <Input secureTextEntry={true} style={{fontSize:15}} onChangeText={(e) => {this.setState({email:e})}} placeholder="Current Password" />
                     </Item>
                     
                     <Item floatingLabel>
                         <Icon active name='lock-outline' type="MaterialCommunityIcons" />
                         {/* <Label>Password</Label> */}
-                        <Input  onChangeText={(e) => {this.setState({password:e})}} placeholder="New Password" secureTextEntry={true} />
+                        <Input  style={{fontSize:15}} onChangeText={(e) => {this.setState({password:e})}} placeholder="New Password" secureTextEntry={true} />
                     </Item>
 
                     <Item floatingLabel>
                         <Icon active name='lock-outline' type="MaterialCommunityIcons" />
                         {/* <Label>Password</Label> */}
-                        <Input  onChangeText={(e) => {this.setState({password:e})}} placeholder="Confirm Password" secureTextEntry={true} />
+                        <Input style={{fontSize:15}} onChangeText={(e) => {this.setState({password:e})}} placeholder="Confirm Password" secureTextEntry={true} />
                     </Item>
 
                                 {/* <View> 
 
                                         <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>
                                             <Button onPress={() => {this.props.navigation.navigate('Main')}} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"90%", borderRadius: 10, opacity:0.7}}> 
-                                            <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
+                                            <Text style={{alignSelf:"center",color:"#fff", fontFamily:"Poppins-Regular_0", fontSize:20}}>
                                                  Update Password
                                             </Text>   
                                             </Button>
@@ -93,22 +93,22 @@ export default class PassChange extends Component {
                                 <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10 }}>
                                             {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                                                 <Button onPress={() => {this.props.navigation.navigate('UserHome')}} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
-                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20 }}>
                                                     Update Password
 </Text>
                                                 </Button>
                                             </LinearGradient> */}
 
-<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10}}>
+<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "100%", borderRadius: 10}}>
                                         <TouchableOpacity  onPress={() => {this.props.navigation.navigate('UserHome')}} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
-                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 16, paddingVertical: 15 }}>
                                             UPDATE PASSWORD
                     </Text>
                                         </TouchableOpacity>
                                     </LinearGradient>
 
                                         </View>
-                    </Card>
+                    </View>
 
                        
                          

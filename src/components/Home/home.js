@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity,BackHandler, Alert } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, BackHandler, Alert } from 'react-native'
 import { Avatar, Header, Card, Divider, Icon } from 'react-native-elements'
 import Navigator from '../../Navigation/navigator'
 import UserNavigator from '../../UserNavigator/userNavigator'
@@ -21,8 +21,8 @@ export default class Home extends Component {
         // headerBackTitle: null,
         title: "HOME",
         headerTitleStyle: {
-            fontFamily: "MrEavesXLModNarOT-Reg",
-            fontSize: 30
+            fontFamily: "Poppins-Regular_0",
+            fontSize: 20
         },
         headerMode: 'none',
         headerVisible: false,
@@ -64,51 +64,51 @@ export default class Home extends Component {
     render() {
         const { role } = this.state
         // if (role === "") {
-            return (
-                <View style={{ flex: 1, height: '100%', width: '100%', marginTop: -80 }}>
-                    <ImageBackground source={require('../../../assets/opacity.jpg')} style={{ height: "100%", width: "100%", opacity: 0.9 }}>
-                        <Header
-                            leftComponent={<Icon name="arrow-back" color="#000" onPress={this.handleClose}/>}
-                            containerStyle={{ marginTop: 60, backgroundColor: "#fff" }}
-                            placement="left"
-                            centerComponent={<Text style={{ alignSelf:'center', fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>HOME</Text>}
-                        />
+        return (
+            <View style={{ flex: 1, height: '100%', width: '100%', marginTop: -80 }}>
+                <ImageBackground source={require('../../../assets/inner.png')} style={{ height: "100%", width: "100%" }}>
+                    <Header
+                        leftComponent={<Icon name="arrow-back" color="#000" onPress={this.handleClose} />}
+                        containerStyle={{ marginTop: 60, backgroundColor: "#fff" }}
+                        placement="left"
+                        centerComponent={<Text style={{ alignSelf: 'center', fontSize: 20, fontFamily: "Poppins-Regular_0" }}>HOME</Text>}
+                    />
 
-                        <View style={{ height: '100%', width: '100%', backgroundColor: "rgba(246, 232, 232, 0.7)" }}>
-                            <ScrollView contentContainerStyle={{  height, width: '100%', alignItems: 'center', marginVertical: '10%' }}>
-                                
-                                <View style={{ height: "86%", width: width - 20, backgroundColor: '#fff', borderWidth: 1, borderRadius: 10, opacity: 0.75, borderColor: '#fff' }}>
+                    <View style={{ height: '100%', width: '100%', flex: 1 }}>
+                        <ScrollView contentContainerStyle={{ height, width: '100%', alignItems: 'center' }}>
 
-                                    <View style={{ alignSelf: "center", alignContent: "center", alignItems: "center", marginTop: "15%" }}>
-                                        <Image source={require('../../../assets/text.png')} style={{ opacity: 2 }} />
-                                        <Text style={{ marginTop: "12%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 30 }}>I am a...</Text>
-                                    </View>
+                            <View style={{ flex: 1, paddingHorizontal: 10, alignItems: 'center', justifyContent: 'center', alignSelf: 'center', width: '100%', borderRadius: 10 }}>
+                            <ImageBackground source={require('../../../assets/homeBackground.png')} style={{ height: "85%", width: "100%", borderRadius: 10 }}>
+                                <View style={{ alignSelf: "center", alignContent: "center", alignItems: "center", marginTop: "15%" }}>
+                                    <Image source={require('../../../assets/text.png')} style={{ opacity: 2 }} />
+                                    <Text style={{ marginTop: "12%", fontFamily: "Poppins-Regular_0", fontSize: 20 }}>I am a...</Text>
+                                </View>
 
-                                    <View style={{ display: "flex", flexDirection: "row", padding: 10, width: "100%", justifyContent: "space-around", marginTop: "3%" }}>
+                                <View style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "space-around", marginTop: "3%" }}>
 
-                                        <TouchableOpacity onPress={() => { this.props.navigation.navigate("UserLogin") }}>
-                                            <View style={{ alignContent: "center", alignItems: "center", alignSelf: "center", backgroundColor: "transparent", width: 143, height: 139, borderRadius: 5, borderColor: "#000", borderWidth: 1, justifyContent: "space-evenly" }}>
+                                    <TouchableOpacity onPress={() => { this.props.navigation.navigate("UserLogin") }}>
+                                        <View style={{ alignContent: "center", alignItems: "center", alignSelf: "center", backgroundColor: "transparent", width: 143, height: 139, borderRadius: 5, borderColor: "#000", borderWidth: 1, justifyContent: "space-evenly" }}>
 
-                                                <Image source={require('../../../assets/userIcon.png')} style={{ height: 55, width: 50, marginTop: "10%" }} />
-                                                <Text style={{ fontFamily: 'MrEavesXLModNarOT-Reg', fontSize: 17 }}>User</Text>
+                                            <Image source={require('../../../assets/userIcon.png')} style={{ height: 55, width: 50, marginTop: "10%" }} />
+                                            <Text style={{ fontFamily: 'Poppins-Regular_0', fontSize: 15 }}>User</Text>
 
-                                            </View>
-                                        </TouchableOpacity>
+                                        </View>
+                                    </TouchableOpacity>
 
-                                        <TouchableOpacity onPress={() => { this.props.navigation.navigate("ProLogin") }}>
-                                            <View style={{ width: "40%", borderRadius: 10 }}>
-                                                <Image source={require('../../../assets/Button.png')} />
-                                            </View>
-                                        </TouchableOpacity>
-
-                                    </View>
+                                    <TouchableOpacity onPress={() => { this.props.navigation.navigate("ProLogin") }}>
+                                        <View style={{ width: "40%", borderRadius: 10 }}>
+                                            <Image source={require('../../../assets/Button.png')} />
+                                        </View>
+                                    </TouchableOpacity>
 
                                 </View>
-                            </ScrollView>
-                        </View>
-                    </ImageBackground>
-                </View>
-            )
+                            </ImageBackground>
+                            </View>
+                        </ScrollView>
+                    </View>
+                </ImageBackground>
+            </View>
+        )
 
         // } else {
         //     return (

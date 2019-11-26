@@ -28,6 +28,7 @@ import ConfirmBooking from '../components/User/confirmbooking'
 import Payment from '../components/User/payment'
 import Feedback from '../components/User/feedback'
 import LoyalityPoints from '../components/User/loyality-points'
+import EditUserProfile from '../components/User/useredit'
 const Drawer = createDrawerNavigator(
     {
 
@@ -36,8 +37,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"HOME",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 header:null
         }),
@@ -49,8 +50,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"User Notification",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 header:null
         }),
@@ -62,8 +63,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"User Profile",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 header:null
         }),
@@ -75,8 +76,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"User Profile",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 header:null
         }),
@@ -90,8 +91,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"Booking History",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 headerMode: 'none',
                 headerVisible: false,
@@ -105,8 +106,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"Booking Request",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 headerMode: 'none',
                 headerVisible: false,
@@ -121,8 +122,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"Booking Request",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 headerMode: 'none',
                 headerVisible: false,
@@ -138,8 +139,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"About",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 headerMode: 'none',
                 headerVisible: false,
@@ -153,8 +154,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"About",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 headerMode: 'none',
                 headerVisible: false,
@@ -168,8 +169,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"Booking History",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 headerMode: 'none',
                 headerVisible: false,
@@ -184,8 +185,23 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"Booking History",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
+                },
+                headerMode: 'none',
+                headerVisible: false,
+                header: null,
+        }),
+         },
+
+
+         EditUserProfile: { 
+            screen: EditUserProfile,
+            navigationOptions: () => ({
+                title:"Edit Profilw",
+                headerTitleStyle: {
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 headerMode: 'none',
                 headerVisible: false,
@@ -199,8 +215,8 @@ const Drawer = createDrawerNavigator(
             navigationOptions: () => ({
                 title:"Loyality Points",
                 headerTitleStyle: {
-                    fontFamily:"MrEavesXLModNarOT-Reg",
-                    fontSize:30
+                    fontFamily:"Poppins-Regular_0",
+                    // fontSize:30
                 },
                 headerMode: 'none',
                 headerVisible: false,

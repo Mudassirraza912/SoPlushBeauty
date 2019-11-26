@@ -154,7 +154,7 @@ export default class AddService extends Component {
         // console.log("this.state.category", this.state.category)
         return (
             <View style={{ flex: 1, height: '100%', width:'100%', marginTop: -80 }}>
-                <ImageBackground source={require('../../../assets/opacity100.png')} style={{ height: "100%", width: "100%", opacity: 0.9, marginTop: 20 }}>
+                <ImageBackground source={require('../../../assets/inner.png')} style={{ height: "100%", width: "100%", opacity: 0.9, marginTop: 20 }}>
 
 
                     <Header
@@ -165,12 +165,12 @@ export default class AddService extends Component {
                         // this.handleBackButton()
                         // this.props.navigation.navigate('Main')
                          }} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{alignSelf:'center',fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>ADD SERVICE</Text>}
+                        centerComponent={<Text style={{alignSelf:'center',fontSize: 20, fontFamily: "Poppins-Regular_0" }}>ADD SERVICE</Text>}
                     // rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("EditProfile")}}><Image source={require('../../../assets/edit.png')} style={{height:30, width:30}} /> 
                     // </TouchableOpacity> }
                     />
 
-                    <View style={{flex: 1 ,height:'100%', width:'100%', backgroundColor: "rgba(246, 232, 232, 0.7)", justifyContent: "center" }}>
+                    <View style={{flex: 1 ,height:'100%', width:'100%', justifyContent: "center" }}>
 
                         <ScrollView style={{ height: height }}>
 
@@ -178,22 +178,31 @@ export default class AddService extends Component {
 
                                 {this.state.add && <TouchableOpacity onPress={() => { this.setState({ add: false }) }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", marginTop: "50%" }}><Image style={{ height: 150, width: 150, justifyContent: "center" }} source={require('../../../assets/add-documents.png')} />
 
-                                    <Text style={{ alignSelf: "center", color: "#000", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, marginTop: "7%" }}>Add Service</Text>
+                                    <Text style={{ alignSelf: "center", color: "#000", fontFamily: "Poppins-Regular_0", fontSize: 20, marginTop: "7%" }}>Add Service</Text>
 
                                 </TouchableOpacity>}
 
 
                                 {!this.state.add && <View style={{ width: "80%", alignContent: "center", alignItems: "center", justifyContent: "center", alignSelf: 'center' }}>
-                                    <Item floatingLabel style={{ alignSelf: 'center', alignItems: 'center', alignContent: 'center', borderBottomWidth:1, borderBottomColor: 'gray' }}>
-                                        {/* <Icon active name='user' type="FontAwesome" /> */}
-                                        {/* <Label>Name</Label> */}
+                                    {/* <Item floatingLabel style={{ alignSelf: 'center', alignItems: 'center', alignContent: 'center', borderBottomWidth:1, borderBottomColor: 'gray' }}>
                                         <Input onChangeText={(e) => { this.setState({ name: e }) }} placeholder="Enter Service" />
-                                    </Item>
-                                    <Item floatingLabel style={{ borderBottomWidth:1, borderBottomColor: 'gray'}}>
-                                        {/* <Icon active name='home' type="FontAwesome" /> */}
-                                        {/* <Label>Address</Label> */}
+                                    </Item> */}
+
+<Item stackedLabel style={{ width: '100%', borderBottomWidth: 1, borderBottomColor:'#bdbdbd' }}>
+                                                    <Label style={{ marginLeft: 3, color: 'gray', fontSize: 12, marginTop: 10 }}>Enter Service</Label>
+                                                    <Input value={this.state.email} style={{ color: 'gray', width: '100%', marginBottom: 5}} onChangeText={(e) => { this.setState({ name: e }) }} placeholder="Enter Service" />
+                                                </Item>
+
+
+                                    {/* <Item floatingLabel style={{ borderBottomWidth:1, borderBottomColor: 'gray'}}>
+                                   
                                         <Input keyboardType="number-pad" onChangeText={(e) => { this.setState({ cost: e }) }} placeholder="Enter Cost" />
-                                    </Item>
+                                    </Item> */}
+
+<Item stackedLabel style={{ width: '100%', borderBottomWidth: 1, borderBottomColor:'#bdbdbd' }}>
+                                                    <Label style={{ marginLeft: 3, color: 'gray', fontSize: 12, marginTop: 10 }}>Enter Cost</Label>
+                                                    <Input value={this.state.email} style={{ color: 'gray', width: '100%', marginBottom: 5}} onChangeText={(e) => { this.setState({ cost: e }) }} placeholder="Enter Cost" />
+                                                </Item>
                                     <View>
                                     <Picker
                                             selectedValue={this.state.selectedCategory}
@@ -212,7 +221,7 @@ export default class AddService extends Component {
 
 {/* 
                                             <Button onPress={this.addCategory} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"100%", borderRadius: 10, opacity:0.7, marginTop:"5%"}}> 
-                                            <Text style={{alignSelf:"center",color:"#fff", fontFamily:"MrEavesXLModNarOT-Reg", fontSize:20}}>
+                                            <Text style={{alignSelf:"center",color:"#fff", fontFamily:"Poppins-Regular_0", fontSize:20}}>
                                             Ok
                                             </Text>   
                                             </Button> */}
@@ -221,7 +230,7 @@ export default class AddService extends Component {
                                        {!this.state.loader ?     <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10, width: "100%" }}>
                                             {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                                                 <Button onPress={this.addCategory} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
-                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20 }}>
                                                     Ok
 </Text>
                                                 </Button>
@@ -229,8 +238,8 @@ export default class AddService extends Component {
 
 <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10}}>
                                         <TouchableOpacity  onPress={this.addCategory} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, width:'100%' }}>
-                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
-                                            Submit
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20, paddingVertical: 15 }}>
+                                            OK
                     </Text>
                                         </TouchableOpacity>
                                     </LinearGradient>

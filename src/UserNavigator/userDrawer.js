@@ -30,9 +30,9 @@ class DrawerMenu extends Component {
     return (
 
       <View style={{ flex: 1, justifyContent: "center", alignContent: "center", height: '100%', backgroundColor: 'rgba(246, 232, 232, 0.5)' }}>
-        <Header style={{ height: 100, backgroundColor: 'rgba(246, 232, 232, 0.5)', borderBottomColor: 'rgba(246, 232, 232, 0.5)', borderBottomWidth: 1 }}>
+        <Header style={{ height: 100, backgroundColor: '#F6E8E8', paddingTop: 10, alignItems: 'flex-start', justifyContent: 'flex-start' }}>
         <TouchableOpacity onPress={() => {this.props.navigation.navigate('UserProfile')}}>
-          <View style={{ display: "flex", flexDirection: "row", marginTop: 20, marginRight: 20 }}>
+          <View style={{ display: "flex", flexDirection: "row" }}>
 
             <View >
               <Avatar
@@ -44,7 +44,9 @@ class DrawerMenu extends Component {
 
             </View>
             <View style={{ marginTop: 25, marginLeft: 20 }}>
-              <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 25 }}>
+              <Text style={{ fontFamily: "Poppins-Regular_0", 
+              fontSize: 15 
+              }}>
                 {this.props.screenProps.profileData.username}
               </Text>
 
@@ -57,7 +59,7 @@ class DrawerMenu extends Component {
   
                   </View> 
                 <View style={{marginTop:25, marginLeft:20}}>
-                    <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 25 }}>
+                    <Text style={{fontFamily:"Poppins-Regular_0", fontSize: 25 }}>
                       John Doe
                     </Text> */}
 
@@ -72,7 +74,7 @@ class DrawerMenu extends Component {
         {/* <Vie style={{ backgroundColor: 'blue', marginTop: 0, height:'100%', padding: 0 }}> */}
 
 
-        <ImageBackground source={require('../../assets/background.jpg')} style={{ height: "100%", width: "100%", flex: 1, backgroundColor: "#fff", }} resizeMethod="auto">
+        <ImageBackground source={require('../../assets/inner.png')} style={{ height: "100%", width: "100%", flex: 1, backgroundColor: "#fff", }} resizeMethod="auto">
           <ScrollView>
 
 
@@ -127,11 +129,11 @@ class DrawerMenu extends Component {
 
             >
               <View style={{ marginLeft: 10 }}>
-                <Image source={require('../../assets/notification.png')} style={{ height: 30, width: 30 }} />
+                <Image source={require('../../assets/notification.png')} style={{ height:26, width:20}} />
               </View>
 
               <View style={{ marginLeft: 20 }}>
-                <Text style={styles.menuItemText}>Notification</Text>
+                <Text style={styles.menuItemText}>Notifications</Text>
               </View>
 
 
@@ -173,7 +175,7 @@ class DrawerMenu extends Component {
 
             >
               <View style={{ marginLeft: 10 }}>
-                <Image source={require('../../assets/hist.png')} style={{ height: 35, width: 30 }} />
+                <Image source={require('../../assets/hist.png')} style={{ height:26, width:23 }} />
               </View>
 
               <View style={{ marginLeft: 20 }}>
@@ -196,7 +198,7 @@ class DrawerMenu extends Component {
 
             >
               <View style={{ marginLeft: 10 }}>
-                <Image source={require('../../assets/info1.png')} style={{ height: 30, width: 30 }} />
+                <Image source={require('../../assets/info.png')} style={{ height: 30, width: 30 }} />
               </View>
 
               <View style={{ marginLeft: 20 }}>
@@ -257,7 +259,7 @@ class DrawerMenu extends Component {
 
             >
               <View style={{ marginLeft: 10 }}>
-                <Image source={require('../../assets/lock.png')} style={{ height: 30, width: 30 }} />
+                <Image source={require('../../assets/lockopen.png')} style={{ height:26, width:20 }} />
               </View>
 
               <View style={{ marginLeft: 20 }}>
@@ -278,7 +280,7 @@ class DrawerMenu extends Component {
 
             >
               <View style={{ marginLeft: 10 }}>
-                <Image source={require('../../assets/trans1.png')} style={{ height: 30, width: 32 }} />
+                <Image source={require('../../assets/trans1.png')} style={{ height:20, width:27}} />
               </View>
 
               <View style={{ marginLeft: 20 }}>
@@ -302,7 +304,7 @@ class DrawerMenu extends Component {
 
             >
               <View style={{ marginLeft: 10 }}>
-                <Image source={require('../../assets/accept.png')} style={{ height: 30, width: 30 }} />
+                <Image source={require('../../assets/accept.png')} style={{ height:25, width:20 }} />
               </View>
 
               <View style={{ marginLeft: 20 }}>
@@ -377,9 +379,9 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   menuItemText: {
-    fontSize: 20,
+    fontSize: 15,
     top: 2,
-    fontFamily: "MrEavesXLModNarOT-Reg"
+    fontFamily: "Poppins-Regular_0"
   }
 });
 

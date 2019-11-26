@@ -92,7 +92,7 @@ export default class ForgotPassword extends Component {
 
         if (reg.test(email) === false) {
 
-            Alert.alert("Email is not correct")
+            Alert.alert("Error","Email is not correct")
             this.setState({ loader: false })
 
         } else {
@@ -233,7 +233,7 @@ export default class ForgotPassword extends Component {
 
                     if (successData.status === true) {
                         this.setState({ loader: false })
-                        Alert.alert("Successs","Code Matched")
+                        Alert.alert("Success","Code Matched")
                         this.setState({ renderEMail: false, renderCode: false, renderPassword: true })
                     } else {
                         Alert.alert("Error",successData.message)
@@ -314,8 +314,8 @@ export default class ForgotPassword extends Component {
         return (
             <View>
                 <View style={{ marginTop: "10%", alignContent: 'center', alignItems: "center", width:'100%' }}>
-                    <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 30 }}>Email Verification</Text>
-                    <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, marginTop: "4%", opacity: 0.6, color: '#bdbdbd', width:'80%', textAlign:'center' }}>To reset your password, Please enter your email</Text>
+                    <Text style={{ fontFamily: "Poppins-Bold_0", fontSize: 22, fontWeight: '600' }}>Email Verification</Text>
+                    <Text style={{ fontFamily: "Poppins-Regular", marginTop: "4%", width:'80%', textAlign:'center', opacity: 0.6 }}>To reset your password, Please enter your email</Text>
                 </View>
 
                 <View style={{ marginTop: "10%", alignContent: "center", alignSelf: "center", alignItems: "center", width: "90%", backgroundColor: "#fff", borderRadius: 10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', paddingVertical: "3%", overflow: "hidden" }}>
@@ -352,14 +352,14 @@ export default class ForgotPassword extends Component {
                 {!this.state.loader ? <View style={{ alignContent: "center", alignItems: "center", marginTop: "15%" }}>
                     {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                         <Button onPress={this.codeMailFetch} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
-                            <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                            <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20 }}>
                                 CONTINUE
                     </Text>
                         </Button>
                     </LinearGradient> */}
                                     <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10}}>
                                         <TouchableOpacity  onPress={this.codeMailFetch} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, width:'100%' }}>
-                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular_0", paddingVertical: 15 }}>
                                             CONTINUE
                     </Text>
                                         </TouchableOpacity>
@@ -377,9 +377,9 @@ export default class ForgotPassword extends Component {
     RenderCode = () => {
         return (
             <View>
-                <View style={{ marginTop: "10%", width:'100%' }}>
-                    <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 30, marginLeft: "10%", textAlign: "center" }}>Email Verification</Text>
-                    <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", marginLeft: "10%", fontSize: 20, marginTop: "4%", opacity: 0.6, textAlign: "center", width:'80%' }}>To vrify your email . Please Enter 4 digit code</Text>
+                <View style={{ marginTop: "10%", width:'100%', alignItems: 'center' }}>
+                    <Text style={{ fontFamily: "Poppins-Bold_0", textAlign: "center", fontSize: 22 }}>Email Verification</Text>
+                    <Text style={{ fontFamily: "Poppins-Regular_0", marginTop: "4%", textAlign: "center", width:'80%', opacity: 0.6 }}>To vrify your email . Please Enter 4 digit code</Text>
                 </View>
 
                 <View style={{ marginTop: "10%", alignContent: "center", alignSelf: "center", alignItems: "center", width: "90%", backgroundColor: "#fff", borderRadius: 10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', paddingVertical: "4%", marginBottom: "5%", justifyContent: "center" }}>
@@ -407,7 +407,7 @@ export default class ForgotPassword extends Component {
                 {/* <View style={{ flexDirection: "row", alignContent: "center", justifyContent: 'center' }}>
 
                     <View>
-                        <Text style={{ alignSelf: "center", color: "#000", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, textAlign: "center" }}>
+                        <Text style={{ alignSelf: "center", color: "#000", fontFamily: "Poppins-Regular_0", fontSize: 20, textAlign: "center" }}>
                             Code Expires in
                     </Text>
                     </View>
@@ -437,7 +437,7 @@ export default class ForgotPassword extends Component {
                 <View style={{ flexDirection: "row", alignContent: "center", justifyContent: 'center' }}>
 
                     <View>
-                        <Text style={{ alignSelf: "center", color: "gray", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, textAlign: "center", marginRight: 5 }}>
+                        <Text style={{ alignSelf: "center", color: "gray", fontFamily: "Poppins-Regular_0", textAlign: "center", marginRight: 5 }}>
                             Code Expires in
 </Text>
                     </View>
@@ -450,11 +450,11 @@ export default class ForgotPassword extends Component {
                             until={this.state.time}
                             size={30}
                             onFinish={() => {
-                                alert('Code Expired!')
+                                Alert.alert("Warning!",'Code Expired!')
                                 this.setState({ resend: true })
                             }}
                             digitStyle={{ backgroundColor: 'transparent', height: 20, width: 20, marginTop: -4 }}
-                            digitTxtStyle={{ color: '#000', fontSize: 15, paddingLeft: 0, paddingRight: 0 }}
+                            digitTxtStyle={{ color: '#000', paddingLeft: 0, paddingRight: 0, fontSize: 15 }}
                             timeToShow={['M', 'S']}
                             timeLabels={{ m: null, s: null }}
                             showSeparator
@@ -468,13 +468,13 @@ export default class ForgotPassword extends Component {
 
                 {this.state.resend ? <View>
                     <TouchableOpacity onPress={() => { this.resendCode() }} style={{ marginLeft: "3%", marginBottom: "5%" }}>
-                        <Text style={{ alignSelf: "center", color: "#fc8b8c", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, borderBottomWidth: 1, borderBottomColor: "#fc8b8c" }}>Resend Code</Text>
+                        <Text style={{ alignSelf: "center", color: "#fc8b8c", fontFamily: "Poppins-Regular_0", borderBottomWidth: 1, borderBottomColor: "#fc8b8c" }}>Resend Code</Text>
                     </TouchableOpacity>
                 </View> :
 
                     <View>
                         <View style={{ marginLeft: "3%", marginBottom: "5%" }}>
-                            <Text style={{ alignSelf: "center", color: "#bdbdbd", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, borderBottomWidth: 1, borderBottomColor: "#fc8b8c" }}>Resend Code</Text>
+                            <Text style={{ alignSelf: "center", color: "#bdbdbd", fontFamily: "Poppins-Regular_0",  borderBottomWidth: 1, borderBottomColor: "#fc8b8c" }}>Resend Code</Text>
                         </View>
                     </View>
                 }
@@ -483,14 +483,14 @@ export default class ForgotPassword extends Component {
                 {!this.state.loader ? <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
                     {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                         <Button onPress={this.codeChecker} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
-                            <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                            <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", : 20 }}>
                                 Continue
                     </Text>
                         </Button>
                     </LinearGradient> */}
                     <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10}}>
                                         <TouchableOpacity  onPress={this.codeChecker} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, width:'100%' }}>
-                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular_0", paddingVertical: 15 }}>
                                             CONTINUE
                     </Text>
                                         </TouchableOpacity>
@@ -509,8 +509,8 @@ export default class ForgotPassword extends Component {
         return (
             <View>
                 <View style={{ marginTop: "10%", alignSelf:'center', alignItems:'center', alignContent:"center", width:"100%" }}>
-                    <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 30, textAlign: "center" }}>Change Password</Text>
-                    <Text style={{ fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, marginTop: "4%", opacity: 0.6, textAlign: "center" , width:'80%'}}>Enter your new Password to Login Your Account</Text>
+                    <Text style={{ fontFamily: "Poppins-Bold_0", textAlign: "center", fontSize: 22 }}>Change Password</Text>
+                    <Text style={{ fontFamily: "Poppins-Regular_0", marginTop: "4%", opacity: 0.6, textAlign: "center" , width:'80%'}}>Enter your new Password to Login Your Account</Text>
                 </View>
 
                 <View style={{ marginTop: "10%", alignContent: "center", alignSelf: "center", alignItems: "center", width: "90%", backgroundColor: "#fff", borderRadius: 10, shadowOpacity: 1, elevation: 4, shadowRadius: 20, shadowOffset: { width: 0, height: 13 }, shadowColor: 'rgba(46, 229, 157, 0.4)', paddingVertical: "1%", padding: "4%" }}>
@@ -560,14 +560,14 @@ export default class ForgotPassword extends Component {
                 {!this.state.loader ? <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
                     {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                         <Button onPress={this.changePassword} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
-                            <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                            <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20 }}>
                                 Submit
                     </Text>
                         </Button>
                     </LinearGradient> */}
                      <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10}}>
                                         <TouchableOpacity  onPress={this.changePassword} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, width:'100%' }}>
-                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular_0", paddingVertical: 15 }}>
                                             Submit
                     </Text>
                                         </TouchableOpacity>
@@ -587,7 +587,7 @@ export default class ForgotPassword extends Component {
         // console.log(email, password, newPassword, code)
         return (
             <View style={{ flex: 1, height: '100%', width: '100%', marginTop: -80 }}>
-                <ImageBackground source={require('../../../assets/background.jpg')} style={{ height: "100%", width: "100%", }}>
+                <ImageBackground source={require('../../../assets/inner.png')} style={{ height: "100%", width: "100%", }}>
                     <ScrollView style={{ 
                         // backgroundColor: "rgba(246, 232, 232, 0.5)"
                          }}>

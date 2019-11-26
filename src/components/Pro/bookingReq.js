@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert, TextInput } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button } from 'native-base';
-import { Avatar, Header, Icon, Card } from 'react-native-elements'
+import { Avatar, Header, Icon, Card, Divider } from 'react-native-elements'
 import Dialog, { DialogFooter, DialogButton, DialogContent, DialogTitle } from 'react-native-popup-dialog';
 import constants from 'jest-haste-map/build/constants';
 // import { thisExpression } from '@babel/types';
 import LinearGradient from 'react-native-linear-gradient'
-
+import moment from 'moment'
 
 const { width, height } = Dimensions.get("window")
 
@@ -382,7 +382,7 @@ export default class BookingReq extends Component {
         console.log('services services services',services)
         return (
             <View style={{ flex: 1, height:'100%', width:'100%', marginTop: -80 }}>
-                <ImageBackground source={require('../../../assets/opacity.jpg')} style={{ height: "100%", width: "100%", opacity: 0.9 }}>
+                <ImageBackground source={require('../../../assets/inner.png')} style={{ height: "100%", width: "100%", opacity: 0.9 }}>
 
                     <Header
                         containerStyle={{ marginTop: 60, backgroundColor: "#fff" }}
@@ -390,7 +390,7 @@ export default class BookingReq extends Component {
                         leftComponent={<Icon onPress={() => { this.props.navigation.navigate('Main') }} name="arrow-back" color="#000" />}
                         centerComponent={
                             <View style={{alignContent:"center", alignItems:"center", alignSelf:"center"}}>
-                      {!this.state.focusOn  ? <Text style={{alignSelf:'center',fontSize: 30, fontFamily: "MrEavesXLModNarOT-Reg" }}>BOOKING REQUEST</Text> 
+                      {!this.state.focusOn  ? <Text style={{alignSelf:'center',fontSize: 20, fontFamily: "Poppins-Regular_0" }}>BOOKING REQUEST</Text> 
                       :
     
                       <View style={{
@@ -442,14 +442,14 @@ export default class BookingReq extends Component {
                         </TouchableOpacity>}
                         
                         <TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
-                            <Image source={require('../../../assets/notification.png')} style={{ height: 20, width: 20 }} />
+                            <Image source={require('../../../assets/notification.png')} style={{ height:26, width:20 }} />
                         </TouchableOpacity>
                         </View>}
                     />
 
 
 
-                    <View style={{flex: 1 ,height:'100%', width:'100%', backgroundColor: "rgba(246, 232, 232, 0.7)", justifyContent: "center" }}>
+                    <View style={{flex: 1 ,height:'100%', width:'100%',justifyContent: "center" }}>
 
                         <ScrollView style={{ height: height }}>
 
@@ -459,11 +459,12 @@ export default class BookingReq extends Component {
 
                              {this.state.data.length > 0 ?   <View style={{ backgroundColor: "#fff", borderRadius: 10, width: "95%" }}>
                                     {this.state.data.map((value, index) => {
+                                        var newdate = moment(value.service_date).format('DD-MM-YYYY')
                                         return (
                                             <View key={index} style={{width:'90%', padding: 10, alignSelf:'center'}}>
                                                 <View style={{ display: "flex", flexDirection: "row", width: "100%" }}>
-                                                    <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:18, color:'#aaaaaa' }}>Name</Text>
-                                                    <Text style={{ marginLeft: "3%", fontFamily: "MrEavesXLModNarOT-Reg" , fontSize:18, width: '30%'}}>{value.username}</Text>
+                                                    <Text style={{ width: "30%", fontFamily: "Poppins-Regular_0", fontSize:17, color:'#aaaaaa' }}>Name</Text>
+                                                    <Text style={{ marginLeft: "3%", fontFamily: "Poppins-Regular_0" , fontSize:15, width: '30%'}}>{value.username}</Text>
                                                     <TouchableOpacity onPress={() => {
                                                         this.props.navigation.navigate('BookingDetail', {
                                                             bookinDetail: value,
@@ -471,30 +472,30 @@ export default class BookingReq extends Component {
                                                     }}
                                                     style={{ width: '40%', alignItems: 'flex-end', justifyContent: 'flex-end', alignContent: 'flex-end' }}
                                                     >
-                                                        <Text style={{  color: "#fc8b8c", borderBottomColor: "#ff8385", borderBottomWidth: 1, fontFamily: "MrEavesXLModNarOT-Reg", textAlign: "right", fontSize:15, alignSelf: 'flex-end', justifyContent: 'flex-end' }}>VIEW DETAILS</Text>
+                                                        <Text style={{  color: "#fc8b8c", borderBottomColor: "#ff8385", borderBottomWidth: 1, fontFamily: "Poppins-Regular_0", textAlign: "right", fontSize:13, alignSelf: 'flex-end', justifyContent: 'flex-end' }}>VIEW DETAILS</Text>
                                                     </TouchableOpacity>
                                                 </View>
 
                                                 <View style={{ display: "flex", flexDirection: "row" }}>
-                                                    <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg" , fontSize:18, color:'#aaaaaa' }}>Service</Text>
-                                                    <Text style={{ marginLeft: "3%", fontFamily: "MrEavesXLModNarOT-Reg" , fontSize:18}}>{value.services[0].service_name}</Text>
+                                                    <Text style={{ width: "30%", fontFamily: "Poppins-Regular_0" , fontSize:17, color:'#aaaaaa' }}>Service</Text>
+                                                    <Text style={{ marginLeft: "3%", fontFamily: "Poppins-Regular_0" , fontSize:15}}>{value.services[0].service_name}</Text>
                                                 </View>
 
                                                 <View style={{ display: "flex", flexDirection: "row" }}>
-                                                    <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg" , fontSize:18, color:'#aaaaaa' }}>Time</Text>
-                                                    <Text style={{ marginLeft: "3%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:18 }}>{value.time_slot}</Text>
+                                                    <Text style={{ width: "30%", fontFamily: "Poppins-Regular_0" , fontSize:17, color:'#aaaaaa' }}>Time</Text>
+                                                    <Text style={{ marginLeft: "3%", fontFamily: "Poppins-Regular_0", fontSize:15 }}>{value.time_slot}</Text>
                                                 </View>
 
                                                 <View style={{ display: "flex", flexDirection: "row" }}>
-                                                    <Text style={{ width: "30%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:18, color:'#aaaaaa'  }}>Date</Text>
-                                                    <Text style={{ marginLeft: "3%", fontFamily: "MrEavesXLModNarOT-Reg", fontSize:18 }}>{value.service_date}</Text>
+                                                    <Text style={{ width: "30%", fontFamily: "Poppins-Regular_0", fontSize:17, color:'#aaaaaa'  }}>Date</Text>
+                                                    <Text style={{ marginLeft: "3%", fontFamily: "Poppins-Regular_0", fontSize:15 }}>{newdate}</Text>
                                                 </View>
 
                                                 <View style={{ display: "flex", flexDirection: "row", marginRight: "6%", width:'100%' }}>
 
                                                     {/* <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
                                                         <Button onPress={() => { this.changeStatus('accepted', value, index) }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#fc8b8c", width: "90%", borderRadius: 10, opacity: 0.7 }}>
-                                                            <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                            <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20 }}>
                                                                 Accept
                                             </Text>
                                                         </Button>
@@ -503,7 +504,7 @@ export default class BookingReq extends Component {
 <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10,width: '50%' }}>
                                             {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
                                                 <Button onPress={() => { this.changeStatus('accepted', value, index) }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 5 }}>
-                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 }}>
+                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20 }}>
                                                     ACCEPT
 </Text>
                                                 </Button>
@@ -511,7 +512,7 @@ export default class BookingReq extends Component {
 
 <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 5}}>
                                         <TouchableOpacity onPress={() => { this.changeStatus('accepted', value, index) }}  style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 5 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 5 }}>
-                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20, paddingVertical: 15 }}>
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 17, paddingVertical: 10 }}>
                                             ACCEPT
                     </Text>
                                         </TouchableOpacity>
@@ -521,12 +522,13 @@ export default class BookingReq extends Component {
 
                                                     <View style={{flex: 1 ,alignContent: "center", alignItems: "center", marginTop: "5%" }}>
                                                         <TouchableOpacity onPress={() => { this.changeStatus('rejected', value, index) }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#fff", width: "90%", borderRadius: 5, opacity: 0.7, borderColor: "#fc8b8c", borderWidth: 1 }}>
-                                                            <Text style={{ alignSelf: "center", color: "#000", fontFamily: "MrEavesXLModNarOT-Reg", fontSize: 20 , paddingVertical: 15}}>
+                                                            <Text style={{ alignSelf: "center", color: "#000", fontFamily: "Poppins-Regular_0", fontSize: 17 , paddingVertical: 10}}>
                                                                 REJECT
                                             </Text>
                                                         </TouchableOpacity>
                                                     </View>
                                                 </View>
+                                                <Divider style={{backgroundColor:'#bdbdbd', width:"100%", marginTop:15}} />
                                             </View>
 
                                         )

@@ -16,7 +16,7 @@ class ProHome extends Component {
         // headerBackTitle: null,
         title:"HOME",
         headerTitleStyle: {
-            fontFamily:"MrEavesXLModNarOT-Reg",
+            fontFamily:"Poppins-Regular_0",
             fontSize:30
         }
         // headerStyle: {
@@ -63,27 +63,27 @@ class ProHome extends Component {
     render() {
         return (
             <View style={{flex:1, height:'100%', width:'100%', marginTop: -80}}>
-                <ImageBackground source={require('../../../assets/opacity.jpg')} style={{height:"100%", width:"100%",opacity:0.9}}> 
+                <ImageBackground source={require('../../../assets/inner.png')} style={{height:"100%", width:"100%"}}> 
  
                  {/* <Header  style={{backgroundColor: '#fff', marginTop:80}}>
 
              <View style={{display:"flex", flexDirection:"row"}}>
     
                <View style={{marginTop:25, marginLeft: -80}}>
-                   <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 25 }}>
+                   <Text style={{fontFamily:"Poppins-Regular_0", fontSize: 25 }}>
                         Home
                    </Text>
                </View>
 
                <View style={{marginTop:25, marginLeft:20}}>
-                   <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 25 }}>
+                   <Text style={{fontFamily:"Poppins-Regular_0", fontSize: 25 }}>
                         Home
                    </Text>
                </View>
 
 
                <View style={{marginTop:25, marginLeft:20}}>
-                   <Text style={{fontFamily:"MrEavesXLModNarOT-Reg", fontSize: 25 }}>
+                   <Text style={{fontFamily:"Poppins-Regular_0", fontSize: 25 }}>
                    </Text>
                </View>
 
@@ -96,16 +96,16 @@ class ProHome extends Component {
                         containerStyle={{marginTop:60, backgroundColor:"#fff"}}
                         placement="left"
                         leftComponent={<Icon onPress={() => {this.props.navigation.toggleDrawer()}} name="menu" color="#000" />}
-                        centerComponent={<Text style={{alignSelf:'center', fontSize:30, fontFamily:"MrEavesXLModNarOT-Reg"}}>HOME</Text>}
+                        centerComponent={<Text style={{alignSelf:'center', fontSize:20, fontFamily:"Poppins-Regular_0"}}>HOME</Text>}
                         // rightComponent={{ icon: 'home', color: '#000' }}
                         />
 
 
-                <View style={{height: '100%', width:'100%', backgroundColor:"rgba(246, 232, 232, 0.7)"}}>
+                <View style={{height: '100%', width:'100%'}}>
                 
                 <ScrollView contentContainerStyle={{  height, width: '100%', alignItems: 'center', marginVertical: '10%'}}>
 
-                <View style={{height:"90%", width : "95%", backgroundColor:'#fff', borderWidth:1, alignSelf:"center",borderRadius: 10, opacity:0.75, borderColor:'#fff', borderWidth:1 }}>
+                <View style={{height:"85%", width : "95%", backgroundColor:'#fff', borderWidth:1, alignSelf:"center",borderRadius: 10, opacity:0.65, borderColor:'#fff', borderWidth:1 }}>
 
 
                     <View style={{alignSelf:"center", alignContent:"center", alignItems:"center", marginTop:"10%"}}> 
@@ -118,7 +118,7 @@ class ProHome extends Component {
                         <View style={{alignContent:"center",alignItems:"center",alignSelf:"center",backgroundColor:"transparent",width:143, height:139, borderRadius: 5, borderColor:"#000", borderWidth: 1, justifyContent:"space-evenly" }}>
 
                             <Image source={require('../../../assets/icon2.png')} style={{height:60, width:60, marginTop:"10%"}}/>
-                            <Text style={{fontFamily: 'MrEavesXLModNarOT-Reg', fontWeight:"bold"}}>Services</Text>
+                            <Text style={{fontFamily: 'Poppins-Regular_0', fontWeight:"bold"}}>Services</Text>
 
                         </View>
                         </TouchableOpacity>
@@ -127,7 +127,7 @@ class ProHome extends Component {
                         <View style={{alignContent:"center",alignItems:"center",alignSelf:"center",backgroundColor:"#fc8b8c",width:143, height:139, borderRadius: 5, justifyContent:"space-evenly" }}>
 
                             <Image source={require('../../../assets/book.png')} style={{height:60, width:55, marginTop:"10%"}}/>
-                            <Text style={{fontFamily: 'MrEavesXLModNarOT-Reg', fontWeight:"bold", color:"#fff"}}>Booking</Text>
+                            <Text style={{fontFamily: 'Poppins-Regular_0', fontWeight:"bold", color:"#fff"}}>Booking</Text>
 
                         </View>
                         </TouchableOpacity>
