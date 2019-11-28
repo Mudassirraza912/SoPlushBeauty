@@ -81,7 +81,7 @@ class DrawerMenu extends Component {
                       >
   
                         <View style={{marginLeft:10, width: 30}}>
-                        <Image source={require('../../assets/home.png')} style={{height:30, width:30}} />
+                        <Image source={require('../../assets/home.png')} style={{height:20, width:20}} />
                         </View>
   
                         <View style={{marginLeft:20}}>
@@ -101,7 +101,7 @@ class DrawerMenu extends Component {
   
                       >
                       <View style={{marginLeft:10, width: 30}}>
-                        <Image source={require('../../assets/user.png')} style={{height:30, width:30}} />
+                        <Image source={require('../../assets/user.png')} style={{height:20, width:20}} />
                         </View>
   
                         <View style={{marginLeft:20}}>
@@ -123,7 +123,7 @@ class DrawerMenu extends Component {
   
                       >
                       <View style={{marginLeft:10, width: 30}}>
-                      <Image source={require('../../assets/notification.png')} style={{height:26, width:20}} />
+                      <Image source={require('../../assets/notification.png')} style={{height:20, width:20}} />
                         </View>
   
                         <View style={{marginLeft:20}}>
@@ -153,7 +153,7 @@ class DrawerMenu extends Component {
   
                       >
                       <View style={{marginLeft:10, width: 30}}> 
-                      <Image source={require('../../assets/history.png')} style={{height:30, width:30}} />
+                      <Image source={require('../../assets/history.png')} style={{height:20, width:20}} />
                         </View>
   
                         <View style={{marginLeft:20}}>
@@ -177,7 +177,7 @@ class DrawerMenu extends Component {
   
                       >
                       <View style={{marginLeft:10, width: 30}}>
-                      <Image source={require('../../assets/more.png')} style={{height:30, width:30}} />
+                      <Image source={require('../../assets/more.png')} style={{height:20, width:20}} />
                         </View>
   
                         <View style={{marginLeft:20}}>
@@ -200,7 +200,7 @@ class DrawerMenu extends Component {
   
                       >
                       <View style={{marginLeft:10, width: 30}}>
-                      <Image source={require('../../assets/info1.png')} style={{height:30, width:30}} />
+                      <Image source={require('../../assets/info1.png')} style={{height:20, width:20}} />
                         </View>
   
                         <View style={{marginLeft:20}}>
@@ -222,7 +222,7 @@ class DrawerMenu extends Component {
   
                       >
                       <View style={{marginLeft:10, width: 30}}>
-                      <Image source={require('../../assets/hist.png')} style={{height:30, width:26}} />
+                      <Image source={require('../../assets/document.png')} style={{height:20, width:20}} />
                         </View>
   
                         <View style={{marginLeft:20}}>
@@ -243,7 +243,7 @@ class DrawerMenu extends Component {
   
                       >
                       <View style={{marginLeft:10, width: 30}}>
-                      <Image source={require('../../assets/lockopen.png')} style={{height:26, width:20}} />
+                      <Image source={require('../../assets/lockopen.png')} style={{height:20, width:20}} />
                         </View>
   
                         <View style={{marginLeft:20}}>
@@ -264,7 +264,7 @@ class DrawerMenu extends Component {
                         }
                       >
                       <View style={{marginLeft:10, width: 30}}>
-                      <Image source={require('../../assets/trans1.png')} style={{height:20, width:26}} />
+                      <Image source={require('../../assets/trans.png')} style={{height:20, width:20}} />
                         </View>
   
                         <View style={{marginLeft:20}}>
@@ -288,7 +288,7 @@ class DrawerMenu extends Component {
   
                       >
                       <View style={{marginLeft:10, width: 30}}>
-                      <Image source={require('../../assets/accept.png')} style={{height:25, width:20}} />
+                      <Image source={require('../../assets/accept.png')} style={{height:20, width:20}} />
                         </View>
   
                         <View style={{marginLeft:20}}>
@@ -329,7 +329,7 @@ class DrawerMenu extends Component {
   
                       >
                       <View style={{marginLeft:10, width: 30}}>
-                      <Image source={require('../../assets/logout.png')} style={{height:30, width:30}} />
+                      <Image source={require('../../assets/logout.png')} style={{height:20, width:20}} />
                         </View>
   
                         <View style={{marginLeft:20}}>

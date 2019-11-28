@@ -214,7 +214,9 @@ export default class EditUserProfile extends Component {
                         
                         }
                             <Item>
-                            <Image source={user} style={{ height: 22, width: 22 }} />
+                            <View style={{ width: 30}}>
+                            <Image source={user} style={{ height: 20, width: 20 }} />
+                            </View>
                         {/* <Label>Name</Label> */}
                         <Input style={{padding:5, fontSize:15}} defaultValue={this.state.username} onChangeText={(e) => {this.setState({username:e})}} placeholder="Name" />
                     </Item>
@@ -224,12 +226,16 @@ export default class EditUserProfile extends Component {
                     </Item> */}
                     
                     <Item>
-                    <Image source={envelop} style={{ height: 22, width: 22 }} />
+                    <View style={{ width: 30}}>
+                    <Image source={envelop}style={{ height: 20, width: 20 }} />
+                    </View>
                         {/* <Label>Email Address</Label> */}
                         <Input style={{fontSize:15}} defaultValue={this.state.email} onChangeText={(e) => {this.setState({email:e})}} placeholder="Email Address" />
                     </Item>
                     <Item >
-                    <Image source={phone} style={{ height: 22, width: 22 }} />
+                    <View style={{ width: 30}}>
+                    <Image source={phone} style={{ height: 20, width: 20 }}/>
+                    </View>
                         {/* <Label>Phone Number</Label> */}
                         <Input style={{fontSize:15}} defaultValue={this.state.phoneNo} onChangeText={(e) => {this.setState({phoneNo:e})}} placeholder="Phone Number" />
                     </Item>

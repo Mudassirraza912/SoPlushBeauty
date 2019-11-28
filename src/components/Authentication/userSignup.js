@@ -397,39 +397,52 @@ export default class UserSignUp extends Component {
                                 </Item>
  */}
 
-<Item error={nameErr} >
-<Image source={user} style={{ height: 20, width: 17 }} />
+<Item error={nameErr}>
+<View style={{ width: 30}}>
+<Image source={user} style={{ height: 20, width: 20}} />
+</View>
                                     {/* <Label>Name</Label> */}
-                                    <Input onChangeText={(e) => { this.setState({ name: e }) }} onBlur={() => this.checkField("name")} placeholder=" Name" />
+                                    <Input onChangeText={(e) => { this.setState({ name: e }) }} onBlur={() => this.checkField("name")} placeholder="Name" />
                                 </Item>
+
                                 {nameErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Username is required</Text>}
                                 <Item error={addressErr} >
-                                <Image source={home} style={{ height: 20, width: 17 }} />
+                                <View style={{ width: 30}}>
+                                <Image source={home} style={{ height: 20, width: 20 }} />
+                                </View>
                                     {/* <Label>Address</Label> */}
                                     <Input style={{width: '100%', fontSize: 15}} onBlur={() => this.checkField("address")} onChangeText={(e) => { this.setState({ address: e }) }} placeholder="Address" />
                                 </Item>
                                 {addressErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} > Address is required</Text>}
                                 <Item error={phoneNoErr} >
-                                <Image source={phone} style={{ height: 20, width: 18 }} />
+                                <View style={{ width: 30}}>
+                                <Image source={phone} style={{  height: 20, width: 20}} />
+                                </View>
                                     {/* <Label>Phone Number</Label> */}
                                     {/* 28644 */}
                                     <Input style={{width: '100%', fontSize: 15}} keyboardType="number-pad" onBlur={() => this.checkField("phoneNo")} onChangeText={(e) => { this.setState({ phoneNo: e }) }} placeholder="Phone Number" />
                                 </Item>
                                 {phoneNoErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Phone number is required</Text>}
                                 <Item error={emailErr} >
-                                <Image source={envelop} style={{ height: 15, width: 20 }} />
+                                <View style={{ width: 30}}>
+                                <Image source={envelop} style={{ height: 20, width: 20}} />
+                                </View>
                                     {/* <Label>Email Address</Label> */}
                                     <Input style={{width: '100%', fontSize: 15}} onBlur={() => this.checkField("email")} onChangeText={(e) => { this.setState({ email: e }) }} placeholder="Email Address" />
                                 </Item>
                                 {emailErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Email address is required</Text>}
                                 <Item error={passwordErr} >
-                                <Image source={lock} style={{  height: 19, width: 14}} />
+                                <View style={{ width: 30}}>
+                                <Image source={lock} style={{  height: 20, width: 20}} />
+                                </View>
                                     {/* <Label>Password</Label> */}
                                     <Input style={{width: '100%', fontSize: 15}}  onBlur={() => this.checkField("password")} onChangeText={(e) => { this.setState({ password: e }) }} placeholder="Password" secureTextEntry={true} />
                                 </Item>
                                 {passwordErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >min 6 letters</Text>}
                                 <Item onPress={this.openGallery} >
-                                <Image source={camicon} style={{ height: 15, width: 18 }} />
+                                <View style={{ width: 30}}>
+                                <Image source={camicon} style={{  height: 20, width: 20 }} />
+                                </View>
                                     <Input style={{width: '100%', fontSize: 15}} disabled keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Upload Pictures" />
                                 </Item>
 

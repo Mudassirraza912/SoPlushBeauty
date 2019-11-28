@@ -433,37 +433,54 @@ export default class ProSignUp extends Component {
 
 
                                 <Item error={nameErr}  >
-                                    <Image source={user} style={{ height: 20, width: 16 }} />
+                                <View style={{ width: 30}}>
+
+                                    <Image source={user} style={{ height: 20, width: 20}} />
+                                    </View>
                                     {/* <Label>Name</Label> */}
-                                    <Input style={{ width: "100%", fontSize: 15 }} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("name")} onChangeText={(e) => this.setState({ name: e })} placeholder=" Name" />
+                                    <Input style={{ width: "100%", fontSize: 15 }} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("name")} onChangeText={(e) => this.setState({ name: e })} placeholder="Name" />
                                 </Item>
                                 {nameErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Username is required</Text>}
                                 <Item error={addressErr}  >
-                                    <Image source={home} style={{ height: 20, width: 16 }} />
+                                <View style={{ width: 30}}>
+
+                                    <Image source={home} style={{ height: 20, width: 20}} />
+                                    </View>
                                     {/* <Label>Address</Label> */}
                                     <Input style={{ width: "100%", fontSize: 15 }} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("address")} onChangeText={(e) => this.setState({ address: e })} placeholder="Address" />
                                 </Item>
                                 {addressErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Address is required</Text>}
                                 <Item error={phoneNoErr}  >
-                                    <Image source={phone} style={{ height: 20, width: 18 }} />
+                                <View style={{ width: 30}}>
+
+                                    <Image source={phone} style={{ height: 20, width: 20}} />
+                                    </View>
                                     {/* <Label>Phone Number</Label> */}
                                     <Input style={{ width: "100%", fontSize: 15 }} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("phoneNo")} keyboardType="number-pad" onChangeText={(e) => this.setState({ phoneNo: e })} placeholder="Phone Number" />
                                 </Item>
                                 {phoneNoErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Phone no is required</Text>}
                                 <Item error={emailErr}  >
-                                    <Image source={envelop} style={{ height: 15, width: 20 }} />
+                                <View style={{ width: 30}}>
+
+                                    <Image source={envelop} style={{ height: 20, width: 20}} />
+                                    </View>
                                     {/* <Label>Email Address</Label> */}
                                     <Input style={{ width: "100%", fontSize: 15 }} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("email")} onChangeText={(e) => this.setState({ email: e })} placeholder="Email Address" />
                                 </Item>
                                 {emailErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
                                 <Item error={passwordErr}  >
-                                    <Image source={lock} style={{ height: 19, width: 14 }} />
+                                <View style={{ width: 30}}>
+                                    <Image source={lock} style={{ height: 20, width: 20}} />
+                                    </View>
                                     {/* <Label>Password</Label> */}
                                     <Input style={{ width: "100%", fontSize: 15 }} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("password")} secureTextEntry={true} onChangeText={(e) => this.setState({ password: e })} placeholder="Password" />
                                 </Item>
                                 {passwordErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >min 6 letters</Text>}
                                 <View style={{ flexDirection: "row", marginTop: 10, width: "100%", borderBottomWidth: 0.5, borderBottomColor: '#bdbdbd' }}>
-                                    <Image source={cake} style={{ height: 15, width: 20, marginTop: 12 }} />
+<View style={{ width: 27}}>
+                                    
+                                    <Image source={cake} style={{ height: 20, width: 20,marginTop: 12 }} />
+                                    </View>
                                     <DatePicker
                                         ref={ref => this.datePicker = ref}
                                         aultDate={"1/23/3"}
@@ -497,17 +514,26 @@ export default class ProSignUp extends Component {
                                 </View>
                                 {dOBErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
                                 <Item error={bankErr}  >
-                                    <Image source={museum} style={{ height: 17, width: 18 }} />
+                                <View style={{ width: 30}}>
+
+                                    <Image source={museum} style={{ height: 20, width: 20}} />
+                                    </View>
                                     <Input style={{ width: "100%", fontSize: 15 }} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("bank")} onChangeText={(e) => this.setState({ bank: e })} placeholder="Bank Name" />
                                 </Item>
                                 {bankErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
                                 <Item error={accountNoErr}  >
-                                    <Image source={atmcard} style={{ height: 15, width: 20 }} />
+                                <View style={{ width: 30}}>
+
+                                    <Image source={atmcard} style={{ height: 20, width: 20}} />
+                                    </View>
                                     <Input style={{ width: "100%", fontSize: 15 }} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("accountNo")} keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Account Number" />
                                 </Item>
                                 {accountNoErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
                                 <Item onPress={this.openGallery}  >
-                                    <Image source={camicon} style={{ height: 15, width: 20 }} />
+                                <View style={{ width: 30}}>
+
+                                    <Image source={camicon} style={{ height: 20, width: 20}} />
+                                    </View>
                                     <Input style={{ width: "100%", fontSize: 15 }} placeholderTextColor="#bdbdbd" disabled keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Upload Pictures" />
                                 </Item>
 

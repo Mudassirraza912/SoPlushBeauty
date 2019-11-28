@@ -655,7 +655,7 @@ export default class UserLogin extends Component {
 
                                     <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
                                         <TouchableOpacity onPress={() => { this.props.navigation.navigate("ForgotPassword", { from: "UserLogin" }) }}>
-                                            <Text style={{ fontFamily: 'Poppins-Regular_0' , opacity: 0.6}}>Forgot Password</Text>
+                                            <Text style={{ fontFamily: 'Poppins-Regular_0' , opacity: 0.6}}>Forgot Password?</Text>
                                         </TouchableOpacity>
                                     </View>
 

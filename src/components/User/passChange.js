@@ -60,19 +60,25 @@ export default class PassChange extends Component {
 
                         
                     <Item  style={{width:"80%"}}>
+                    <View style={{ width: 30}}>
                     <Image source={require("../../../assets/lockopen.png")} style={{ height: 20, width: 15 }} /> 
+                    </View>
                         {/* <Label>Email Address</Label> */}
                         <Input secureTextEntry={true} style={{fontSize:15}} onChangeText={(e) => {this.setState({email:e})}} placeholder="Current Password" />
                     </Item>
                     
                     <Item >
+                    <View style={{ width: 30}}>
                     <Image source={require("../../../assets/lockopen.png")} style={{ height: 20, width: 15 }} />
+                    </View>
                         {/* <Label>Password</Label> */}
                         <Input  style={{fontSize:15}} onChangeText={(e) => {this.setState({password:e})}} placeholder="New Password" secureTextEntry={true} />
                     </Item>
 
                     <Item >
+                    <View style={{ width: 30}}>
                     <Image source={require("../../../assets/lockopen.png")} style={{ height: 20, width: 15 }} />
+                    </View>
                         {/* <Label>Password</Label> */}
                         <Input style={{fontSize:15}} onChangeText={(e) => {this.setState({password:e})}} placeholder="Confirm Password" secureTextEntry={true} />
                     </Item>
