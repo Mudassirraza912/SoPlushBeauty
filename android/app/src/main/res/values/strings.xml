@@ -2,4 +2,5 @@
     <string name="app_name">SoPlushBeauty</string>
     <string name="facebook_app_id">462719197935457</string>
     <string name="fb_login_protocol_scheme">fb462719197935457</string>
+    <string name="server_client_id">240404485205-d9m1p0jjsu2ncr7l2fa5oqbu5pb7inu1.apps.googleusercontent.com</string>
 </resources>

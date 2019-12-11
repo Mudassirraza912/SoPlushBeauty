@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   View, Image,
   ImageBackground,
-  ScrollView,Alert
+  ScrollView, Alert,
+  AsyncStorage
 } from "react-native";
 
 import { NavigationActions } from "react-navigation";
@@ -14,6 +15,7 @@ import { Container, Header, Body, Content } from 'native-base'
 import { Avatar, Button, Icon } from "react-native-elements"
 import backgound from "../background";
 // import { LinearGradient } from 'expo-linear-gradient';
+const defaultImage = require('../../assets/default.png')
 
 class DrawerMenu extends Component {
 
@@ -31,26 +33,40 @@ class DrawerMenu extends Component {
 
       <View style={{ flex: 1, justifyContent: "center", alignContent: "center", height: '100%', backgroundColor: 'rgba(246, 232, 232, 0.5)' }}>
         <Header style={{ height: 100, backgroundColor: '#F6E8E8', paddingTop: 10, alignItems: 'flex-start', justifyContent: 'flex-start' }}>
-        <TouchableOpacity onPress={() => {this.props.navigation.navigate('UserProfile')}}>
-          <View style={{ display: "flex", flexDirection: "row" }}>
+          <TouchableOpacity onPress={() => {
+            this.props.navigation.navigate('UserProfile')
+            this.props.navigation.closeDrawer()
+          }}>
+            <View style={{ display: "flex", flexDirection: "row" }}>
 
-            <View >
+            {this.props.screenProps.profileData.profile_pic !== "" ?  <View >
               <Avatar
-                overlayContainerStyle={{ backgroundColor: "#fff" }}
-                rounded
-                size="large"
-                source={{ uri: `https://hnhtechsolutions.com/hassan/soplush/profile_pics/${this.props.screenProps.profileData.profile_pic}` }}
-              />
+                  overlayContainerStyle={{ backgroundColor: "#fff" }}
+                  rounded
+                  size="large"
+                  source={{ uri: `https://hnhtechsolutions.com/hassan/soplush/profile_pics/${this.props.screenProps.profileData.profile_pic}` }}
+                /> 
 
-            </View>
-            <View style={{ marginTop: 25, marginLeft: 20 }}>
-              <Text style={{ fontFamily: "Poppins-Regular_0", 
-              fontSize: 15 
-              }}>
-                {this.props.screenProps.profileData.username}
-              </Text>
+              </View> : 
+              <View >
+              <Avatar
+                  overlayContainerStyle={{ backgroundColor: "#fff" }}
+                  rounded
+                  size="large"
+                  source={defaultImage}
+                /> 
 
-              {/* <Avatar
+              </View>
+              }
+              <View style={{ marginTop: 25, marginLeft: 20 }}>
+                <Text style={{
+                  fontFamily: "Poppins-Regular_0",
+                  fontSize: 15
+                }}>
+                  {this.props.screenProps.profileData.username}
+                </Text>
+
+                {/* <Avatar
                         overlayContainerStyle={{backgroundColor:"#fff"}}
                         rounded
                         size="large"
@@ -63,9 +79,9 @@ class DrawerMenu extends Component {
                       John Doe
                     </Text> */}
 
-            </View>
+              </View>
 
-          </View>
+            </View>
           </TouchableOpacity>
         </Header>
 
@@ -80,11 +96,14 @@ class DrawerMenu extends Component {
 
             <TouchableOpacity
               style={styles.menuItem}
-              onPress={() => this.props.navigation.navigate('UserHome')}
+              onPress={() => {
+                this.props.navigation.closeDrawer()
+                this.props.navigation.navigate('UserHome')
+              }}
             >
 
-              <View style={{ marginLeft: 10 , width: 30}}>
-                <Image source={require('../../assets/home.png')}  style={{height:20, width:20}} />
+              <View style={{ marginLeft: 10, width: 30 }}>
+                <Image source={require('../../assets/home.png')} style={{ height: 20, width: 20 }} />
               </View>
 
               <View style={{ marginLeft: 20 }}>
@@ -101,12 +120,14 @@ class DrawerMenu extends Component {
 
             <TouchableOpacity
               style={styles.menuItem}
-              onPress={() =>
-                this.props.navigation.navigate('UserProfile')}
+              onPress={() => {
+                this.props.navigation.navigate('UserProfile')
+                this.props.navigation.closeDrawer()
+              }}
 
             >
               <View style={{ marginLeft: 10, width: 30 }}>
-                <Image source={require('../../assets/user.png')}  style={{height:20, width:20}} />
+                <Image source={require('../../assets/user.png')} style={{ height: 20, width: 20 }} />
               </View>
 
               <View style={{ marginLeft: 20 }}>
@@ -124,12 +145,14 @@ class DrawerMenu extends Component {
 
             <TouchableOpacity
               style={styles.menuItem}
-              onPress={() =>
-                this.props.navigation.navigate('UserNotification')}
+              onPress={() => {
+                this.props.navigation.navigate('UserNotification')
+                this.props.navigation.closeDrawer()
+              }}
 
             >
-              <View style={{ marginLeft: 10 , width: 30}}>
-                <Image source={require('../../assets/notification.png')}  style={{height:20, width:20}} />
+              <View style={{ marginLeft: 10, width: 30 }}>
+                <Image source={require('../../assets/notification.png')} style={{ height: 20, width: 20 }} />
               </View>
 
               <View style={{ marginLeft: 20 }}>
@@ -146,12 +169,14 @@ class DrawerMenu extends Component {
 
             <TouchableOpacity
               style={styles.menuItem}
-              onPress={() =>
-                this.props.navigation.navigate('UserAppointment')}
+              onPress={() => {
+                this.props.navigation.navigate('UserAppointment')
+                this.props.navigation.closeDrawer()
+              }}
 
             >
               <View style={{ marginLeft: 10, width: 30 }}>
-                <Image source={require('../../assets/history.png')}  style={{height:20, width:20}} />
+                <Image source={require('../../assets/history.png')} style={{ height: 20, width: 20 }} />
               </View>
 
               <View style={{ marginLeft: 20 }}>
@@ -170,12 +195,14 @@ class DrawerMenu extends Component {
 
             <TouchableOpacity
               style={styles.menuItem}
-              onPress={() =>
-                this.props.navigation.navigate('BookingHistory')}
+              onPress={() => {
+                this.props.navigation.navigate('BookingHistory')
+                this.props.navigation.closeDrawer()
+              }}
 
             >
               <View style={{ marginLeft: 10, width: 30 }}>
-                <Image source={require('../../assets/document.png')}  style={{height:20, width:20}} />
+                <Image source={require('../../assets/document.png')} style={{ height: 20, width: 20 }} />
               </View>
 
               <View style={{ marginLeft: 20 }}>
@@ -193,12 +220,14 @@ class DrawerMenu extends Component {
 
             <TouchableOpacity
               style={styles.menuItem}
-              onPress={() =>
-                this.props.navigation.navigate('About')}
+              onPress={() => {
+                this.props.navigation.navigate('About')
+                this.props.navigation.closeDrawer()
+              }}
 
             >
-              <View style={{ marginLeft: 10 , width: 30}}>
-                <Image source={require('../../assets/info.png')}  style={{height:20, width:20}} />
+              <View style={{ marginLeft: 10, width: 30 }}>
+                <Image source={require('../../assets/info.png')} style={{ height: 20, width: 20 }} />
               </View>
 
               <View style={{ marginLeft: 20 }}>
@@ -211,19 +240,20 @@ class DrawerMenu extends Component {
 
 
             <TouchableOpacity
-                        style={styles.menuItem}
-                        onPress={() =>
-                          Alert.alert("Warning!","Will be impelmented")
-                        }
-  
-                      >
-                      <View style={{marginLeft:10, width: 30}}>
-                      <Image source={require('../../assets/loyal2.png')}  style={{height:20, width:20}} />
-                        </View>
-  
-                        <View style={{marginLeft:20}}>
-                        <Text style={styles.menuItemText}>Loyality Points</Text>
-                        </View>
+              style={styles.menuItem}
+              onPress={() => {
+                Alert.alert("Warning!", "Will be impelmented")
+                this.props.navigation.closeDrawer()
+              }}
+
+            >
+              <View style={{ marginLeft: 10, width: 30 }}>
+                <Image source={require('../../assets/loyal1.png')} style={{ height: 20, width: 20 }} />
+              </View>
+
+              <View style={{ marginLeft: 20 }}>
+                <Text style={styles.menuItemText}>Loyality Points</Text>
+              </View>
 
             </TouchableOpacity>
 
@@ -254,12 +284,14 @@ class DrawerMenu extends Component {
 
             <TouchableOpacity
               style={styles.menuItem}
-              onPress={() =>
-                this.props.navigation.navigate('PassChange')}
+              onPress={() => {
+                this.props.navigation.navigate('PassChange')
+                this.props.navigation.closeDrawer()
+              }}
 
             >
-              <View style={{ marginLeft: 10 , width: 30}}>
-                <Image source={require('../../assets/lockopen.png')}  style={{height:20, width:20}} />
+              <View style={{ marginLeft: 10, width: 30 }}>
+                <Image source={require('../../assets/lockopen.png')} style={{ height: 20, width: 20 }} />
               </View>
 
               <View style={{ marginLeft: 20 }}>
@@ -274,13 +306,15 @@ class DrawerMenu extends Component {
 
             <TouchableOpacity
               style={styles.menuItem}
-              onPress={() =>
-                Alert.alert("Warning!","Will be impelmented")
+              onPress={() => {
+                Alert.alert("Warning!", "Will be impelmented")
+                this.props.navigation.closeDrawer()
+              }
               }
 
             >
               <View style={{ marginLeft: 10, width: 30 }}>
-                <Image source={require('../../assets/trans.png')}  style={{height:20, width:20}} />
+                <Image source={require('../../assets/trans.png')} style={{ height: 20, width: 20 }} />
               </View>
 
               <View style={{ marginLeft: 20 }}>
@@ -299,12 +333,14 @@ class DrawerMenu extends Component {
 
             <TouchableOpacity
               style={styles.menuItem}
-              onPress={() =>
-                this.props.navigation.navigate('Term')}
+              onPress={() => {
+                this.props.navigation.navigate('Term')
+                this.props.navigation.closeDrawer()
+              }}
 
             >
-              <View style={{ marginLeft: 10 , width: 30}}>
-                <Image source={require('../../assets/accept.png')}  style={{height:20, width:20}} />
+              <View style={{ marginLeft: 10, width: 30 }}>
+                <Image source={require('../../assets/accept.png')} style={{ height: 20, width: 20 }} />
               </View>
 
               <View style={{ marginLeft: 20 }}>
@@ -331,11 +367,15 @@ class DrawerMenu extends Component {
                     },
                     {
                       text: 'yes',
-                      onPress: () => this.props.navigation.navigate('UserLogin')
+                      onPress: () => {
+                        AsyncStorage.removeItem('User')
+                        this.props.navigation.navigate('UserLogin')
+                        this.props.navigation.closeDrawer()
+                      }
                       ,
                       style: 'cancel',
                     },
-                    {cancelable:  false}
+                    { cancelable: false }
                   ]
                 )
                 // this.props.navigation.navigate('UserLogin')
@@ -343,7 +383,7 @@ class DrawerMenu extends Component {
 
             >
               <View style={{ marginLeft: 10, width: 30 }}>
-                <Image source={require('../../assets/logout.png')}  style={{height:20, width:20}} />
+                <Image source={require('../../assets/logout.png')} style={{ height: 20, width: 20 }} />
               </View>
 
               <View style={{ marginLeft: 20 }}>

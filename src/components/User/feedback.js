@@ -205,12 +205,12 @@ export default class Feedback extends Component {
                             this.props.navigation.goBack()
                           
                         } else {
-                            Alert.alert("Error","Email or Password is incorrect")
+                            Alert.alert("Alert","Email or Password is incorrect")
                             console.log(" ELSE", successData)
 
                         }
                     } else {
-                        Alert.alert("Error",successData.message)
+                        Alert.alert("Alert",successData.message)
                     }
                 })
                 .catch(err => console.log("err UPDATEPROFILE", err));

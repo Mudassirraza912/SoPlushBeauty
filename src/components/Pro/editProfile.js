@@ -1,19 +1,20 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert, AsyncStorage } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button, Item, Input,  Label, Form, Icon, Spinner } from 'native-base';
 import {Avatar, Header, Card, Divider} from 'react-native-elements'
 import ImagePicker from 'react-native-image-picker'
 import LinearGradient from 'react-native-linear-gradient'
 import camicon from '../../../assets/photo-camera.png'
-import user from '../../../assets/user1.png'
+import user from '../../../assets/user.png'
 import home from '../../../assets/home.png'
 import phone from '../../../assets/phone-call.png'
-import envelop from '../../../assets/envelope.png'
+import envelop from '../../../assets/envelope1.png'
 import lock from '../../../assets/lock.png'
 import cake from '../../../assets/cake.png'
 import museum from '../../../assets/museum.png'
 import atmcard from '../../../assets/atm-card.png'
+const defaultImage = require('../../../assets/default.png')
 
 const {width, height} = Dimensions.get("window")
 const options = {
@@ -146,6 +147,8 @@ export default class EditProProfile extends Component {
         //     .catch(err => {
         //         console.log("err UPDATEPROFILE KhALID BHAI", err)});
 
+        console.log('FORM FORMDATA DATA', formData)
+
 
         fetch("https://hnhtechsolutions.com/hassan/soplush/user/user.php?action=update_profile", {
             method: 'POST',
@@ -156,7 +159,7 @@ export default class EditProProfile extends Component {
             },
             body: formData
         }).then(res => res.json())
-            .then(resp => {
+            .then(async (resp) => {
                 console.log(JSON.stringify(resp))
                 var successData = resp
 
@@ -168,17 +171,29 @@ export default class EditProProfile extends Component {
 
                             this.props.screenProps.fetchProfileData(successData.data)
                             Alert.alert("Success","Profile Updated Successfully")
+                            this.props.navigation.navigate('ProProfile', {
+                                profile: successData.data
+                            })
+                            try {
+                                await AsyncStorage.setItem('User',JSON.stringify(successData.data));
+                                   console.log('enableButton =>')
+                             } catch (error) {
+                               console.log('error =>' ,error)
+                       
+                             }
+                            
                             this.setState({profilePic: false, fileUri:"", fileName:""})
-                        this.props.navigation.navigate('Main')
+                        
 
                       
                     } else {
                         this.setState({loader: false})
-                        Alert.alert("Error","Email or Password is incorrect")
+                        console.log("successData successData", successData)
+                        // Alert.alert("Alert","Email or Password is incorrect")
                     }
                 } else {
                     this.setState({loader: false})
-                    Alert.alert("Error",successData.message)
+                    Alert.alert("Alert",successData.message)
                 }
                 console.log("SUCCESS USER", successData, successData.status, successData.data)
             })
@@ -198,7 +213,7 @@ export default class EditProProfile extends Component {
                 <Header
                         containerStyle={{marginTop:40, backgroundColor:"#fff"}}
                         placement="left"
-                        leftComponent={<Icon onPress={() => {this.props.navigation.navigate('Main')}} name="arrow-back" color="#000" />}
+                        leftComponent={<Icon onPress={() => {this.props.navigation.navigate('ProProfile')}} name="arrow-back" color="#000" />}
                         centerComponent={<Text style={{alignSelf:'center',fontSize:20, fontFamily:"Poppins-Regular_0"}}>EDIT PROFILE</Text>}
                         // rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("EditProfile")}}><Image source={require('../../../assets/edit.png')} style={{height:30, width:30}} /> 
                         // </TouchableOpacity> }
@@ -214,9 +229,18 @@ export default class EditProProfile extends Component {
                    
                         <View style={{backgroundColor:"#fff", borderRadius:10, width:"90%", padding: 10}}> 
 
-                       {!this.state.profilePic ? <View style={{justifyContent:"center", alignContent:"center", alignItems:"center", paddingVertical:15, marginBottom:10}}>
+                       {!this.state.profilePic ?
+                       
+                       <View>
+                      {this.props.screenProps.profileData.profile_pic !== "" ? <View style={{justifyContent:"center", alignContent:"center", alignItems:"center", paddingVertical:15, marginBottom:10}}>
                              <Avatar  onPress={this.openGallery} onEditPress={this.openGallery} containerStyle={{backgroundColor:"#fc8b8c",}} showEditButton  rounded size="xlarge" editButton={{name:"camera",type:"font-awesome", size:25, iconStyle:{marginTop:10} ,containerStyle:{backgroundColor:"#fc8b8c", borderRadius:50, height: 45, width: 45, borderColor:'#fff' , borderWidth:2 ,marginRight:60}, color:"#fff", underlayColor:"#fc8b8c", reverseColor:"#fc8b8c", }}  source={{uri:`https://hnhtechsolutions.com/hassan/soplush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}} />
-                        </View> 
+                        </View> : 
+                       <View style={{justifyContent:"center", alignContent:"center", alignItems:"center", paddingVertical:15, marginBottom:10}}>
+                        <Avatar  onPress={this.openGallery} onEditPress={this.openGallery} containerStyle={{backgroundColor:"#fc8b8c",}} showEditButton  rounded size="xlarge" editButton={{name:"camera",type:"font-awesome", size:25, iconStyle:{marginTop:10} ,containerStyle:{backgroundColor:"#fc8b8c", borderRadius:50, height: 45, width: 45, borderColor:'#fff' , borderWidth:2 ,marginRight:60}, color:"#fff", underlayColor:"#fc8b8c", reverseColor:"#fc8b8c", }}  source={defaultImage} />
+                   </View>
+                        
+                        }
+                        </View>
                         :
                         <View style={{justifyContent:"center", alignContent:"center", alignItems:"center"}}>
                         <Avatar  onPress={this.openGallery} onEditPress={this.openGallery} containerStyle={{backgroundColor:"#fc8b8c",}} showEditButton  rounded size="xlarge" editButton={{name:"camera",type:"font-awesome", size:25, iconStyle:{marginTop:10, color:'#fff', borderColor:'#fff'} ,containerStyle:{backgroundColor:"#fc8b8c", borderRadius:50, height: 45, width: 45, borderColor:'#fff' , borderWidth:2 ,marginRight:60}, color:"#fff", underlayColor:"#fc8b8c", reverseColor:"#fc8b8c", }}  source={this.state.profilePic} />
@@ -278,7 +302,7 @@ export default class EditProProfile extends Component {
                                     containerStyle={{  height: 40, width: 40, marginTop: "1%", borderRadius: 10 }} source={camicon} />
                           </View>
                                    
-                            <TouchableOpacity style={{borderRadius:5, marginHorizontal: 20}} 
+                            <TouchableOpacity onPress={this.openGallery} style={{borderRadius:5, marginHorizontal: 20}} 
                             //  onPress={() => 
                             //     {
 

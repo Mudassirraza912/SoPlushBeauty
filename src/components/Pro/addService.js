@@ -28,7 +28,7 @@ export default class AddService extends Component {
     componentDidMount() {
         const {profileData} = this.state
         
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+        // BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
 
         // console.log("email, password, address, name, phoneNo, profilePic", email, password)
 
@@ -55,30 +55,26 @@ export default class AddService extends Component {
             // this.props.navigation.navigate("Main")
        
           }else {
-            Alert.alert("Error",successData.message)
+            Alert.alert("Alert",successData.message)
           }
         })
         .catch(err => console.log("Category err err",err));
     }
 
 
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
-    }
+    // componentWillUnmount() {
+    //     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+    // }
 
-    handleBackButton = () => {
-        console.log('RUNNNING')
-        if (!this.state.add) {
-            console.log('add: true')
-           this.setState({add: true})
-            return true;
-        }
-        else {
-            console.log('navigation: true')
-
-            this.props.navigation.navigate('Main')
-        }
-    };
+    // handleBackButton = () => {
+    //     if (!this.state.add) {
+    //        this.setState({add: true})
+    //         return true;
+    //     }
+    //     else {
+    //         this.props.navigation.navigate('Main')
+    //     }
+    // };
 
 
   addCategory = () => {
@@ -131,7 +127,7 @@ export default class AddService extends Component {
    
       }else {
         this.setState({loader: false})
-        Alert.alert("Error",successData.message)
+        Alert.alert("Alert",successData.message)
       }
     })
     .catch(err => {
@@ -161,11 +157,16 @@ export default class AddService extends Component {
                         containerStyle={{ marginTop: 40, backgroundColor: "#fff" }}
                         placement="left"
                         leftComponent={<Icon onPress={() => { 
-                            this.setState({add: true})
+                            
                         // this.handleBackButton()
-                        // this.props.navigation.navigate('Main')
+                        
+                        if (this.state.add === false) {
+                            this.setState({add: true})
+                        }else {
+                            this.props.navigation.navigate('Main')
+                        }
                          }} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{alignSelf:'center',fontSize: 20, fontFamily: "Poppins-Regular_0" }}>ADD SERVICE</Text>}
+                        centerComponent={<Text style={{alignSelf:'center',fontSize: 20, fontFamily: "Poppins-Regular_0" }}>ADD SERVICES</Text>}
                     // rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("EditProfile")}}><Image source={require('../../../assets/edit.png')} style={{height:30, width:30}} /> 
                     // </TouchableOpacity> }
                     />
@@ -176,17 +177,15 @@ export default class AddService extends Component {
 
                             <View>
 
-                                {this.state.add && <TouchableOpacity onPress={() => { this.setState({ add: false }) }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", marginTop: "50%" }}><Image style={{ height: 150, width: 150, justifyContent: "center" }} source={require('../../../assets/add-documents.png')} />
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('AddServiceDetails')} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", marginTop: "50%" }}><Image style={{ height: 150, width: 150, justifyContent: "center" }} source={require('../../../assets/add-documents.png')} />
 
-                                    <Text style={{ alignSelf: "center", color: "#000", fontFamily: "Poppins-Regular_0", fontSize: 20, marginTop: "7%" }}>Add Service</Text>
+                                    <Text style={{ alignSelf: "center", color: "#000", fontFamily: "Poppins-Regular_0", fontSize: 20, marginTop: "7%" }}>Add Services</Text>
 
-                                </TouchableOpacity>}
+                                </TouchableOpacity>
 
 
-                                {!this.state.add && <View style={{ width: "80%", alignContent: "center", alignItems: "center", justifyContent: "center", alignSelf: 'center' }}>
-                                    {/* <Item floatingLabel style={{ alignSelf: 'center', alignItems: 'center', alignContent: 'center', borderBottomWidth:1, borderBottomColor: 'gray' }}>
-                                        <Input onChangeText={(e) => { this.setState({ name: e }) }} placeholder="Enter Service" />
-                                    </Item> */}
+                                {/* {!this.state.add && <View style={{ width: "80%", alignContent: "center", alignItems: "center", justifyContent: "center", alignSelf: 'center' }}>
+                                    
 
 <Item stackedLabel style={{ width: '100%', borderBottomWidth: 1, borderBottomColor:'#bdbdbd' }}>
                                                     <Label style={{ marginLeft: 3, color: 'gray', fontSize: 12, marginTop: 10 }}>Enter Service</Label>
@@ -194,10 +193,7 @@ export default class AddService extends Component {
                                                 </Item>
 
 
-                                    {/* <Item floatingLabel style={{ borderBottomWidth:1, borderBottomColor: 'gray'}}>
                                    
-                                        <Input keyboardType="number-pad" onChangeText={(e) => { this.setState({ cost: e }) }} placeholder="Enter Cost" />
-                                    </Item> */}
 
 <Item stackedLabel style={{ width: '100%', borderBottomWidth: 1, borderBottomColor:'#bdbdbd' }}>
                                                     <Label style={{ marginLeft: 3, color: 'gray', fontSize: 12, marginTop: 10 }}>Enter Cost</Label>
@@ -210,7 +206,6 @@ export default class AddService extends Component {
                                             onValueChange={(itemValue, itemIndex) =>
                                                 this.setState({selectedCategory: itemValue})
                                             }>
-                                                {/* <Picker.Item label="jksfdgsdfh" value="{value.category_name}"/> */}
                                                 {this.state.category.map((value, index) => {
                                                     console.log("value.category_name", value.category_name)
                                                     return(<Picker.Item style={{width: 200}} label={value.category_name} value={value.category_id}/>)
@@ -219,22 +214,11 @@ export default class AddService extends Component {
                                     </View>
 
 
-{/* 
-                                            <Button onPress={this.addCategory} style={{justifyContent:"center",alignContent:"center", alignItems:"center", backgroundColor:"#fc8b8c", width:"100%", borderRadius: 10, opacity:0.7, marginTop:"5%"}}> 
-                                            <Text style={{alignSelf:"center",color:"#fff", fontFamily:"Poppins-Regular_0", fontSize:20}}>
-                                            Ok
-                                            </Text>   
-                                            </Button> */}
+
 
 
                                        {!this.state.loader ?     <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", marginBottom:10, width: "100%" }}>
-                                            {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "90%", borderRadius: 10 }}>
-                                                <Button onPress={this.addCategory} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }}>
-                                                    <Text style={{ alignSelf: "center", color: "#fff", fontFamily: "Poppins-Regular_0", fontSize: 20 }}>
-                                                    Ok
-</Text>
-                                                </Button>
-                                            </LinearGradient> */}
+                                           
 
 <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10}}>
                                         <TouchableOpacity  onPress={this.addCategory} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, width:'100%' }}>
@@ -245,7 +229,7 @@ export default class AddService extends Component {
                                     </LinearGradient>
                                         </View> :  <Spinner color="#fc8b8c" />}
 
-                                </View>}
+                                </View>} */}
 
                             </View>
 

@@ -381,7 +381,7 @@
 
 
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, Keyboard, Animated, UIManager, TextInput, TouchableOpacity, ScrollView, Alert, BackHandler } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, Keyboard, Animated, UIManager, TextInput, TouchableOpacity, ScrollView, Alert, BackHandler, AsyncStorage } from 'react-native'
 // import { nodeInternals } from 'stack-utils';
 import { Container, Header, Content, Item, Input, Icon, Label, Form, Button, List, ListItem, Left, Body, Spinner, } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient'
@@ -419,6 +419,40 @@ export default class UserLogin extends Component {
     })
 
 
+    signIn = async () => {
+        try {
+            await GoogleSignin.hasPlayServices();
+            const userInfo = await GoogleSignin.signIn();
+            console.log('userInfo userInfo userInfo userInfo', userInfo)
+            alert('userInfo userInfo' + userInfo.toString())
+            this.setState({ userInfo });
+        } catch (error) {
+            if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+                console.log('error error error SIGN_IN_CANCELLED', error)
+                alert('SIGN_IN_CANCELLED' + error.toString())
+
+                // user cancelled the login flow
+            } else if (error.code === statusCodes.IN_PROGRESS) {
+                // operation (e.g. sign in) is in progress already
+                console.log('error error error IN_PROGRESS', error)
+                alert(error.toString())
+
+            } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+                console.log('error error error PLAY_SERVICES_NOT_AVAILABLE', error)
+                alert('PLAY_SERVICES_NOT_AVAILABLE' + error.toString())
+
+                // play services not available or outdated
+            } else {
+                console.log('error error error', error)
+                alert('IN_PROGRESS' + error.toString())
+
+
+                // some other error happened
+            }
+        }
+    };
+
+
     login = async () => {
         this.setState({ loader: true })
         const { email, password } = this.state
@@ -430,13 +464,13 @@ export default class UserLogin extends Component {
         if (reg.test(email) === false) {
             this.setState({ loader: false })
 
-            Alert.alert("Error","Email is required")
+            Alert.alert("Alert", "Please Enter Valid Email Address")
         }
         // 28638
         else if (password == '') {
             this.setState({ loader: false })
-            Alert.alert("Error","Password is required")
-        }else {
+            Alert.alert("Alert", "Password is required")
+        } else {
 
             // http://192.168.0.120/29-may-2019/rest_api_for_plant_client/login_signup.php?action=login_user
 
@@ -458,7 +492,7 @@ export default class UserLogin extends Component {
                 },
                 body: formData
             }).then(res => res.json())
-                .then(resp => {
+                .then(async (resp) => {
                     // console.log(JSON.stringify(resp))
                     var successData = resp
 
@@ -470,22 +504,31 @@ export default class UserLogin extends Component {
                             if (successData.data[0].role_id == 2) {
                                 console.log(" After ROLE ID SUCCESS USER", this.props)
                                 this.props.screenProps.fetchProfileData(successData.data[0])
-                                Alert.alert("Success","Login successful")
+                                // AsyncStorage.setItem('User', JSON.stringify(successData.data[0]))
+                                try {
+                                    await AsyncStorage.setItem('User', JSON.stringify(successData.data[0]));
+                                    console.log('enableButton =>')
+                                } catch (error) {
+                                    console.log('error =>', error)
+
+                                }
+                                Alert.alert("Success", "Login successful")
                                 this.setState({ loader: false })
                                 this.props.navigation.navigate("UserNavigator")
                             }
                         } else {
-                            Alert.alert("Error","Email or Password is incorrect")
+                            Alert.alert("Alert", "Email or Password is incorrect")
                             this.setState({ loader: false })
 
                         }
                     } else {
                         this.setState({ loader: false })
-                        Alert.alert("Error","Email or Password is incorrect")
+                        Alert.alert("Alert", "Email or Password is incorrect")
                     }
                 })
                 .catch(err => {
                     console.log("err err err", err)
+                    Alert.alert("Alert", "Email Or Password Incorrect")
                     this.setState({ loader: false })
                 });
         }
@@ -568,9 +611,9 @@ export default class UserLogin extends Component {
 
     _responseInfoCallback = (error, result) => {
         if (error) {
-            Alert.alert("Error",'Error fetching data: ' + error.toString());
+            Alert.alert("Alert", 'Error fetching data: ' + error.toString());
         } else {
-            Alert.alert("Success",'Result Name: ' + result.name);
+            Alert.alert("Success", 'Result Name: ' + result.name);
             console.log('Result ', result)
         }
     }
@@ -593,7 +636,7 @@ export default class UserLogin extends Component {
                                         <Image source={require('../../../assets/text.png')} />
                                     </View>
 
-                                    <View style={{ marginTop: "10%", width: '80%', alignSelf: 'center' }}>
+                                    <View style={{ marginTop: "10%", width: '80%', padding: 5 }}>
                                         <Text style={{ fontFamily: "Poppins-Bold_0", fontSize: 20, fontWeight: 'bold', }}>Sign In</Text>
                                         <Text style={{ fontFamily: "Poppins-Regular_0", marginTop: "4%", opacity: 0.6 }}>Sign in with your email ID and Password</Text>
                                     </View>
@@ -630,22 +673,30 @@ export default class UserLogin extends Component {
 
                                             <View style={{ display: 'flex', flexDirection: 'row', borderBottomColor: '#bdbdbd', borderBottomWidth: 0.5, width: '100%', paddingVertical: 1 }} >
                                                 <View style={{ width: '20%', alignItems: 'center', justifyContent: 'center', alignContent: 'center' }}>
-                                                    <Image source={require("../../../assets/envelope.png")} style={{ height: 15, width: 20 }} />
+                                                    <Image source={require("../../../assets/envelope1.png")} style={{ height: 15, width: 20 }} />
                                                 </View>
                                                 <Item stackedLabel style={{ width: '80%', borderBottomWidth: 0 }}>
                                                     <Label style={{ marginLeft: 3, color: 'lightgray', fontSize: 12, marginTop: 10 }}>Email Address</Label>
-                                                    <Input value={this.state.email} placeholder="something@gmail.com" style={{ color: 'gray', width: '100%', marginBottom: 5}} onChangeText={(e) => { this.setState({ email: e }) }} />
+                                                    <Input value={this.state.email} placeholder="something@gmail.com" style={{ color: 'gray', width: '100%', marginBottom: 5 }} onChangeText={(e) => { 
+                                                        if (e.includes(' ')) {
+                                                            let text = e.replace(" ", "")
+                                                            this.setState({ email: text })
+                                                            // Alert.alert("Alert!", "Please don't type space in email")
+                                                        } else {
+                                                            this.setState({ email: e })
+                                                        }
+                                                     }} />
                                                 </Item>
                                             </View>
 
 
-                                            <View style={{ display: 'flex', flexDirection: 'row',width: '100%', paddingVertical: 3 }} >
+                                            <View style={{ display: 'flex', flexDirection: 'row', width: '100%', paddingVertical: 3 }} >
                                                 <View style={{ width: '20%', alignItems: 'center', justifyContent: 'center', alignContent: 'center' }}>
                                                     <Image source={require("../../../assets/lockopen.png")} style={{ height: 20, width: 15 }} />
                                                 </View>
                                                 <Item stackedLabel style={{ width: '80%', borderBottomWidth: 0 }}>
                                                     <Label style={{ marginLeft: 3, color: 'lightgray', fontSize: 12, marginTop: 10 }}>Password</Label>
-                                                    <Input secureTextEntry value={this.state.password} placeholder="*******" style={{ color: 'gray' , width: '100%', marginBottom: 5 }} onChangeText={(e) => { this.setState({ password: e }) }} />
+                                                    <Input secureTextEntry value={this.state.password} placeholder="*******" style={{ color: 'gray', width: '100%', marginBottom: 5 }} onChangeText={(e) => { this.setState({ password: e }) }} />
                                                 </Item>
                                             </View>
 
@@ -653,9 +704,9 @@ export default class UserLogin extends Component {
 
                                     </View>
 
-                                    <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
+                                    <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%", paddingVertical: 10}}>
                                         <TouchableOpacity onPress={() => { this.props.navigation.navigate("ForgotPassword", { from: "UserLogin" }) }}>
-                                            <Text style={{ fontFamily: 'Poppins-Regular_0' , opacity: 0.6}}>Forgot Password?</Text>
+                                            <Text style={{ fontFamily: 'Poppins-Regular_0', opacity: 0.6 }}>Forgot Password?</Text>
                                         </TouchableOpacity>
                                     </View>
 
@@ -668,25 +719,25 @@ export default class UserLogin extends Component {
                                             </Button>
                                         </LinearGradient> */}
 
-<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "95%", borderRadius: 5}}>
-                                        <TouchableOpacity onPress={this.login} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
-                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular_0", paddingVertical: 15 }}>
-                                            LOGIN
+                                        <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "95%", borderRadius: 5 }}>
+                                            <TouchableOpacity onPress={this.login} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
+                                                <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular_0", paddingVertical: 15 }}>
+                                                    LOGIN
                     </Text>
-                                        </TouchableOpacity>
-                                    </LinearGradient>
+                                            </TouchableOpacity>
+                                        </LinearGradient>
                                     </View> :
                                         <Spinner color='#fc8b8c' />
                                     }
 
-                                    <View style={{ alignContent: "center", alignItems: "center", paddingVertical: 5 }}>
+                                    <View style={{ alignContent: "center", alignItems: "center", paddingVertical: 10 }}>
                                         <Text style={{ fontFamily: 'Poppins-Regular_0', opacity: 0.6 }}>Or Sign Up Using</Text>
                                     </View>
 
 
                                     <View style={{ display: "flex", flexDirection: "row", alignContent: "center", alignItems: "center", marginTop: "5%", justifyContent: "space-between", width: '80%', alignSelf: 'center' }}>
 
-{/* <LinearGradient colors={['#fff', '#883cb6', '#883cb6']} style={{ width: "45%", borderRadius: 10 }}>
+                                        {/* <LinearGradient colors={['#fff', '#883cb6', '#883cb6']} style={{ width: "45%", borderRadius: 10 }}>
     <Button onPress={() => {
         Alert.alert("Warning!", "Will be implemented")
     }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
@@ -697,18 +748,18 @@ export default class UserLogin extends Component {
     </Button>
 </LinearGradient> */}
 
-<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#c79de0', '#883cb6', '#883cb6']} style={{ width: "48%", borderRadius: 5}}>
-    <TouchableOpacity onPress={() => {
-        Alert.alert("Warning!", "Will be implemented")
-    }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{  justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, flexDirection:'row' }}>
-          <Icon style={{color:"#fff"}} name="instagram" type="MaterialCommunityIcons" />
-        <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular_0", paddingVertical: 10, paddingHorizontal:5 }}>
-        Instagram
+                                        <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#c79de0', '#883cb6', '#883cb6']} style={{ width: "48%", borderRadius: 5 }}>
+                                            <TouchableOpacity onPress={() => {
+                                                Alert.alert("Warning!", "Will be implemented")
+                                            }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, flexDirection: 'row' }}>
+                                                <Icon style={{ color: "#fff" }} name="instagram" type="MaterialCommunityIcons" />
+                                                <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular_0", paddingVertical: 10, paddingHorizontal: 5 }}>
+                                                    Instagram
 </Text>
-    </TouchableOpacity>
-</LinearGradient>
+                                            </TouchableOpacity>
+                                        </LinearGradient>
 
-{/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "45%", borderRadius: 10 }}>
+                                        {/* <LinearGradient colors={['#fff', '#fc8b8c', '#fc8b8c']} style={{ width: "45%", borderRadius: 10 }}>
     <Button onPress={() => {
         Alert.alert("Warning!", "Will be implemented")
     }}  style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", borderRadius: 10, opacity: 0.7 }}>
@@ -720,21 +771,21 @@ export default class UserLogin extends Component {
 </LinearGradient> */}
 
 
-<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "48%", borderRadius: 5}}>
-    <TouchableOpacity onPress={() => {
-        Alert.alert("Warning!", "Will be implemented")
-    }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{  justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, flexDirection:'row' }}>
-          <Icon style={{color:"#fff"}} name="google" type="FontAwesome" />
-        <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular_0", paddingVertical: 10, paddingHorizontal:5 }}>
-          Gmail
+                                        <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "48%", borderRadius: 5 }}>
+                                            <TouchableOpacity onPress={() => {
+                                                Alert.alert("Warning!", "Will be implemented")
+                                            }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, flexDirection: 'row' }}>
+                                                <Icon style={{ color: "#fff" }} name="google" type="FontAwesome" />
+                                                <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular_0", paddingVertical: 10, paddingHorizontal: 5 }}>
+                                                    Gmail
 </Text>
-    </TouchableOpacity>
-</LinearGradient>
-</View>
+                                            </TouchableOpacity>
+                                        </LinearGradient>
+                                    </View>
 
-                                    <View style={{ display: "flex", flexDirection: "row", alignContent: "center", alignItems: "center", marginTop: "5%", justifyContent: "center" }}>
+                                    <View style={{ display: "flex", flexDirection: "row", alignContent: "center", alignItems: "center", marginTop: "5%", justifyContent: "center", paddingVertical: 10  }}>
 
-                                        <Text style={{ alignSelf: "center", fontFamily: "Poppins-Regular_0",  opacity: 0.6}}>
+                                        <Text style={{ alignSelf: "center", fontFamily: "Poppins-Regular_0", opacity: 0.6 }}>
                                             New to Soplush Beauty?
                     </Text>
                                         <TouchableOpacity onPress={() => { this.props.navigation.navigate("UserSignUp") }} style={{ marginLeft: "3%" }}>
@@ -745,7 +796,7 @@ export default class UserLogin extends Component {
                                     style={{ width: 192, height: 48 }}
                                     size={GoogleSigninButton.Size.Wide}
                                     color={GoogleSigninButton.Color.Dark}
-                                    onPress={this._signIn}
+                                    onPress={this.signIn}
                                     disabled={this.state.isSigninInProgress} /> */}
 
                                     </View>

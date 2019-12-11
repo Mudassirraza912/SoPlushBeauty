@@ -107,12 +107,12 @@
                       
 //                     } else {
 //                         this.setState({loader: false})
-//                         Alert.alert("Error","Email or Password is incorrect")
+//                         Alert.alert("Alert","Email or Password is incorrect")
 //                     }
 //                 } else {
 //                     this.setState({loader: false})
 
-//                     Alert.alert("Error",successData.message)
+//                     Alert.alert("Alert",successData.message)
 //                 }
 //                 console.log("SUCCESS USER", successData, successData.status, successData.data)
 //             })
@@ -275,12 +275,12 @@
 
 
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button } from 'native-base';
 import {Avatar, Header, Icon, Card, Divider} from 'react-native-elements'
 import LinearGradient from 'react-native-linear-gradient'
-
+const defaultImage = require('../../../assets/default.png')
 const {width, height} = Dimensions.get("window")
 
 export default class ProProfile extends Component {
@@ -325,6 +325,24 @@ export default class ProProfile extends Component {
 
     
     render() {
+        var newData =  this.props.navigation.getParam('profile')
+        if(newData !== undefined){
+            console.log('navigation',newData.phone_number, this.state.profileData.phone_number)
+
+            if (newData !== this.state.profileData) {
+                
+
+                this.setState({
+                    profileData:  newData
+                })
+
+
+
+            }
+               
+                
+
+        }
         return (
             <View style={{flex:1, height:'100%', width:'100%', marginTop: -80}}>
                 <ImageBackground source={require('../../../assets/inner.png')} style={{height:"100%", width:"100%", marginTop: 20}}> 
@@ -333,7 +351,7 @@ export default class ProProfile extends Component {
                 <Header
                         containerStyle={{marginTop:40, backgroundColor:"#fff"}}
                         placement="left"
-                        leftComponent={<Icon onPress={() => {this.props.navigation.navigate('Main')}} name="arrow-back" color="#000" />}
+                        leftComponent={<Icon onPress={() => {this.props.navigation.navigate('UserHome')}} name="arrow-back" color="#000" />}
                         centerComponent={<Text style={{alignSelf:"center", fontSize:20, fontFamily:"Poppins-Regular_0"}}>PROFILE</Text>}
                         rightComponent={<TouchableOpacity onPress={() => {this.props.navigation.navigate("EditUserProfile")}}><Image source={require('../../../assets/edit.png')} style={{height:20, width:20}} /> 
                         </TouchableOpacity> }
@@ -351,39 +369,49 @@ export default class ProProfile extends Component {
                             {/* <View style={{width:"100%"}}>
                                 <Image resizeMode="cover" style={{width:"100%", height:300}} source={{uri:`https://hnhtechsolutions.com/hassan/soplush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}} />
                             </View> */}
-                            <View style={{ width: "100%", marginLeft: 0, marginRight: 0, borderRadius: 10 }}>
+                          {this.props.screenProps.profileData.profile_pic !== "" ? 
+                          <View style={{ width: "100%", marginLeft: 0, marginRight: 0, borderRadius: 10 }}>
                                             <Image source={{uri:`https://hnhtechsolutions.com/hassan/soplush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}} style={{ height: 200, width: "100%", borderTopRightRadius: 10, borderTopLeftRadius: 10 }} />
                                         </View>
+                                        
+                                    :
 
 
-                                <View style={{display:"flex", flexDirection:"column", marginTop: 15, marginLeft: 15}}> 
+                                    <View style={{ width: "100%", marginLeft: 0, marginRight: 0, borderRadius: 10 }}>
+                                    <Image source={defaultImage} style={{ height: 200, width: "100%", borderTopRightRadius: 10, borderTopLeftRadius: 10 }}/>
+                                </View>
+                                    
+                                    }
+
+
+                                <View style={{display:"flex", flexDirection:"column", marginTop: 15, marginLeft: 15,}}> 
                                     <Text style={{width:"50%", fontFamily:"Poppins-Regular_0", fontSize:17, color: "#bdbdbd"}}>Name</Text>
-                                    <Text style={{ fontFamily:"Poppins-Regular_0", fontSize:15}}>{this.state.username}</Text>
-                                    <Divider style={{ backgroundColor: 'light#bdbdbd' }} />
+                                    <Text style={{ fontFamily:"Poppins-Regular_0", fontSize:15}}>{this.state.profileData.username}</Text>
+                                    <Divider style={{ backgroundColor: '#bdbdbd', width:"95%" }} />
                                 </View>
 
                                 <View style={{display:"flex", flexDirection:"column", marginTop: 15, marginLeft: 15}}> 
                                     <Text style={{width:"50%", fontFamily:"Poppins-Regular_0", fontSize:17, color: "#bdbdbd"}}>Email address</Text>
-                                    <Text style={{ fontFamily:"Poppins-Regular_0", fontSize:15}}>{this.state.email}</Text>
-                                    <Divider style={{ backgroundColor: 'light#bdbdbd' }} />
+                                    <Text style={{ fontFamily:"Poppins-Regular_0", fontSize:15}}>{this.state.profileData.email}</Text>
+                                    <Divider style={{ backgroundColor: '#bdbdbd', width:"95%" }} />
                                 </View>
 
                                 <View style={{display:"flex", flexDirection:"column", marginTop: 15, marginLeft: 15}}> 
                                     <Text style={{width:"50%", fontFamily:"Poppins-Regular_0", fontSize:17, color: "#bdbdbd"}}>Mobile Number</Text>
-                                    <Text style={{fontFamily:"Poppins-Regular_0", fontSize:15}}>{this.state.phoneNo}</Text>
-                                    <Divider style={{ backgroundColor: 'light#bdbdbd' }} />
+                                    <Text style={{fontFamily:"Poppins-Regular_0", fontSize:15}}>{this.state.profileData.phone_number}</Text>
+                                    <Divider style={{ backgroundColor: '#bdbdbd' , width:"95%"}} />
                                 </View>
 
                                  {/* <View style={{display:"flex", flexDirection:"column", marginTop: 15, marginLeft: 15}}> 
                                     <Text style={{width:"50%", fontFamily:"Poppins-Regular_0", fontSize:17, color: "#bdbdbd"}}>Gender</Text>
                                     <Text style={{ fontFamily:"Poppins-Regular_0", fontSize:15}}>{this.state.profileData.gender}</Text>
-                                    <Divider style={{ backgroundColor: 'light#bdbdbd' }} />
+                                    <Divider style={{ backgroundColor: '#bdbdbd' }} />
                                 </View>
 
                                 <View style={{display:"flex", flexDirection:"column", marginTop: 15, marginLeft: 15}}> 
                                     <Text style={{width:"50%", fontFamily:"Poppins-Regular_0", fontSize:17, color: "#bdbdbd"}}>About me</Text>
                                     <Text style={{ fontFamily:"Poppins-Regular_0", fontSize:15}}>{this.state.profileData.address}</Text>
-                                    <Divider style={{ backgroundColor: 'light#bdbdbd' }} />
+                                    <Divider style={{ backgroundColor: '#bdbdbd' }} />
                                 </View> */}
 
                                 <View> 
@@ -432,31 +460,31 @@ export default class ProProfile extends Component {
                                 <View style={{display:"flex", flexDirection:"column", marginTop: 15}}> 
                                     <Text style={{width:"30%", fontFamily:"Poppins-Regular_0", fontSize:20, color: "#bdbdbd"}}>Name</Text>
                                     <Text style={{ fontFamily:"Poppins-Regular_0", fontSize:15}}>John Doe</Text>
-                                    <Divider style={{ backgroundColor: 'light#bdbdbd' }} />
+                                    <Divider style={{ backgroundColor: '#bdbdbd' }} />
                                 </View>
 
                                 <View style={{display:"flex", flexDirection:"column", marginTop: 15}}> 
                                     <Text style={{width:"30%", fontFamily:"Poppins-Regular_0", fontSize:20, color: "#bdbdbd"}}>Email</Text>
                                     <Text style={{ fontFamily:"Poppins-Regular_0", fontSize:15}}>John@example.com</Text>
-                                    <Divider style={{ backgroundColor: 'light#bdbdbd' }} />
+                                    <Divider style={{ backgroundColor: '#bdbdbd' }} />
                                 </View>
 
                                 <View style={{display:"flex", flexDirection:"column", marginTop: 15}}> 
                                     <Text style={{width:"30%", fontFamily:"Poppins-Regular_0", fontSize:20, color: "#bdbdbd"}}>Mobile No</Text>
                                     <Text style={{fontFamily:"Poppins-Regular_0", fontSize:15}}>0900-78601</Text>
-                                    <Divider style={{ backgroundColor: 'light#bdbdbd' }} />
+                                    <Divider style={{ backgroundColor: '#bdbdbd' }} />
                                 </View>
 
                                  <View style={{display:"flex", flexDirection:"column", marginTop: 15}}> 
                                     <Text style={{width:"30%", fontFamily:"Poppins-Regular_0", fontSize:20, color: "#bdbdbd"}}>Gender</Text>
                                     <Text style={{ fontFamily:"Poppins-Regular_0", fontSize:15}}>Female</Text>
-                                    <Divider style={{ backgroundColor: 'light#bdbdbd' }} />
+                                    <Divider style={{ backgroundColor: '#bdbdbd' }} />
                                 </View>
 
                                 <View style={{display:"flex", flexDirection:"column", marginTop: 15}}> 
                                     <Text style={{width:"30%", fontFamily:"Poppins-Regular_0", fontSize:20, color: "#bdbdbd"}}>About</Text>
                                     <Text style={{ fontFamily:"Poppins-Regular_0", fontSize:15}}>Copy the following link into the website you'll use this resource on. If you want to know more, </Text>
-                                    <Divider style={{ backgroundColor: 'light#bdbdbd' }} />
+                                    <Divider style={{ backgroundColor: '#bdbdbd' }} />
                                 </View>
 
                                 <View style={{marginRight:"6%"}}> 

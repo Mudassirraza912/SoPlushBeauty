@@ -157,7 +157,7 @@ export default class ServingHistory extends Component {
 
                                                     } else {
                                                         console.log("Else", successData)
-                                                        Alert.alert("Error",successData.message)
+                                                        Alert.alert("Alert",successData.message)
                                                     }
                                                 })
                                                 .catch(err => console.log("err err SEARCH", err));
@@ -184,7 +184,8 @@ export default class ServingHistory extends Component {
                         
 
                         } else {
-                            Alert.alert("Error",successData.message)
+                            // Alert.alert("Alert",successData.message)
+                            console.log("successData.message", successData.message)
                         }
                     })
                     .catch(err => console.log("Category err err", err));
@@ -218,7 +219,7 @@ export default class ServingHistory extends Component {
                         
 
                         } else {
-                            Alert.alert("Error",successData.message)
+                            Alert.alert("Alert",successData.message)
                             this.setState({
                         refreshing: false
                     })
@@ -231,6 +232,7 @@ export default class ServingHistory extends Component {
 
     searchFilterFunction = text => {    
         const {services} = this.state
+        if(services) {
         if (text !== "") {
             const newData = services.filter(item => {      
                 const itemData = `${item.services[0].service_name.toUpperCase()}`;
@@ -244,6 +246,8 @@ export default class ServingHistory extends Component {
         }else {
             this.setState({data: services })
         }
+    }
+
         this.setState({text: text})
         
       };
@@ -452,7 +456,7 @@ export default class ServingHistory extends Component {
                  
             <View style={{alignContent:"center",alignItems:'center', alignSelf:'center', justifyContent:'center', height:100}}>
             <Text>
-                you don't have any booking.
+            Empty Service History 
             </Text>
         </View>
             

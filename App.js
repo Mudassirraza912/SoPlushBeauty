@@ -31,6 +31,19 @@ import WalkThrough from './src/components/Walk through/walkthrogh';
 import Navigator from './src/Navigation/navigator';
 import NetInfo from  '@react-native-community/netinfo'
 import Splash from './src/components/Splash/splash' 
+import { GoogleSignin } from '@react-native-community/google-signin'; 
+
+const obj = {
+  scopes: ['https://www.googleapis.com/auth/drive.readonly'], // what API you want to access on behalf of the user, default is email and profile
+  webClientId: '240404485205-d9m1p0jjsu2ncr7l2fa5oqbu5pb7inu1.apps.googleusercontent.com',
+  // androidClientId: '240404485205-d9m1p0jjsu2ncr7l2fa5oqbu5pb7inu1.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
+  offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+  hostedDomain: '', // specifies a hosted domain restriction
+  loginHint: '', // [iOS] The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/api/interface_g_i_d_sign_in.html#a0a68c7504c31ab0b728432565f6e33fd)
+  forceConsentPrompt: true, // [Android] if you want to show the authorization prompt at each login.
+  accountName: '', // [Android] specifies an account name on the device that should be used
+  iosClientId: '<FROM DEVELOPER CONSOLE>', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+}
 
 export default class App extends Component {
   constructor(props) {
@@ -39,6 +52,11 @@ export default class App extends Component {
       isLoading: true,
       profileData: ''
     }
+  }
+
+  componentWillMount () {
+    GoogleSignin.configure(obj);
+    console.log('GoogleSignin.configure(obj)',GoogleSignin.configure(obj))
   }
 
   componentDidMount() {

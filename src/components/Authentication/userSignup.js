@@ -13,7 +13,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import user from '../../../assets/user.png'
 import home from '../../../assets/home.png'
 import phone from '../../../assets/phone-call.png'
-import envelop from '../../../assets/envelope.png'
+import envelop from '../../../assets/envelope1.png'
 import lock from '../../../assets/lockopen.png'
 import cake from '../../../assets/cake.png'
 import museum from '../../../assets/museum.png'
@@ -169,7 +169,7 @@ export default class UserSignUp extends Component {
     //         //     .catch((err) => {
     //         //      console.log("SIGN_UP_ERROR response",err)
 
-    //         //     //   dispatch({type: "ERROR", payload: 'An unexpected error occured!'});dispatch({type: "CLEAR_PROCESSING"});
+    //         //     //   dispatch({type: "Alert", payload: 'An unexpected error occured!'});dispatch({type: "CLEAR_PROCESSING"});
     //         //       // dispatch({type: "SIGN_UP_PROCESSED", payload: {error: 'An unexpected error occured!', status: 'error'}})
     //         //     })
     //         // }
@@ -232,11 +232,14 @@ export default class UserSignUp extends Component {
         console.log("SIGN UP jksdajkfajkshjghj")
         // this.props.navigation.navigate("UserLogin")
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if (email && password && name && phoneNo && address) {
+        if (email && password && phoneNo && address && name.length >= 5) {
             if (reg.test(email) === false) {
                 this.setState({ loader: false })
-                Alert.alert("Error","Email is not formatted")
+                Alert.alert("Alert","Please Enter Valid Email Address")
             } else {
+
+                const formData = new FormData();
+
 
                 if (fileUri != "") {
                     var file = {
@@ -248,8 +251,7 @@ export default class UserSignUp extends Component {
     
                 }
 
-                const formData = new FormData();
-                formData.append("email", email),
+                formData.append("email", email.toLowerCase()),
                     formData.append("password", password),
                     formData.append("address", address),
                     formData.append("name", name),
@@ -273,7 +275,7 @@ export default class UserSignUp extends Component {
                 //     .catch((err) => {
                 //      console.log("SIGN_UP_ERROR response",err)
 
-                //     //   dispatch({type: "ERROR", payload: 'An unexpected error occured!'});dispatch({type: "CLEAR_PROCESSING"});
+                //     //   dispatch({type: "Alert", payload: 'An unexpected error occured!'});dispatch({type: "CLEAR_PROCESSING"});
                 //       // dispatch({type: "SIGN_UP_PROCESSED", payload: {error: 'An unexpected error occured!', status: 'error'}})
                 //     })
                 // }
@@ -311,7 +313,7 @@ export default class UserSignUp extends Component {
                                 this.props.navigation.navigate("UserLogin")
                             }
                         } else {
-                            Alert.alert("Error",successData.message)
+                            Alert.alert("Alert",successData.message)
                             this.setState({ loader: false })
 
                         }
@@ -319,7 +321,7 @@ export default class UserSignUp extends Component {
                     })
                     .catch(err => {
                         // Alert.alert(err)
-                        Alert.alert("Error",'Try Later')
+                        Alert.alert("Alert",'Something went wrong!')
                         console.log("err err err", err)
                         this.setState({ loader: false })
 
@@ -327,7 +329,7 @@ export default class UserSignUp extends Component {
             }
         } if (!email) {
             this.setState({ emailErr: true, loader: false })
-        } if (!name) {
+        } if (!name && name.length < 5) {
             this.setState({ nameErr: true, loader: false })
         } if (!address) {
             this.setState({ addressErr: true, loader: false })
@@ -355,7 +357,7 @@ export default class UserSignUp extends Component {
                         <View style={{ flex:1 , height, width: '100%', justifyContent: "center" }}>
 
                         <View style={{ alignSelf: "center", alignContent: "center", alignItems: "center"}}>
-                                <Image source={require('../../../assets/text.png')} style={{  alignSelf:'center', width:240, height: 115 }} />
+                                <Image source={require('../../../assets/text.png')} style={{  alignSelf:'center', width:240, height: 100 }} />
                             </View>
 
 
@@ -431,6 +433,7 @@ export default class UserSignUp extends Component {
                                     <Input style={{width: '100%', fontSize: 15}} onBlur={() => this.checkField("email")} onChangeText={(e) => { this.setState({ email: e }) }} placeholder="Email Address" />
                                 </Item>
                                 {emailErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Email address is required</Text>}
+                                
                                 <Item error={passwordErr} >
                                 <View style={{ width: 30}}>
                                 <Image source={lock} style={{  height: 20, width: 20}} />
@@ -438,7 +441,7 @@ export default class UserSignUp extends Component {
                                     {/* <Label>Password</Label> */}
                                     <Input style={{width: '100%', fontSize: 15}}  onBlur={() => this.checkField("password")} onChangeText={(e) => { this.setState({ password: e }) }} placeholder="Password" secureTextEntry={true} />
                                 </Item>
-                                {passwordErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >min 6 letters</Text>}
+                                {passwordErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Password length must be greater than 6 digits</Text>}
                                 <Item onPress={this.openGallery} >
                                 <View style={{ width: 30}}>
                                 <Image source={camicon} style={{  height: 20, width: 20 }} />

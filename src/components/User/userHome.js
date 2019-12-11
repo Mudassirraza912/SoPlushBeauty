@@ -90,7 +90,7 @@ const { width, height } = Dimensions.get("window")
                         // this.props.navigation.navigate("Main")
 
                     } else {
-                        Alert.alert("Error",successData.message)
+                        Alert.alert("Alert",successData.message)
                     }
                 })
                 .catch(err => console.log("Category err err", err));
@@ -109,7 +109,7 @@ const { width, height } = Dimensions.get("window")
         if (this.props.isFocused) {
             Alert.alert(
                 'Exit App',
-                'Exiting the application?',
+                'Are you sure you want to exit?',
                 [
                     {
                         text: 'Cancel',
@@ -172,7 +172,7 @@ const { width, height } = Dimensions.get("window")
                         // this.props.navigation.navigate("Main")
 
                     } else {
-                        Alert.alert("Error",successData.message)
+                        Alert.alert("Alert",successData.message)
                     }
                 })
                 .catch(err => console.log("err err err", err));

@@ -230,7 +230,7 @@ export default class SelectedProfile extends Component {
 
 
                                         <View style={{ display: "flex", flexDirection: "column", marginTop: 15, marginLeft: 10, padding: 5}}>
-                                            <Text style={{ width: "30%", fontFamily: "Poppins-Regular_0", fontSize: 15, color: "gray" }}>Available Slot</Text>
+                                            <Text style={{ width: "50%", fontFamily: "Poppins-Regular_0", fontSize: 15, color: "gray" }}>Available Slot</Text>
 
                                             <View style={{ flexDirection: "row", width: "100%" }}>
                                                 <FlatList style={{ flex: 1, marginTop: "3%" }}
@@ -439,7 +439,7 @@ export default class SelectedProfile extends Component {
                                                     }
 
                                                 }else{
-                                                    Alert.alert("Error", "Please select time slot")
+                                                    Alert.alert("Alert", "Please select time slot")
                                                 }
 
 
@@ -535,7 +535,7 @@ export default class SelectedProfile extends Component {
 
 
                                         <View style={{ display: "flex", flexDirection: "column", marginTop: 15 }}>
-                                            <Text style={{ width: "30%", fontFamily: "Poppins-Regular_0", fontSize: 15, color: "gray" }}>Available Slot</Text>
+                                            <Text style={{ width: "50%", fontFamily: "Poppins-Regular_0", fontSize: 15, color: "gray" }}>Available Slot</Text>
 
                                             <View style={{ flexDirection: "row", width: "100%" }}>
                                                 <FlatList style={{ flex: 1, marginTop: "3%" }}

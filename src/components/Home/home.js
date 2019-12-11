@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, BackHandler, Alert } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, BackHandler, Alert, AsyncStorage } from 'react-native'
 import { Avatar, Header, Card, Divider, Icon } from 'react-native-elements'
 import Navigator from '../../Navigation/navigator'
 import UserNavigator from '../../UserNavigator/userNavigator'
@@ -15,6 +15,31 @@ export default class Home extends Component {
             role: "",
             profileData: ''
         }
+    }
+
+    componentDidMount = async () => {
+        console.log('componentWillMount componentWillMountcomponentWillMount ')
+        try {
+            const value = await AsyncStorage.getItem('User');
+            console.log('value value value', value)
+            if (value !== null) {
+              // We have data!!
+            var convertVal = JSON.parse(value)
+            this.props.screenProps.fetchProfileData(convertVal)
+            if (convertVal.role_id === '2') {
+                this.props.navigation.navigate("UserNavigator")
+            }else {
+                this.props.navigation.navigate("ProNavigator")
+            }
+            console.log('enableButton getting data After JSON in SITEINFO =>',convertVal)
+           
+            }
+          } catch (error) {
+                console.log('Errr getting data =>', error)
+    
+          }
+        // var user = AsyncStorage.getItem('User')
+        // console.log("AsyncStorage.getItem('User') AsyncStorage.getItem('User')", user)
     }
 
     static navigationOptions = () => ({
@@ -74,19 +99,20 @@ export default class Home extends Component {
                         centerComponent={<Text style={{ alignSelf: 'center', fontSize: 20, fontFamily: "Poppins-Regular_0" }}>HOME</Text>}
                     />
 
-                    <View style={{ height: '100%', width: '100%', flex: 1 }}>
+                    <View style={{ height: '100%', width: '100%', flex: 1  }}>
                         <ScrollView contentContainerStyle={{ height, width: '100%', alignItems: 'center' }}>
 
-                            <View style={{ flex: 1, paddingHorizontal: 10, alignItems: 'center', justifyContent: 'center', alignSelf: 'center', width: '100%', borderRadius: 10 }}>
-                            <ImageBackground source={require('../../../assets/homeBackground.png')} style={{ height: "85%", width: "100%", borderRadius: 10 }}>
-                                <View style={{ alignSelf: "center", alignContent: "center", alignItems: "center", marginTop: "15%" }}>
-                                    <Image source={require('../../../assets/text.png')} style={{ opacity: 2 }} />
+                            <View style={{ flex: 1, paddingHorizontal: 10, alignItems: 'center', justifyContent: 'center', alignSelf: 'center', width: '100%', borderRadius: 10}}>
+
+                            <ImageBackground source={require('../../../assets/homeBackground.png')} style={{ height: "90%", width: "100%", borderRadius: 10 }}>
+                                <View style={{ alignSelf: "center", alignContent: "center", alignItems: "center", marginTop: "15%", paddingVertical:10 }}>
+                                    <Image source={require('../../../assets/text.png')} />
                                     <Text style={{ marginTop: "12%", fontFamily: "Poppins-Regular_0", fontSize: 20 }}>I am a...</Text>
                                 </View>
 
-                                <View style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "space-around", marginTop: "3%" }}>
+                                <View style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "space-around", marginTop: "3%", alignSelf:'center', marginLeft:'3%' }}>
 
-                                    <TouchableOpacity onPress={() => { this.props.navigation.navigate("UserLogin") }}>
+                                    <TouchableOpacity style={{width:"50%"}} onPress={() => { this.props.navigation.navigate("UserLogin") }}>
                                         <View style={{ alignContent: "center", alignItems: "center", alignSelf: "center", backgroundColor: "transparent", width: 143, height: 139, borderRadius: 5, borderColor: "#000", borderWidth: 1, justifyContent: "space-evenly" }}>
 
                                             <Image source={require('../../../assets/userIcon.png')} style={{ height: 55, width: 50, marginTop: "10%" }} />
@@ -95,8 +121,8 @@ export default class Home extends Component {
                                         </View>
                                     </TouchableOpacity>
 
-                                    <TouchableOpacity onPress={() => { this.props.navigation.navigate("ProLogin") }}>
-                                        <View style={{ width: "40%", borderRadius: 10 }}>
+                                    <TouchableOpacity style={{width:"50%"}} onPress={() => { this.props.navigation.navigate("ProLogin") }}>
+                                        <View style={{ width: "100%", borderRadius: 10 }}>
                                             <Image source={require('../../../assets/Button.png')} />
                                         </View>
                                     </TouchableOpacity>

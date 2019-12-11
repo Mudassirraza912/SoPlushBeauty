@@ -92,7 +92,7 @@ export default class ForgotPassword extends Component {
 
         if (reg.test(email) === false) {
 
-            Alert.alert("Error","Email is not correct")
+            Alert.alert("Alert","Please Enter Valid Email Address")
             this.setState({ loader: false })
 
         } else {
@@ -125,7 +125,7 @@ export default class ForgotPassword extends Component {
                         this.setState({ loader: false })
                         this.setState({ renderEMail: false, renderCode: true, renderPassword: false, startDate: moment(), endDate: moment().add(1.5, "M") })
                     } else {
-                        Alert.alert("Error",successData.message)
+                        Alert.alert("Alert","Please Enter Valid Email Address")
                         this.setState({ loader: false })
                     }
                     console.log("SUCCESS", successData, successData.status, successData.data)
@@ -181,7 +181,7 @@ export default class ForgotPassword extends Component {
                     this.countdown.state.until = 90
                     this.setState({ startDate: moment(), endDate: moment().add(1.5, "M"), resend: false, time: 90 })
                 } else {
-                    Alert.alert("Error",successData.message)
+                    Alert.alert("Alert",successData.message)
                     this.setState({ loader: false })
                 }
                 console.log("SUCCESS", successData, successData.status, successData.data)
@@ -204,7 +204,7 @@ export default class ForgotPassword extends Component {
         if (reg.test(email) === false) {
             this.setState({ loader: false })
 
-            Alert.alert("Error","Email is not correct")
+            Alert.alert("Alert","ease Enter Valid Email Address")
         } else {
 
             // http://192.168.0.120/29-may-2019/rest_api_for_plant_client/login_signup.php?action=login_user
@@ -236,7 +236,7 @@ export default class ForgotPassword extends Component {
                         Alert.alert("Success","Code Matched")
                         this.setState({ renderEMail: false, renderCode: false, renderPassword: true })
                     } else {
-                        Alert.alert("Error",successData.message)
+                        Alert.alert("Alert",successData.message)
                         this.setState({ loader: false })
                     }
                     console.log("SUCCESS", successData, successData.status, successData.data)
@@ -261,7 +261,7 @@ export default class ForgotPassword extends Component {
         // this.setState({renderEMail: false, renderCode: false, renderPassword:false})
         if (password != newPassword) {
             this.setState({ loader: false })
-            Alert.alert("Error","Password not Matched")
+            Alert.alert("Alert","Password not Matched")
         } else {
 
             // http://192.168.0.120/29-may-2019/rest_api_for_plant_client/login_signup.php?action=login_user
@@ -295,7 +295,7 @@ export default class ForgotPassword extends Component {
                         this.props.navigation.goBack()
                     } else {
                         this.setState({ loader: false })
-                        Alert.alert("Error",successData.message)
+                        Alert.alert("Alert",successData.message)
                     }
                     console.log("SUCCESS", successData, successData.status, successData.data)
                 })
@@ -388,6 +388,7 @@ export default class ForgotPassword extends Component {
                     <CodeInput
                         // ref="codeInputRef2"
                         // secureTextEntry
+                        keyboardType="number-pad"
                         codeLength={4}
                         // compareWithCode='1234'
                         activeColor='rgba(49, 180, 4, 1)'
@@ -594,7 +595,7 @@ export default class ForgotPassword extends Component {
                         <Animated.View style={[{ justifyContent: 'center', alignItems: "center" }, { transform: [{ translateY: this.state.shift }] }]} >
                             <View style={{ marginTop: 100 }}>
                                 <View style={{ alignContent: "center", alignSelf: "center", alignItems: "center" }}>
-                                    <Image source={require('../../../assets/text.png')} style={this.state.keyboardPopup && { height: 70, width: 150 }} />
+                                    <Image source={require('../../../assets/text.png')} style={this.state.keyboardPopup && { height: 70, width: 170 }} />
                                 </View>
 
                                 {renderEMail && <this.RenderEnterEmial />}

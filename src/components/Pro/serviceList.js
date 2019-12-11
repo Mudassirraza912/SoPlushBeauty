@@ -72,7 +72,7 @@ export default class ServiceList extends Component {
             // this.props.navigation.navigate("Main")
        
           }else {
-            Alert.alert("Error",successData.message)
+            Alert.alert("Alert",successData.message)
           }
         })
         .catch(err => console.log("Category err err",err));
@@ -126,7 +126,7 @@ export default class ServiceList extends Component {
             // this.props.navigation.navigate("Main")
        
           }else {
-            Alert.alert("Error",successData.message)
+            Alert.alert("Alert",successData.message)
             this.setState({refreshing: false})
           }
         })
@@ -178,7 +178,7 @@ export default class ServiceList extends Component {
             // this.props.navigation.navigate("Main")
        
           }else {
-            Alert.alert("Error",successData.message)
+            Alert.alert("Alert",successData.message)
           }
         })
         .catch(err => console.log("err err err",err));
@@ -262,7 +262,7 @@ export default class ServiceList extends Component {
                         this.setState({services})
                         Alert.alert("Success",successData.message)
                       }else {
-                        Alert.alert("Error",successData.message)
+                        Alert.alert("Alert",successData.message)
                       }
                     })
                     .catch(err => console.log("Category err err",err));
@@ -316,7 +316,7 @@ export default class ServiceList extends Component {
                         this.setState({services, edit: false, service:'', cost:'', value:'', index:''})
                         Alert.alert("Success",successData.message)
                       }else {
-                        Alert.alert("Error",successData.message)
+                        Alert.alert("Alert",successData.message)
                       }
                     })
                     .catch(err => console.log("Category err err",err));
@@ -344,7 +344,7 @@ export default class ServiceList extends Component {
                 <Header
                         containerStyle={{marginTop:60, backgroundColor:"#fff"}}
                         placement="left"
-                        leftComponent={<Icon onPress={() => {this.props.navigation.toggleDrawer()}} name="arrow-back" color="#000" />}
+                        leftComponent={<Icon onPress={() => {this.props.navigation.toggleDrawer()}} name="menu" color="#000" />}
                         centerComponent={<Text style={{alignSelf:'center',fontSize:20, fontFamily:"Poppins-Regular_0"}}>SERVICES LIST</Text>}
                         // rightComponent={{ icon: 'home', color: '#000' }}
                         />

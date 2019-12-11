@@ -29,7 +29,7 @@ export default class Term extends Component {
                         containerStyle={{ marginTop: 60, backgroundColor: "#fff" }}
                         placement="left"
                         leftComponent={<Icon onPress={() => { this.props.navigation.goBack() }} name="arrow-back" color="#000" />}
-                        centerComponent={<Text style={{ alignSelf: "center", fontSize: 20, fontFamily: "Poppins-Regular_0" }}>TERM&CONDITION</Text>}
+                        centerComponent={<Text style={{ alignSelf: "center", fontSize: 20, fontFamily: "Poppins-Regular_0" }}>TERMS & CONDITIONS</Text>}
                         // rightComponent={<TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
                         //     <Image source={require('../../../assets/notification.png')} style={{ height:26, width:20 }} />
                         // </TouchableOpacity>}

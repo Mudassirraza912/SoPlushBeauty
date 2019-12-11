@@ -539,7 +539,7 @@ export default class ViewBooking extends Component {
                     // this.props.navigation.navigate("Main")
 
                 } else {
-                    Alert.alert("Error",successData.message)
+                    Alert.alert("Alert",successData.message)
                 }
             })
             .catch(err => console.log("Category err err", err));
@@ -617,7 +617,7 @@ export default class ViewBooking extends Component {
                                                                    
 
                                                                 } else {
-                                                                    Alert.alert("Error",successData.message)
+                                                                    Alert.alert("Alert",successData.message)
                                                                 }
                                                             })
                                                             .catch(err => console.log("Category err err", err));
@@ -626,7 +626,7 @@ export default class ViewBooking extends Component {
 
                                                     } else {
                                                         console.log("Else", successData)
-                                                        Alert.alert("Error",successData.message)
+                                                        Alert.alert("Alert",successData.message)
                                                     }
                                                 })
                                                 .catch(err => console.log("err err SEARCH", err));
@@ -702,7 +702,7 @@ export default class ViewBooking extends Component {
                                                                    
 
                                                                 } else {
-                                                                    Alert.alert("Error",successData.message)
+                                                                    Alert.alert("Alert",successData.message)
                                                                 }
                                                             })
                                                             .catch(err => console.log("Category err err", err));
@@ -710,7 +710,7 @@ export default class ViewBooking extends Component {
 
                                     } else {
                                         console.log("Else", successData)
-                                        Alert.alert("Error",successData.message)
+                                        Alert.alert("Alert",successData.message)
                                     }
                                 })
                                 .catch(err => console.log("err err SEARCH", err));
@@ -841,7 +841,7 @@ export default class ViewBooking extends Component {
                         </TouchableOpacity>}
                         
                         <TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
-                            <Image source={require('../../../assets/notification.png')} style={{ height:26, width:20 }} />
+                        <Image source={require('../../../assets/notificationheader.png')} style={{ height:20, width:20 }} />
                         </TouchableOpacity>
                         </View>}
                     />

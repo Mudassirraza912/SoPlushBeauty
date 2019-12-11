@@ -140,7 +140,8 @@ export default class BookingReq extends Component {
                     // this.props.navigation.navigate("Main")
 
                 } else {
-                    Alert.alert(successData.message)
+                    // Alert.alert(successData.message)
+                    console.log(successData.message)
                 }
             })
             .catch(err => console.log("Category err err", err));
@@ -442,7 +443,7 @@ export default class BookingReq extends Component {
                         </TouchableOpacity>}
                         
                         <TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
-                            <Image source={require('../../../assets/notification.png')} style={{ height:26, width:20 }} />
+                            <Image source={require('../../../assets/notificationheader.png')} style={{ height:20, width:20 }} />
                         </TouchableOpacity>
                         </View>}
                     />
@@ -538,7 +539,7 @@ export default class BookingReq extends Component {
                             
                             <View style={{alignContent:"center",alignItems:'center', alignSelf:'center', justifyContent:'center', height:100}}>
                             <Text>
-                                Empty Booking Request.
+                            Booking Not Found
                             </Text>
                         </View>
                             

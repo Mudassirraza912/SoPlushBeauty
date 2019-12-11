@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Picker, PickerItem } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Picker, PickerItem, Alert } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button, Item, Input, Label, Form, Icon } from 'native-base';
 import { Avatar, Header, Card, Divider } from 'react-native-elements'
@@ -235,6 +235,7 @@ export default class UserAppointment extends Component {
                     //     return <Text style={{ color: 'gray' }}>agay</Text>
                     //   }
                     // }}
+                    
                     theme={{
                       backgroundColor: '#ffffff',
                       calendarBackground: '#ffffff',
@@ -249,18 +250,19 @@ export default class UserAppointment extends Component {
                       arrowColor: 'orange',
                       monthTextColor: '#FE7678',
                       indicatorColor: 'blue',
-                      textDayFontFamily: 'monospace',
-                      textMonthFontFamily: 'monospace',
-                      textDayHeaderFontFamily: 'monospace',
+                      textDayFontFamily: '',
+                      textMonthFontFamily: 'Poppins-Regular_0',
+                      textDayHeaderFontFamily: 'Poppins-Regular_0',
                       textDayFontWeight: '300',
                       textMonthFontWeight: 'bold',
-                      textDayHeaderFontWeight: '300',
+                      textDayHeaderFontWeight: 'bold',
                       textDayFontSize: 14,
                       textMonthFontSize: 15,
                       textDayHeaderFontSize: 14,
                       arrowStyle: {
                         justifyContent: 'flex-end'
-                      }
+                      },
+                      
                     }}
                     markedDates={{
                       '2019-11-16': { selected: true, selectedColor: '#FFB9BA' },

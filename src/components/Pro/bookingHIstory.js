@@ -368,7 +368,8 @@ export default class BookingHistory extends Component {
                         
 
                         } else {
-                            Alert.alert(successData.message)
+                            // Alert.alert(successData.message)
+                            console.log("successData.message", successData.message)
                         }
                     })
                     .catch(err => console.log("Category err err", err));

@@ -11,7 +11,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import user from '../../../assets/user.png'
 import home from '../../../assets/home.png'
 import phone from '../../../assets/phone-call.png'
-import envelop from '../../../assets/envelope.png'
+import envelop from '../../../assets/envelope1.png'
 import lock from '../../../assets/lockopen.png'
 import cake from '../../../assets/cake.png'
 import museum from '../../../assets/museum.png'
@@ -32,6 +32,7 @@ export default class ProSignUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            name:"",
             profilePic: false,
             email: "",
             password: "",
@@ -142,7 +143,7 @@ export default class ProSignUp extends Component {
     //         //     .catch((err) => {
     //         //      console.log("SIGN_UP_ERROR response",err)
 
-    //         //     //   dispatch({type: "ERROR", payload: 'An unexpected error occured!'});dispatch({type: "CLEAR_PROCESSING"});
+    //         //     //   dispatch({type: "Alert", payload: 'An unexpected error occured!'});dispatch({type: "CLEAR_PROCESSING"});
     //         //       // dispatch({type: "SIGN_UP_PROCESSED", payload: {error: 'An unexpected error occured!', status: 'error'}})
     //         //     })
     //         // }
@@ -191,21 +192,23 @@ export default class ProSignUp extends Component {
         this.setState({ loader: true })
         const { email, password, name, phoneNo, address, profilePic, fileName, fileUri, dOB, bank, accountNo,
             emailErr, passwordErr, nameErr, phoneNoErr, dOBErr, bankErr, accountNoErr,
-
         } = this.state
         // this.props.successSign()
-        console.log("SIGN UP jksdajkfajkshjghj", email, password, name, phoneNo, dOB, bank, accountNo)
+        console.log("SIGN UP jksdajkfajkshjghj", (email && password && name && phoneNo && dOB && bank && accountNo.length === 16 && name.length >= 5))
         let date = moment(dOB).format("YYYY-MM-DD")
 
         // this.props.navigation.navigate("ProLogin")
-        if (email && password && name && phoneNo && dOB && bank && accountNo) {
+        if (email && password && name && phoneNo && dOB && bank && accountNo.length == 16 && name.length >= 5) {
             let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            console.log("TRUE TRUUE")
             if (reg.test(email) === false) {
                 console.log("hello")
                 this.setState({ loader: false })
-                Alert.alert("Error", "Email is not Formated")
+                Alert.alert("Alert", "Please Enter Valid Email Address")
             } else {
                 console.log('else')
+                
+                const formData = new FormData();
                 if (fileUri != "") {
                     var file = {
                         uri: fileUri,
@@ -216,8 +219,7 @@ export default class ProSignUp extends Component {
 
                 }
 
-                const formData = new FormData();
-                formData.append("email", email),
+                    formData.append("email", email.toLowerCase()),
                     formData.append("password", password),
                     formData.append("address", address),
                     formData.append("name", name),
@@ -247,38 +249,46 @@ export default class ProSignUp extends Component {
                         if (successData.status) {
                             if (successData.status === true) {
                                 Alert.alert("Success", "Signup successful")
-                                this.setState({ loader: true })
+                                this.setState({ loader: false })
 
                                 this.props.navigation.navigate("ProLogin")
                             }
                         } else {
-                            this.setState({ loader: true })
+                            this.setState({ loader: false })
 
-                            Alert.alert("Error", successData.message)
+                            Alert.alert("Alert", successData.message)
                         }
                         console.log("SUCCESS", successData, successData.status, successData.data)
                     })
                     .catch(err => {
                         this.setState({ loader: false })
-                        Alert.alert("Error",'Try Later')
+                        Alert.alert("Alert",'Email Or Username already exist ')
                         console.log("err err err", err)
                     });
             }
         } if (!email) {
+            console.log('email')
             this.setState({ emailErr: true, loader: false })
-        } if (!name) {
+        } if (!name || name.length < 5) {
+            console.log('name')
             this.setState({ nameErr: true, loader: false })
         } if (!address) {
+            console.log('address')
             this.setState({ addressErr: true, loader: false })
         } if (!phoneNo) {
+            console.log('phoneNo')
             this.setState({ phoneNoErr: true, loader: false })
         } if (!bank) {
+            console.log('bank')
             this.setState({ bankErr: true, loader: false })
         } if (!dOB) {
+            console.log('dOB')
             this.setState({ dOBErr: true, loader: false })
         } if (password.length < 6) {
+            console.log('password')
             this.setState({ passwordErr: true, loader: false })
-        } if (!accountNo) {
+        } if (!accountNo || accountNo.length !== 16) {
+            console.log('accountNo')
             this.setState({ accountNoErr: true, loader: false })
         }
 
@@ -298,7 +308,7 @@ export default class ProSignUp extends Component {
         //     .catch((err) => {
         //      console.log("SIGN_UP_ERROR response",err)
 
-        //     //   dispatch({type: "ERROR", payload: 'An unexpected error occured!'});dispatch({type: "CLEAR_PROCESSING"});
+        //     //   dispatch({type: "Alert", payload: 'An unexpected error occured!'});dispatch({type: "CLEAR_PROCESSING"});
         //       // dispatch({type: "SIGN_UP_PROCESSED", payload: {error: 'An unexpected error occured!', status: 'error'}})
         //     })
         // }
@@ -342,7 +352,7 @@ export default class ProSignUp extends Component {
                         <View style={{ height: "100%", width: '100%', justifyContent: "center", marginTop: 80 }}>
 
                             <View style={{ alignSelf: "center", alignContent: "center", alignItems: "center", marginTop: -65 }}>
-                                <Image source={require('../../../assets/text.png')} style={{ opacity: 2, alignSelf: 'center', width: 240, height: 115 }} />
+                                <Image source={require('../../../assets/text.png')} style={{ opacity: 2, alignSelf: 'center', width: 240, height: 100 }} />
                             </View>
 
 
@@ -467,7 +477,7 @@ export default class ProSignUp extends Component {
                                     {/* <Label>Email Address</Label> */}
                                     <Input style={{ width: "100%", fontSize: 15 }} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("email")} onChangeText={(e) => this.setState({ email: e })} placeholder="Email Address" />
                                 </Item>
-                                {emailErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
+                                {emailErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Email address is required</Text>}
                                 <Item error={passwordErr}  >
                                 <View style={{ width: 30}}>
                                     <Image source={lock} style={{ height: 20, width: 20}} />
@@ -475,7 +485,7 @@ export default class ProSignUp extends Component {
                                     {/* <Label>Password</Label> */}
                                     <Input style={{ width: "100%", fontSize: 15 }} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("password")} secureTextEntry={true} onChangeText={(e) => this.setState({ password: e })} placeholder="Password" />
                                 </Item>
-                                {passwordErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >min 6 letters</Text>}
+                                {passwordErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Password length must be greater than 6 digits</Text>}
                                 <View style={{ flexDirection: "row", marginTop: 10, width: "100%", borderBottomWidth: 0.5, borderBottomColor: '#bdbdbd' }}>
 <View style={{ width: 27}}>
                                     
@@ -512,7 +522,7 @@ export default class ProSignUp extends Component {
                                         }}
                                         underlineColorAndroid="#f55f2a" />
                                 </View>
-                                {dOBErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
+                                {dOBErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Date of birth is required</Text>}
                                 <Item error={bankErr}  >
                                 <View style={{ width: 30}}>
 
@@ -520,7 +530,7 @@ export default class ProSignUp extends Component {
                                     </View>
                                     <Input style={{ width: "100%", fontSize: 15 }} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("bank")} onChangeText={(e) => this.setState({ bank: e })} placeholder="Bank Name" />
                                 </Item>
-                                {bankErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
+                                {bankErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Bank name is required</Text>}
                                 <Item error={accountNoErr}  >
                                 <View style={{ width: 30}}>
 
@@ -528,7 +538,7 @@ export default class ProSignUp extends Component {
                                     </View>
                                     <Input style={{ width: "100%", fontSize: 15 }} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("accountNo")} keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Account Number" />
                                 </Item>
-                                {accountNoErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Required</Text>}
+                                {accountNoErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Account number is required</Text>}
                                 <Item onPress={this.openGallery}  >
                                 <View style={{ width: 30}}>
 
@@ -538,9 +548,39 @@ export default class ProSignUp extends Component {
                                 </Item>
 
 
-
-
                                 {this.state.profilePic && <View style={{ display: "flex", flexDirection: "row", marginBottom: "3%", marginVertical: '3%', alignSelf: 'flex-start' }}>
+                                    <Avatar onPress={this.openGallery} containerStyle={{ height: 40, width: 40, marginTop: "1%", borderRadius: 10 }} source={camicon} overlayContainerStyle={{ height: 40, width: 40, marginTop: "1%", borderRadius: 5 }} />
+
+
+                                    <TouchableOpacity style={{ height: 50, width: 50, borderTopLeftRadius: 5,borderBottomLeftRadius: 5, borderBottomRightRadius: 5,  }} onPress={() => {
+
+                                        Alert.alert(
+                                            'Profile',
+                                            'Are you sure you want to remove picture?',
+                                            [
+                                                {
+                                                    text: 'No',
+                                                    onPress: () => console.log('Cancel Pressed'),
+                                                    style: 'cancel',
+                                                },
+                                                {
+                                                    text: 'yes',
+                                                    onPress: () => this.setState({ profilePic: false })
+                                                    ,
+                                                    style: 'cancel',
+                                                },
+                                                { cancelable: false }
+                                            ]
+                                        )
+
+                                    }}>
+                                        <ImageBackground source={this.state.profilePic}  borderTopLeftRadius = {5}  borderBottomRightRadius= {5} borderBottomLeftRadius={5} style={{ height: 40, width: 40, margin: 3, display: "flex", backgroundColor: "lightgray",}}>
+                                            <Text style={{ backgroundColor: "red", borderRadius: 100, color: "#fff", height: 20, width: 20, alignSelf: 'flex-end', textAlign: 'center', position: 'absolute', right: -7, top: -7 }}>X</Text>
+                                        </ImageBackground>
+                                    </TouchableOpacity>
+                                </View>}
+
+                                {/* {this.state.profilePic && <View style={{ display: "flex", flexDirection: "row", marginBottom: "3%", marginVertical: '3%', alignSelf: 'flex-start' }}>
                                     <Avatar onPress={this.openGallery} containerStyle={{ height: 15, width: 20, marginTop: "1%", borderRadius: 5, backgroundColor: '#bdbdbd' }} source={camicon} overlayContainerStyle={{ height: 40, width: 40, marginTop: "1%", borderRadius: 5 }} source={camicon} />
 
 
@@ -570,7 +610,7 @@ export default class ProSignUp extends Component {
                                             <Text style={{ backgroundColor: "red", borderRadius: 100, color: "#fff", height: 20, width: 20, alignSelf: 'flex-end', textAlign: 'center', position: 'absolute', right: -7, top: -7 }}>X</Text>
                                         </ImageBackground>
                                     </TouchableOpacity>
-                                </View>}
+                                </View>} */}
 
                                 {/* 
                  <View style={{alignContent:"center", alignItems:"center", marginTop:"5%"}}>

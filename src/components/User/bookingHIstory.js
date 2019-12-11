@@ -140,7 +140,7 @@ export default class BookingHistory extends Component {
                         
 
                         } else {
-                            Alert.alert("Error",successData.message)
+                            Alert.alert("Alert",successData.message)
                             console.log("successData.data[0].role_id === 3", successData)
 
                         }
@@ -170,7 +170,7 @@ export default class BookingHistory extends Component {
                 
 
                 } else {
-                    Alert.alert("Error",successData.message)
+                    Alert.alert("Alert",successData.message)
                     this.setState({
                         refreshing: false
                     })

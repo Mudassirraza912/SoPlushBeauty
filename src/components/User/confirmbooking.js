@@ -128,7 +128,7 @@ export default class ConfirmBooking extends Component {
                             } else {
                                 this.setState({loader: false})
                                 console.log("Else", successData)
-                                Alert.alert("Error",successData.message)
+                                Alert.alert("Alert",successData.message)
                             }
                         })
                         .catch(err => {
@@ -140,7 +140,7 @@ export default class ConfirmBooking extends Component {
                 } else {
                     console.log("Else", successData)
                     this.setState({loader: false})
-                    Alert.alert("Error",successData.message)
+                    Alert.alert("Alert",successData.message)
                 }
             })
             .catch(err => console.log("err err ADD CART", err));
@@ -161,7 +161,7 @@ export default class ConfirmBooking extends Component {
                         leftComponent={<Icon onPress={() => { this.props.navigation.goBack() }} name="arrow-back" color="#000" />}
                         centerComponent={<Text style={{alignSelf:'center',fontSize: 20, fontFamily: "Poppins-Regular_0" }}>CONFIRM BOOKING</Text>}
                         rightComponent={<TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
-                            <Image source={require('../../../assets/notification.png')} style={{ height:26, width:20 }} />
+                            <Image source={require('../../../assets/notificationheader.png')} style={{ height:26, width:20 }} />
                         </TouchableOpacity>}
                     />
 
@@ -293,7 +293,7 @@ export default class ConfirmBooking extends Component {
 
 
                                         <View style={{ alignContent: "center", alignItems: "center", marginTop: "5%" }}>
-                                            <TouchableOpacity onPress={() => { this.props.navigation.navigate('UserHome') }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#ffff", width: "100%", borderRadius: 10, opacity: 0.7, borderColor: "#fc8b8c", borderWidth: 1 }}>
+                                            <TouchableOpacity onPress={() => { this.props.navigation.navigate('PersonalService') }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "#ffff", width: "100%", borderRadius: 10, opacity: 0.7, borderColor: "#fc8b8c", borderWidth: 1 }}>
                                                 <Text style={{ alignSelf: "center", color: "#000", fontFamily: "Poppins-Regular_0", fontSize: 14 , paddingVertical:15}}>
                                                     CANCEL
                                             </Text>

@@ -28,7 +28,7 @@ export default class About extends Component {
                     <Header
                         containerStyle={{ marginTop: 60, backgroundColor: "#fff" }}
                         placement="left"
-                        leftComponent={<Icon onPress={() => { this.props.navigation.navigate('UserHome') }} name="arrow-back" color="#000" />}
+                        leftComponent={<Icon onPress={() => { this.props.navigation.navigate('Main') }} name="arrow-back" color="#000" />}
                         centerComponent={<Text style={{ alignSelf: "center", fontSize: 20, fontFamily: "Poppins-Regular_0" }}>ABOUT</Text>}
                         // rightComponent={<TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}>
                         //     <Image source={require('../../../assets/notification.png')} style={{ height:26, width:20 }} />

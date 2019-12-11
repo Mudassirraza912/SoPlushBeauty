@@ -131,7 +131,7 @@ export default class Walkthrogh extends Component {
         </TouchableOpacity>
       </View>
 
-      <Image style={{ height: 300, width: 300 }} source={item.image} />
+      <Image style={{ height: "40%", width: '80%' }} source={item.image} />
       <View style={{ marginTop: "10%" }}>
         <Text style={{ fontSize: 30 }}>{item.text1} <Text style={{ fontWeight: "bold" }}>{item.text2}</Text></Text>
       </View>

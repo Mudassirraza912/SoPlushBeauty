@@ -57,7 +57,7 @@ export default class BookingDetail extends Component {
                         placement="left"
                         leftComponent={<Icon onPress={() => { this.props.navigation.navigate('BookingReq') }} name="arrow-back" color="#000" />}
                         centerComponent={<Text style={{ alignSelf: 'center', fontSize: 20, fontFamily: "Poppins-Regular_0" }}>BOOKING DETAILS</Text>}
-                        rightComponent={<TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}><Image source={require('../../../assets/notification.png')} style={{ height:26, width:20 }} />
+                        rightComponent={<TouchableOpacity onPress={() => { this.props.navigation.navigate("Notification") }}><Image source={require('../../../assets/notificationheader.png')} style={{ height:20, width:20 }} />
                         </TouchableOpacity>}
                     />
 
@@ -84,7 +84,7 @@ export default class BookingDetail extends Component {
                                             {varservices.services.map((value, index) => {
                                                 console.log('value.service_name', value)
                                                 return (
-                                                    <Text style={{ marginLeft: "10%", fontFamily: "Poppins-Regular_0" }}> {value.service_name}</Text>
+                                                    <Text style={{ marginLeft: "7%", fontFamily: "Poppins-Regular_0" }}> {value.service_name}</Text>
                                                 )
                                             })
                                             }
