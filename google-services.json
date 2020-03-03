@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "612630214885",
+    "firebase_url": "https://soplushexpo.firebaseio.com",
+    "project_id": "soplushexpo",
+    "storage_bucket": "soplushexpo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:612630214885:android:fbc86ad2b5a4326bebbc0c",
+        "android_client_info": {
+          "package_name": "host.exp.exponent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "612630214885-ft25uigg7qvid2ufholar94aq84sgbao.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "host.exp.exponent",
+            "certificate_hash": "b221f757d83e250e0926729fa939e38c55631df1"
+          }
+        },
+        {
+          "client_id": "612630214885-9osb3c2tfb1ntontse3317h3cgnfbtmk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl8yc5sF0-VPTLYpy6DY3Af2gstICZi3g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "612630214885-9osb3c2tfb1ntontse3317h3cgnfbtmk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "612630214885-ok8p7t960td9p246k9crgatr4j9cdolk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "host.exp.exponent"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>612630214885-ok8p7t960td9p246k9crgatr4j9cdolk.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.612630214885-ok8p7t960td9p246k9crgatr4j9cdolk</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>612630214885-ft25uigg7qvid2ufholar94aq84sgbao.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA1r0MFhyMbNtnO8unaoyp4d0p-zbHNj6g</string>
+	<key>GCM_SENDER_ID</key>
+	<string>612630214885</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>host.exp.exponent</string>
+	<key>PROJECT_ID</key>
+	<string>soplushexpo</string>
+	<key>STORAGE_BUCKET</key>
+	<string>soplushexpo.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:612630214885:ios:af15dbae16e7870eebbc0c</string>
+	<key>DATABASE_URL</key>
+	<string>https://soplushexpo.firebaseio.com</string>
+</dict>
+</plist>
