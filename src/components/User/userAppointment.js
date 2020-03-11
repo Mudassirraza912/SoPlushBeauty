@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Picker, PickerItem, Alert } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Picker, PickerItem, Alert, Linking } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button, Item, Input, Label, Form, Icon } from 'native-base';
 import { Avatar, Header, Card, Divider } from 'react-native-elements'
@@ -119,7 +119,8 @@ componentDidMount() {
 
             <View style={{ display: "flex", flexDirection: "column", borderRightWidth: 1, borderRightColor: "#000", height: 35, width: "25%", justifyContent: "center", alignContent: "center", alignItems: "center" }}>
               <TouchableOpacity style={{ alignItems: 'center' }} onPress={() =>
-                Alert.alert("Alert","Will be impelmented")
+                Linking.openURL('tel:${1234567890}')
+                // Alert.alert("Alert","Will be impelmented")
               } >
                 <Image source={require('../../../assets/phone-call.png')} style={{ height: 22, width: 22 }} />
                 {/* <Icon name="call" /> */}

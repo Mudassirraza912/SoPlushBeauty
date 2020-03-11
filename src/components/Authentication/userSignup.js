@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alerts } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Header, Content, Item, Input, Icon, Label, Form, Button, Spinner } from 'native-base';
 import camicon from '../../../assets/camera.png'
@@ -412,7 +412,8 @@ export default class UserSignUp extends Component {
 
 
                 <View style={{flex: 1 ,width: '100%', height: '100%' }}>
-                    <ScrollView>
+                     
+                     <ScrollView keyboardShouldPersistTaps="always">
 
 
                         <View style={{ flex:1 , height, width: '100%', justifyContent: "center" }}>

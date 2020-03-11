@@ -434,7 +434,7 @@ export default class ProSignUp extends Component {
             <View style={{ flex: 1, height: '100%', width: '100%', marginTop: -80 }}>
                 <ImageBackground source={require('../../../assets/inner.png')} style={{ height: "100%", width: "100%" }}>
 
-                    <ScrollView style={{ height: height }}>
+                    <ScrollView  keyboardShouldPersistTaps='always' style={{ height: height }}>
 
 
                         <View style={{ height: "100%", width: '100%', justifyContent: "center", marginTop: 80 }}>

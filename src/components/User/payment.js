@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
-import { Container, Content, List, ListItem, Left, Right, Button, Item, Input, Label, Form, Icon } from 'native-base';
-import { Avatar, Header, Card, Divider } from 'react-native-elements'
+import { Container, Content, List, ListItem, Left, Right, Button, Item, Input, Label, Form,  } from 'native-base';
+import { Avatar, Header, Card, Divider, Icon } from 'react-native-elements'
 import { LinearGradient } from 'expo-linear-gradient';
 const STRIPE_ERROR = 'Payment service error. Try again later.';
 const SERVER_ERROR = 'Server error. Try again later.';
@@ -284,7 +284,7 @@ export default class Payment extends Component {
                     <Header
                         containerStyle={{ marginTop: 40, backgroundColor: "#fff" }}
                         placement="left"
-                        leftComponent={<Icon onPress={() => { this.props.navigation.navigate('Main') }} name="arrow-back" color="#000" />}
+                        leftComponent={<Icon onPress={() => { this.props.navigation.goBack() }} name="arrow-back" color="#000" />}
                         centerComponent={<Text style={{alignSelf:'center',fontSize: 20, fontFamily: "Poppins-Bold_0" }}>PAYMENT</Text>}
                     />
 

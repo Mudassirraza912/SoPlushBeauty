@@ -391,8 +391,8 @@ export default class ProLogin extends Component {
 
 
                     <View style={{ width: '100%', height: '100%' }}>
-                        <ScrollView>
-                            <Animated.View style={[{ justifyContent: 'center', alignItems: "center" }, { transform: [{ translateY: this.state.shift }] }]} >
+                        <ScrollView keyboardShouldPersistTaps='always'>
+                            <View style={{ justifyContent: 'center', alignItems: "center" }} >
                                 <View style={{ marginTop: 100 }}>
                                     <View style={{ alignContent: "center", alignSelf: "center", alignItems: "center" }}>
                                         <Image source={require('../../../assets/text.png')} />
@@ -596,7 +596,7 @@ export default class ProLogin extends Component {
 
 
                                 </View>
-                            </Animated.View>
+                            </View>
                         </ScrollView>
                         <Text></Text>
 

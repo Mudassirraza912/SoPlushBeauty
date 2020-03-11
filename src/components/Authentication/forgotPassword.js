@@ -612,7 +612,7 @@ export default class ForgotPassword extends Component {
         return (
             <View style={{ flex: 1, height: '100%', width: '100%', marginTop: -80 }}>
                 <ImageBackground source={require('../../../assets/inner.png')} style={{ height: "100%", width: "100%", }}>
-                    <ScrollView style={{ 
+                    <ScrollView keyboardShouldPersistTaps="always" style={{ 
                         // backgroundColor: "rgba(246, 232, 232, 0.5)"
                          }}>
                         <Animated.View style={[{ justifyContent: 'center', alignItems: "center" }, { transform: [{ translateY: this.state.shift }] }]} >

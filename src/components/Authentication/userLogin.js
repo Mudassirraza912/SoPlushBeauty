@@ -590,9 +590,9 @@ export default class UserLogin extends Component {
               // Get the user's name using Facebook's Graph API
               const response = await fetch(`https://graph.facebook.com/me?access_token=${token}&fields=email,id,about,picture,name,gender,friends`);
               var result = await response.json()
-            //   console.log("await response.json()",result, response)
+              console.log("await response.json()",`${JSON.stringify(result)}`)
             //   response &&   this.props.fbLogin(result, token)
-              Alert.alert('Logged in!', `Hi ${(await response.json()).name}! \n ${result}`);
+              Alert.alert('Logged in!', `Hi ${result.name}! \n`);
             } else {
               // type === 'cancel'
               console.log("type ===", type)
@@ -638,10 +638,19 @@ export default class UserLogin extends Component {
           try {
             const result = await Google.logInAsync({
             behavior:'web',
-            clientId:'612630214885-ft25uigg7qvid2ufholar94aq84sgbao.apps.googleusercontent.com',
-            androidStandaloneAppClientId:'612630214885-ft25uigg7qvid2ufholar94aq84sgbao.apps.googleusercontent.com',
-            androidClientId:'612630214885-ft25uigg7qvid2ufholar94aq84sgbao.apps.googleusercontent.com',
-            webClientId:'612630214885-ft25uigg7qvid2ufholar94aq84sgbao.apps.googleusercontent.com',
+            // clientId:'612630214885-ft25uigg7qvid2ufholar94aq84sgbao.apps.googleusercontent.com',
+            // androidStandaloneAppClientId:'612630214885-ft25uigg7qvid2ufholar94aq84sgbao.apps.googleusercontent.com',
+            // androidClientId:'612630214885-ft25uigg7qvid2ufholar94aq84sgbao.apps.googleusercontent.com',
+            // webClientId:'612630214885-ft25uigg7qvid2ufholar94aq84sgbao.apps.googleusercontent.com',
+
+
+            clientId:'612630214885-b828cvt0ssagfqkcn6v0nj6d0dqv795a.apps.googleusercontent.com',
+            androidStandaloneAppClientId:'612630214885-b828cvt0ssagfqkcn6v0nj6d0dqv795a.apps.googleusercontent.com',
+            androidClientId:'612630214885-b828cvt0ssagfqkcn6v0nj6d0dqv795a.apps.googleusercontent.com',
+            webClientId:'612630214885-b828cvt0ssagfqkcn6v0nj6d0dqv795a.apps.googleusercontent.com',
+
+            
+
             // redirectUrl:'https://soplushexpo.firebaseapp.com/oauthclient/612630214885-9osb3c2tfb1ntontse3317h3cgnfbtmk.apps.googleusercontent.com?project=612630214885',
             // androidClientId:'612630214885-dup10mkvjvan0gq5qtf3o5r7nf9bhcgh.apps.googleusercontent.com',
             // androidStandaloneAppClientId:'612630214885-dup10mkvjvan0gq5qtf3o5r7nf9bhcgh.apps.googleusercontent.com',
@@ -681,8 +690,8 @@ export default class UserLogin extends Component {
             <View style={{ flex: 1, height: "100%", width: '100%', marginTop: -80 }}>
                 <ImageBackground source={require('../../../assets/login.png')} style={{ height: "100%", width: "100%" }}>
                     <View style={{ width: '100%', height: '100%' }}>
-                        <ScrollView>
-                            <Animated.View style={[{ justifyContent: 'center', alignItems: "center", width: '100%', height: "100%" }, { transform: [{ translateY: this.state.shift }] }]} >
+                        <ScrollView keyboardShouldPersistTaps='always'>
+                            <View style={{ justifyContent: 'center', alignItems: "center", width: '100%', height: "100%" }}>
                                 <View style={{ marginTop: 100 }}>
                                     <View style={{ alignContent: "center", alignSelf: "center", alignItems: "center" }}>
                                         <Image source={require('../../../assets/text.png')} />
@@ -897,7 +906,7 @@ export default class UserLogin extends Component {
 
 
                                 </View>
-                            </Animated.View>
+                            </View>
                         </ScrollView>
                         <Text></Text>
                     </View>
