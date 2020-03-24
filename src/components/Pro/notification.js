@@ -78,7 +78,7 @@ export default class Notification extends Component {
         const {profileData} = this.state
         const formData = new FormData()
         formData.append("common_id",profileData.user_id)
-        fetch("http://hnhtechsolutions.com/hassan/soplush/notification/notification_api.php?action=get_notification", {
+        fetch("http://soplush.ingicweb.com/soplush/notification/notification_api.php?action=get_notification", {
             method: 'POST',
             // dataType: "json",
             headers: {

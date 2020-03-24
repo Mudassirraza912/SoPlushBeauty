@@ -644,10 +644,12 @@ export default class UserLogin extends Component {
             // webClientId:'612630214885-ft25uigg7qvid2ufholar94aq84sgbao.apps.googleusercontent.com',
 
 
-            clientId:'612630214885-b828cvt0ssagfqkcn6v0nj6d0dqv795a.apps.googleusercontent.com',
-            androidStandaloneAppClientId:'612630214885-b828cvt0ssagfqkcn6v0nj6d0dqv795a.apps.googleusercontent.com',
-            androidClientId:'612630214885-b828cvt0ssagfqkcn6v0nj6d0dqv795a.apps.googleusercontent.com',
-            webClientId:'612630214885-b828cvt0ssagfqkcn6v0nj6d0dqv795a.apps.googleusercontent.com',
+            clientId:'612630214885-ft25uigg7qvid2ufholar94aq84sgbao.apps.googleusercontent.com',
+            
+            // clientId:'612630214885-b828cvt0ssagfqkcn6v0nj6d0dqv795a.apps.googleusercontent.com',
+            // androidStandaloneAppClientId:'612630214885-b828cvt0ssagfqkcn6v0nj6d0dqv795a.apps.googleusercontent.com',
+            // androidClientId:'612630214885-b828cvt0ssagfqkcn6v0nj6d0dqv795a.apps.googleusercontent.com',
+            // webClientId:'612630214885-b828cvt0ssagfqkcn6v0nj6d0dqv795a.apps.googleusercontent.com',
 
             
 
