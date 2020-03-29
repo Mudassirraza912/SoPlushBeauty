@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert, Keyboard, Animated, UIManager, TextInput, } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Header, Content, Item, Input, Icon, Label, Form, Button, Spinner } from 'native-base';
 import camicon from '../../../assets/camera.png'
@@ -21,7 +21,7 @@ import museum from '../../../assets/museum.png'
 import atmcard from '../../../assets/atm-card.png'
 import photoCamera from '../../../assets/photo-camera.png'
 
-
+const { State: TextInputState } = TextInput;
 const BadgedIcon = withBadge("X")(Avatar)
 const { width, height } = Dimensions.get("window")
 
@@ -61,8 +61,17 @@ export default class UserSignUp extends Component {
             nameErr: false,
             addressErr: false,
             phoneNoErr: false,
+            shift: new Animated.Value(0),
 
         }
+    }
+
+    componentWillMount() {
+        // LoginManager.logOut()
+        // console.log("APPAUTH", JSON.stringify(AppAuth.URLSchemes, null, 2))
+        this.keyboardDidShowSub = Keyboard.addListener('keyboardDidShow', this.handleKeyboardDidShow);
+        this.keyboardDidHideSub = Keyboard.addListener('keyboardDidHide', this.handleKeyboardDidHide);
+
     }
 
 
@@ -415,7 +424,7 @@ export default class UserSignUp extends Component {
                      
                      <ScrollView keyboardShouldPersistTaps="always">
 
-
+                     <Animated.View style={[{ justifyContent: 'center', alignItems: "center" }, { transform: [{ translateY: this.state.shift }] }]} >
                         <View style={{ flex:1 , height, width: '100%', justifyContent: "center" }}>
 
                         <View style={{ alignSelf: "center", alignContent: "center", alignItems: "center"}}>
@@ -575,10 +584,48 @@ export default class UserSignUp extends Component {
 
 
                         </View>
+                        </Animated.View>
                     </ScrollView>
                     </View>
                 </ImageBackground>
             </View>
         )
+    }
+    componentWillUnmount() {
+        this.keyboardDidShowSub.remove();
+        this.keyboardDidHideSub.remove();
+    }
+
+    handleKeyboardDidShow = (event) => {
+        const { height: windowHeight } = Dimensions.get('window');
+        const keyboardHeight = event.endCoordinates.height;
+        const currentlyFocusedField = TextInputState.currentlyFocusedField();
+        UIManager.measure(currentlyFocusedField, (originX, originY, width, height, pageX, pageY) => {
+            const fieldHeight = height;
+            const fieldTop = pageY;
+            const gap = (windowHeight - keyboardHeight) - (fieldTop + fieldHeight);
+            if (gap >= 0) {
+                return;
+            }
+            Animated.timing(
+                this.state.shift,
+                {
+                    toValue: gap,
+                    duration: 100,
+                    useNativeDriver: true,
+                }
+            ).start();
+        });
+    }
+
+    handleKeyboardDidHide = () => {
+        Animated.timing(
+            this.state.shift,
+            {
+                toValue: 0,
+                duration: 100,
+                useNativeDriver: true,
+            }
+        ).start();
     }
 }

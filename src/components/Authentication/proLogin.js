@@ -392,6 +392,7 @@ export default class ProLogin extends Component {
 
                     <View style={{ width: '100%', height: '100%' }}>
                         <ScrollView keyboardShouldPersistTaps='always'>
+                        <Animated.View style={[{ justifyContent: 'center', alignItems: "center" }, { transform: [{ translateY: this.state.shift }] }]} >
                             <View style={{ justifyContent: 'center', alignItems: "center" }} >
                                 <View style={{ marginTop: 100 }}>
                                     <View style={{ alignContent: "center", alignSelf: "center", alignItems: "center" }}>
@@ -597,6 +598,7 @@ export default class ProLogin extends Component {
 
                                 </View>
                             </View>
+                            </Animated.View>
                         </ScrollView>
                         <Text></Text>
 
@@ -626,7 +628,7 @@ export default class ProLogin extends Component {
                 this.state.shift,
                 {
                     toValue: gap,
-                    duration: 1000,
+                    duration: 100,
                     useNativeDriver: true,
                 }
             ).start();
@@ -638,7 +640,7 @@ export default class ProLogin extends Component {
             this.state.shift,
             {
                 toValue: 0,
-                duration: 1000,
+                duration: 100,
                 useNativeDriver: true,
             }
         ).start();

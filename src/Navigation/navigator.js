@@ -419,7 +419,7 @@ const AuthStack = createStackNavigator({
 
 
 const SwitchNavigator = createSwitchNavigator({
-    Splash: Splash,
+    // Splash: Splash,
     WalkThrough: Walkthrogh,
     Authentication: {
         screen: AuthStack

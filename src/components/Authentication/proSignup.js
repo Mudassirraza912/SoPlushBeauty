@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert, Keyboard, Animated, UIManager, TextInput, } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Header, Content, Item, Input, Icon, Label, Form, Button, DatePicker, Spinner } from 'native-base';
 import camicon from '../../../assets/camera.png'
@@ -22,6 +22,7 @@ import photoCamera from '../../../assets/photo-camera.png'
 
 
 const BadgedIcon = withBadge("X")(Avatar)
+const { State: TextInputState } = TextInput;
 const { width, height } = Dimensions.get("window")
 const options = {
     title: 'Select Avatar',
@@ -54,8 +55,16 @@ export default class ProSignUp extends Component {
             dOBErr: false,
             bankErr: false,
             accountNoErr: false,
-            nameErr: false
+            nameErr: false,
+            shift: new Animated.Value(0),
+
         }
+    }
+
+    componentWillMount() {
+        this.keyboardDidShowSub = Keyboard.addListener('keyboardDidShow', this.handleKeyboardDidShow);
+        this.keyboardDidHideSub = Keyboard.addListener('keyboardDidHide', this.handleKeyboardDidHide);
+
     }
 
 
@@ -435,7 +444,7 @@ export default class ProSignUp extends Component {
                 <ImageBackground source={require('../../../assets/inner.png')} style={{ height: "100%", width: "100%" }}>
 
                     <ScrollView  keyboardShouldPersistTaps='always' style={{ height: height }}>
-
+                    <Animated.View style={[{ justifyContent: 'center', alignItems: "center" }, { transform: [{ translateY: this.state.shift }] }]} >
 
                         <View style={{ height: "100%", width: '100%', justifyContent: "center", marginTop: 80 }}>
 
@@ -762,10 +771,48 @@ export default class ProSignUp extends Component {
                             <Text></Text>
                             <Text></Text>
                         </View>
+                        </Animated.View>
                     </ScrollView>
                 </ImageBackground>
             </View>
         )
+    }
+    componentWillUnmount() {
+        this.keyboardDidShowSub.remove();
+        this.keyboardDidHideSub.remove();
+    }
+
+    handleKeyboardDidShow = (event) => {
+        const { height: windowHeight } = Dimensions.get('window');
+        const keyboardHeight = event.endCoordinates.height;
+        const currentlyFocusedField = TextInputState.currentlyFocusedField();
+        UIManager.measure(currentlyFocusedField, (originX, originY, width, height, pageX, pageY) => {
+            const fieldHeight = height;
+            const fieldTop = pageY;
+            const gap = (windowHeight - keyboardHeight) - (fieldTop + fieldHeight);
+            if (gap >= 0) {
+                return;
+            }
+            Animated.timing(
+                this.state.shift,
+                {
+                    toValue: gap,
+                    duration: 100,
+                    useNativeDriver: true,
+                }
+            ).start();
+        });
+    }
+
+    handleKeyboardDidHide = () => {
+        Animated.timing(
+            this.state.shift,
+            {
+                toValue: 0,
+                duration: 100,
+                useNativeDriver: true,
+            }
+        ).start();
     }
 }
 
@@ -773,52 +820,3 @@ export default class ProSignUp extends Component {
 
 
 
-
-//  // <BadgedIcon onPress={() => 
-//                             //         {
-
-//                             //             Alert.alert(
-//                             //                 'Profile',
-//                             //                 'Are you sure you want to remove picture?',
-//                             //                 [
-//                             //                   {
-//                             //                     text: 'No',
-//                             //                     onPress: () => console.log('Cancel Pressed'),
-//                             //                     style: 'cancel',
-//                             //                   },
-//                             //                   {
-//                             //                     text: 'yes',
-//                             //                     onPress: () =>  this.setState({ profilePic: false })
-//                             //                     ,
-//                             //                     style: 'cancel',
-//                             //                   },
-//                             //                   {cancelable:  false}
-//                             //                 ]
-//                             //               )
-
-//                             //     }}containerStyle={{padding:3, height:40, width: 40, marginTop:"5%"}} iconStyle={{right:'4%'}} source={this.state.profilePic}/> 
-//                         }
-
-
-//                         {/* {this.state.profilePic.map((val, index) => {
-// if(index == 0) {
-
-// return <Avatar onPress={this.openGallery} containerStyle={{padding:5, height:40, width: 40, marginTop:"1%"}} source={val} />
-// } else{
-// return(
-// <BadgedIcon  containerStyle={{padding:5, margin: 5, height:40, width: 40}} source={val}/>
-// )
-// }
-
-// if(index == 0) {
-// return <ImageBackground source={val}  style={{height:30, width:30,backgroundColor:"#bdbdbd", marginTop:"1%"}}/>
-// } else{
-// return(
-// <ImageBackground source={val}  style={{height:30, width:30,borderRadius:5,margin:3, display:"flex", alignContent:"center", backgroundColor:"#bdbdbd"}}> 
-//     <Text style={{fontSize:7, backgroundColor: "red", borderRadius:100, color:"#fff",marginTop:-7,marginLeft:20, textAlign:"center", height:10, width:15}}>X</Text>
-// </ImageBackground>
-// )
-// }
-
-
-// })} */}

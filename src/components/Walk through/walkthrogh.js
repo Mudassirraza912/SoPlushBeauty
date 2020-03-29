@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, Image, BackHandler, Alert, AsyncStorage,TouchableOpacity} from 'react-native'
+import { Text, View, StyleSheet, Image, BackHandler, Alert, AsyncStorage,TouchableOpacity, ActivityIndicator} from 'react-native'
 import AppIntroSlider from 'react-native-app-intro-slider';
 // import Navigator from '../../Navigation/navigator'
 // import Home from '../Home/home'
@@ -84,10 +84,45 @@ export default class Walkthrogh extends Component {
     this.state = {
       show_Main_App: false,
       role: "",
-      profileData: ''
+      profileData: '',
+      already: false
     };
     this.usertype = this.usertype.bind(this)
   }
+
+
+  componentDidMount = async () => {
+    const already = await AsyncStorage.getItem("alreadyOpen")
+    this.setState({already: already})
+
+    try {
+        const value = await AsyncStorage.getItem('User');
+        console.log('value value value', value)
+        if (value !== null) {
+          // We have data!!
+        var convertVal = JSON.parse(value)
+        this.props.screenProps.fetchProfileData(convertVal)
+        if (convertVal.role_id === '4') {
+            this.props.navigation.navigate("UserNavigator")
+        }else {
+            this.props.navigation.navigate("ProNavigator")
+        }
+        console.log('enableButton getting data After JSON in SITEINFO =>',convertVal)
+       
+        }else {
+
+            const alreadyOpen = await AsyncStorage.getItem("alreadyOpen")
+            console.log("alreadyOpen", alreadyOpen)
+            setTimeout(() => {
+              alreadyOpen !== null ? this.props.navigation.navigate("Authentication") : this.props.navigation.navigate("WalkThrough")
+            }, 3000);
+            
+        }
+      } catch (error) {
+            console.log('Errr getting data =>', error)
+
+      }
+}
 
   usertype(e) {
     console.log(e)
@@ -145,15 +180,16 @@ export default class Walkthrogh extends Component {
 
 
   render() {
-    console.log(this.props)
-    // if (this.state.show_Main_App) {
-    //   return (
-    //     <View style={{ flex: 1 }}>
-    //       {/* <Navigator screenProps={{ fetchProfileData: this.fetchProfileData, profileData: this.state.profileData }} /> */}
-    //     </View>
+   const {already} = this.state
 
-    //   );
-    // } else {
+    console.log(this.props)
+    if(already !== null) {
+       return(
+        <View style={{flex: 1, justifyContent:'center', alignContent:'center'}}>
+        <ActivityIndicator  color='#fc8b8c' size="large"/>
+      </View>
+       )
+    }else {
       return (
         <AppIntroSlider
           activeDotStyle={{ backgroundColor: "#000" }}
@@ -167,6 +203,8 @@ export default class Walkthrogh extends Component {
           onSkip={this.on_Skip_slides}
         />
       );
-    // }
+    }
+     
+    
   }
 }
