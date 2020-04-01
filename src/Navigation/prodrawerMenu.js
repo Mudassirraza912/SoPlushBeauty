@@ -39,7 +39,7 @@ class DrawerMenu extends Component {
             }}>
             <View style={{ display: "flex", flexDirection: "row", marginTop: 20, marginRight: 25 }}>
 
-            {this.props.screenProps.profileData.profile_pic !== "" ? 
+            {(this.props.screenProps.profileData.profile_pic !== "" && this.props.screenProps.profileData.profile_pic !== null) ? 
             <View >
                 <Avatar
                   overlayContainerStyle={{ backgroundColor: "#fff" }}

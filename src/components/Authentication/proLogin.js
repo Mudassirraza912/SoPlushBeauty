@@ -270,6 +270,8 @@ import { Text, View, ImageBackground, Dimensions, Image, Keyboard, Animated, UIM
 import { Avatar } from 'react-native-elements'
 import { Container, Header, Content, Item, Input, Icon, Label, Form, Button, List, ListItem, Left, Body, Spinner } from 'native-base';
 import { LinearGradient } from 'expo-linear-gradient';
+import * as Google from 'expo-google-app-auth';
+import * as Facebook  from 'expo-facebook';
 
 
 const { State: TextInputState } = TextInput;
@@ -380,6 +382,221 @@ export default class ProLogin extends Component {
 
 
     }
+
+
+
+
+    fbLogin = async () => {
+
+        await Facebook.initializeAsync('791243921732395')
+
+        try {
+            const {
+              type,
+              token,
+              expires,
+              permissions,
+              declinedPermissions,
+            } = await Facebook.logInWithReadPermissionsAsync('791243921732395', {
+              permissions: ['public_profile', 'email'],
+            });
+             console.log("FB AUTH CALLED TOKEN", token)
+            if (type === 'success') {
+              // Get the user's name using Facebook's Graph API
+              const response = await fetch(`https://graph.facebook.com/me?access_token=${token}&fields=email,id,about,picture,name,gender,friends`);
+              var result = await response.json()
+              console.log("await response.json()",result)
+              this.connectFacebookAuthWithDb(result)
+            //   response &&   this.props.fbLogin(result, token)
+            //   Alert.alert('Logged in!', `Hi ${result.name}! \n`);
+            } else {
+              // type === 'cancel'
+              console.log("type ===", type)
+            }
+          } catch ({ message }) {
+           console.log("FB AUTH DESTROY", message)
+            Alert.alert(`Facebook Login Error: ${message}`);
+          }
+
+
+     
+    }
+
+
+
+
+    google = async () => {
+        try {
+          const result = await Google.logInAsync({
+          behavior:'web',
+
+          clientId:'612630214885-0cneksc73cgktjka50f7t1dvirv5gqfa.apps.googleusercontent.com',
+          androidStandaloneAppClientId:'612630214885-0cneksc73cgktjka50f7t1dvirv5gqfa.apps.googleusercontent.com',
+          androidClientId:'612630214885-0cneksc73cgktjka50f7t1dvirv5gqfa.apps.googleusercontent.com',
+          webClientId:'612630214885-0cneksc73cgktjka50f7t1dvirv5gqfa.apps.googleusercontent.com',
+
+         
+
+          // redirectUrl:'https://soplushexpo.firebaseapp.com/oauthclient/612630214885-9osb3c2tfb1ntontse3317h3cgnfbtmk.apps.googleusercontent.com?project=612630214885',
+          // androidClientId:'612630214885-dup10mkvjvan0gq5qtf3o5r7nf9bhcgh.apps.googleusercontent.com',
+          // androidStandaloneAppClientId:'612630214885-dup10mkvjvan0gq5qtf3o5r7nf9bhcgh.apps.googleusercontent.com',
+          
+          // androidClientId: '612630214885-9osb3c2tfb1ntontse3317h3cgnfbtmk.apps.googleusercontent.com',
+          // iosClientId: '612630214885-9osb3c2tfb1ntontse3317h3cgnfbtmk.apps.googleusercontent.com',
+
+          // androidClientId: '612630214885-dup10mkvjvan0gq5qtf3o5r7nf9bhcgh.apps.googleusercontent.com',
+          // iosClientId: '612630214885-vg4uo5j1dhbpijmbgooslfh4ob9mali5.apps.googleusercontent.com',
+          // androidStandaloneAppClientId: '612630214885-dup10mkvjvan0gq5qtf3o5r7nf9bhcgh.apps.googleusercontent.com',
+          // iosStandaloneAppClientId: '612630214885-vg4uo5j1dhbpijmbgooslfh4ob9mali5.apps.googleusercontent.com',
+          // clientId:'612630214885-dup10mkvjvan0gq5qtf3o5r7nf9bhcgh.apps.googleusercontent.com',
+            scopes: ['profile', 'email'],
+          });
+      
+          if (result.type === 'success') {
+            console.log("RESULT RESULT", result)
+            this.connectGoogleAuthWithDb(result.user)
+            // Alert.alert("RESULT", result.user.name)
+            return result.accessToken;
+          } else {
+            return { cancelled: true };
+          }
+        } catch (e) {
+          return { error: true };
+        }
+  }
+
+
+
+
+  connectGoogleAuthWithDb = (e) => {
+
+    const formData = new FormData();
+formData.append('auth_type','google')
+formData.append("email", e.email),
+formData.append("name", e.name),
+formData.append("auth_id", e.id)
+formData.append("role_id", 3)
+
+ if (e.photo) {
+    formData.append("profile_pic", e.photo)
+ }
+
+// console.log("BEFORE SUCCSSS", `https://churppy.com/api/v1/google-login?provider_email=${e.email}&provider_name=${e.name}&id=${e.id}&token=${token}&avtar_origional=${e.photo}`)
+
+fetch("http://soplush.ingicweb.com/soplush/auth/login.php?action=signin", {
+method: 'POST',
+// dataType: "json",
+headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'multipart/form-data'
+},
+body: formData
+}).then(res => res.json())
+.then(async (response) => {
+  console.log('responseresponse ',response)
+  if (response.status === true) {
+    // Alert.alert(response.data.status, response.data.message )
+    if (response.data[0].role_id == 3) {
+        this.props.screenProps.fetchProfileData(response.data[0])
+        AsyncStorage.setItem('User', JSON.stringify(response.data[0]))
+        try {
+            await AsyncStorage.setItem('User', JSON.stringify(response.data[0]));
+            console.log('enableButton =>')
+        } catch (error) {
+            console.log('error =>', error)
+
+        }
+        Alert.alert("Alert", "Login successful")
+        this.setState({ loader: false })
+
+        this.props.navigation.navigate("ProNavigator")
+    } else {
+        Alert.alert("Alert", "Something went wrong")
+        this.setState({ loader: false })
+
+    }
+
+  } else {
+    Alert.alert(response.status, response.message)
+  }
+}).catch((err) => {
+  console.log(err)
+})
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+connectFacebookAuthWithDb = (e) => {
+
+    const formData = new FormData();
+formData.append('auth_type','facebook')
+formData.append("name", e.name),
+formData.append("auth_id", e.id)
+formData.append("role_id", 3)
+
+ if (e.picture) {
+    formData.append("profile_pic", e.picture.data.url)
+ }
+
+// console.log("BEFORE SUCCSSS", `https://churppy.com/api/v1/google-login?provider_email=${e.email}&provider_name=${e.name}&id=${e.id}&token=${token}&avtar_origional=${e.photo}`)
+
+console.log('connectFacebookAuthWithDb formData', formData)
+
+fetch("http://soplush.ingicweb.com/soplush/auth/login.php?action=signin", {
+method: 'POST',
+// dataType: "json",
+headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'multipart/form-data'
+},
+body: formData
+}).then(res => res.json())
+.then(async (response) => {
+  console.log('responseresponse ',response)
+  if (response.status === true) {
+    // Alert.alert(response.data.status, response.data.message )
+    if (response.data[0].role_id == 3) {
+        this.props.screenProps.fetchProfileData(response.data[0])
+        AsyncStorage.setItem('User', JSON.stringify(response.data[0]))
+        try {
+            await AsyncStorage.setItem('User', JSON.stringify(response.data[0]));
+            console.log('enableButton =>')
+        } catch (error) {
+            console.log('error =>', error)
+
+        }
+        Alert.alert("Alert", "Login successful")
+        this.setState({ loader: false })
+
+        this.props.navigation.navigate("ProNavigator")
+    } else {
+        Alert.alert("Alert", "Something went wrong")
+        this.setState({ loader: false })
+
+    }
+
+  } else {
+    Alert.alert(response.status, response.message)
+  }
+}).catch((err) => {
+  console.log(err)
+})
+
+
+}
+
 
 
     render() {
@@ -550,7 +767,8 @@ export default class ProLogin extends Component {
 
                                         <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#c79de0', '#883cb6', '#883cb6']} style={{ width: "48%", borderRadius: 5, left: 6}}>
                                             <TouchableOpacity onPress={() => {
-                                                Alert.alert("Alert", "Will be implemented")
+                                                this.fbLogin()
+                                                // Alert.alert("Alert", "Will be implemented")
                                             }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, flexDirection: 'row' }}>
                                                 <Icon style={{ color: '#fff' }} name="instagram" type="MaterialCommunityIcons" />
                                                 <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular", paddingVertical: 10, paddingHorizontal: 5, fontWeight:'bold' }}>
@@ -573,7 +791,8 @@ export default class ProLogin extends Component {
 
                                         <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "48%", borderRadius: 5 }}>
                                             <TouchableOpacity onPress={() => {
-                                                Alert.alert("Alert", "Will be implemented")
+                                                this.google()
+                                                // Alert.alert("Alert", "Will be implemented")
                                             }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, flexDirection: 'row' }}>
                                                 <Icon style={{ color: '#fff' }} name="google" type="FontAwesome" />
                                                 <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular", paddingVertical: 10, paddingHorizontal: 5 , fontWeight:'bold'}}>

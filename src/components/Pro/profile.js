@@ -74,7 +74,7 @@ export default class ProProfile extends Component {
                             {/* <View style={{width:"100%"}}>
                                 <Image resizeMode="cover" style={{width:"100%", height:300}} source={{uri:`http://soplush.ingicweb.com/soplush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}} />
                             </View> */}
-                          {this.props.screenProps.profileData.profile_pic !== "" ? 
+                          {(this.props.screenProps.profileData.profile_pic !== "" && this.props.screenProps.profileData.profile_pic !== null) ? 
                           <View style={{ width: "100%", marginLeft: 0, marginRight: 0, borderRadius: 10 }}>
                                             <Image source={{uri:`http://soplush.ingicweb.com/soplush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}} style={{ height: 200, width: "100%", borderTopRightRadius: 10, borderTopLeftRadius: 10 }} />
                                         </View>

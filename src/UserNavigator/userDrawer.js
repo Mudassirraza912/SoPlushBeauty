@@ -28,7 +28,8 @@ class DrawerMenu extends Component {
 
 
   render() {
-    console.log("Drawer DrawerDrawer  Drawer", `http://soplush.ingicweb.com/soplush/profile_pics/${this.props.screenProps.profileData.profile_pic}`)
+    // console.log("Drawer DrawerDrawer  Drawer", `http://soplush.ingicweb.com/soplush/profile_pics/${this.props.screenProps.profileData.profile_pic}`)
+    // console.log("this.props.screenProps.profileData.profile_pic",(this.props.screenProps.profileData.profile_pic !== "" || this.props.screenProps.profileData.profile_pic !== null), this.props.screenProps.profileData.profile_pic !== "",  this.props.screenProps.profileData.profile_pic !== null)
     return (
 
       <View style={{ flex: 1, justifyContent: "center", alignContent: "center", height: '100%', backgroundColor: 'rgba(246, 232, 232, 0.5)'}}>
@@ -39,7 +40,7 @@ class DrawerMenu extends Component {
           }}>
             <View style={{ display: "flex", flexDirection: "row" }}>
 
-            {this.props.screenProps.profileData.profile_pic !== "" ?  <View >
+            {(this.props.screenProps.profileData.profile_pic !== "" && this.props.screenProps.profileData.profile_pic !== null) ?  <View >
               <Avatar
                   overlayContainerStyle={{ backgroundColor: "#fff" }}
                   rounded

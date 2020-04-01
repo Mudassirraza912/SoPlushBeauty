@@ -312,7 +312,7 @@ export default class EditUserProfile extends Component {
 
                        {!this.state.profilePic ?
                        <View> 
-                     {this.props.screenProps.profileData.profile_pic !== "" ? <View style={{justifyContent:"center", alignContent:"center", alignItems:"center", paddingVertical:15, marginBottom:10}}>
+                     {(this.props.screenProps.profileData.profile_pic !== "" && this.props.screenProps.profileData.profile_pic !== null) ? <View style={{justifyContent:"center", alignContent:"center", alignItems:"center", paddingVertical:15, marginBottom:10}}>
                              <Avatar  onPress={this.openGallery} onEditPress={this.openGallery} containerStyle={{backgroundColor:"#fc8b8c",}} showEditButton  rounded size="xlarge" editButton={{name:"camera",type:"font-awesome", size:25, iconStyle:{marginTop:10} ,containerStyle:{backgroundColor:"#fc8b8c", borderRadius:50, height: 45, width: 45, borderColor:'#fff' , borderWidth:2 ,marginRight:60}, color:"#fff", underlayColor:"#fc8b8c", reverseColor:"#fc8b8c", }}  source={{uri:`http://soplush.ingicweb.com/soplush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}} />
                         </View>  :
                         

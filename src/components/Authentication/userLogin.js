@@ -170,8 +170,9 @@ export default class UserLogin extends Component {
               const response = await fetch(`https://graph.facebook.com/me?access_token=${token}&fields=email,id,about,picture,name,gender,friends`);
               var result = await response.json()
               console.log("await response.json()",result)
+              this.connectFacebookAuthWithDb(result)
             //   response &&   this.props.fbLogin(result, token)
-              Alert.alert('Logged in!', `Hi ${result.name}! \n`);
+            //   Alert.alert('Logged in!', `Hi ${result.name}! \n`);
             } else {
               // type === 'cancel'
               console.log("type ===", type)
@@ -218,7 +219,7 @@ export default class UserLogin extends Component {
             if (result.type === 'success') {
               console.log("RESULT RESULT", result)
               this.connectGoogleAuthWithDb(result.user)
-              Alert.alert("RESULT", result.user.name)
+            //   Alert.alert("RESULT", result.user.name)
               return result.accessToken;
             } else {
               return { cancelled: true };
@@ -237,13 +238,15 @@ export default class UserLogin extends Component {
     formData.append("email", e.email),
     formData.append("name", e.name),
     formData.append("auth_id", e.id)
+    formData.append("role_id", 4)
+
      if (e.photo) {
         formData.append("profile_pic", e.photo)
      }
 
     // console.log("BEFORE SUCCSSS", `https://churppy.com/api/v1/google-login?provider_email=${e.email}&provider_name=${e.name}&id=${e.id}&token=${token}&avtar_origional=${e.photo}`)
 
-    fetch("http://soplush.ingicweb.com/soplush/auth/signup.php?action=signup_customer", {
+    fetch("http://soplush.ingicweb.com/soplush/auth/login.php?action=signin", {
     method: 'POST',
     // dataType: "json",
     headers: {
@@ -254,14 +257,14 @@ export default class UserLogin extends Component {
 }).then(res => res.json())
     .then(async (response) => {
       // console.log('responseresponse ',response)
-      if (response.status === "success") {
+      if (response.status === true) {
         // Alert.alert(response.data.status, response.data.message )
-        if (successData.data[0].role_id == 4) {
+        if (response.data[0].role_id == 4) {
             console.log(" After ROLE ID SUCCESS USER", this.props)
-            this.props.screenProps.fetchProfileData(successData.data[0])
+            this.props.screenProps.fetchProfileData(response.data[0])
             // AsyncStorage.setItem('User', JSON.stringify(successData.data[0]))
             try {
-                await AsyncStorage.setItem('User', JSON.stringify(successData.data[0]));
+                await AsyncStorage.setItem('User', JSON.stringify(response.data[0]));
                 console.log('enableButton =>')
             } catch (error) {
                 console.log('error =>', error)
@@ -270,6 +273,10 @@ export default class UserLogin extends Component {
             Alert.alert("Alert", "Login successful")
             this.setState({ loader: false })
             this.props.navigation.navigate("UserNavigator")
+        }else {
+        Alert.alert("Alert", "Something went wrong")
+        this.setState({ loader: false })
+
         }
 
       } else {
@@ -300,13 +307,17 @@ export default class UserLogin extends Component {
     formData.append('auth_type','facebook')
     formData.append("name", e.name),
     formData.append("auth_id", e.id)
+    formData.append("role_id", 4)
+
      if (e.picture) {
         formData.append("profile_pic", e.picture.data.url)
      }
 
     // console.log("BEFORE SUCCSSS", `https://churppy.com/api/v1/google-login?provider_email=${e.email}&provider_name=${e.name}&id=${e.id}&token=${token}&avtar_origional=${e.photo}`)
 
-    fetch("http://soplush.ingicweb.com/soplush/auth/signup.php?action=signup_customer", {
+    console.log('connectFacebookAuthWithDb formData', formData)
+
+    fetch("http://soplush.ingicweb.com/soplush/auth/login.php?action=signin", {
     method: 'POST',
     // dataType: "json",
     headers: {
@@ -316,15 +327,15 @@ export default class UserLogin extends Component {
     body: formData
 }).then(res => res.json())
     .then(async (response) => {
-      // console.log('responseresponse ',response)
-      if (response.status === "success") {
+      console.log('responseresponse ',response)
+      if (response.status === true) {
         // Alert.alert(response.data.status, response.data.message )
-        if (successData.data[0].role_id == 4) {
+        if (response.data[0].role_id == 4) {
             console.log(" After ROLE ID SUCCESS USER", this.props)
-            this.props.screenProps.fetchProfileData(successData.data[0])
+            this.props.screenProps.fetchProfileData(response.data[0])
             // AsyncStorage.setItem('User', JSON.stringify(successData.data[0]))
             try {
-                await AsyncStorage.setItem('User', JSON.stringify(successData.data[0]));
+                await AsyncStorage.setItem('User', JSON.stringify(response.data[0]));
                 console.log('enableButton =>')
             } catch (error) {
                 console.log('error =>', error)
@@ -333,6 +344,10 @@ export default class UserLogin extends Component {
             Alert.alert("Alert", "Login successful")
             this.setState({ loader: false })
             this.props.navigation.navigate("UserNavigator")
+        }else {
+        Alert.alert("Alert", "Something went wrong")
+        this.setState({ loader: false })
+
         }
 
       } else {
