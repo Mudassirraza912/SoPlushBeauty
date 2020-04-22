@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView,TextInput, RefreshControl, Alert } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView,TextInput, RefreshControl, Alert, BackHandler } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button } from 'native-base';
 import {Avatar, Header, Icon, Card, Divider} from 'react-native-elements'
@@ -120,7 +120,10 @@ export default class BookingHistory extends Component {
         }
     }
 
+
     componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+
         console.log('this.props.screenProps.profileData.user_id', this.props.screenProps.profileData.user_id)
         fetch(`http://soplush.ingicweb.com/soplush/user/user.php?action=get_user_bookings&user_id=${this.props.screenProps.profileData.user_id}&status=completed`, {
 
@@ -178,6 +181,29 @@ export default class BookingHistory extends Component {
             })
             .catch(err => console.log("Category err err", err));
     }
+
+    // componentDidMount() {
+    //     BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+
+    // }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+    }
+
+
+    handleBackButton = () => {
+        const { from } = this.props.navigation.state.params
+        console.log('this.props.isFocused ',from, from === 'appointment')
+            if(from === 'appointment') {
+                this.props.navigation.navigate('UserAppointment')
+         }
+
+        // if(this.props.navigation.isFocused()) {
+        //     this.props.navigation.goBack()
+        // }
+        
+    };
 
 
 

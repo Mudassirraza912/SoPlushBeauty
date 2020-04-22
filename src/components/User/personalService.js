@@ -937,7 +937,7 @@ export default class PersonalService extends Component {
                                             paddingRight: 15,
                                           }}>
                                           {' '}
-                                          ${value.service_cost}
+                                          ${value.so_plush_cost}
                                         </Text>
                                       </View>
                                     </View>

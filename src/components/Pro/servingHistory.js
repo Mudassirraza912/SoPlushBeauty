@@ -4,6 +4,7 @@ import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, Scrol
 import { Container, Content, List, ListItem, Left, Right, Button } from 'native-base';
 import {Avatar, Header, Icon, Card, Divider} from 'react-native-elements'
 import { LinearGradient } from 'expo-linear-gradient';
+import * as ImagePicker from 'expo-image-picker';
 
 import moment from 'moment'
 
@@ -255,6 +256,68 @@ export default class ServingHistory extends Component {
         
       };
 
+
+
+
+      
+    openGallery = async () => {
+        const { image } = this.state
+        let pickerResult = await ImagePicker.launchImageLibraryAsync({
+            allowsEditing: true,
+            // aspect: [4, 3],
+        });
+
+        console.log("pickerResult",pickerResult)
+        // image.push(pickerResult.uri)
+        // this.setState({ image })
+
+        this._handleImagePicked(pickerResult);
+    };
+
+    _handleImagePicked = async pickerResult => {
+        try {
+
+            if (!pickerResult.cancelled) {
+                uploadUrl = await this.uploadImageAsync(pickerResult.uri);
+            }
+        } catch (e) {
+            // console.log(e);
+            alert('Upload failed, sorry :(');
+        } finally {
+        }
+    }
+
+
+    uploadImageAsync = async (uri) => {
+        // Why are we using XMLHttpRequest? See:
+        // https://github.com/expo/expo/issues/2402#issuecomment-443726662
+        const blob = await new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                resolve(xhr.response);
+            };
+            xhr.onerror = function (e) {
+                console.log(e);
+                reject(new TypeError('Network request failed'));
+            };
+            xhr.responseType = 'blob';
+            xhr.open('GET', uri, true);
+            xhr.send(null);
+        });
+
+        var uriARR = blob.data
+        console.log("uriARR uriARR ", uriARR, uri)
+        this.setState({
+            profilePic: uri,
+            fileName: uriARR.name,
+            fileUri: uri
+        });
+
+    }
+
+
+      
+
     
     render() {
         console.log('length', this.state.data.length)
@@ -439,7 +502,10 @@ export default class ServingHistory extends Component {
                                             </LinearGradient> */}
 
 <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10}}>
-                                        <TouchableOpacity onPress={() => Alert.alert("Alert", "Will be implmented")}  style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, paddingVertical: 12 }}>
+                                        <TouchableOpacity onPress={() => {
+                                            this.openGallery()
+                                            // Alert.alert("Alert", "Will be implmented")
+                                            }}  style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, paddingVertical: 12 }}>
                                         <Icon  name="camera" type="font-awesome" color="#fff" />
                                         </TouchableOpacity>
                                     </LinearGradient>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Picker, PickerItem, Alert, Linking } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Picker, PickerItem, Alert, Linking , TouchableHighlight} from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button, Item, Input, Label, Form, Icon } from 'native-base';
 import { Avatar, Header, Card, Divider } from 'react-native-elements'
@@ -7,7 +7,7 @@ import { Avatar, Header, Card, Divider } from 'react-native-elements'
 // import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 // import Calendar from 'react-native-calendar'
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
-
+// import Modal from 'react-native-modal';
 import moment from 'moment'
 
 const { width, height } = Dimensions.get("window")
@@ -29,7 +29,10 @@ export default class UserAppointment extends Component {
         '2019-11-16': { selected: true, selectedColor: '#FFB9BA' },
         '2019-11-17': { selected: true, selectedColor: '#FFB9BA' },
         
-      }
+      },
+      email: null,
+      phone:null,
+      modalVisible: false
     }
 
   }
@@ -58,7 +61,7 @@ componentDidMount() {
                   var successData = resp
 
                   if (successData.status === true) {
-                      console.log("successData.data[0].role_id === 3", successData.data)
+                      // console.log("successData.data[0].role_id === 3", successData.data)
 
                       successData.data.map((value, index) => {
                         var date = moment(value.service_date).format('YYYY-MM-DD')
@@ -81,7 +84,38 @@ componentDidMount() {
                   }
               })
               .catch(err => console.log("Category err err", err));
+
+
+              const formData = new FormData()
+              formData.append('role_name','super_admin')
+
+              fetch("http://soplush.ingicweb.com/soplush/user/user.php?action=select_user", {
+                method: 'POST',
+                // dataType: "json",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'multipart/form-data'
+                },
+                body: formData
+            }).then(res => res.json())
+                  .then(resp => {
+                  console.log('response ADMIN',resp)
+                  this.setState({
+                    email: resp.data[0].email,
+                    phone:resp.data[0].phone_number
+                  })
+                })
+              .catch(err => console.log('err', err))
 }
+
+
+
+  onDateSelect = (dateString) => {
+
+    
+
+
+  }
 
 
 
@@ -107,7 +141,8 @@ componentDidMount() {
 
             <View style={{ display: "flex", flexDirection: "column", borderRightWidth: 1, borderRightColor: "#000", height: 35, width: "25%", justifyContent: "center", alignContent: "center", alignItems: "center" }}>
               <TouchableOpacity style={{ alignItems: 'center' }} onPress={() =>
-                Alert.alert("Alert","Will be impelmented")
+                // Alert.alert("Alert","Will be impelmented")
+                Linking.openURL(`mailto:${this.state.email}`)
               }>
                 <Image source={require('../../../assets/envelope.png')} style={{ height: 22, width: 22 }} />
                 {/* <Icon name="call" /> */}
@@ -119,7 +154,7 @@ componentDidMount() {
 
             <View style={{ display: "flex", flexDirection: "column", borderRightWidth: 1, borderRightColor: "#000", height: 35, width: "25%", justifyContent: "center", alignContent: "center", alignItems: "center" }}>
               <TouchableOpacity style={{ alignItems: 'center' }} onPress={() =>
-                Linking.openURL('tel:${1234567890}')
+                Linking.openURL(`tel:${this.state.phone}`)
                 // Alert.alert("Alert","Will be impelmented")
               } >
                 <Image source={require('../../../assets/phone-call.png')} style={{ height: 22, width: 22 }} />
@@ -132,7 +167,7 @@ componentDidMount() {
 
 
             <View style={{ display: "flex", flexDirection: "column", borderRightWidth: 1, borderRightColor: "#000", height: 35, width: "25%", justifyContent: "center", alignContent: "center", alignItems: "center" }}>
-              <TouchableOpacity style={{ alignItems: 'center' }} onPress={() => { this.props.navigation.navigate('BookingHistory') }}>
+              <TouchableOpacity style={{ alignItems: 'center' }} onPress={() => { this.props.navigation.navigate('BookingHistory', { from: 'appointment'}) }}>
                 <Image source={require('../../../assets/Apphistory.png')} style={{ height: 22, width: 22, transform: [{ rotate: "120deg" }] }} />
                 {/* <Icon name="call" /> */}
                 <Text>
@@ -143,7 +178,10 @@ componentDidMount() {
 
             <View style={{ height: 35, width: "25%", justifyContent: "center", alignContent: "center", alignItems: "center" }}>
               <TouchableOpacity style={{ alignItems: 'center' }} onPress={() =>
-                Alert.alert("Alert","Will be impelmented")
+               {
+                 this.setState({modalVisible: true})
+                  // Alert.alert("Alert","Will be impelmented")
+                }
               }>
                 {/* <Icon name="call" /> */}
                 <Image source={require('../../../assets/placeholder.png')} style={{ height: 22, width: 22 }} />
@@ -260,20 +298,10 @@ componentDidMount() {
                     // Specify style for calendar container element. Default = {}
                     ref={ref => this.calendar = ref}
                     style={{
-                      // borderWidth: 1,
-                      // borderColor: 'gray',
                       height: 300
                     }}
-                    // scrollEnabled
-                    // Specify theme properties to override specific styles for calendar parts. Default = {}
-                    // renderArrow={(dir) => {
-                    //   if (dir === "left") {
-                    //     return <Text style={{ color: 'gray' }}>peechay</Text>
-                    //   } else {
-                    //     return <Text style={{ color: 'gray' }}>agay</Text>
-                    //   }
-                    // }}
-                    
+                   
+                    onDayPress={(day)=> this.onDateSelect(day.dateString)}
                     theme={{
                       backgroundColor: '#ffffff',
                       calendarBackground: '#ffffff',
@@ -303,6 +331,7 @@ componentDidMount() {
                       
                     }}
                     markedDates={customDates}
+                    
 
                   />
 
@@ -360,6 +389,17 @@ componentDidMount() {
                 </View>
               </Card>
 
+
+
+
+              {/* <Modal
+              isVisible={this.state.modalVisible}
+              onSwipeComplete={() => this.setState({modalVisible: false})}
+              onBackdropPress={() => this.setState({modalVisible: false})}>
+              <View style={{flex: 1}}>
+                <Text>I am the modal content!</Text>
+              </View>
+            </Modal> */}
 
 
             </View>

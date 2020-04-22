@@ -320,6 +320,20 @@ const MainScreenNavigator = createStackNavigator({
 
 
 
+    UserAppointment: { 
+        screen: UserAppointment,
+        navigationOptions: () => ({
+            title:"User Profile",
+            headerTitleStyle: {
+                fontFamily:"Poppins-Regular",
+                // fontSize:30
+            },
+            header:null
+    }),
+     },
+
+
+
     SelectedProfile: {
         screen: SelectedProfile,
         headerMode: 'none',

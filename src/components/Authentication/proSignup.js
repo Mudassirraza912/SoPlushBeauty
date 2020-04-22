@@ -291,11 +291,11 @@ export default class ProSignUp extends Component {
             emailErr, passwordErr, nameErr, phoneNoErr, dOBErr, bankErr, accountNoErr,
         } = this.state
         // this.props.successSign()
-        console.log("SIGN UP jksdajkfajkshjghj", (email && password && name && phoneNo && dOB && bank && accountNo.length === 16 && name.length >= 5))
+        console.log("SIGN UP jksdajkfajkshjghj", (email && password && name && phoneNo && dOB && bank && accountNo.length == 16 && name.length >= 5 && phoneNo.length > 7))
         let date = moment(dOB).format("YYYY-MM-DD")
 
         // this.props.navigation.navigate("ProLogin")
-        if (email && password && name && phoneNo && dOB && bank && accountNo.length == 16 && name.length >= 5 && phoneNo.length > 7) {
+        if (email && password && name && phoneNo && dOB && bank && accountNo.length == 16 && phoneNo.length > 7) {
             let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             console.log("TRUE TRUUE")
             if (reg.test(email) === false) {
@@ -366,10 +366,12 @@ export default class ProSignUp extends Component {
         } if (!email) {
             console.log('email')
             this.setState({ emailErr: true, loader: false })
-        } if (!name || name.length < 5) {
-            console.log('name')
-            this.setState({ nameErr: true, loader: false })
-        } if (!address) {
+        } 
+        // if (!name || name.length < 5) {
+        //     console.log('name')
+        //     this.setState({ nameErr: true, loader: false })
+        // } 
+        if (!address) {
             console.log('address')
             this.setState({ addressErr: true, loader: false })
         } if (!phoneNo || phoneNo.length < 8) {

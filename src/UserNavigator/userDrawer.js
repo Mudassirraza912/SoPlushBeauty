@@ -182,7 +182,7 @@ class DrawerMenu extends Component {
               </View>
 
               <View style={{ marginLeft: 20 }}>
-                <Text style={styles.menuItemText}>Book an Appointment</Text>
+                <Text style={styles.menuItemText}>View Booking Appointment</Text>
               </View>
 
 
@@ -198,7 +198,7 @@ class DrawerMenu extends Component {
             <TouchableOpacity
               style={styles.menuItem}
               onPress={() => {
-                this.props.navigation.navigate('BookingHistory')
+                this.props.navigation.navigate('BookingHistory', { from: 'drawer'})
                 this.props.navigation.closeDrawer()
               }}
 

@@ -344,7 +344,7 @@ export default class EditUserProfile extends Component {
                     <Image source={envelop}style={{ height: 20, width: 20 }} />
                     </View>
                         {/* <Label>Email Address</Label> */}
-                        <Input style={{fontSize:15}} defaultValue={this.state.email} onChangeText={(e) => {this.setState({email:e})}} placeholder="Email Address" />
+                        <Input disabled style={{fontSize:15}} defaultValue={this.state.email} onChangeText={(e) => {this.setState({email:e})}} placeholder="Email Address" />
                     </Item>
                     <Item >
                     <View style={{ width: 30}}>

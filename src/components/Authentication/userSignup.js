@@ -299,10 +299,10 @@ export default class UserSignUp extends Component {
         this.setState({ loader: true })
         const { email, password, name, phoneNo, address, profilePic, fileName, fileUri } = this.state
         // this.props.successSign()
-        console.log("SIGN UP jksdajkfajkshjghj")
+        console.log("SIGN UP jksdajkfajkshjghj", (email && password && phoneNo && address && name.length >= 5 && phoneNo.length > 7))
         // this.props.navigation.navigate("UserLogin")
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if (email && password && phoneNo && address && name.length >= 5 && phoneNo.length > 7) {
+        if (email && password && phoneNo && address  && phoneNo.length > 7) {
             if (reg.test(email) === false) {
                 this.setState({ loader: false })
                 Alert.alert("Alert","Please Enter Valid Email Address")
@@ -399,9 +399,11 @@ export default class UserSignUp extends Component {
             }
         } if (!email) {
             this.setState({ emailErr: true, loader: false })
-        } if (!name || name.length < 5) {
-            this.setState({ nameErr: true, loader: false })
-        } if (!address) {
+        } 
+        // if (!name || name.length < 5) {
+        //     this.setState({ nameErr: true, loader: false })
+        // }
+         if (!address) {
             this.setState({ addressErr: true, loader: false })
         } if (!phoneNo || phoneNo.length < 8) {
             this.setState({ phoneNoErr: true, loader: false })

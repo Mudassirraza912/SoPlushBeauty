@@ -10,6 +10,9 @@ const { width, height } = Dimensions.get("window")
 export default class About extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+             about: null
+        }
     }
 
 
@@ -19,6 +22,31 @@ export default class About extends Component {
         drawerLockMode: 'locked-closed',
         header: null,
     })
+
+
+
+    componentDidMount = () => {
+                
+              const formData = new FormData()
+              formData.append('role_name','super_admin')
+
+              fetch("http://soplush.ingicweb.com/soplush/application_details/application_details.php?action=get&role_name=customer&type=about", {
+                method: 'POST',
+                // dataType: "json",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'multipart/form-data'
+                },
+                body: formData
+            }).then(res => res.json())
+                  .then(resp => {
+                  console.log('response ADMIN',resp)
+                  this.setState({
+                   about: resp.data.text
+                  })
+                })
+              .catch(err => console.log('err', err))
+    } 
 
 
 
@@ -48,13 +76,13 @@ export default class About extends Component {
                             <View style={{flex: 1 ,marginTop: 20, marginHorizontal: "3%" }}>
 
                                 <Text style={{ fontFamily: "Poppins-Regular", fontSize: 20 }}>About Us</Text>
-                                <Text style={{ fontFamily: "Poppins-Regular", marginTop: "3%", fontSize: 13, textAlign: "justify", fontStyle: "normal", color: "#48576f", lineHeight: 20  }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
+                                <Text style={{ fontFamily: "Poppins-Regular", marginTop: "3%", fontSize: 13, textAlign: "justify", fontStyle: "normal", color: "#48576f", lineHeight: 20  }}>{this.state.about}</Text>
 
-                                <Text style={{ fontFamily: "Poppins-Regular", fontSize: 20, marginTop: "6%" }}>Who We Are?</Text>
+                                {/* <Text style={{ fontFamily: "Poppins-Regular", fontSize: 20, marginTop: "6%" }}>Who We Are?</Text>
                                 <Text style={{ fontFamily: "Poppins-Regular", marginTop: "3%", fontSize: 13, textAlign: "justify", fontStyle: "normal", color: "#48576f", lineHeight: 20 }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </Text>
+                    </Text> */}
 
                             </View>
 
