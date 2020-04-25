@@ -705,6 +705,7 @@ export default class PersonalService extends Component {
                       {soplushData !== undefined ? (
                         <View style={{ marginTop: '5%' }}>
                           {filterplush.map((value, index) => {
+                            console.log('value', value)
                             if (value.p_checked === 0) {
                               var checked = false;
                             }
@@ -792,6 +793,18 @@ export default class PersonalService extends Component {
                                           {value.service_name}
                                         </Text>
                                       </View>
+                                    </View>
+
+                                    <View>
+                                      <Text
+                                        note
+                                        style={{
+                                          color: 'pink',
+                                          paddingRight: 15,
+                                        }}>
+                                        {' '}
+                                      {`(${value.total_beauticians})`}
+                                      </Text>
                                     </View>
 
                                     <View>
@@ -928,6 +941,19 @@ export default class PersonalService extends Component {
                                           </Text>
                                         </View>
                                       </View>
+
+                                      <View>
+                                      <Text
+                                        note
+                                        style={{
+                                          color: 'pink',
+                                          paddingRight: 15,
+                                        }}>
+                                        {' '}
+                                      {`(${value.total_beauticians})`}
+                                      </Text>
+                                    </View>
+
 
                                       <View>
                                         <Text

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView,TextInput, RefreshControl, Alert, BackHandler } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView,TextInput, RefreshControl, Alert, BackHandler, Modal,  } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
-import { Container, Content, List, ListItem, Left, Right, Button } from 'native-base';
+import { Container, Content, List, ListItem, Left, Right, Button, DatePicker , Input, Item} from 'native-base';
 import {Avatar, Header, Icon, Card, Divider} from 'react-native-elements'
 import moment from 'moment'
+import { LinearGradient } from 'expo-linear-gradient';
 
 const {width, height} = Dimensions.get("window")
 
@@ -116,7 +117,15 @@ export default class BookingHistory extends Component {
             data: [],
             focusOn: false,
             offFocus: true,
-            text:''
+            text:'',
+            modalVisible: false,
+            date: '',
+            day: '',
+            cost: '',
+            serviceName: '',
+            beauticianName: ''
+            
+
         }
     }
 
@@ -135,11 +144,11 @@ export default class BookingHistory extends Component {
                         if (successData.status === true) {
                             console.log("successData.data[0].role_id === 3", successData.data)
                             //   console.log("Category PRO", successData)
-                   this.setState({
-                       services:successData.data,
-                       data:successData.data
+                            this.setState({
+                                services:successData.data,
+                                data:successData.data
 
-                   })
+                            })
                         
 
                         } else {
@@ -230,6 +239,40 @@ export default class BookingHistory extends Component {
 
 
 
+    //   FILTER FUNCTION
+
+    filterByParams = () => {
+        const {date, day, serviceName, cost, beauticianName} = this.state
+
+        const formData = new FormData()
+        formData.append('date', date)
+        formData.append('beautician_name', beauticianName)
+        formData.append('cost', cost)
+        formData.append('service_name', serviceName)
+        console.log('formData', formData)
+        fetch(`http://soplush.ingicweb.com/soplush/user/user.php?action=get_user_bookings&user_id=${this.props.screenProps.profileData.user_id}`, {
+            method: 'POST',
+            // dataType: "json",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'multipart/form-data'
+            },
+            body: formData
+        }).then(res => res.json())
+        .then(resp => {
+          console.log('resp specific', resp.data, resp)
+          
+          this.setState({
+            data: resp.data,
+            modalVisible: false
+          })
+        })
+        .catch(err => console.log(err))
+    }
+
+
+
+
     static navigationOptions = () => ({
         headerMode: 'none',
         headerVisible: false,
@@ -239,10 +282,110 @@ export default class BookingHistory extends Component {
 
     
     render() {
-        console.log('state',this.state.data)
+        const { data , modalVisible} = this.state
         return (
             <View style={{flex:1, height:'100%', width:'100%', marginTop: -80}}>
                 <ImageBackground source={require('../../../assets/inner.png')} style={{height:"100%", width:"100%"}}> 
+
+                {/* FILTER OPTIONS */}
+                
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={() => {
+                    this.setState({modalVisible:!modalVisible})
+                    }}
+                >
+                    <View style={{
+                flex: 1,
+                backgroundColor: "#fff",
+                height: '100%',
+            }}>
+          <View style={{ flex: 1, width: '100%', backgroundColor: "rgba(246, 232, 232, 0.7)"}}>
+
+              <View style={{backgroundColor:'#fff', height:60, justifyContent:'center'}}>
+                        <Text style={{textAlign:'center', fontSize: 20, fontFamily: "Poppins-Regular"}}>FILTER OPTIONS</Text>
+              </View>
+
+              <View style={{width:'100%', padding: 20}}>
+
+                         <View style={{ borderWidth: 1, borderColor: 'pink', padding: 10, borderRadius: 10}}>
+                            <DatePicker
+                                ref={ref => this.datePicker = ref}
+                                aultDate={"1/23/3"}
+                                mode="date" //The enum of date, datetime and time
+                                placeHolderTextStyle={{ color: "#000", fontSize: 15 }}
+                                placeHolderText="Date"
+                                format="DD-MM-YYYY"
+                                minDate="01-01-2019"
+                                maxDate="01-01-2050"
+                                confirmBtnText="Confirm"
+                                cancelBtnText="Cancel"
+                                onDateChange={(date) => {
+                                    var newdate = moment(date.toString().substr(4, 12)).format("YYYY-MM-DD")
+                                    var day = moment(date.toString().substr(4, 12)).format("dddd")
+
+                                    //  this.state.profileData.birthdate = newdate
+
+                                    this.setState({ date: newdate, day: day })
+
+                                }}
+                                underlineColorAndroid="#f55f2a" />
+                         </View>
+
+
+                         <View style={{width: '100%', flexDirection:'row', justifyContent:'space-between', top: 10}}>
+                            <View style={{ borderWidth: 1, borderColor: 'pink',  borderRadius: 10, padding: 5, width: '45%'}}>
+                             
+                             <Item style={{borderBottomWidth: 0,}}>  
+                                  <Input defaultValue={this.state.newPass} style={{ width: '100%', fontSize: 15 }}  onChangeText={(e) => { this.setState({ serviceName: e }) }} placeholder="Service Name" placeholderTextColor="#000" />
+                             </Item>
+ 
+                             </View>
+
+                             <View style={{ borderWidth: 1, borderColor: 'pink',  borderRadius: 10, padding: 5, width: '45%'}}>
+                             
+                             <Item style={{borderBottomWidth: 0,}}>  
+                                  <Input defaultValue={this.state.newPass} style={{ width: '100%', fontSize: 15 }}  onChangeText={(e) => { this.setState({ cost: e }) }} placeholder="Cost" placeholderTextColor="#000" />
+                             </Item>
+ 
+                             </View>
+                        </View>
+
+
+
+                         <View style={{ borderWidth: 1, borderColor: 'pink',  borderRadius: 10, padding: 5, top: 20}}>
+                             
+                            <Item style={{borderBottomWidth: 0}}>  
+                                 <Input defaultValue={this.state.newPass} style={{ width: '100%', fontSize: 15 }}  onChangeText={(e) => { this.setState({ beauticianName: e }) }} placeholder="Beautician Name" placeholderTextColor="#000" />
+                            </Item>
+
+                        </View>
+
+                        <View style={{ alignContent: "center", alignItems: "center", marginTop: "15%", marginBottom:10 }}>
+                                <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "100%", borderRadius: 10}}>
+                                        <TouchableOpacity onPress={() => {this.filterByParams()}} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
+                                            <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular", fontSize: 17, paddingVertical: 15 , fontWeight:'bold'}}>
+                                            FILTER
+                                            </Text>
+                                        </TouchableOpacity>
+                                    </LinearGradient>
+                                    </View>
+
+
+                        
+
+
+              </View>
+
+                                    
+          
+          </View>
+        </View>
+      </Modal>
+
+
 
                 <Header
                         containerStyle={{marginTop:60, backgroundColor:"#fff"}}
@@ -294,7 +437,7 @@ export default class BookingHistory extends Component {
                         <View style={{flexDirection:"row"}}>
 
                      
-                        <TouchableOpacity onPress={() => {Alert.alert("Alert", "Will be implemented")}}>
+                        <TouchableOpacity onPress={() => {this.setState({modalVisible: true})}}>
                             <Image source={require('../../../assets/filter.png')} style={{ height: 20, width: 20 }} />
                         </TouchableOpacity>
                         </View>}

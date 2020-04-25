@@ -26,13 +26,20 @@ export default class Payment extends Component {
             selectdate: this.props.navigation.getParam('selectdate'),
             costumerProfile: this.props.screenProps.profileData,
             note: this.props.navigation.getParam('note'),
-
+            location:null
         }
     }
 
 
-    componentWillUnmount() {
+    componentDidMount() {
         console.log("componentWillUnmount componentWillUnmount componentWillUnmount")
+        fetch(`http://soplush.ingicweb.com/soplush/booking/locations.php?action=get_locations&user_id=${this.props.screenProps.profileData.user_id}`, {
+
+    }).then(res => res.json())
+      .then(resp => {
+        console.log('GETLOCATION',resp.data[0])
+        this.setState({location:resp.data[0]})
+      })
     }
 
     
@@ -176,6 +183,8 @@ export default class Payment extends Component {
                     bookingFormData.append('address', 'karachi')
                     bookingFormData.append('service_date', selectdate)
                     bookingFormData.append('charge_id', id)
+                    bookingFormData.append('location_id', this.state.location.id)
+
 
                     console.log('bookingFormData', bookingFormData)
 

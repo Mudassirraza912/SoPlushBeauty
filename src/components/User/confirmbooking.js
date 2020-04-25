@@ -48,11 +48,11 @@ export default class ConfirmBooking extends Component {
         var amount = 0
         if (obj.type == 'inc') {
             cart[index].quantity = qunat + 1
-            console.log(cart)
+            // console.log(cart)
             this.setState({ cart })
         }else if(obj.type == 'dec'){
             cart[index].quantity = qunat - 1
-            console.log(cart)
+            // console.log(cart)
             this.setState({ cart })
         }
 
@@ -81,7 +81,7 @@ export default class ConfirmBooking extends Component {
     fetchconfirmBooking = () => {
         // this.props.navigation.navigate('Payment')
         this.setState({loader: true})
-        console.log("FUNTION CALLED")
+        // console.log("FUNTION CALLED")
         const { cart, selectedSlot, selectdate, profileData, note } = this.state
         var params = JSON.stringify(cart)
         const formData = new FormData()
@@ -117,7 +117,7 @@ export default class ConfirmBooking extends Component {
                     bookingFormData.append('customer_id', this.props.screenProps.profileData.user_id)
                     bookingFormData.append('address', 'karachi')
                     bookingFormData.append('service_date', selectdate)
-                    console.log('bookingFormData', bookingFormData)
+                    // console.log('bookingFormData', bookingFormData)
 
                     fetch("http://soplush.ingicweb.com/soplush/booking/booking.php?action=add_booking", {
                         method: 'POST',
@@ -137,14 +137,14 @@ export default class ConfirmBooking extends Component {
                             if (successData.status === true) {
                                 // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
                                 this.setState({loader: false})
-                                console.log("successData.data Add BOOKING", successData, this.props.navigation.state.params)
+                                // console.log("successData.data Add BOOKING", successData, this.props.navigation.state.params)
                                 this.props.navigation.state.params = {};
                                 Alert.alert("Alert","Booking Send Successfully")
                                 // this.props.navigation.navigate('UserHome')
 
                             } else {
                                 this.setState({loader: false})
-                                console.log("Else", successData)
+                                // console.log("Else", successData)
                                 Alert.alert("Alert",successData.message)
                             }
                         })
@@ -168,7 +168,7 @@ export default class ConfirmBooking extends Component {
         const { selectedSlot, cart, totalAmount, profileData } = this.state
 
         var  params =  this.props.navigation.getParam('category_id')
-        console.log('cart cart cart',   cart, "totalAmount", totalAmount)
+        // console.log('cart cart cart',   cart, "totalAmount", totalAmount)
         var dayFormat = moment(this.state.selectdate).format('YYYY-MM-DD')
 
         return (
