@@ -17,10 +17,11 @@ export default class AddServiceDetails extends Component {
             profileData: this.props.screenProps.profileData,
             add: true,
             category: [],
-            selectedCategory: "1",
+            selectedCategory: "",
             name: "",
             cost: "",
             loader: false,
+            services: null
 
         }
     }
@@ -29,22 +30,13 @@ export default class AddServiceDetails extends Component {
     componentDidMount() {
         const { profileData } = this.state
 
-        // BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
-
-        // console.log("email, password, address, name, phoneNo, profilePic", email, password)
 
 
         fetch("http://soplush.ingicweb.com/soplush/category/category.php?action=select_category", {
             method: 'GET',
-            // dataType: "json",
-            // headers: {
-            //     'Accept' : 'application/json',
-            //     'Content-Type': 'multipart/form-data'
-            // },
-            // body: ""
         }).then(res => res.json())
             .then(resp => {
-                console.log(JSON.stringify(resp))
+                console.log('JSON CATEGORY',JSON.stringify(resp))
                 var successData = resp
 
                 if (successData.status === true) {
@@ -63,19 +55,6 @@ export default class AddServiceDetails extends Component {
     }
 
 
-    // componentWillUnmount() {
-    //     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
-    // }
-
-    // handleBackButton = () => {
-    //     if (!this.state.add) {
-    //        this.setState({add: true})
-    //         return true;
-    //     }
-    //     else {
-    //         this.props.navigation.navigate('Main')
-    //     }
-    // };
 
 
     addCategory = () => {
@@ -88,16 +67,13 @@ export default class AddServiceDetails extends Component {
             Alert.alert("Alert", "Please fill the required fields")
         } else {
             var formData = new FormData()
-            formData.append("name", name)
+            formData.append("service_id", name)
             formData.append("cost", cost)
             formData.append("category_id", selectedCategory)
             formData.append("user_id", profileData.user_id)
-            // this.props.navigation.navigate("ServiceList")
-            // category.map((val) => {
-            //     if (val.category_name === selectedCategory) {
-            //         formData.append("category_id", val.category_id)
-            //     }
-            // })
+          
+
+            console.log("formData", formData)
             fetch("http://soplush.ingicweb.com/soplush/beautician/beautician_service.php?action=add_beautician_service", {
                 method: 'POST',
                 dataType: "json",
@@ -149,8 +125,36 @@ export default class AddServiceDetails extends Component {
     })
 
 
+    onValueChange = (value, index) => {
+            this.setState({ selectedCategory: value })
+
+            fetch(`http://soplush.ingicweb.com/soplush/service/service.php?action=select_all_service&category_id=${value}`, {
+            method: 'GET',
+        }).then(res => res.json())
+            .then(resp => {
+                console.log('SERVICES',JSON.stringify(resp))
+                var successData = resp
+
+                if (successData.status) {
+                    this.setState({
+                        services: successData.data
+                    })
+                } else {
+                    Alert.alert("Alert", successData.message)
+                    this.setState({
+                        services: successData.data
+                    })
+                }
+            })
+            .catch(err => console.log("Category err err", err));
+
+    }
+
+
     render() {
-        // console.log("this.state.category", this.state.category)
+        const {selectedCategory, services} = this.state
+        console.log("selectedCategory", selectedCategory)
+
         return (
             <View style={{ flex: 1, height: '100%', width: '100%', marginTop: -80 }}>
                 <ImageBackground source={require('../../../assets/inner.png')} style={{ height: "100%", width: "100%", opacity: 0.9, marginTop: 20 }}>
@@ -185,35 +189,74 @@ export default class AddServiceDetails extends Component {
                                 </TouchableOpacity>} */}
 
 
-<View style={{ width: "80%", alignContent: "center", alignItems: "center", justifyContent: "center", alignSelf: 'center' }}>
-
-<Item  stackedLabel style={{ width: '100%', borderBottomWidth: 1, borderBottomColor: '#bdbdbd' }}>
-    <Label style={{marginRight: '73%',    color: 'gray', fontSize: 12, marginTop: 10 }}>Enter Service</Label>
-    <Input value={this.state.email} style={{ color: 'gray', width: '100%', marginBottom: 5 }} onChangeText={(e) => { this.setState({ name: e }) }} placeholder="Enter Service" />
-</Item>
+<View 
+style={{ width: "80%",alignSelf: 'center' }}
+>
 
 
+<View style={{marginTop: 20,}}>
 
+    <View>
+        <Text style={{  color: 'gray', fontSize: 12}}>
+            SELECT CATEGORY
+        </Text>
+    </View>
 
-<Item stackedLabel style={{ width: '100%', borderBottomWidth: 1, borderBottomColor: '#bdbdbd' }}>
-    <Label style={{ marginRight: '78%', color: 'gray', fontSize: 12, marginTop: 10 }}>Enter Cost</Label>
-    <Input value={this.state.email} style={{ color: 'gray', width: '100%', marginBottom: 5 }} onChangeText={(e) => { this.setState({ cost: e }) }} placeholder="Enter Cost" keyboardType="number-pad" />
-</Item>
-
-<View>
     <Picker
         mode="dropdown"
-        selectedValue={this.state.selectedCategory}
+        selectedValue={selectedCategory}
         style={{ height: 50, width: 280 }}
-        onValueChange={(itemValue, itemIndex) =>
-            this.setState({ selectedCategory: itemValue })
-        }>
+        onValueChange={(itemValue, itemIndex) =>{
+            // this.setState({ selectedCategory: itemValue })
+                this.onValueChange(itemValue, itemIndex)
+        }}
+        >
         {this.state.category.map((value, index) => {
             console.log("value.category_name", value.category_name)
             return (<Picker.Item style={{ width: 200 }} label={value.category_name} value={value.category_id} />)
         })}
     </Picker>
 </View>
+
+
+{services != null && <View>
+        {/* <Item  stackedLabel style={{ width: '100%', borderBottomWidth: 1, borderBottomColor: '#bdbdbd' }}>
+            <Label style={{marginRight: '73%',    color: 'gray', fontSize: 12, marginTop: 10 }}>Enter Service</Label>
+            <Input value={this.state.email} style={{ color: 'gray', width: '100%', marginBottom: 5 }} onChangeText={(e) => { this.setState({ name: e }) }} placeholder="Enter Service" />
+        </Item> */}
+
+<View>
+
+    <View>
+        <Text style={{  color: 'gray', fontSize: 12}}>
+            ENTER SERVICE
+        </Text>
+    </View>
+
+    <Picker
+        mode="dropdown"
+        selectedValue={this.state.name}
+        style={{ height: 50, width: 280 }}
+        onValueChange={(itemValue, itemIndex) =>{
+            this.setState({ name: itemValue })
+                // this.onValueChange(itemValue, itemIndex)
+        }}
+        >
+        {services.map((value, index) => {
+            console.log("value.category_name", value.category_name)
+            return (<Picker.Item style={{ width: 200 }} label={value.service_name} value={value.service_id} />)
+        })}
+    </Picker>
+</View>
+
+
+
+
+        <Item stackedLabel style={{ width: '100%', borderBottomWidth: 1, borderBottomColor: '#bdbdbd' }}>
+            <Label style={{ color: 'gray', fontSize: 12 , width:'100%'}}>ENTER COST</Label>
+            <Input value={this.state.email} style={{ color: 'gray', width: '100%', marginBottom: 5 }} onChangeText={(e) => { this.setState({ cost: e }) }} placeholder="Enter Cost" keyboardType="number-pad" />
+        </Item>
+</View>}
 
 
 {/* 

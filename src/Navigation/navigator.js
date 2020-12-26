@@ -34,8 +34,8 @@ import Walkthrogh from '../components/Walk through/walkthrogh';
 import UserLogin from '../components/Authentication/userLogin';
 import UserSignUp from '../components/Authentication/userSignup';
 import AddServiceDetails  from '../components/Pro/addSevicesDetails'
-const Drawer = createDrawerNavigator(
-    {
+
+const Drawer = createDrawerNavigator({
 
 
         Main: { 

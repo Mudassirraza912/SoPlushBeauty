@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, PickerItem, Alert, Linking, TouchableHighlight, Modal,  Picker } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, PickerItem, Alert, Linking, TouchableHighlight, Modal,  Picker, RefreshControl } from 'react-native'
 import { Container, Content, List, ListItem, Left, Right, Button, Item, Input, Label, Form, Icon } from 'native-base';
 import { Avatar, Header, Card, Divider } from 'react-native-elements'
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
@@ -35,7 +35,8 @@ export default class UserAppointment extends Component {
         {name:'Port Hueneme', latitude:34.155834, longitude:-119.202789},
         {name:'Auburn', latitude:42.933334, longitude:-76.566666},
         {name:'Jamestown', latitude:	42.095554, longitude:-79.238609}
-      ]
+      ],
+       refreshing: false
     }
 
   }
@@ -73,8 +74,8 @@ export default class UserAppointment extends Component {
 
     }).then(res => res.json())
       .then(resp => {
-        // console.log(JSON.stringify(resp))
         var successData = resp
+        console.log('resp GET booking', resp )
 
         if (successData.status === true) {
           // console.log("successData.data[0].role_id === 3", successData.data)
@@ -86,7 +87,6 @@ export default class UserAppointment extends Component {
             this.setState({ customDates })
           })
           //   console.log("Category PRO", successData)
-
 
           this.setState({
             services: successData.data,
@@ -128,17 +128,23 @@ export default class UserAppointment extends Component {
 
   onDateSelect = (dateString) => {
 
-    // console.log(`http://soplush.ingicweb.com/soplush/booking/booking.php?action=get_customer_bookings&date=${dateString}&customer_id=${this.props.screenProps.profileData.user_id}`)
+    console.log(`http://soplush.ingicweb.com/soplush/booking/booking.php?action=get_customer_bookings&date=${dateString}&customer_id=${this.props.screenProps.profileData.user_id}`)
 
     fetch(`http://soplush.ingicweb.com/soplush/booking/booking.php?action=get_customer_bookings&date=${dateString}&customer_id=${this.props.screenProps.profileData.user_id}`, {
     }).then(res => res.json())
       .then(resp => {
-        // console.log('resp specific', resp)
+        console.log('resp specific', resp)
 
-        this.setState({
-          selectedDateData: resp.data,
-          modalVisible: true
+        if(resp.status) {
+          this.setState({
+            selectedDateData: resp.data,
+            modalVisible: true
         })
+        }else {
+          Alert.alert("Alert",resp.message)
+        }
+
+        
       })
       .catch(err => console.log(err))
 
@@ -176,6 +182,46 @@ export default class UserAppointment extends Component {
           }
         })
   }
+
+
+  onRefresh = () => {
+    this.setState({refreshing: true})
+
+    fetch(`http://soplush.ingicweb.com/soplush/user/user.php?action=get_user_bookings&user_id=${this.props.screenProps.profileData.user_id}&status=accepted`, {
+
+    }).then(res => res.json())
+      .then(resp => {
+        var successData = resp
+        console.log('resp GET booking', resp )
+
+        if (successData.status === true) {
+          // console.log("successData.data[0].role_id === 3", successData.data)
+
+          successData.data.map((value, index) => {
+            var date = moment(value.service_date).format('YYYY-MM-DD')
+            customDates[date] = { selected: true, selectedColor: '#FFB9BA' }
+            // console.log("date date date",customDates)
+            this.setState({ customDates })
+          })
+          //   console.log("Category PRO", successData)
+
+          this.setState({
+            services: successData.data,
+            data: successData.data,
+            refreshing: false
+          })
+
+
+        } else {
+          // Alert.alert("Alert",successData.message)
+          // console.log("successData.message", successData.message)
+          this.setState({
+            refreshing: false
+          })
+        }
+      })
+      .catch(err => console.log("Category err err", err));
+    }
 
 
 
@@ -292,7 +338,7 @@ export default class UserAppointment extends Component {
           }}>
             <View style={{ flex: 1, width: '100%', backgroundColor: "rgba(246, 232, 232, 0.7)", justifyContent: "center", padding: 10 }}>
 
-              <ScrollView>
+              <ScrollView >
                 {selectedDateData.map((value, index) => {
                   var index = index + 1
                   var dataLength = selectedDateData.length
@@ -477,7 +523,7 @@ export default class UserAppointment extends Component {
 
         <View style={{ flex: 1, width: '100%', backgroundColor: "rgba(246, 232, 232, 0.7)", justifyContent: "center" }}>
 
-          <ScrollView>
+          <ScrollView refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh} />}>
 
             <View style={{ justifyContent: "center", alignContent: "center", alignItems: "center", marginTop: 20 }}>
 

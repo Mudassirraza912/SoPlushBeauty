@@ -29,7 +29,7 @@ export default class Term extends Component {
         const formData = new FormData()
         formData.append('role_name','super_admin')
 
-        fetch("http://soplush.ingicweb.com/soplush/application_details/application_details.php?action=get&role_name=customer&type=terms", {
+        fetch("http://soplush.ingicweb.com/soplush/application_details/application_details.php?action=get&role_name=beautician&type=terms", {
           method: 'POST',
           // dataType: "json",
           headers: {

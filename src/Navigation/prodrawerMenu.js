@@ -290,7 +290,7 @@ class DrawerMenu extends Component {
 
 
 
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={styles.menuItem}
               onPress={() => {
                 Alert.alert("Alert", "Will be impelmented")
@@ -307,7 +307,7 @@ class DrawerMenu extends Component {
 
 
 
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
 
 

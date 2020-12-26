@@ -104,8 +104,8 @@ export default class SelectedProfile extends Component {
                         placement="left"
                         leftComponent={<Icon onPress={() => { this.props.navigation.goBack() }} name="arrow-back" color="#000" />}
                         centerComponent={<Text style={{ alignSelf: 'center', fontSize: 20, fontFamily: "Poppins-Regular" }}>PROFILE</Text>}
-                        rightComponent={<TouchableOpacity onPress={() => {Alert.alert("Alert", "Will be implemented")}}><Image source={require('../../../assets/edit.png')} style={{height:20, width:20}} />
-                        </TouchableOpacity>}
+                        // rightComponent={<TouchableOpacity onPress={() => {Alert.alert("Alert", "Will be implemented")}}><Image source={require('../../../assets/edit.png')} style={{height:20, width:20}} />
+                        // </TouchableOpacity>}
                     />
 
                     <View style={{ height:'100%', width:'100%', justifyContent: "center" }}>

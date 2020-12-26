@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, FlatList, StyleSheet, TextInput, Keyboard, BackHandler, Alert } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, FlatList, StyleSheet, TextInput, Keyboard, BackHandler, Alert, RefreshControl } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 // import { Container, Header, Content, Item, Input, Icon, Label, Form, Button, Body } from 'native-base';
 import { Avatar, Header, Icon } from 'react-native-elements'
@@ -31,7 +31,11 @@ const { width, height } = Dimensions.get("window")
             data: [],
             focusOn: false,
             offFocus: true,
-            text: ''
+            text: '',
+            location:null,
+            refreshing: false
+
+
         }
     }
 
@@ -55,6 +59,21 @@ const { width, height } = Dimensions.get("window")
 
     componentDidMount() {
         const { profileData, categories } = this.state
+
+
+
+
+        fetch(`http://soplush.ingicweb.com/soplush/booking/locations.php?action=get_locations&user_id=${this.props.screenProps.profileData.user_id}`, {
+
+    }).then(res => res.json())
+      .then(resp => {
+        console.log('GETLOCATION',resp)
+        if(resp.status) {
+        this.setState({location:resp.data[0]})
+        }
+      })
+      .catch(err => console.log(err))
+
         console.log("user_id", profileData.user_id)
         const formData = new FormData();
         formData.append("id", profileData.user_id),
@@ -133,18 +152,14 @@ const { width, height } = Dimensions.get("window")
 
         const formData = new FormData();
         formData.append("id", item.category_id),
-            // this.props.navigation.navigate(this.state.navigate)
-            // this.props.navigation.navigate(this.state.navigate, {
-            //     category_id: item.category_id,
-            //     image: `http://soplush.ingicweb.com/soplush/images/${item.image}`,
-            //     service: successData.data
+         
 
-            // })
-            // console.log("SUCCESS PRO", successData)
-            //   Alert.alert("Login successful")
-            // this.props.navigation.navigate("Main")
 
-            fetch("http://soplush.ingicweb.com/soplush/service/service.php?action=select_service", {
+            console.log('formData', formData)
+
+            if(this.state.location){
+
+                fetch("http://soplush.ingicweb.com/soplush/service/service.php?action=select_service", {
                 method: 'POST',
                 // dataType: "json",
                 headers: {
@@ -154,7 +169,7 @@ const { width, height } = Dimensions.get("window")
                 body: formData
             }).then(res => res.json())
                 .then(resp => {
-                    console.log(JSON.stringify(resp))
+                    console.log('resp onclick', resp)
                     var successData = resp
 
                     if (successData.status === true) {
@@ -177,6 +192,9 @@ const { width, height } = Dimensions.get("window")
                 })
                 .catch(err => console.log("err err err", err));
 
+            }else {
+                Alert.alert('ALert', "Please update your current location. {/n} Side bar》View booking appointment 》location")
+            }
 
 
     }
@@ -201,6 +219,28 @@ const { width, height } = Dimensions.get("window")
 
     };
 
+
+
+    onRefresh = () => {
+        this.setState({refreshing: true})
+    
+       
+        fetch(`http://soplush.ingicweb.com/soplush/booking/locations.php?action=get_locations&user_id=${this.props.screenProps.profileData.user_id}`, {
+
+    }).then(res => res.json())
+      .then(resp => {
+        console.log('GETLOCATION',resp)
+        if(resp.status) {
+        this.setState({location:resp.data[0], refreshing: false})
+        }else{
+        this.setState({refreshing: false})
+
+        }
+      })
+      .catch(err => console.log(err))
+        }
+    
+    
 
 
     render() {
@@ -280,7 +320,7 @@ const { width, height } = Dimensions.get("window")
 
 
 
-                    <ScrollView >
+                    <ScrollView refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh} />}>
 
                         <View style={{ alignSelf: "center", alignContent: "center", alignItems: "center", backgroundColor: "#fff", width: '100%' }}>
                             <Image source={require('../../../assets/Cover.png')} style={{ opacity: 2, width: '100%' }} />

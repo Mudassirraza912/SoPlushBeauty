@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert, AsyncStorage, BackHandler } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert, AsyncStorage, BackHandler, Modal, Keyboard, Animated, UIManager, TextInput, } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button, Item, Input,  Label, Form, Icon, Spinner } from 'native-base';
 import {Avatar, Header, Card, Divider} from 'react-native-elements'
@@ -17,7 +17,8 @@ import museum from '../../../assets/museum.png'
 import atmcard from '../../../assets/atm-card.png'
 const defaultImage = require('../../../assets/default.png')
 
-const {width, height} = Dimensions.get("window")
+const { State: TextInputState } = TextInput;
+const { width, height } = Dimensions.get("window")
 const options = {
     title: 'Select Avatar',
     storageOptions: {
@@ -45,6 +46,9 @@ export default class EditUserProfile extends Component {
             userId:'',
             profilePic: false,
             loader: false,
+            modalVisible: false,
+            shift: new Animated.Value(0),
+
 
           }
     }
@@ -52,6 +56,8 @@ export default class EditUserProfile extends Component {
 
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+        this.keyboardDidShowSub = Keyboard.addListener('keyboardDidShow', this.handleKeyboardDidShow);
+        this.keyboardDidHideSub = Keyboard.addListener('keyboardDidHide', this.handleKeyboardDidHide);
 
     }
 
@@ -117,10 +123,24 @@ export default class EditUserProfile extends Component {
     //         }
     //       });
     // } 
+    openCamera = async () => {
+        const { image } = this.state
+        this.setState({modalVisible: false})
+        let pickerResult = await ImagePicker.launchCameraAsync({
+            allowsEditing: true,
+            // aspect: [4, 3],
+        });
+
+        console.log("launchCameraAsync",pickerResult)
+        // image.push(pickerResult.uri)
+        // this.setState({ image })
+        this._handleImagePicked(pickerResult);
+    };
 
 
     openGallery = async () => {
         const { image } = this.state
+        this.setState({modalVisible: false})
         let pickerResult = await ImagePicker.launchImageLibraryAsync({
             allowsEditing: true,
             // aspect: [4, 3],
@@ -275,9 +295,43 @@ export default class EditUserProfile extends Component {
 
     
     render() {
+        const {modalVisible} = this.state
         return (
             <View style={{flex:1, height:'100%', width:'100%', marginTop: -80}}>
                 <ImageBackground source={require('../../../assets/inner.png')} style={{height:"100%", width:"100%", marginTop: 20}}> 
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={() => {
+                    this.setState({modalVisible:!modalVisible})
+                    }}
+                >
+                    <View style={{
+                flex: 1,
+                backgroundColor: "rgba(246, 232, 232, 0.7)",
+                // height: '100%',
+                // opacity:0
+                justifyContent:'center', alignItems:'center'
+            }}>
+                    <View style={{  width: '90%', backgroundColor: "#fff", borderRadius:10 }}>
+
+                        <View style={{padding: 20}}>
+                            <TouchableOpacity onPress={() => {this.openCamera()}} style={{padding:20, borderBottomWidth: 1, borderBottomColor:'gray'}}>
+                                <Text>Take a Picture..</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity onPress={() => this.openGallery()} style={{padding:20, borderBottomWidth: 1, borderBottomColor:'gray'}}>
+                                <Text>Upload Picture..</Text>
+                            </TouchableOpacity>
+                        </View>
+                        
+
+                                                
+                    
+                    </View>
+        </View>
+      </Modal>
 
               
                 <Header
@@ -303,8 +357,9 @@ export default class EditUserProfile extends Component {
                 <View style={{flex: 1 ,height:'100%', width:'100%',justifyContent:"center"}}>
 
                 <ScrollView style={{height: height}}>
+                <Animated.View style={[{flex: 1 ,justifyContent:"center", alignContent:"center", alignItems:"center", marginTop:20}, { transform: [{ translateY: this.state.shift }] }]} >
+
                    
-                   <View style={{flex: 1 ,justifyContent:"center", alignContent:"center", alignItems:"center", marginTop:20}}>
 
                 {/* <View style={{backgroundColor:"#fff",borderRadius:10, width:"90%"}}> */}
                    
@@ -313,17 +368,17 @@ export default class EditUserProfile extends Component {
                        {!this.state.profilePic ?
                        <View> 
                      {(this.props.screenProps.profileData.profile_pic !== "" && this.props.screenProps.profileData.profile_pic !== null) ? <View style={{justifyContent:"center", alignContent:"center", alignItems:"center", paddingVertical:15, marginBottom:10}}>
-                             <Avatar  onPress={this.openGallery} onEditPress={this.openGallery} containerStyle={{backgroundColor:"#fc8b8c",}} showEditButton  rounded size="xlarge" editButton={{name:"camera",type:"font-awesome", size:25, iconStyle:{marginTop:10} ,containerStyle:{backgroundColor:"#fc8b8c", borderRadius:50, height: 45, width: 45, borderColor:'#fff' , borderWidth:2 ,marginRight:60}, color:"#fff", underlayColor:"#fc8b8c", reverseColor:"#fc8b8c", }}  source={{uri:`http://soplush.ingicweb.com/soplush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}} />
+                             <Avatar  onPress={() => this.setState({modalVisible: true})} onEditPress={() => this.setState({modalVisible: true})} containerStyle={{backgroundColor:"#fc8b8c",}} showEditButton  rounded size="xlarge" editButton={{name:"camera",type:"font-awesome", size:25, iconStyle:{marginTop:10} ,containerStyle:{backgroundColor:"#fc8b8c", borderRadius:50, height: 45, width: 45, borderColor:'#fff' , borderWidth:2 ,marginRight:60}, color:"#fff", underlayColor:"#fc8b8c", reverseColor:"#fc8b8c", }}  source={{uri:`http://soplush.ingicweb.com/soplush/profile_pics/${this.props.screenProps.profileData.profile_pic}`}} />
                         </View>  :
                         
                         <View style={{justifyContent:"center", alignContent:"center", alignItems:"center", paddingVertical:15, marginBottom:10}}>
-                             <Avatar  onPress={this.openGallery} onEditPress={this.openGallery} containerStyle={{backgroundColor:"#fc8b8c",}} showEditButton  rounded size="xlarge" editButton={{name:"camera",type:"font-awesome", size:25, iconStyle:{marginTop:10} ,containerStyle:{backgroundColor:"#fc8b8c", borderRadius:50, height: 45, width: 45, borderColor:'#fff' , borderWidth:2 ,marginRight:60}, color:"#fff", underlayColor:"#fc8b8c", reverseColor:"#fc8b8c", }}  source={defaultImage} />
+                             <Avatar  onPress={() => this.setState({modalVisible: true})} onEditPress={() => this.setState({modalVisible: true})} containerStyle={{backgroundColor:"#fc8b8c",}} showEditButton  rounded size="xlarge" editButton={{name:"camera",type:"font-awesome", size:25, iconStyle:{marginTop:10} ,containerStyle:{backgroundColor:"#fc8b8c", borderRadius:50, height: 45, width: 45, borderColor:'#fff' , borderWidth:2 ,marginRight:60}, color:"#fff", underlayColor:"#fc8b8c", reverseColor:"#fc8b8c", }}  source={defaultImage} />
                         </View> 
                         }
                         </View>
                         :
                         <View style={{justifyContent:"center", alignContent:"center", alignItems:"center"}}>
-                        <Avatar  onPress={this.openGallery} onEditPress={this.openGallery} containerStyle={{backgroundColor:"#fc8b8c",}} showEditButton  rounded size="xlarge" editButton={{name:"camera",type:"font-awesome", size:25, iconStyle:{marginTop:10, color:'#fff', borderColor:'#fff'} ,containerStyle:{backgroundColor:"#fc8b8c", borderRadius:50, height: 45, width: 45, borderColor:'#fff' , borderWidth:2 ,marginRight:60}, color:"#fff", underlayColor:"#fc8b8c", reverseColor:"#fc8b8c", }}  source={{uri: this.state.profilePic}} />
+                        <Avatar  onPress={() => this.setState({modalVisible: true})} onEditPress={() => this.setState({modalVisible: true})} containerStyle={{backgroundColor:"#fc8b8c",}} showEditButton  rounded size="xlarge" editButton={{name:"camera",type:"font-awesome", size:25, iconStyle:{marginTop:10, color:'#fff', borderColor:'#fff'} ,containerStyle:{backgroundColor:"#fc8b8c", borderRadius:50, height: 45, width: 45, borderColor:'#fff' , borderWidth:2 ,marginRight:60}, color:"#fff", underlayColor:"#fc8b8c", reverseColor:"#fc8b8c", }}  source={{uri: this.state.profilePic}} />
                    </View>
                         
                         }
@@ -370,11 +425,11 @@ export default class EditUserProfile extends Component {
                         
                         <View style={{ backgroundColor:'lightgray', height: 80, width: 80, borderRadius:5, justifyContent:'center', alignItems:"center"}}>
                                     <Avatar 
-                                    // onPress={this.openGallery} 
+                                    // onPress={() => this.setState({modalVisible: true})} 
                                     containerStyle={{  height: 40, width: 40, marginTop: "1%", borderRadius: 10 }} source={camicon} />
                           </View>
                                    
-                            <TouchableOpacity onPress={this.openGallery} style={{borderRadius:5, marginHorizontal: 20}} 
+                            <TouchableOpacity onPress={() => this.setState({modalVisible: true})} style={{borderRadius:5, marginHorizontal: 20}} 
                             >
 
                            <View style={{flexDirection:'column'}}>   
@@ -412,7 +467,7 @@ export default class EditUserProfile extends Component {
 
                        
                          
-              </View>
+              </Animated.View>
          {/* </View> */}
 
                 <View>
@@ -434,4 +489,47 @@ export default class EditUserProfile extends Component {
         </View>
         )
     }
+    componentWillUnmount() {
+        this.keyboardDidShowSub.remove();
+        this.keyboardDidHideSub.remove();
+    }
+
+    handleKeyboardDidShow = (event) => {
+        const { height: windowHeight } = Dimensions.get('window');
+        const keyboardHeight = event.endCoordinates.height;
+        const currentlyFocusedField = TextInputState.currentlyFocusedField();
+        UIManager.measure(currentlyFocusedField, (originX, originY, width, height, pageX, pageY) => {
+            const fieldHeight = height;
+            const fieldTop = pageY;
+            const gap = (windowHeight - keyboardHeight) - (fieldTop + fieldHeight);
+            if (gap >= 0) {
+                return;
+            }
+            Animated.timing(
+                this.state.shift,
+                {
+                    toValue: gap,
+                    duration: 100,
+                    useNativeDriver: true,
+                }
+            ).start();
+        });
+    }
+
+    handleKeyboardDidHide = () => {
+        Animated.timing(
+            this.state.shift,
+            {
+                toValue: 0,
+                duration: 100,
+                useNativeDriver: true,
+            }
+        ).start();
+    }
 }
+
+
+
+
+
+

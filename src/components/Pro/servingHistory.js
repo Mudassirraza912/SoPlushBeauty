@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert, RefreshControl, TextInput } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert, RefreshControl, TextInput, Modal } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button } from 'native-base';
 import {Avatar, Header, Icon, Card, Divider} from 'react-native-elements'
@@ -123,7 +123,8 @@ export default class ServingHistory extends Component {
             data: [],
             focusOn: false,
             offFocus: true,
-            text:''
+            text:'',
+            modalVisible: false
         }
     }
 
@@ -260,6 +261,21 @@ export default class ServingHistory extends Component {
 
 
       
+      openCamera = async () => {
+        const { image } = this.state
+        this.setState({modalVisible: false})
+        let pickerResult = await ImagePicker.launchCameraAsync({
+            allowsEditing: true,
+            // aspect: [4, 3],
+        });
+
+        console.log("launchCameraAsync",pickerResult)
+        // image.push(pickerResult.uri)
+        // this.setState({ image })
+        this._handleImagePicked(pickerResult);
+    };
+
+
     openGallery = async () => {
         const { image } = this.state
         let pickerResult = await ImagePicker.launchImageLibraryAsync({
@@ -321,10 +337,43 @@ export default class ServingHistory extends Component {
     
     render() {
         console.log('length', this.state.data.length)
+        const {modalVisible} = this.state
         return (
             <View style={{flex:1, height:'100%', width:'100%', marginTop: -80}}>
                 <ImageBackground source={require('../../../assets/inner.png')} style={{height:"100%", width:"100%",}}> 
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={() => {
+                    this.setState({modalVisible:!modalVisible})
+                    }}
+                >
+                    <View style={{
+                flex: 1,
+                backgroundColor: "rgba(246, 232, 232, 0.7)",
+                // height: '100%',
+                // opacity:0
+                justifyContent:'center', alignItems:'center'
+            }}>
+                    <View style={{  width: '90%', backgroundColor: "#fff", borderRadius:10 }}>
 
+                        <View style={{padding: 20}}>
+                            <TouchableOpacity onPress={() => {this.openCamera()}} style={{padding:20, borderBottomWidth: 1, borderBottomColor:'gray'}}>
+                                <Text>Take a Picture..</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity onPress={() => this.openGallery()} style={{padding:20, borderBottomWidth: 1, borderBottomColor:'gray'}}>
+                                <Text>Upload Picture..</Text>
+                            </TouchableOpacity>
+                        </View>
+                        
+
+                                                
+                    
+                    </View>
+        </View>
+      </Modal>
                 <Header
                         containerStyle={{marginTop:60, backgroundColor:"#fff"}}
                         placement="left"
@@ -503,7 +552,7 @@ export default class ServingHistory extends Component {
 
 <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "90%", borderRadius: 10}}>
                                         <TouchableOpacity onPress={() => {
-                                            this.openGallery()
+                                            this.setState({modalVisible:true})
                                             // Alert.alert("Alert", "Will be implmented")
                                             }}  style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, paddingVertical: 12 }}>
                                         <Icon  name="camera" type="font-awesome" color="#fff" />

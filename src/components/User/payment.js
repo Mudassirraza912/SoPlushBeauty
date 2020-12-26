@@ -33,12 +33,15 @@ export default class Payment extends Component {
 
     componentDidMount() {
         console.log("componentWillUnmount componentWillUnmount componentWillUnmount")
+
         fetch(`http://soplush.ingicweb.com/soplush/booking/locations.php?action=get_locations&user_id=${this.props.screenProps.profileData.user_id}`, {
 
     }).then(res => res.json())
       .then(resp => {
-        console.log('GETLOCATION',resp.data[0])
+        console.log('GETLOCATION',resp)
+        if(resp.status) {
         this.setState({location:resp.data[0]})
+        }
       })
     }
 
@@ -87,7 +90,7 @@ export default class Payment extends Component {
                   }).then(response => response.json())
 
             }else {
-                Alert.alert("Alert", "Please Enter Correct Date")
+                Alert.alert("Alert", "Please Enter Correct Data")
             }
         // .then(async (response) => { 
         //     console.log("RESPONSE RESPONSE RESPONSE", response)
@@ -123,7 +126,7 @@ export default class Payment extends Component {
                     var successData = resp
                     console.log("successData successData successData ", successData)
                     if(successData.status === true) {
-                        console.log(" successData.status", successData.status)
+                        // console.log(" successData.status", successData.status)
                         this.fetchconfirmBooking(creditCardToken.id)
 
                     }
@@ -157,7 +160,10 @@ export default class Payment extends Component {
         formData.append('beauticain_id', profileData.user_id)
         formData.append('note', "note")
 
-        // console.log("formData formData", formData, formmatedDate)
+        console.log("formData CART", formData)
+
+
+        if(this.state.location != null){
 
 
         fetch("http://soplush.ingicweb.com/soplush/cart/cart.php?action=add_cart", {
@@ -174,8 +180,8 @@ export default class Payment extends Component {
             .then(resp => {
                 //   console.log(JSON.stringify(resp))
                 var successData = resp
-
-                if (successData.status === true) {
+                console.log('successData CART', successData)
+                if (successData.status) {
                     // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
                     const bookingFormData = new FormData()
                     bookingFormData.append('cart_id', successData.cart_id.toString())
@@ -186,7 +192,8 @@ export default class Payment extends Component {
                     bookingFormData.append('location_id', this.state.location.id)
 
 
-                    console.log('bookingFormData', bookingFormData)
+
+                    console.log('bookingFormData', this.props.screenProps.profileData, id , this.state.location)
 
                     fetch("http://soplush.ingicweb.com/soplush/booking/booking.php?action=add_booking", {
                         method: 'POST',
@@ -204,7 +211,6 @@ export default class Payment extends Component {
                             var successData = resp
 
                             if (successData.status === true) {
-                                // console.log("successData.data[0].role_id === 3", successData.data[0].role_id === 3)
                                 this.setState({loader: false})
                                 console.log("successData.data Add BOOKING", successData, this.props.navigation.state.params)
                                 this.props.navigation.state.params = {};
@@ -230,6 +236,11 @@ export default class Payment extends Component {
                 }
             })
             .catch(err => console.log("err err ADD CART", err));
+
+    
+        }else {
+            Alert.alert("Alert", "Please First Add location")
+        }
     }
 
   

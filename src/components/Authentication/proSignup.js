@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert, Keyboard, Animated, UIManager, TextInput, } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView, Alert, Keyboard, Animated, UIManager, TextInput, AsyncStorage, Modal} from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Header, Content, Item, Input, Icon, Label, Form, Button, DatePicker, Spinner } from 'native-base';
 import camicon from '../../../assets/camera.png'
@@ -57,7 +57,7 @@ export default class ProSignUp extends Component {
             accountNoErr: false,
             nameErr: false,
             shift: new Animated.Value(0),
-
+            modalVisible: false
         }
     }
 
@@ -98,12 +98,25 @@ export default class ProSignUp extends Component {
     //         }
     //     });
     // }
+    openCamera = async () => {
+        const { image } = this.state
+        this.setState({modalVisible: false})
+        let pickerResult = await ImagePicker.launchCameraAsync({
+            allowsEditing: true,
+            // aspect: [4, 3],
+        });
 
-
+        console.log("launchCameraAsync",pickerResult)
+        // image.push(pickerResult.uri)
+        // this.setState({ image })
+        this._handleImagePicked(pickerResult);
+    };
 
 
     openGallery = async () => {
         const { image } = this.state
+        this.setState({modalVisible: false})
+
         let pickerResult = await ImagePicker.launchImageLibraryAsync({
             allowsEditing: true,
             // aspect: [4, 3],
@@ -117,24 +130,17 @@ export default class ProSignUp extends Component {
     };
 
     _handleImagePicked = async pickerResult => {
-        // const { image } = this.state
         try {
-            // image.push(pickerResult.uri)
-            // this.setState({ uploading: true, image });
 
             if (!pickerResult.cancelled) {
                 uploadUrl = await this.uploadImageAsync(pickerResult.uri);
-                // this.setState({ img: uploadUrl});
-                // this.props.onOf()
             }
         } catch (e) {
             // console.log(e);
             alert('Upload failed, sorry :(');
         } finally {
-            // this.setState({ uploading: false });
         }
     }
-
 
     uploadImageAsync = async (uri) => {
         // const { imgName } = this.state
@@ -163,126 +169,10 @@ export default class ProSignUp extends Component {
             fileUri: uri
         });
 
-        // this.setState({
-        //     imgName
-        // })
-
-        // console.log("BLOB TO URI",blob, "DATA DATA", uriARR, "URI", blob.data)
-
-        // const ref = firebase
-        //     .storage()
-        //     .ref()
-        //     .child(firebase.auth().currentUser.uid);
-        // const snapshot = await ref.put(blob);
-
-        // // We're done with the blob, close and release it
-        // blob.close();
-        // url = await snapshot.ref.getDownloadURL()
-        // urlarr = url
-        // console.log(url)
-        // return await snapshot.ref.getDownloadURL();
-
     }
 
 
-    // signUp = () => {
-    //     this.setState({ loader: true })
-    //     const { email, password, name, phoneNo, address, profilePic, fileName, fileUri, dOB, bank, accountNo } = this.state
-    //     // this.props.successSign()
-    //     console.log("SIGN UP jksdajkfajkshjghj")
-
-    //     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    //     // this.props.navigation.navigate("ProLogin")
-    //     if (reg.test(email) === false) {
-    //         this.setState({ loader: false })
-
-    //         Alert.alert("Email is not correct")
-    //     } else {
-
-
-    //         const formData = new FormData();
-    //         if (fileUri != "") {
-    //             var file = {
-    //                 uri: fileUri,
-    //                 name: fileName,
-    //                 type: 'image/png'
-    //             }
-    //             formData.append("file_upload", file)
-
-    //         }
-
-    //         formData.append("email", email),
-    //             formData.append("password", password),
-    //             formData.append("address", address),
-    //             formData.append("name", name),
-    //             formData.append("phone_number", phoneNo),
-    //             formData.append("date_of_birth", dOB),
-    //             formData.append("bank_number", accountNo),
-    //             formData.append("bank_name", bank),
-
-
-
-
-    //             console.log("email, password, address, name, phoneNo, profilePic", email, password, address, name, phoneNo, profilePic)
-
-    //         // axios.post("http://soplush.ingicweb.com/soplush/auth/signup.php?action=signup_customer",{
-    //         //     email: email,
-    //         //     password: password,
-    //         //     address: address,
-    //         //     name: name,
-    //         //     phone_number : phoneNo,
-    //         //     file_upload : file
-    //         //   })
-    //         //     .then((response) => {
-    //         //      console.log("SIGN_UP_PROCESSED response",response)
-    //         //     //   dispatch({type: "SIGN_UP_PROCESSED", payload: response.data});
-    //         //     })
-    //         //     .catch((err) => {
-    //         //      console.log("SIGN_UP_ERROR response",err)
-
-    //         //     //   dispatch({type: "Alert", payload: 'An unexpected error occured!'});dispatch({type: "CLEAR_PROCESSING"});
-    //         //       // dispatch({type: "SIGN_UP_PROCESSED", payload: {error: 'An unexpected error occured!', status: 'error'}})
-    //         //     })
-    //         // }
-
-
-
-
-    //         fetch("http://soplush.ingicweb.com/soplush/auth/signup.php?action=signup_beautician", {
-    //             method: 'POST',
-    //             dataType: "json",
-    //             headers: {
-    //                 'Accept': 'application/json',
-    //                 'Content-Type': 'multipart/form-data'
-    //             },
-    //             body: formData
-    //         }).then(res => res.json())
-    //             .then(resp => {
-    //                 console.log(JSON.stringify(resp))
-    //                 var successData = resp
-
-    //                 if (successData.status) {
-    //                     if (successData.status === true) {
-    //                         Alert.alert("Signup successful")
-    //                         this.setState({ loader: false })
-
-    //                         this.props.navigation.navigate("ProLogin")
-    //                     }
-    //                 } else {
-    //                     this.setState({ loader: false })
-
-    //                     Alert.alert(successData.message)
-    //                 }
-    //                 console.log("Alert", successData, successData.status, successData.data)
-    //             })
-    //             .catch(err => {
-    //                 this.setState({ loader: false })
-    //                 // Alert.alert('Try Later')
-    //                 console.log("err err err", err)
-    //             });
-    //     }
-    // }
-
+    
 
 
     signUp = () => {
@@ -339,7 +229,7 @@ export default class ProSignUp extends Component {
                     },
                     body: formData
                 }).then(res => res.json())
-                    .then(resp => {
+                    .then(async resp => {
                         console.log(JSON.stringify(resp))
                         var successData = resp
 
@@ -348,7 +238,26 @@ export default class ProSignUp extends Component {
                                 Alert.alert("Alert", "Signup successful")
                                 this.setState({ loader: false })
 
-                                this.props.navigation.navigate("ProLogin")
+                                // this.props.navigation.navigate("ProLogin")
+                                if (successData.data[0].role_id == 3) {
+                                    this.props.screenProps.fetchProfileData(successData.data[0])
+                                    AsyncStorage.setItem('User', JSON.stringify(successData.data[0]))
+                                    try {
+                                        await AsyncStorage.setItem('User', JSON.stringify(successData.data[0]));
+                                        console.log('enableButton =>')
+                                    } catch (error) {
+                                        console.log('error =>', error)
+                            
+                                    }
+                                    // Alert.alert("Alert", "Login successful")
+                                    this.setState({ loader: false })
+                            
+                                    this.props.navigation.navigate("ProNavigator")
+                                } else {
+                                    Alert.alert("Alert", "Something went wrong")
+                                    this.setState({ loader: false })
+                            
+                                }
                             }
                         } else {
                             this.setState({ loader: false })
@@ -400,7 +309,7 @@ export default class ProSignUp extends Component {
         //     phone_number : phoneNo,
         //     file_upload : file
         //   })
-        //     .then((response) => {
+        //     .then((successData) => {
         //      console.log("SIGN_UP_PROCESSED response",response)
         //     //   dispatch({type: "SIGN_UP_PROCESSED", payload: response.data});
         //     })
@@ -438,12 +347,49 @@ export default class ProSignUp extends Component {
 
 
     render() {
-        const { email, password, name, address, phoneNo, bank, accountNo, loader, nameErr, emailErr, accountNoErr, addressErr, bankErr, passwordErr, phoneNoErr, dOBErr
+        const { email, password, name, address, phoneNo, bank, accountNo, loader, nameErr, emailErr, accountNoErr, addressErr, bankErr, passwordErr, phoneNoErr, dOBErr, modalVisible
         } = this.state
         console.log(email, password, name, address, phoneNo, bank, accountNo)
         return (
             <View style={{ flex: 1, height: '100%', width: '100%', marginTop: -80 }}>
                 <ImageBackground source={require('../../../assets/inner.png')} style={{ height: "100%", width: "100%" }}>
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={() => {
+                    this.setState({modalVisible:!modalVisible})
+                    }}
+                >
+                    <View style={{
+                flex: 1,
+                backgroundColor: "rgba(246, 232, 232, 0.7)",
+                // height: '100%',
+                // opacity:0
+                justifyContent:'center', alignItems:'center'
+            }}>
+                    <View style={{  width: '90%', backgroundColor: "#fff", borderRadius:10 }}>
+
+                        <View style={{padding: 20}}>
+                            <TouchableOpacity onPress={() => {this.openCamera()}} style={{padding:20, borderBottomWidth: 1, borderBottomColor:'gray'}}>
+                                <Text>Take a Picture..</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity onPress={() => this.openGallery()} style={{padding:20, borderBottomWidth: 1, borderBottomColor:'gray'}}>
+                                <Text>Upload Picture..</Text>
+                            </TouchableOpacity>
+                        </View>
+                        
+
+                                                
+                    
+                    </View>
+        </View>
+      </Modal>
+
+
+
+
 
                     <ScrollView  keyboardShouldPersistTaps='always' style={{ height: height }}>
                     <Animated.View style={[{ justifyContent: 'center', alignItems: "center" }, { transform: [{ translateY: this.state.shift }] }]} >
@@ -637,8 +583,8 @@ export default class ProSignUp extends Component {
                                     </View>
                                     <Input style={{ width: "100%", fontSize: 15 }} placeholderTextColor="#bdbdbd" onBlur={() => this.checkField("accountNo")} keyboardType="number-pad" onChangeText={(e) => this.setState({ accountNo: e })} placeholder="Account Number" />
                                 </Item>
-                                {accountNoErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >Account number is required</Text>}
-                                <Item onPress={this.openGallery}  >
+                                {accountNoErr && <Text style={{ color: 'red', fontSize: 12, alignSelf: 'flex-end' }} >there should be 16 digit account number.</Text>}
+                                <Item onPress={() => {this.setState({modalVisible: true})}}  >
                                 <View style={{ width: 30}}>
 
                                     <Image source={camicon} style={{ height: 20, width: 20}} />
@@ -650,7 +596,7 @@ export default class ProSignUp extends Component {
                                 {this.state.profilePic && <View style={{ display: "flex", flexDirection: "row", marginBottom: "3%", marginVertical: '3%', alignSelf: 'flex-start' }}>
                                     {/* <Avatar onPress={this.openGallery} containerStyle={{ height: 40, width: 40, marginTop: "1%", borderRadius: 10 }} source={camicon} overlayContainerStyle={{ height: 40, width: 40, marginTop: "1%", borderRadius: 5 }} /> */}
 
-                                    <Avatar onPress={this.openGallery} containerStyle={{ justifyContent:'center',alignItems:'center',height: 40, width: 40, marginTop: "1%", borderRadius: 5, backgroundColor:'#bdbdbd', }} source={photoCamera}  avatarStyle={{height:15, width: 15 }} overlayContainerStyle={{ height: 40, width: 40, marginTop: "30%", marginLeft:'60%', borderRadius: 5, }} />
+                                    <Avatar onPress={() => {this.setState({modalVisible: true})}}  containerStyle={{ justifyContent:'center',alignItems:'center',height: 40, width: 40, marginTop: "1%", borderRadius: 5, backgroundColor:'#bdbdbd', }} source={photoCamera}  avatarStyle={{height:15, width: 15 }} overlayContainerStyle={{ height: 40, width: 40, marginTop: "30%", marginLeft:'60%', borderRadius: 5, }} />
 
 
                                     <TouchableOpacity style={{ height: 50, width: 50, borderTopLeftRadius: 5,borderBottomLeftRadius: 5, borderBottomRightRadius: 5,  }} onPress={() => {
@@ -666,7 +612,11 @@ export default class ProSignUp extends Component {
                                                 },
                                                 {
                                                     text: 'yes',
-                                                    onPress: () => this.setState({ profilePic: false })
+                                                    onPress: () => this.setState({ 
+                                                        profilePic: false ,
+                                                        fileName: '',
+                                                         fileUri: ''
+                                                    })
                                                     ,
                                                     // style: 'cancel',
                                                 },

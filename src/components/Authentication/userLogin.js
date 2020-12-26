@@ -468,9 +468,9 @@ export default class UserLogin extends Component {
                                                 // Alert.alert("Alert", "Will be implemented")
                                             }}
                                             style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10, flexDirection: 'row' }}>
-                                                <Icon style={{ color: "#fff" }} name="instagram" type="MaterialCommunityIcons" />
+                                                <Icon style={{ color: "#fff" }} name="facebook" type="MaterialCommunityIcons" />
                                                 <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular", paddingVertical: 10, paddingHorizontal: 5, fontWeight: 'bold' }}>
-                                                    Instagram
+                                                    Facebook
 </Text>
                                             </TouchableOpacity>
                                         </LinearGradient>

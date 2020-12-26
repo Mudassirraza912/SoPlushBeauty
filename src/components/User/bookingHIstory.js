@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView,TextInput, RefreshControl, Alert, BackHandler, Modal,  } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, Image, TouchableOpacity, ScrollView,TextInput, RefreshControl, Alert, BackHandler, Modal, ActivityIndicator } from 'react-native'
 // import {  } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Left, Right, Button, DatePicker , Input, Item} from 'native-base';
 import {Avatar, Header, Icon, Card, Divider} from 'react-native-elements'
@@ -123,7 +123,8 @@ export default class BookingHistory extends Component {
             day: '',
             cost: '',
             serviceName: '',
-            beauticianName: ''
+            beauticianName: '',
+            loader: false
             
 
         }
@@ -243,7 +244,7 @@ export default class BookingHistory extends Component {
 
     filterByParams = () => {
         const {date, day, serviceName, cost, beauticianName} = this.state
-
+this.setState({ loader: true})
         const formData = new FormData()
         formData.append('date', date)
         formData.append('beautician_name', beauticianName)
@@ -262,12 +263,23 @@ export default class BookingHistory extends Component {
         .then(resp => {
           console.log('resp specific', resp.data, resp)
           
-          this.setState({
-            data: resp.data,
-            modalVisible: false
-          })
+          if(resp.status){
+            this.setState({
+                data: resp.data,
+                modalVisible: false,
+                loader: false
+              })
+          }else{
+              Alert.alert('Alert', resp.message)
+            this.setState({ loader: false})
+
+          }
+          
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            this.setState({ loader: false})
+            console.log(err)
+        })
     }
 
 
@@ -283,6 +295,8 @@ export default class BookingHistory extends Component {
     
     render() {
         const { data , modalVisible} = this.state
+        const { from } = this.props.navigation.state.params
+        console.log('this.props.isFocused ',from, from === 'appointment')
         return (
             <View style={{flex:1, height:'100%', width:'100%', marginTop: -80}}>
                 <ImageBackground source={require('../../../assets/inner.png')} style={{height:"100%", width:"100%"}}> 
@@ -363,7 +377,7 @@ export default class BookingHistory extends Component {
 
                         </View>
 
-                        <View style={{ alignContent: "center", alignItems: "center", marginTop: "15%", marginBottom:10 }}>
+                       {!this.state.loader ? <View style={{ alignContent: "center", alignItems: "center", marginTop: "15%", marginBottom:10 }}>
                                 <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.0, y: 1.0 }} colors={['#F9B1B0', '#FD8788', '#FF7173']} style={{ width: "100%", borderRadius: 10}}>
                                         <TouchableOpacity onPress={() => {this.filterByParams()}} style={{ justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "none", opacity: 0.7, borderRadius: 10 }} style={{ flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center", backgroundColor: "transparent", opacity: 0.7, borderRadius: 10 }}>
                                             <Text style={{ alignSelf: "center", textAlignVertical: "center", color: "#fff", fontFamily: "Poppins-Regular", fontSize: 17, paddingVertical: 15 , fontWeight:'bold'}}>
@@ -371,7 +385,10 @@ export default class BookingHistory extends Component {
                                             </Text>
                                         </TouchableOpacity>
                                     </LinearGradient>
-                                    </View>
+                                    </View> :
+                                    
+                                    <ActivityIndicator color='FF7173' size="large" />
+                                    }
 
 
                         
@@ -390,7 +407,15 @@ export default class BookingHistory extends Component {
                 <Header
                         containerStyle={{marginTop:60, backgroundColor:"#fff"}}
                         placement="left"
-                        leftComponent={<Icon onPress={() => {this.props.navigation.navigate('UserHome')}} name="arrow-back" color="#000" />}
+                        leftComponent={<Icon onPress={() => {{
+                            if(from === 'appointment') {
+                                this.props.navigation.navigate('UserAppointment')
+                         }else{
+                            this.props.navigation.navigate('UserHome')
+                        }
+
+                         
+                        }}} name="arrow-back" color="#000" />}
                         centerComponent={
                             <View style={{alignContent:"center", alignItems:"center", alignSelf:"center"}}>
                       {!this.state.focusOn  ? <Text style={{alignSelf:'center', fontSize: 20, fontFamily: "Poppins-Regular" }}>BOOKING HISTORY</Text> 
@@ -464,11 +489,11 @@ export default class BookingHistory extends Component {
                         var dataLength = this.state.data.length
                         console.log("DAY NAME DAY NAME",index , dataLength)
                         var formatDate = `${moment(value.service_date).format('dddd')} - ${ moment(value.service_date).format('DD/MM/YYYY')}`
-                    
-                        if( index === 1){
+
+                        if(this.state.data.length === 1) {
 
                             return(
-                                <View key={index} style={{backgroundColor:'#fff', padding: 10, borderTopLeftRadius: 20, borderTopRightRadius: 20}}> 
+                                <View key={index} style={{backgroundColor:'#fff', padding: 10, borderTopLeftRadius: 20, borderTopRightRadius: 20, borderBottomLeftRadius: 20, borderBottomRightRadius: 20}}> 
         
                                    <View style={{display:"flex", flexDirection:"row", paddingVertical:"5%", justifyContent:'space-between'}}> 
                                             <Text style={{fontFamily:"Poppins-Regular", color:"#ff8385", fontSize:17}}>{formatDate}</Text>
@@ -514,55 +539,114 @@ export default class BookingHistory extends Component {
 
                         }else {
 
-                            return(
-                                <View key={index} style={index === dataLength ? {backgroundColor:'#fff', padding: 10, borderBottomLeftRadius: 20, borderBottomRightRadius: 20} : {backgroundColor:'#fff', padding: 10}}> 
-        
-                                   <View style={{display:"flex", flexDirection:"row", paddingVertical:"5%", justifyContent:'space-between'}}> 
-                                            <Text style={{fontFamily:"Poppins-Regular", color:"#ff8385", fontSize:17}}>{formatDate}</Text>
-                                        </View>
-        
-        
-        
-        
-                                        <View style={{ display: "flex", flexDirection: "row" , justifyContent:'space-between'}}>
-                                                            <Text style={{ width: "50%", fontFamily: "Poppins-Regular", color: '#bdbdbd' }}>Service Name</Text>
-                                                            <Text style={{ marginLeft: "5%", fontFamily: "Poppins-Regular", fontSize:15  }}>{value.service_name}</Text>
+
+
+
+
+
+
+                            if( index === 1){
+
+                                return(
+                                    <View key={index} style={{backgroundColor:'#fff', padding: 10, borderTopLeftRadius: 20, borderTopRightRadius: 20}}> 
+            
+                                       <View style={{display:"flex", flexDirection:"row", paddingVertical:"5%", justifyContent:'space-between'}}> 
+                                                <Text style={{fontFamily:"Poppins-Regular", color:"#ff8385", fontSize:17}}>{formatDate}</Text>
                                             </View>
-        
-        
-                                      
-        
-        
-        {value.s_checked  == 1 ? 
-                                         <View style={{display:"flex", flexDirection:"row"}}> 
-                                            <Text style={{width:"50%", fontFamily:"Poppins-Regular", color:'#aaaaaa' }}>Cost</Text>
-                                            <Text style={{width:"50%",  fontFamily:"Poppins-Regular", textAlign: 'right'}}>${value.soplush_cost}</Text>
+            
+            
+            
+            
+                                            <View style={{ display: "flex", flexDirection: "row" , justifyContent:'space-between'}}>
+                                                                <Text style={{ width: "50%", fontFamily: "Poppins-Regular", color: '#bdbdbd' }}>Service Name</Text>
+                                                                <Text style={{ marginLeft: "5%", fontFamily: "Poppins-Regular", fontSize:15  }}>{value.service_name}</Text>
+                                                </View>
+            
+            
+                                          
+            
+            
+            {value.s_checked  == 1 ? 
+                                             <View style={{display:"flex", flexDirection:"row"}}> 
+                                                <Text style={{width:"50%", fontFamily:"Poppins-Regular", color:'#aaaaaa' }}>Cost</Text>
+                                                <Text style={{width:"50%",  fontFamily:"Poppins-Regular", textAlign: 'right'}}>${value.soplush_cost}</Text>
+                                            </View>  
+                                            
+                                        :
+                                        <View style={{display:"flex", flexDirection:"row"}}> 
+                                        <Text style={{width:"50%", fontFamily:"Poppins-Regular", color:'#aaaaaa' }}>Cost</Text>
+                                        <Text style={{width:"50%",  fontFamily:"Poppins-Regular", textAlign: 'right'}}>${value.plush_cost}</Text>
                                         </View>  
                                         
-                                    :
-                                    <View style={{display:"flex", flexDirection:"row"}}> 
-                                    <Text style={{width:"50%", fontFamily:"Poppins-Regular", color:'#aaaaaa' }}>Cost</Text>
-                                    <Text style={{width:"50%",  fontFamily:"Poppins-Regular", textAlign: 'right'}}>${value.plush_cost}</Text>
-                                    </View>  
-                                    
-                                    }
-        
-        
-                                        <View style={{display:"flex", flexDirection:"row", justifyContent:'space-between', paddingVertical: 5}}> 
-                                        <Text style={{ width: "50%", fontFamily: "Poppins-Regular", color: '#bdbdbd' }}>Beauticainist Name</Text>
-                                                            <Text style={{ marginLeft: "5%", fontFamily: "Poppins-Regular", fontSize:15  }}>{value.beautician}</Text>
-                                        </View>
-        
-                                        <Divider style={{backgroundColor:'#bdbdbd', top: 10, width:'95%'}} />
-        
-                            </View>
-        
-                                )
-
-
-
+                                        }
+            
+            
+                                            <View style={{display:"flex", flexDirection:"row", justifyContent:'space-between'}}> 
+                                            <Text style={{ width: "50%", fontFamily: "Poppins-Regular", color: '#bdbdbd' }}>Beauticainist Name</Text>
+                                                                <Text style={{ marginLeft: "5%", fontFamily: "Poppins-Regular", fontSize:15  }}>{value.beautician}</Text>
+                                            </View>
+            
+                                            <Divider style={{backgroundColor:'#bdbdbd', top: 10, width:'95%'}} />
+            
+                                </View>
+            
+                                    )
+    
+                            }else {
+    
+                                return(
+                                    <View key={index} style={index === dataLength ? {backgroundColor:'#fff', padding: 10, borderBottomLeftRadius: 20, borderBottomRightRadius: 20} : {backgroundColor:'#fff', padding: 10}}> 
+            
+                                       <View style={{display:"flex", flexDirection:"row", paddingVertical:"5%", justifyContent:'space-between'}}> 
+                                                <Text style={{fontFamily:"Poppins-Regular", color:"#ff8385", fontSize:17}}>{formatDate}</Text>
+                                            </View>
+            
+            
+            
+            
+                                            <View style={{ display: "flex", flexDirection: "row" , justifyContent:'space-between'}}>
+                                                                <Text style={{ width: "50%", fontFamily: "Poppins-Regular", color: '#bdbdbd' }}>Service Name</Text>
+                                                                <Text style={{ marginLeft: "5%", fontFamily: "Poppins-Regular", fontSize:15  }}>{value.service_name}</Text>
+                                                </View>
+            
+            
+                                          
+            
+            
+            {value.s_checked  == 1 ? 
+                                             <View style={{display:"flex", flexDirection:"row"}}> 
+                                                <Text style={{width:"50%", fontFamily:"Poppins-Regular", color:'#aaaaaa' }}>Cost</Text>
+                                                <Text style={{width:"50%",  fontFamily:"Poppins-Regular", textAlign: 'right'}}>${value.soplush_cost}</Text>
+                                            </View>  
+                                            
+                                        :
+                                        <View style={{display:"flex", flexDirection:"row"}}> 
+                                        <Text style={{width:"50%", fontFamily:"Poppins-Regular", color:'#aaaaaa' }}>Cost</Text>
+                                        <Text style={{width:"50%",  fontFamily:"Poppins-Regular", textAlign: 'right'}}>${value.plush_cost}</Text>
+                                        </View>  
+                                        
+                                        }
+            
+            
+                                            <View style={{display:"flex", flexDirection:"row", justifyContent:'space-between', paddingVertical: 5}}> 
+                                            <Text style={{ width: "50%", fontFamily: "Poppins-Regular", color: '#bdbdbd' }}>Beauticainist Name</Text>
+                                                                <Text style={{ marginLeft: "5%", fontFamily: "Poppins-Regular", fontSize:15  }}>{value.beautician}</Text>
+                                            </View>
+            
+                                            <Divider style={{backgroundColor:'#bdbdbd', top: 10, width:'95%'}} />
+            
+                                </View>
+            
+                                    )
+    
+    
+    
+    
+                            }
 
                         }
+                    
+                        
 
                         
                     })}

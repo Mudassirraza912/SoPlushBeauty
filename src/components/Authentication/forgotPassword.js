@@ -557,8 +557,8 @@ export default class ForgotPassword extends Component {
                         <View style={{ width: '20%', alignItems: 'center', justifyContent: 'center', alignContent: 'center' }}>
                             <Image source={require("../../../assets/lockopen.png")} style={{ height: 20, width: 15 }}  />
                         </View>
-                        <Item stackedLabel style={{ width: '80%', borderBottomWidth: 0 }}>
-                            <Label style={{ marginLeft: 3, color: 'lightgray' }}>Password</Label>
+                        <Item stackedLabel style={{ borderBottomWidth: 0 }}>
+                            <Label style={{ marginLeft: 3, color: 'lightgray' }}>New Password</Label>
                             <Input secureTextEntry value={this.state.password} placeholder="*********" style={{ color: 'gray' , width:'100%' }} onChangeText={(e) => { this.setState({ password: e }) }} />
                         </Item>
                     </View>
@@ -568,7 +568,7 @@ export default class ForgotPassword extends Component {
                         <View style={{ width: '20%', alignItems: 'center', justifyContent: 'center', alignContent: 'center' }}>
                             <Image source={require("../../../assets/lockopen.png")} style={{ height: 20, width: 15 }}  />
                         </View>
-                        <Item stackedLabel style={{ width: '80%', borderBottomWidth: 0 }}>
+                        <Item stackedLabel style={{ borderBottomWidth: 0 }}>
                             <Label style={{ marginLeft: 3, color: 'lightgray' }}>Confirm Password</Label>
                             <Input secureTextEntry  value={this.state.newPassword} placeholder="*********" style={{ color: 'gray', width:'100%' }} onChangeText={(e) => { this.setState({ newPassword: e }) }} />
                         </Item>
@@ -623,7 +623,7 @@ export default class ForgotPassword extends Component {
 
                                 {renderEMail && <this.RenderEnterEmial />}
                                 {renderPassword && <this.RenderChangePassword />}
-                                {renderCode && <this.RenderCode />}
+                                 {renderCode && <this.RenderCode />}
                                 {/* <this.RenderChangePassword /> */}
 
 

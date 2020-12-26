@@ -28,7 +28,7 @@ class DrawerMenu extends Component {
 
 
   render() {
-    // console.log("Drawer DrawerDrawer  Drawer", `http://soplush.ingicweb.com/soplush/profile_pics/${this.props.screenProps.profileData.profile_pic}`)
+    console.log("Drawer DrawerDrawer  Drawer", `http://soplush.ingicweb.com/soplush/profile_pics/${this.props.screenProps.profileData.profile_pic}`)
     // console.log("this.props.screenProps.profileData.profile_pic",(this.props.screenProps.profileData.profile_pic !== "" || this.props.screenProps.profileData.profile_pic !== null), this.props.screenProps.profileData.profile_pic !== "",  this.props.screenProps.profileData.profile_pic !== null)
     return (
 
@@ -306,7 +306,7 @@ class DrawerMenu extends Component {
 
 
 
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={styles.menuItem}
               onPress={() => {
                 Alert.alert("Alert", "Will be impelmented")
@@ -325,7 +325,7 @@ class DrawerMenu extends Component {
 
 
 
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
 
 

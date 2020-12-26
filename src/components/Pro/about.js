@@ -29,7 +29,7 @@ export default class About extends Component {
         const formData = new FormData()
         formData.append('role_name','super_admin')
 
-        fetch("http://soplush.ingicweb.com/soplush/application_details/application_details.php?action=get&role_name=customer&type=about", {
+        fetch("http://soplush.ingicweb.com/soplush/application_details/application_details.php?action=get&role_name=beautician&type=about", {
           method: 'POST',
           // dataType: "json",
           headers: {

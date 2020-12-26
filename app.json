@@ -33,7 +33,12 @@
     "android": {
       "googleServicesFile": "./google-services.json",
       "package": "com.soplush",
-      "versionCode": 1
+      "versionCode": 1,
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyCZb5Giwa97t9XfbcgI1T7BCSUt0YTRRP8"
+        }
+      }
     }
   }
 }
